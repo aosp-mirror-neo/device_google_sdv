@@ -47,9 +47,10 @@ PRODUCT_PACKAGES += deployment_configuration.json \
 PRODUCT_PACKAGES += \
     server_sdv_sample \
     client_sdv_sample \
-    com.android.sdv.samples.rpc \
     server_rust_sdv_sample \
     client_rust_sdv_sample \
+    client_rust_tokio_sdv_sample \
+    com.android.sdv.samples.rpc \
     logging_sdv_sample \
     structured_logging_sdv_sample \
     compile_time_log_filtering_sdv_sample \
