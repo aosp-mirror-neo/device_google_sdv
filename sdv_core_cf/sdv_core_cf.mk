@@ -49,6 +49,7 @@ PRODUCT_PACKAGES += \
     client_sdv_sample \
     server_rust_sdv_sample \
     client_rust_sdv_sample \
+    server_rust_tokio_sdv_sample \
     client_rust_tokio_sdv_sample \
     com.android.sdv.samples.rpc \
     logging_sdv_sample \
