@@ -17,3 +17,8 @@ PRODUCT_VENDOR_PROPERTIES += \
     ro.soc.model=$(PRODUCT_DEVICE)
 
 PRODUCT_HOST_PACKAGES += sdv_proxy
+
+PRODUCT_PACKAGES += \
+    server_sdv_sample \
+    client_sdv_sample \
+    client_rust_sdv_sample \
