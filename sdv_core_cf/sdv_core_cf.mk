@@ -41,3 +41,7 @@ PRODUCT_PACKAGES += \
     client_sdv_sample \
     com.android.sdv.samples.rpc \
     client_rust_sdv_sample \
+    logging_sdv_sample \
+    structured_logging_sdv_sample \
+    compile_time_log_filtering_sdv_sample \
+    log_filtering_sdv_sample \
