@@ -10,7 +10,7 @@ PRODUCT_NAME := sdv_core_cf
 PRODUCT_DEVICE := sdv_core_cf
 PRODUCT_BRAND := google
 PRODUCT_MANUFACTURER := Google
-PRODUCT_MODEL := Software-Defined Vehicle
+PRODUCT_MODEL := Software-Defined Vehicle Core
 
 PRODUCT_VENDOR_PROPERTIES += \
     ro.soc.manufacturer=$(PRODUCT_MANUFACTURER) \
