@@ -27,3 +27,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     com.android.sdv.samples.rpc \
     libsdvrpc \
+    sdv_sample_rpc_client \
+    sdv_sample_rpc_server \
+
+PRODUCT_COPY_FILES += \
+    device/google/sdv/sdv_core_cf/init.rc:system/etc/init/hw/init.sdv.rc \
+
+# fstab.<name> must match with the value of the androidboot.hardware property.
+PRODUCT_COPY_FILES += \
+    device/google/cuttlefish/shared/minidroid/fstab.minidroid:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.sdv \
+    device/google/cuttlefish/shared/minidroid/fstab.minidroid:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.sdv \

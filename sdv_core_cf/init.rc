@@ -1,0 +1,9 @@
+# SDV's primary init .rc file which is loaded first by the init process.
+
+# TODO(b/267320398): because the androidboot.init_rc property is set in the BoardConfig.mk, the init
+# process doesn't automatically import the init .rc files placed in the
+# /{system,system_ext,vendor,odm,product}/etc/init/ directories, only the init .rc files that are
+# imported in this script.
+
+# For now, just import minidroid's init.rc script.
+import /system/etc/init/hw/init.minidroid.rc
