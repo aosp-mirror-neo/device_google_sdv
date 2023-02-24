@@ -15,3 +15,5 @@ PRODUCT_MODEL := Software-Defined Vehicle Core
 PRODUCT_VENDOR_PROPERTIES += \
     ro.soc.manufacturer=$(PRODUCT_MANUFACTURER) \
     ro.soc.model=$(PRODUCT_DEVICE)
+
+PRODUCT_HOST_PACKAGES += sdv_proxy
