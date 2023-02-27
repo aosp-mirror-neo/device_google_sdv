@@ -16,20 +16,6 @@ PRODUCT_VENDOR_PROPERTIES += \
     ro.soc.manufacturer=$(PRODUCT_MANUFACTURER) \
     ro.soc.model=$(PRODUCT_DEVICE)
 
-PRODUCT_HOST_PACKAGES += sdv_proxy
-
-PRODUCT_PACKAGES += \
-    server_sdv_sample \
-    client_sdv_sample \
-    client_rust_sdv_sample \
-
-# SDV RPC
-PRODUCT_PACKAGES += \
-    com.android.sdv.samples.rpc \
-    libsdvrpc \
-    sdv_sample_rpc_client \
-    sdv_sample_rpc_server \
-
 PRODUCT_COPY_FILES += \
     device/google/sdv/sdv_core_cf/init.rc:system/etc/init/hw/init.sdv.rc \
 
@@ -37,3 +23,21 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/google/cuttlefish/shared/minidroid/fstab.minidroid:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.sdv \
     device/google/cuttlefish/shared/minidroid/fstab.minidroid:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.sdv \
+
+# SDV proxy application for forwarding the connection between different VMs
+PRODUCT_HOST_PACKAGES += sdv_proxy
+
+## SDV Core components (agent, libraries)
+# Shared component (utiltites for Core agents and libraries)
+PRODUCT_PACKAGES += libsdv_shared
+# RPC library
+PRODUCT_PACKAGES += libsdvrpc
+# Lifecycle manager agent
+PRODUCT_PACKAGES += soa_service_lifecycle_manager
+
+# SDV Sample applications
+PRODUCT_PACKAGES += \
+    server_sdv_sample \
+    client_sdv_sample \
+    com.android.sdv.samples.rpc \
+    client_rust_sdv_sample \
