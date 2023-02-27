@@ -24,8 +24,6 @@ PRODUCT_PACKAGES += \
     client_rust_sdv_sample \
 
 # SDV RPC
-#TODO: replace _client and _server with com.android.sdv.samples.rpc
 PRODUCT_PACKAGES += \
+    com.android.sdv.samples.rpc \
     libsdvrpc \
-    sdv_sample_rpc_client \
-    sdv_sample_rpc_server \
