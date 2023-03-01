@@ -52,6 +52,7 @@ PRODUCT_PACKAGES += \
     server_rust_tokio_sdv_sample \
     client_rust_tokio_sdv_sample \
     com.android.sdv.samples.rpc \
+    lifecycle_sample \
     logging_sdv_sample \
     structured_logging_sdv_sample \
     compile_time_log_filtering_sdv_sample \
