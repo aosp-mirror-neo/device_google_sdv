@@ -25,7 +25,8 @@ PRODUCT_COPY_FILES += \
     device/google/cuttlefish/shared/minidroid/fstab.minidroid:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.sdv \
 
 # SDV proxy application for forwarding the connection between different VMs
-PRODUCT_HOST_PACKAGES += sdv_proxy
+PRODUCT_HOST_PACKAGES += sdv_proxy \
+    host_deployment_configuration.json \
 
 ## SDV Core components (agent, libraries)
 # Shared component (utiltites for Core agents and libraries)
@@ -34,6 +35,9 @@ PRODUCT_PACKAGES += libsdv_shared
 PRODUCT_PACKAGES += libsdvrpc
 # Lifecycle manager agent
 PRODUCT_PACKAGES += soa_service_lifecycle_manager
+
+# SDV deployment configuration
+PRODUCT_PACKAGES += deployment_configuration.json \
 
 # SDV Sample applications
 PRODUCT_PACKAGES += \
