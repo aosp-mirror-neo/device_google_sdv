@@ -67,5 +67,6 @@ PRODUCT_PACKAGES += \
     service_authn_sample_rs \
     client_sdv_benchmark_sample \
     sdv_poc \
-    sdv_poc_client
+    sdv_poc_client \
+    com.android.sdv.hello.apex \
 
