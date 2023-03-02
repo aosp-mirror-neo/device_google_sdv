@@ -35,6 +35,10 @@ PRODUCT_PACKAGES += libsdv_shared
 PRODUCT_PACKAGES += libsdvrpc
 # Lifecycle manager agent
 PRODUCT_PACKAGES += soa_service_lifecycle_manager
+# Service discovery library
+PRODUCT_PACKAGES += libsdv_sd
+# Service discovery agent
+PRODUCT_PACKAGES += sdv_sd_agent
 
 # SDV deployment configuration
 PRODUCT_PACKAGES += deployment_configuration.json \
