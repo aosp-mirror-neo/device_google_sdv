@@ -1,0 +1,18 @@
+# SDV SD agent is a system process.
+type sdv_sd_default, domain;
+typeattribute sdv_sd_default coredomain;
+typeattribute sdv_sd_default mlstrustedsubject;
+typeattribute sdv_sd_default sdv_sd_server;
+
+# SD agent executable file
+type sdv_sd_default_exec, exec_type, system_file_type, file_type;
+
+# SD agent can be started by init.
+init_daemon_domain(sdv_sd_default)
+
+# SD agent can register itself as a Binder IPC service.
+binder_call(sdv_sd_server, servicemanager);
+
+# SD agent can use sockets for Binder RPC.
+net_domain(sdv_sd_default)
+allow sdv_sd_default self:vsock_socket { create getopt read write getattr listen accept bind shutdown };
