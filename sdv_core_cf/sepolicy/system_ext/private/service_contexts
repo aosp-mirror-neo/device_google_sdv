@@ -1,0 +1,2 @@
+# SDV SD IPC service
+android.sdv.sd.IServiceManager        u:object_r:sdv_sd_service:s0

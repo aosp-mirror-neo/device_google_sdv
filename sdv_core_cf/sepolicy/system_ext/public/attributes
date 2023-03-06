@@ -1,0 +1,5 @@
+# Attributes for BI SD clients and servers
+attribute sdv_sd_client;
+attribute sdv_sd_server;
+expandattribute sdv_sd_client true;
+expandattribute sdv_sd_server false;

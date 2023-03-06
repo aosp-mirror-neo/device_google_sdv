@@ -7,3 +7,12 @@
 
 # For now, just import minidroid's init.rc script.
 import /system/etc/init/hw/init.minidroid.rc
+
+# Declare and start the SDV service discovery service.
+service sdv_sd_agent /system_ext/bin/sdv_sd_agent
+    class core
+    disabled
+    user system
+    group system
+on property:dev.bootcomplete=1
+    start sdv_sd_agent

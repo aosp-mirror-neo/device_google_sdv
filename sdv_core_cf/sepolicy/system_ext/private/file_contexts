@@ -1,0 +1,2 @@
+# SDV service discovery agent
+/(system_ext|system/system_ext)/bin/sdv_sd_agent       u:object_r:sdv_sd_default_exec:s0
