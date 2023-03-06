@@ -15,4 +15,4 @@ binder_call(sdv_sd_server, servicemanager);
 
 # SD agent can use sockets for Binder RPC.
 net_domain(sdv_sd_default)
-allow sdv_sd_default self:vsock_socket { create getopt read write getattr listen accept bind shutdown };
+allow sdv_sd_default self:vsock_socket { connect create getopt read write getattr listen accept bind shutdown };
