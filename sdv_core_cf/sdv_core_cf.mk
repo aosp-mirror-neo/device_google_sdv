@@ -36,7 +36,7 @@ PRODUCT_PACKAGES += libsdvrpc
 # Lifecycle manager agent
 PRODUCT_PACKAGES += soa_service_lifecycle_manager
 # Service discovery library
-PRODUCT_PACKAGES += libsdvsd
+PRODUCT_PACKAGES += libsdv_sd
 # Service discovery agent
 PRODUCT_PACKAGES += sdv_sd_agent
 
@@ -56,3 +56,4 @@ PRODUCT_PACKAGES += \
     structured_logging_sdv_sample \
     compile_time_log_filtering_sdv_sample \
     log_filtering_sdv_sample \
+    com.android.sdv.samples.rochambeau \
