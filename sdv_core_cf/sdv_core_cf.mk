@@ -39,6 +39,8 @@ PRODUCT_PACKAGES += soa_service_lifecycle_manager
 PRODUCT_PACKAGES += libsdv_sd
 # Service discovery agent
 PRODUCT_PACKAGES += sdv_sd_agent
+# Service discovery CLI utility
+PRODUCT_PACKAGES += sdv_sd_cli
 
 # SDV deployment configuration
 PRODUCT_PACKAGES += deployment_configuration.json \
