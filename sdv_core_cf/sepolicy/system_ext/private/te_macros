@@ -1,0 +1,13 @@
+#####################################
+# core_service(service_domain)
+# Declare service_domain as system process
+# Allow service_domain to start via init
+# Declare (service_domain)_exec as an executable file
+define(`core_service', `
+type $1, domain;
+typeattribute $1 coredomain;
+typeattribute $1 mlstrustedsubject;
+typeattribute $1 sdv_core_server;
+type $1_exec, exec_type, system_file_type, file_type;
+init_daemon_domain($1)
+')
