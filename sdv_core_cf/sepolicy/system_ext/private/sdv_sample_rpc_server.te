@@ -1,0 +1,7 @@
+type sdv_sample_rpc_server, domain;
+typeattribute sdv_sample_rpc_server coredomain;
+type sdv_sample_rpc_server_exec, system_file_type, exec_type, file_type;
+
+init_daemon_domain(sdv_sample_rpc_server)
+
+allow sdv_sample_rpc_server self:vsock_socket { create getopt read write getattr listen accept bind };

@@ -1,0 +1,14 @@
+type sdv_sample_rpc_client, domain;
+typeattribute sdv_sample_rpc_client coredomain;
+type sdv_sample_rpc_client_exec, system_file_type, exec_type, file_type;
+
+allow sdv_sample_rpc_client self:vsock_socket { create connect getopt read write };
+
+# TODO(b/272517270): Remove these rules. They allow to run sdv_sample_rpc_client from adb shell
+# without having root permissions. It's only used for development.
+domain_auto_trans(shell, sdv_sample_rpc_client_exec, sdv_sample_rpc_client)
+allow sdv_sample_rpc_client shell:fd use;
+# These rules would silence the policy errors that are logged when sdv_sample_rpc_client is called,
+# but they don't seem to be necessary for sdv_sample_rpc_client to successfully complete the RPC.
+# allow sdv_sample_rpc_client adbd:fd use;
+# allow sdv_sample_rpc_client adbd:unix_stream_socket { read write };
