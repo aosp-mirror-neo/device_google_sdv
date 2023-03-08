@@ -16,3 +16,10 @@ service sdv_sd_agent /system_ext/bin/sdv_sd_agent
     group system
 on property:dev.bootcomplete=1
     start sdv_sd_agent
+
+# Trigger a sample_service when one is provided. For instance, via the extra_bootconfig_args
+# argument of launch_cvd:
+# launch_cvd -extra_bootconfig_args androidboot.sdv.sample_service=<sample_service_name>
+on property:dev.bootcomplete=1 && property:ro.boot.sdv.sample_service=*
+     # Only triggered if ro.boot.sdv.sample_service is not none.
+     start ${ro.boot.sdv.sample_service}
