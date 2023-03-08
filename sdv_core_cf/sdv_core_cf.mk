@@ -60,3 +60,4 @@ PRODUCT_PACKAGES += \
     compile_time_log_filtering_sdv_sample \
     log_filtering_sdv_sample \
     com.android.sdv.samples.rochambeau \
+    client_sdv_benchmark_sample \
