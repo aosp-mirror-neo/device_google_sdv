@@ -42,6 +42,8 @@ PRODUCT_PACKAGES += libsdv_sd
 PRODUCT_PACKAGES += sdv_sd_agent
 # Service discovery CLI utility
 PRODUCT_PACKAGES += sdv_sd_cli
+# Service Authentication library
+PRODUCT_PACKAGES += libsdv_authn
 
 # SDV deployment configuration
 PRODUCT_PACKAGES += deployment_configuration.json \
@@ -61,4 +63,5 @@ PRODUCT_PACKAGES += \
     compile_time_log_filtering_sdv_sample \
     log_filtering_sdv_sample \
     com.android.sdv.samples.rochambeau \
+    service_authn_sample_rs \
     client_sdv_benchmark_sample \
