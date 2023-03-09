@@ -1,3 +1,4 @@
+# Copyright 2023 Google LLC
 # SDV's primary init .rc file which is loaded first by the init process.
 
 # TODO(b/267320398): because the androidboot.init_rc property is set in the BoardConfig.mk, the init

@@ -1,3 +1,4 @@
+# Copyright 2023 Google LLC
 PRODUCT_MAKEFILES := \
     sdv_core_cf:$(LOCAL_DIR)/sdv_core_cf/sdv_core_cf.mk \
 
