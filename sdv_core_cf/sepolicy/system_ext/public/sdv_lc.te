@@ -1,0 +1,9 @@
+# SDV Lifecycle client and server can use Binder IPC.
+binder_call(sdv_lc_client, sdv_lc_server)
+binder_call(sdv_lc_server, sdv_lc_client)
+
+# SDV Lifecycle client can find the IPC service.
+allow sdv_lc_client sdv_lc_service:service_manager find;
+
+# SDV Lifecycle server can register the IPC service.
+add_service(sdv_lc_server, sdv_lc_service)

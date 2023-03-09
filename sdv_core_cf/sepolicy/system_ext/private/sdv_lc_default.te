@@ -1,0 +1,14 @@
+# SDV Lifecycle agent is a system process.
+type sdv_lc_default, domain;
+typeattribute sdv_lc_default coredomain;
+typeattribute sdv_lc_default mlstrustedsubject;
+typeattribute sdv_lc_default sdv_lc_server;
+
+# Lifecycle agent executable file
+type sdv_lc_default_exec, exec_type, system_file_type, file_type;
+
+# Lifecycle agent can be started by init.
+init_daemon_domain(sdv_lc_default)
+
+# Lifecycle agent can register itself as a Binder IPC service.
+binder_call(sdv_lc_server, servicemanager);

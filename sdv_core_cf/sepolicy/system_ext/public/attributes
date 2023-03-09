@@ -1,5 +1,11 @@
-# Attributes for BI SD clients and servers
+# Attributes for SDV SD clients and servers
 attribute sdv_sd_client;
 attribute sdv_sd_server;
 expandattribute sdv_sd_client true;
 expandattribute sdv_sd_server false;
+
+# Attributes for SDV Lifecycle clients and servers
+attribute sdv_lc_client;
+attribute sdv_lc_server;
+expandattribute sdv_lc_client true;
+expandattribute sdv_lc_server false;

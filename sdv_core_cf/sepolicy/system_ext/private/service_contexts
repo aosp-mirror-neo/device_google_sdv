@@ -1,2 +1,6 @@
 # SDV SD IPC service
-android.sdv.sd.IServiceManager        u:object_r:sdv_sd_service:s0
+android.sdv.sd.IServiceManager u:object_r:sdv_sd_service:s0
+
+# SDV Lifecycle manager agent
+android.sdv.lifecycle.ILifecycleManager          u:object_r:sdv_lc_service:s0
+android.sdv.lifecycle.IServiceControllersManager u:object_r:sdv_lc_service:s0

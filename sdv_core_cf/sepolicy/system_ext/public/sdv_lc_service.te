@@ -1,0 +1,2 @@
+# Defines SDV Lifecycle Binder IPC service.
+type sdv_lc_service, protected_service, service_manager_type;
