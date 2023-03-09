@@ -63,6 +63,7 @@ PRODUCT_PACKAGES += \
     structured_logging_sdv_sample \
     compile_time_log_filtering_sdv_sample \
     log_filtering_sdv_sample \
+    logging_sdv_rust_sample \
     com.android.sdv.samples.rochambeau \
     service_authn_sample_rs \
     client_sdv_benchmark_sample \
