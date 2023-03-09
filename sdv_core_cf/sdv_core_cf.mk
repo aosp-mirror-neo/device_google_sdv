@@ -63,3 +63,6 @@ PRODUCT_PACKAGES += \
     log_filtering_sdv_sample \
     com.android.sdv.samples.rochambeau \
     client_sdv_benchmark_sample \
+    sdv_poc \
+    sdv_poc_client
+
