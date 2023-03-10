@@ -66,3 +66,6 @@ PRODUCT_PACKAGES += \
     com.android.sdv.samples.rochambeau \
     service_authn_sample_rs \
     client_sdv_benchmark_sample \
+    sdv_poc \
+    sdv_poc_client
+
