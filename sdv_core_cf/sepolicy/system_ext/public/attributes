@@ -31,5 +31,10 @@ expandattribute sdv_sd_server false;
 # Attributes for SDV Lifecycle clients and servers
 attribute sdv_lc_client;
 attribute sdv_lc_server;
+# The process clients spawned by the sdv_lc_server use this attribute to inherit the necessary
+# permissions that allows them to have Binder communication with the sdv_lc_server, and the
+# sdv_lc_server to manage the process clients.
+attribute sdv_lc_process_client;
 expandattribute sdv_lc_client true;
 expandattribute sdv_lc_server false;
+expandattribute sdv_lc_process_client true;

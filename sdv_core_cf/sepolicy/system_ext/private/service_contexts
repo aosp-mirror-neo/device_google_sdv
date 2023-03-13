@@ -2,5 +2,12 @@
 android.sdv.sd.IServiceManager u:object_r:sdv_sd_service:s0
 
 # SDV Lifecycle manager agent
-android.sdv.lifecycle.ILifecycleManager          u:object_r:sdv_lc_service:s0
-android.sdv.lifecycle.IServiceControllersManager u:object_r:sdv_lc_service:s0
+# It has two independent binder services, and probably no process should use both. Following the
+# Principle of Least Privilege, the two interfaces are assigned with different SELinux types, and
+# the  rules for them are defined independently.
+# ILifecycleManager is an external interface to manage SDV services. It contains commands such as
+# start, stop, etc.
+android.sdv.lifecycle.ILifecycleManager          u:object_r:sdv_lc_manager_service:s0
+# IServiceControllersManager is an internal interface that Lifecycle manager agent and the spawned
+# SDV services use to communicate.
+android.sdv.lifecycle.IServiceControllersManager u:object_r:sdv_lc_service_controller_service:s0

@@ -1,2 +1,6 @@
-# Defines SDV Lifecycle Binder IPC service.
-type sdv_lc_service, protected_service, service_manager_type;
+# Defines the external SDV Lifecycle Binder IPC service.
+type sdv_lc_manager_service, protected_service, service_manager_type;
+
+# Defines the internal SDV Lifecycle Binder IPC service that is used by the client processes spawned
+# by the SDV Lifecycle manager agent.
+type sdv_lc_service_controller_service, protected_service, service_manager_type;
