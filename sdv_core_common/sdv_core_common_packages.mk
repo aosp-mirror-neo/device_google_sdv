@@ -58,6 +58,7 @@ PRODUCT_PACKAGES += \
     tracing_sdv_rust_sample \
     com.android.sdv.samples.rochambeau \
     service_authn_sample_rs \
+    service_authn_sample_bench \
     client_sdv_benchmark_sample \
     sdv_poc \
     sdv_poc_client \
