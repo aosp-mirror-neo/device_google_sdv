@@ -26,6 +26,11 @@ PRODUCT_COPY_FILES += \
     device/google/cuttlefish/shared/minidroid/fstab.minidroid:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.sdv \
     device/google/cuttlefish/shared/minidroid/fstab.minidroid:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.sdv \
 
+# Networking tools
+PRODUCT_PACKAGES += \
+    ping \
+    ping6 \
+
 # SDV proxy application for forwarding the connection between different VMs
 PRODUCT_HOST_PACKAGES += sdv_proxy \
     host_deployment_configuration.json \
