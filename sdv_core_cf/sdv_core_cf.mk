@@ -18,6 +18,10 @@ PRODUCT_VENDOR_PROPERTIES += \
     ro.soc.manufacturer=$(PRODUCT_MANUFACTURER) \
     ro.soc.model=$(PRODUCT_DEVICE)
 
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.hardware.type=automotive \
+    ro.logd.size=8M \
+
 PRODUCT_COPY_FILES += \
     device/google/sdv/sdv_core_cf/init.rc:system/etc/init/hw/init.sdv.rc \
 
