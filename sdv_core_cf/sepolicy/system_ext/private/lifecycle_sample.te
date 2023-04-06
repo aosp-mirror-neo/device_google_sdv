@@ -1,0 +1,14 @@
+type lifecycle_sample, domain;
+typeattribute lifecycle_sample coredomain;
+# Setting the sdv_lc_process_client attribute on the domain to inherit the SEpolicies defined for
+# sdv_lc_process_client, thus, allowing the lifecycle_sample and the sdv_lc_server to communicate
+# via Binder calls, and the sdv_lc_server to manage the lifecycle_sample.
+typeattribute lifecycle_sample sdv_lc_process_client;
+type lifecycle_sample_exec, exec_type, system_file_type, file_type;
+
+# Required by the launchService() IPC on the IServiceControllersManager Binder service to execute
+# the lifecycle_sample.
+# TODO(b/272343536): Currently, this rule has to be among the private policies that prevents
+# moving this policy, thus, the lifecycle_sample to the vendor/product/oem partitions where it
+# eventually should be.
+domain_auto_trans(sdv_lc_server, lifecycle_sample_exec, lifecycle_sample)

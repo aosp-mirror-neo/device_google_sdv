@@ -1,9 +1,18 @@
-# SDV Lifecycle client and server can use Binder IPC.
+# SDV Lifecycle client and agent can call each other via Binder IPC.
 binder_call(sdv_lc_client, sdv_lc_server)
 binder_call(sdv_lc_server, sdv_lc_client)
 
-# SDV Lifecycle client can find the IPC service.
-allow sdv_lc_client sdv_lc_service:service_manager find;
+# SDV Lifecycle client has access to the ILifecycleManager Binder service.
+allow sdv_lc_client sdv_lc_manager_service:service_manager find;
 
-# SDV Lifecycle server can register the IPC service.
-add_service(sdv_lc_server, sdv_lc_service)
+# The Lifecycle agent and the process client spawned by it can call each other via Binder IPC.
+binder_call(sdv_lc_process_client, sdv_lc_server)
+binder_call(sdv_lc_server, sdv_lc_process_client)
+
+# The processes spawned by the Lifecycle agent has access to the internal IServiceControllersManager
+# Binder service.
+allow sdv_lc_process_client sdv_lc_service_controller_service:service_manager find;
+
+# SDV Lifecycle agent can register its Binder IPC services.
+add_service(sdv_lc_server, sdv_lc_manager_service)
+add_service(sdv_lc_server, sdv_lc_service_controller_service)
