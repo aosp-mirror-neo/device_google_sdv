@@ -1,6 +1,8 @@
 # Copyright 2023 Google LLC
 PRODUCT_MAKEFILES := \
     sdv_core_cf:$(LOCAL_DIR)/sdv_core_cf/sdv_core_cf.mk \
+    sdv_core_arm64:$(LOCAL_DIR)/sdv_core_arm64/sdv_core_arm64.mk \
 
 COMMON_LUNCH_CHOICES := \
     sdv_core_cf-userdebug \
+    sdv_core_arm64-userdebug \
