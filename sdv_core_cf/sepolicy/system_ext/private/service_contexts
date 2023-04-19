@@ -8,6 +8,6 @@ android.sdv.sd.IServiceManager u:object_r:sdv_sd_service:s0
 # ILifecycleManager is an external interface to manage SDV services. It contains commands such as
 # start, stop, etc.
 android.sdv.lifecycle.ILifecycleManager          u:object_r:sdv_lc_manager_service:s0
-# IServiceControllersManager is an internal interface that Lifecycle manager agent and the spawned
-# SDV services use to communicate.
-android.sdv.lifecycle.IServiceControllersManager u:object_r:sdv_lc_service_controller_service:s0
+# IServiceManager is an internal interface that Lifecycle manager agent and the spawned SDV services
+# use to communicate.
+android.sdv.lifecycle.internal.IServiceManager u:object_r:sdv_lc_service_manager_service:s0
