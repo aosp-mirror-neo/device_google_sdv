@@ -11,7 +11,7 @@ binder_call(shell, sdv_lc_server);
 # Required by the launchService() Binder IPC.
 ## For piping stdin for the spawned client process.
 allow sdv_lc_process_client sdv_lc_server:fifo_file read;
-## So the sdv_lc_process_client can retrieve the IServiceControllersManager Binder interface from
+## So the sdv_lc_process_client can retrieve the IServiceManager Binder interface from
 ## the servicemanager.
 allow sdv_lc_process_client servicemanager:binder call;
 

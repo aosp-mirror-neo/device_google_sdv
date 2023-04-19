@@ -9,10 +9,10 @@ allow sdv_lc_client sdv_lc_manager_service:service_manager find;
 binder_call(sdv_lc_process_client, sdv_lc_server)
 binder_call(sdv_lc_server, sdv_lc_process_client)
 
-# The processes spawned by the Lifecycle agent has access to the internal IServiceControllersManager
-# Binder service.
-allow sdv_lc_process_client sdv_lc_service_controller_service:service_manager find;
+# The processes spawned by the Lifecycle agent has access to the internal IServiceManager Binder
+# service.
+allow sdv_lc_process_client sdv_lc_service_manager_service:service_manager find;
 
 # SDV Lifecycle agent can register its Binder IPC services.
 add_service(sdv_lc_server, sdv_lc_manager_service)
-add_service(sdv_lc_server, sdv_lc_service_controller_service)
+add_service(sdv_lc_server, sdv_lc_service_manager_service)
