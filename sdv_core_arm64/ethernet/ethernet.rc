@@ -1,0 +1,14 @@
+# Copyright 2023 Google LLC
+
+# Initialize network configuration before init so that routes are configured
+# before services are started
+
+on post-fs-data
+    ifup eth0
+    start sdv-ethernet-setup
+
+service sdv-ethernet-setup /vendor/bin/ethernet.sh
+    class core
+    user root
+    group shell
+    oneshot
