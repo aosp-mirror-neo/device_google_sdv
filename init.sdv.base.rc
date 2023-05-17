@@ -1,5 +1,9 @@
 # Copyright 2023 Google LLC
-# SDV's primary init .rc file which is loaded first by the init process.
+#
+# SDV's primary init .rc file which is loaded first by the init process. It contains rules that
+# apply to all targets.
+#
+# Targets that need additional custom rules import it from a target-specific .rc file.
 
 # TODO(b/267320398): because the androidboot.init_rc property is set in the BoardConfig.mk, the init
 # process doesn't automatically import the init .rc files placed in the
@@ -11,13 +15,7 @@
 # have to be imported in order to take effect.
 
 # For now, just import minidroid's init.rc script.
-import /system/etc/init/hw/init.ethernet.rc
 import /system/etc/init/hw/init.minidroid.rc
-
-on boot
-    setprop service.adb.listen_addrs tcp:5555,vsock:5555
-    start adbd
-    start console
 
 # Declare and start the SDV service discovery service.
 service sdv_sd_agent /system_ext/bin/sdv_sd_agent
