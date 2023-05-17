@@ -23,7 +23,7 @@ PRODUCT_PRODUCT_PROPERTIES += \
     ro.logd.size=8M \
 
 PRODUCT_COPY_FILES += \
-    device/google/sdv/sdv_core_cf/init.rc:system/etc/init/hw/init.sdv.rc \
+    device/google/sdv/init.sdv.base.rc:system/etc/init/hw/init.sdv.rc \
 
 # fstab.<name> must match with the value of the androidboot.hardware property.
 PRODUCT_COPY_FILES += \

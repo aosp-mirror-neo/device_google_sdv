@@ -34,7 +34,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_CHARACTERISTICS := nosdcard,automotive
 
 PRODUCT_COPY_FILES += \
-    device/google/sdv/sdv_core_arm64/init.rc:system/etc/init/hw/init.sdv.rc \
+    device/google/sdv/init.sdv.base.rc:system/etc/init/hw/init.sdv.base.rc \
+    device/google/sdv/sdv_core_arm64/init.sdv.rc:system/etc/init/hw/init.sdv.rc \
 
 # fstab.<name> must match with the value of the androidboot.hardware property.
 PRODUCT_COPY_FILES += \
