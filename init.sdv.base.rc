@@ -17,6 +17,12 @@
 # For now, just import minidroid's init.rc script.
 import /system/etc/init/hw/init.minidroid.rc
 
+on init
+    # Increase the limit of buffered messages for UNIX sockets. The default is 10, which makes us
+    # drop logs whenever any process dares to log more than just a handful of messages in a short
+    # timespan. 600 is the value used in system/core/rootdir/init.rc.
+    write /proc/sys/net/unix/max_dgram_qlen 600
+
 # Declare and start the SDV service discovery service.
 service sdv_sd_agent /system_ext/bin/sdv_sd_agent
     class core
