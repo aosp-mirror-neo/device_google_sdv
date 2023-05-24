@@ -81,3 +81,8 @@ PRODUCT_PACKAGES += \
     sdv_poc_client \
     com.android.sdv.hello.apex \
 
+# SDV telemetry service executables
+PRODUCT_PACKAGES += \
+    sdv_telemetry_service \
+    telemetry_cpp_client \
+    telemetry_rust_client \
