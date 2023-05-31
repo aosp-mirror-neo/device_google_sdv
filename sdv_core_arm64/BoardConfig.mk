@@ -22,9 +22,4 @@ BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 2
 # Put Android into the UNLOCKED state
 BOARD_KERNEL_CMDLINE += androidboot.verifiedbootstate=orange
 
-# Defining the SEPolicies of the SDV packages located on the system_ext partition by amending the
-# private and public policies of the partition. See system/sepolicy/README.md for more details.
-# Reuse cf configuration for now as it does not differ for arm64 yet
-SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_core_cf/sepolicy/system_ext/private
-SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += device/google/sdv/sdv_core_cf/sepolicy/system_ext/public
-
+-include device/google/sdv/sdv_core_common/BoardConfig.mk

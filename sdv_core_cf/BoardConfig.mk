@@ -1,11 +1,7 @@
 # Copyright 2023 Google LLC
 # SDV Core specific board config shall go into this file.
 -include device/google/sdv/common_cf/BoardConfig.mk
-
-# Defining the SEPolicies of the SDV packages located on the system_ext partition by amending the
-# private and public policies of the partition. See system/sepolicy/README.md for more details.
-SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_core_cf/sepolicy/system_ext/private
-SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += device/google/sdv/sdv_core_cf/sepolicy/system_ext/public
+-include device/google/sdv/sdv_core_common/BoardConfig.mk
 
 BOARD_USES_SYSTEM_EXTIMAGE := true
 BOARD_SYSTEM_EXTIMAGE_FILE_SYSTEM_TYPE := ext4
