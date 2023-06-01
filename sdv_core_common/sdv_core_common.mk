@@ -42,6 +42,7 @@ PRODUCT_PACKAGES += libsdv_authn
 
 # SDV deployment configuration
 PRODUCT_PACKAGES += deployment_configuration.json \
+    someip_deployment.json \
 
 # SDV Sample applications
 PRODUCT_PACKAGES += \
@@ -68,6 +69,7 @@ PRODUCT_PACKAGES += \
     dt_agent \
     libsdv_dt \
     dt_sample_client_cpp \
+    client_some_ip_sdv_sample \
 
 # SDV telemetry service executables
 PRODUCT_PACKAGES += \
