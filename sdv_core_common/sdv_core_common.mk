@@ -7,9 +7,6 @@ PRODUCT_BRAND := google
 PRODUCT_MANUFACTURER := Google
 PRODUCT_MODEL := Software-Defined Vehicle Core
 
-PRODUCT_COPY_FILES += \
-    device/google/sdv/init.minidroid.base.rc:system/etc/init/hw/init.minidroid.base.rc \
-
 PRODUCT_VENDOR_PROPERTIES += \
     ro.soc.manufacturer=$(PRODUCT_MANUFACTURER) \
     ro.soc.model=$(PRODUCT_DEVICE)
