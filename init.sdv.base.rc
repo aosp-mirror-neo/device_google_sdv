@@ -15,7 +15,7 @@
 # have to be imported in order to take effect.
 
 # For now, just import minidroid's init.rc script.
-import /system/etc/init/hw/init.minidroid.rc
+import /system/etc/init/hw/init.minidroid.base.rc
 
 on init
     # Increase the limit of buffered messages for UNIX sockets. The default is 10, which makes us
