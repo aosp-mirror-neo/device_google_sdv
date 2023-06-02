@@ -211,8 +211,8 @@ service console /system/bin/sh
 service sdv_sd_agent /system_ext/bin/sdv_sd_agent
     class core
     disabled
-    user system
-    group system
+    user root #TODO(b/285353950): use system
+    group root
 on property:dev.bootcomplete=1
     start sdv_sd_agent
 
