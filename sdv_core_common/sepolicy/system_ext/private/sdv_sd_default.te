@@ -9,3 +9,7 @@ typeattribute sdv_sd_default sdv_sd_server;
 # SD agent can use sockets for Binder RPC
 net_domain(sdv_sd_default)
 allow sdv_sd_default self:vsock_socket { connect create getopt read write getattr listen accept bind shutdown };
+
+# SD agent can read the CID of the VM.
+allow sdv_sd_default vsock_device:chr_file { ioctl open read };
+
