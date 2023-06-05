@@ -138,8 +138,6 @@ on post-fs
     # work around b/183668221
     restorecon /data/misc
 
-    mkdir /data/misc/authfs 0700 root root
-
 on late-fs && property:ro.debuggable=1
     # Ensure that tracefs has the correct permissions.
     # This does not work correctly if it is called in post-fs.
