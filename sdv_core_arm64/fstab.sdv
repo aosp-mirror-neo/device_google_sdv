@@ -1,16 +1,17 @@
-# Cuttlefish always produces A/B for non-super partitions
+# Non-dynamic, boot critical partitions
+# These partitions are A/B for SDV
 /dev/block/by-name/boot /boot emmc defaults recoveryonly,slotselect,first_stage_mount,avb=boot
 /dev/block/by-name/vendor_boot /vendor_boot emmc defaults recoveryonly,slotselect,first_stage_mount,avb=boot
 /dev/block/by-name/init_boot /init_boot emmc defaults recoveryonly,slotselect,first_stage_mount,avb=boot
-
+# The following partitions are not A/B for SDV
+system /system ext4 noatime,ro,errors=panic wait,logical,first_stage_mount,avb=vbmeta_system #,avb_keys=/avb
+# Add all non-dynamic partitions except system, after this comment
 /dev/block/by-name/userdata /data f2fs nodev,noatime,nosuid,inlinecrypt,reserve_root=32768 latemount,wait,fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized,fsverity,keydirectory=/metadata/vold/metadata_encryption
 /dev/block/by-name/metadata /metadata ext4 nodev,noatime,nosuid,errors=panic wait,formattable,first_stage_mount,check
-
 /dev/block/by-name/misc /misc emmc defaults defaults
-system /system ext4 noatime,ro,errors=panic wait,logical,first_stage_mount,avb=vbmeta_system #,avb_keys=/avb
-# These partitions are not A/B for minidroid
+# Add all dynamic partitions except system, after this comment
 vendor /vendor ext4 noatime,ro,errors=panic wait,logical,first_stage_mount,avb=vbmeta
-
+# ZRAM and SD-Card
 /dev/block/zram0 none swap defaults zramsize=75%
 /tmp /sdcard none defaults,bind recoveryonly
 /devices/*/block/vdb auto auto defaults voldmanaged=sdcard1:auto,encryptable=userdata
