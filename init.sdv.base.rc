@@ -60,7 +60,8 @@ on init
    # microdroid init.rc
    start apexd-vm
 
-   # restorecon so microdroid_manager can create subdirectories
+   # restore the SELinux security context for /mnt/extra-apk so microdroid_manager can create
+   # subdirectories
    restorecon /mnt/extra-apk
 
    # Wait for apexd to finish activating APEXes before starting more processes.
@@ -118,25 +119,18 @@ on late-init
     trigger early-boot
     trigger boot
 
+on fs
+    # Mount everything that does not require fsck
+    mount_all --early
+
 on post-fs
     # Once everything is setup, no need to modify /.
     # The bind+remount combination allows this to work in containers.
     mount rootfs rootfs / remount bind ro nodev
 
-    # TODO(b/185767624): change the hard-coded size?
-    mount tmpfs tmpfs /data noatime nosuid nodev rw size=128M
-
-    # We chown/chmod /data again so because mount is run as root + defaults
-    chown system system /data
-    chmod 0771 /data
-
-    # We restorecon /data in case the userdata partition has been reset.
-    restorecon /data
-
-    # set up misc directory structure first so that we can end early boot and start apexd
-    mkdir /data/misc 01771 system misc
-    # work around b/183668221
-    restorecon /data/misc
+on late-fs
+    # Mount RW partitions which need run fsck
+    mount_all --late
 
 on late-fs && property:ro.debuggable=1
     # Ensure that tracefs has the correct permissions.
@@ -147,22 +141,33 @@ on late-fs && property:ro.debuggable=1
 on post-fs-data
     mark_post_data
 
+    # We chown/chmod /data again so because mount is run as root + defaults
+    chown system system /data
+    chmod 0771 /data
+    # We restore the SELinux security context for /data in case the userdata partition has been
+    # reset.
+    restorecon /data
+
     mkdir /data/vendor 0771 root root
+    mkdir /data/vendor/hardware 0771 root root
     mkdir /data/vendor_ce 0771 root root
     mkdir /data/vendor_de 0771 root root
-    mkdir /data/vendor/hardware 0771 root root
 
     # Start tombstoned early to be able to store tombstones.
     # microdroid doesn't have anr, but tombstoned requires it
     mkdir /data/anr 0775 system system
     mkdir /data/tombstones 0771 system system
     mkdir /data/vendor/tombstones 0771 root root
-
     start tombstoned
 
+    # set up misc directory structure first so that we can end early boot and start apexd
+    mkdir /data/misc 01771 system misc
+    # work around b/183668221
+    restorecon /data/misc
+
+    mkdir /data/local 0751 root root
     # For security reasons, /data/local/tmp should always be empty.
     # Do not place files or directories in /data/local/tmp
-    mkdir /data/local 0751 root root
     mkdir /data/local/tmp 0771 shell shell
 
 on boot
