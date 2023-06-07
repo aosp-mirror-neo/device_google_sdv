@@ -1,0 +1,12 @@
+# SDV Package Registry agent is a core service and system process.
+core_service(sdv_pr)
+
+# SDV Package Registry can read apex_metadata.json files from APEX mount directory.
+allow sdv_pr apex_mnt_dir:dir { read open };
+allow sdv_pr apex_info_file:file getattr;
+
+# SDV Lifecycle service can call Package Registry.
+binder_call(sdv_lc_server, sdv_pr)
+
+# SDV Package Registry agent can register its Binder IPC services.
+add_service(sdv_pr, sdv_pr_service)

@@ -210,6 +210,14 @@ service console /system/bin/sh
     seclabel u:r:shell:s0
     setenv HOSTNAME console
 
+service sdv_package_registry_agent /system_ext/bin/sdv_package_registry_agent
+    class core
+    disabled
+    user system
+    group system
+on property:dev.bootcomplete=1
+    start sdv_package_registry_agent
+
 # Declare and start the SDV service discovery service.
 service sdv_sd_agent /system_ext/bin/sdv_sd_agent
     class core
