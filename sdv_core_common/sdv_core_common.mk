@@ -42,6 +42,8 @@ PRODUCT_PACKAGES += sdv_sd_agent
 PRODUCT_PACKAGES += sdv_sd_cli
 # Service Authentication library
 PRODUCT_PACKAGES += libsdv_authn
+# SOME/IP service discovery proxy
+PRODUCT_PACKAGES += sdv_someip_discovery_proxy
 
 # SDV deployment configuration
 PRODUCT_PACKAGES += deployment_configuration.json \
