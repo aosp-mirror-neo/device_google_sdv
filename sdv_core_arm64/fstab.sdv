@@ -10,6 +10,7 @@ system /system ext4 noatime,ro,errors=panic wait,logical,first_stage_mount,avb=v
 /dev/block/by-name/metadata /metadata ext4 nodev,noatime,nosuid,errors=panic wait,formattable,first_stage_mount,check
 /dev/block/by-name/misc /misc emmc defaults defaults
 # Add all dynamic partitions except system, after this comment
+system_ext /system_ext ext4 noatime,ro,errors=panic wait,logical,first_stage_mount,avb=vbmeta_system
 vendor /vendor ext4 noatime,ro,errors=panic wait,logical,first_stage_mount,avb=vbmeta
 # ZRAM and SD-Card
 /dev/block/zram0 none swap defaults zramsize=75%
