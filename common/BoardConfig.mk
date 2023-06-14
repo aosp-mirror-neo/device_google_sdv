@@ -10,4 +10,4 @@ LOCAL_ANDROIDBOOT_HARDWARE := sdv
 LOCAL_ANDROIDBOOT_INIT_RC := /system/etc/init/hw/init.sdv.rc
 
 # As of now, we inherit the rest of the board config from minidroid.
--include device/google/cuttlefish/shared/minidroid/BoardConfig.mk
+include device/google/cuttlefish/shared/minidroid/BoardConfig.mk
