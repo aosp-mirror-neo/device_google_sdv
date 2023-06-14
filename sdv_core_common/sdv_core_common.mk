@@ -76,3 +76,16 @@ PRODUCT_PACKAGES += \
     sdv_telemetry_service \
     telemetry_cpp_client \
     telemetry_rust_client \
+
+# Enable tracing on userdebug and eng
+ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
+# Set the property for the system partition.
+PRODUCT_SYSTEM_PROPERTIES += \
+    persist.traced.enable=1
+endif
+
+# Perfetto packages for tracing
+PRODUCT_PACKAGES_DEBUG += \
+    perfetto \
+    traced \
+    traced_probes \
