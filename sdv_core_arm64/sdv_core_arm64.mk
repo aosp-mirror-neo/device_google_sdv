@@ -1,8 +1,8 @@
 # Copyright 2023 Google LLC
 #
 # Software-Defined Vehicle (SDV) is a headless vehicle Android OS.
-# The 'Core' device/product/model defines the base SDV functionality to be reused/inherited by other functional SDV profiles (cluster, telemetry, telematics, etc) and by the OEMs.
-#
+# The 'Core' device/product/model defines the base SDV functionality to be reused/inherited by other
+# functional SDV profiles (cluster, telemetry, telematics, etc) and by the OEMs.
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit_only.mk)
 $(call inherit-product, device/google/cuttlefish/shared/minidroid/device.mk)
@@ -11,7 +11,7 @@ $(call inherit-product, device/google/cuttlefish/vsoc_arm64/bootloader.mk)
 PRODUCT_NAME := sdv_core_arm64
 PRODUCT_DEVICE := sdv_core_arm64
 
--include device/google/sdv/sdv_core_common/sdv_core_common.mk
+include device/google/sdv/sdv_core_common/sdv_core_common.mk
 
 
 PRODUCT_PRODUCT_PROPERTIES += \

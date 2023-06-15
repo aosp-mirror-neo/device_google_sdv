@@ -1,6 +1,6 @@
 # Copyright 2023 Google LLC
 # SDV Core specific board config shall go into this file.
--include device/google/sdv/common_arm64/BoardConfig.mk
+include device/google/sdv/common_arm64/BoardConfig.mk
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(KERNEL_MODULES_PATH)/virtio_mmio.ko
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(KERNEL_MODULES_PATH)/virtio_dma_buf.ko
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(KERNEL_MODULES_PATH)/nd_virtio.ko
@@ -22,4 +22,4 @@ BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 2
 # Put Android into the UNLOCKED state
 BOARD_KERNEL_CMDLINE += androidboot.verifiedbootstate=orange
 
--include device/google/sdv/sdv_core_common/BoardConfig.mk
+include device/google/sdv/sdv_core_common/BoardConfig.mk
