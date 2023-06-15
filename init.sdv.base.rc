@@ -23,6 +23,12 @@ import /system/etc/init/logd.rc
 # automatically.
 import /system/etc/init/logcatd.rc
 
+# TODO(b/267320398) Not present on -user builds, same as TODO above
+# atrace.rc is required by Perfetto as well, since it sets up tracefs permissions.
+import /system/etc/init/perfetto.rc
+import /system/etc/init/atrace.rc
+import /system/etc/init/atrace_userdebug.rc
+
 # Cgroups are mounted right before early-init using list from /etc/cgroups.json
 on early-init
     # set RLIMIT_NICE to allow priorities from 19 to -20
