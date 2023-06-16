@@ -3,3 +3,6 @@ type sdv_sd_service, protected_service, service_manager_type;
 
 # Defines SDV Core Binder IPC service.
 type sdv_core_service, protected_service, service_manager_type;
+
+# Defines SDV Lifecycle Manager IPC service.
+type sdv_pr_service, protected_service, service_manager_type;

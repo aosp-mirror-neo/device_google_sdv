@@ -30,6 +30,8 @@ PRODUCT_HOST_PACKAGES += sdv_proxy \
 PRODUCT_PACKAGES += libsdv_shared
 # RPC library
 PRODUCT_PACKAGES += libsdvrpc
+# Package registry agent
+PRODUCT_PACKAGES += sdv_package_registry_agent
 # Lifecycle manager agent
 PRODUCT_PACKAGES += sdv_lifecycle_agent
 # Service discovery library
