@@ -11,3 +11,6 @@ android.sdv.lifecycle.ILifecycleManager          u:object_r:sdv_lc_manager_servi
 # IServiceManager is an internal interface that Lifecycle manager agent and the spawned SDV services
 # use to communicate.
 android.sdv.lifecycle.internal.IServiceManager u:object_r:sdv_lc_service_manager_service:s0
+
+# IPackageRegistry is an interface that services use to read SDV service metadata.
+android.sdv.package_registry.IPackageRegistry u:object_r:sdv_pr_service:s0
