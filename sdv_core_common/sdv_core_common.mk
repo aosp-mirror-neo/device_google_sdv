@@ -79,6 +79,7 @@ PRODUCT_PACKAGES += \
     sdv_telemetry_service \
     telemetry_cpp_client \
     telemetry_rust_client \
+    telemetry_rust_c_client \
 
 # Enable tracing on userdebug and eng
 ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
