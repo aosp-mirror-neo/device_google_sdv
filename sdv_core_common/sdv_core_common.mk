@@ -21,6 +21,12 @@ PRODUCT_PACKAGES += \
     ping \
     ping6 \
 
+# com.android.i18n contains libandroidicu which is (optionally) required by libsqlite and rusqlite.
+# TODO(b/289366123): In order to save space, remove this APEX or parts of it. This APEX consumes
+# 37 MB of space, and has parts that are not needed by the Android version of SQLite. If the ICU
+# functionality is not required in SDV then libsqlite and rusqlite can be built without it.
+PRODUCT_PACKAGES += com.android.i18n
+
 # SDV proxy application for forwarding the connection between different VMs
 PRODUCT_HOST_PACKAGES += sdv_proxy \
     host_deployment_configuration.json \
