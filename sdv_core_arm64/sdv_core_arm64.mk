@@ -32,6 +32,7 @@ PRODUCT_COPY_FILES += \
 # fstab.<name> must match with the value of the androidboot.hardware property.
 PRODUCT_COPY_FILES += \
     device/google/sdv/sdv_core_arm64/fstab.sdv:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.sdv \
+    device/google/sdv/sdv_core_arm64/fstab.sdv:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.sdv \
 
 PRODUCT_COPY_FILES += device/google/sdv/sdv_core_arm64/ethernet/ethernet.sh:$(TARGET_COPY_OUT_VENDOR)/bin/ethernet.sh
 PRODUCT_COPY_FILES += device/google/sdv/sdv_core_arm64/ethernet/ethernet.rc:$(TARGET_COPY_OUT_SYSTEM)/etc/init/hw/init.ethernet.rc
