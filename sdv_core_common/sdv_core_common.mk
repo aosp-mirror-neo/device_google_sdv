@@ -73,6 +73,8 @@ PRODUCT_PACKAGES += \
     libsdv_dt \
     dt_sample_client_cpp \
     client_some_ip_sdv_sample \
+    sdv_server_tracing_sample \
+    sdv_client_tracing_sample \
 
 # SDV telemetry service executables
 PRODUCT_PACKAGES += \
