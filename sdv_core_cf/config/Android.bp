@@ -1,0 +1,11 @@
+package {
+    default_applicable_licenses: ["sdv_license"],
+}
+
+// The configuration containing the default flag values when running SDV with Cuttlefish
+// (launch_cvd). For a current list of available flags run launch_cvd --help.
+prebuilt_etc_host {
+    name: "cvd_config_sdv.json",
+    src: "config_sdv.json",
+    sub_dir: "cvd_config",
+}
