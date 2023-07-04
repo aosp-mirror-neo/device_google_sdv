@@ -50,6 +50,8 @@ PRODUCT_PACKAGES += sdv_sd_cli
 PRODUCT_PACKAGES += libsdv_authn
 # SOME/IP service discovery proxy
 PRODUCT_PACKAGES += sdv_someip_discovery_proxy
+# SOME/IP stack agent
+PRODUCT_PACKAGES += someip_agent
 
 # SDV deployment configuration
 PRODUCT_PACKAGES += deployment_configuration.json \
