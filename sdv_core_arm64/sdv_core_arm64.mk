@@ -20,7 +20,6 @@ PRODUCT_PRODUCT_PROPERTIES += \
 
 PRODUCT_PACKAGES += \
     dlkm_loader \
-    ip \
     tcpdump \
 
 PRODUCT_CHARACTERISTICS := nosdcard,automotive
