@@ -57,6 +57,7 @@ PRODUCT_PACKAGES += someip_agent
 # SDV deployment configuration
 PRODUCT_PACKAGES += deployment_configuration.json \
     someip_deployment.json \
+    someip_stack_deployment.json \
 
 # SDV Sample applications
 PRODUCT_PACKAGES += \
