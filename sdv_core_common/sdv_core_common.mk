@@ -20,6 +20,7 @@ PRODUCT_PRODUCT_PROPERTIES += \
 PRODUCT_PACKAGES += \
     ping \
     ping6 \
+    ip \
 
 # com.android.i18n contains libandroidicu which is (optionally) required by libsqlite and rusqlite.
 # TODO(b/289366123): In order to save space, remove this APEX or parts of it. This APEX consumes

@@ -1,7 +1,6 @@
 # Copyright 2023 Google LLC
 # SDV's primary init .rc file which is loaded first by the init process.
 
-import /system/etc/init/hw/init.ethernet.rc
 import /system/etc/init/hw/init.sdv.base.rc
 
 on boot

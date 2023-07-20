@@ -1,8 +1,6 @@
 # Copyright 2023 Google LLC
 # SDV Core specific board config shall go into this file.
 
-BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_core_arm64/sepolicy/vendor/google/
-
 HOST_CROSS_OS := linux_bionic
 HOST_CROSS_ARCH := arm64
 HOST_CROSS_2ND_ARCH :=
