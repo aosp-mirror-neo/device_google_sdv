@@ -15,6 +15,7 @@ PRODUCT_VENDOR_PROPERTIES += \
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.hardware.type=automotive \
     ro.logd.size=8M \
+    ro.telemetry.metric_config_store_in_mb=10 \
 
 # Networking tools
 PRODUCT_PACKAGES += \
