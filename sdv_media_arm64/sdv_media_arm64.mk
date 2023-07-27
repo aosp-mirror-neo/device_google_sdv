@@ -7,4 +7,5 @@
 PRODUCT_NAME := sdv_media_arm64
 PRODUCT_DEVICE := sdv_media_arm64
 
+$(call inherit-product, device/google/sdv/sdv_media_common/sdv_media_common.mk)
 $(call inherit-product, device/google/sdv/sdv_core_arm64/sdv_core_arm64.mk)
