@@ -27,6 +27,11 @@ PRODUCT_PACKAGES += \
     gralloc.minigbm \
     gralloc.ranchu \
 
+# Audio related dependencies
+PRODUCT_PACKAGES += \
+    libtinyalsav2 \
+    tinyplay2 \
+
 PRODUCT_COPY_FILES += \
     device/google/sdv/sdv_media_common/init.sdv_media.rc:system/etc/init/hw/init.sdv_media.rc \
 
