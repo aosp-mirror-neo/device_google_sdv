@@ -29,6 +29,9 @@ PRODUCT_PACKAGES += libsdv_authn
 PRODUCT_PACKAGES += sdv_someip_discovery_agent
 # SOME/IP stack agent
 PRODUCT_PACKAGES += sdv_someip_stack_agent
+# Vehicle and Power mode agent
+PRODUCT_PACKAGES += sdv_vpm_agent
+
 
 # SDV deployment configuration
 PRODUCT_PACKAGES += deployment_configuration.json \
@@ -63,6 +66,8 @@ PRODUCT_PACKAGES += \
     client_some_ip_sdv_sample \
     sdv_server_tracing_sample \
     sdv_client_tracing_sample \
+    vpm_client_sample\
+    vpm_system_agent_sample \
 
 # SDV telemetry service executables
 PRODUCT_PACKAGES += \
