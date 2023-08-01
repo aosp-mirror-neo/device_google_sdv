@@ -1,0 +1,7 @@
+# SOME/IP Stack can register the IPC service (defined in service.te).
+add_service(sdv_someip_stack_server, sdv_someip_stack_service)
+
+binder_call(sdv_someip_stack_client, sdv_someip_stack_server)
+binder_call(sdv_someip_stack_server, sdv_someip_stack_client)
+
+allow sdv_someip_stack_client sdv_someip_stack_service:service_manager find;

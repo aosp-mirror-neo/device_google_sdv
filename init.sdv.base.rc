@@ -243,6 +243,15 @@ service sdv_lifecycle_agent /system_ext/bin/sdv_lifecycle_agent
 on property:dev.bootcomplete=1
     start sdv_lifecycle_agent
 
+# Declare and start the SDV SOME/IP stack agent.
+service sdv_someip_stack_agent /system_ext/bin/someip_agent
+    class core
+    disabled
+    user system
+    group system
+on property:dev.bootcomplete=1
+    start sdv_someip_stack_agent
+
 # Trigger a sample_service when one is provided. For instance, via the extra_bootconfig_args
 # argument of launch_cvd:
 # launch_cvd -extra_bootconfig_args androidboot.sdv.sample_service=<sample_service_name>
