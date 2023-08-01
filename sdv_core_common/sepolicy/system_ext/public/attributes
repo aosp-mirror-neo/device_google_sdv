@@ -44,3 +44,8 @@ attribute sdv_lc_process_client;
 expandattribute sdv_lc_client true;
 expandattribute sdv_lc_server false;
 expandattribute sdv_lc_process_client true;
+
+attribute sdv_someip_stack_client;
+attribute sdv_someip_stack_server;
+expandattribute sdv_someip_stack_client true;
+expandattribute sdv_someip_stack_server false;
