@@ -14,5 +14,7 @@
 /dev/vsock                                              u:object_r:vsock_device:s0
 
 # SDV SOME/IP stack
-/(system_ext|system/system_ext)/bin/someip_agent                 u:object_r:sdv_someip_stack_default_exec:s0
+/(system_ext|system/system_ext)/bin/sdv_someip_stack_agent                 u:object_r:sdv_someip_stack_default_exec:s0
+
+# SDV SOME/IP rust client sample
 /(system_ext|system/system_ext)/bin/client_some_ip_sdv_sample    u:object_r:sdv_someip_sample_exec:s0
