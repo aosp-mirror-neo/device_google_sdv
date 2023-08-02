@@ -244,7 +244,7 @@ on property:dev.bootcomplete=1
     start sdv_lifecycle_agent
 
 # Declare and start the SDV SOME/IP stack agent.
-service sdv_someip_stack_agent /system_ext/bin/someip_agent
+service sdv_someip_stack_agent /system_ext/bin/sdv_someip_stack_agent
     class core
     disabled
     user system
