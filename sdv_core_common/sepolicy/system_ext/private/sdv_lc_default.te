@@ -1,10 +1,10 @@
-# Lifecycle agent can register itself as a Binder IPC service.
-binder_call(sdv_lc_server, servicemanager);
+# Allow the Lifecycle agent to use Binder IPC.
+binder_use(sdv_lc_server)
 
 # TODO(b/272343536): Remove this rule. It allows to issue Binder calls to the service from adb shell
 # without having root permissions. It's only used for development. For instance:
 # adb shell service call android.sdv.lifecycle.ILifecycleManager 4 s16 "lifecycle_sample"
-binder_call(shell, sdv_lc_server);
+binder_call(shell, sdv_lc_server)
 
 # Policy rules for the client processes spawned by the sdv_lc_server.
 
@@ -21,4 +21,3 @@ allow sdv_lc_server sdv_lc_process_client:process sigkill;
 # SDV Lifecycle agent is a core service and system process.
 core_service(sdv_lc_default)
 typeattribute sdv_lc_default sdv_lc_server;
-
