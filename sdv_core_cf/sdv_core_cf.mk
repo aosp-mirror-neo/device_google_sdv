@@ -21,5 +21,5 @@ PRODUCT_COPY_FILES += \
     device/google/sdv/sdv_core_cf/fstab.sdv:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.sdv \
     device/google/sdv/sdv_core_cf/fstab.sdv:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.sdv \
 
-PRODUCT_COPY_FILES += device/google/sdv/sdv_core_cf/ethernet/ethernet.sh:$(TARGET_COPY_OUT_VENDOR)/bin/ethernet.sh
+PRODUCT_COPY_FILES += device/google/sdv/sdv_core_cf/ethernet/ethernet.sh:$(TARGET_COPY_OUT_SYSTEM_EXT)/bin/ethernet.sh
 PRODUCT_COPY_FILES += device/google/sdv/sdv_core_cf/ethernet/ethernet.rc:$(TARGET_COPY_OUT_SYSTEM)/etc/init/hw/init.ethernet.rc

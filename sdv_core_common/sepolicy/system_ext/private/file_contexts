@@ -1,3 +1,6 @@
+# The ethernet setup script for SDV.
+/(system_ext|system/system_ext)/bin/ethernet.sh         u:object_r:sdv_ethernet_setup_exec:s0
+
 # SDV service discovery agent
 /(system_ext|system/system_ext)/bin/sdv_sd_agent        u:object_r:sdv_sd_default_exec:s0
 
