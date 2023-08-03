@@ -1,0 +1,31 @@
+type sdv_ethernet_setup, domain;
+typeattribute sdv_ethernet_setup coredomain;
+type sdv_ethernet_setup_exec, exec_type, system_file_type, file_type;
+
+init_daemon_domain(sdv_ethernet_setup)
+
+# Required for `#!/system/bin/sh`
+allow sdv_ethernet_setup shell_exec:file rx_file_perms;
+
+# Required for `getprop`
+allow sdv_ethernet_setup toolbox_exec:file { execute execute_no_trans getattr map open read };
+
+# Required for logging to /dev/kmsg
+allow sdv_ethernet_setup kmsg_device:chr_file w_file_perms;
+
+# Required for `ifconfig eth1 $IP`
+allow sdv_ethernet_setup self:capability net_admin;
+allow sdv_ethernet_setup self:udp_socket create;
+# Allow the application to do ioctl() syscalls on the udp_socket.
+allow sdv_ethernet_setup self:udp_socket ioctl;
+# Allow the application to do privileged ioctls on the udp_socket, such as `SIOCSIFADDR`, which is
+# for setting an IP address of an interface.
+# WARNING: `allowxperm` alone will not grant the access: it must be used in combination with
+# `allow`. See `allow sdv_ethernet_setup self:udp_socket ioctl` above.
+allowxperm sdv_ethernet_setup self:udp_socket ioctl priv_sock_ioctls;
+
+# Required for executing `ip`.
+allow sdv_ethernet_setup system_file:file execute_no_trans;
+
+# Required for `ip route` operations.
+allow sdv_ethernet_setup self:netlink_route_socket { bind create getattr nlmsg_write read setopt write };

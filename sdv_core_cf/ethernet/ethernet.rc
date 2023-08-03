@@ -7,7 +7,7 @@ on post-fs-data
     ifup eth1
     start sdv-ethernet-setup
 
-service sdv-ethernet-setup /vendor/bin/ethernet.sh
+service sdv-ethernet-setup /system_ext/bin/ethernet.sh
     class core
     user root
     group shell

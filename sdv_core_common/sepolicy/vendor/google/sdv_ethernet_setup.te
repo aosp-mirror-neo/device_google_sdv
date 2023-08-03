@@ -1,6 +1,0 @@
-type sdv_ethernet_setup, domain;
-type sdv_ethernet_setup_exec, exec_type, vendor_file_type, file_type;
-
-init_daemon_domain(sdv_ethernet_setup)
-
-allow sdv_ethernet_setup vendor_shell_exec:file rx_file_perms;
