@@ -12,10 +12,12 @@ PRODUCT_VENDOR_PROPERTIES += \
     ro.soc.manufacturer=$(PRODUCT_MANUFACTURER) \
     ro.soc.model=$(PRODUCT_DEVICE)
 
-PRODUCT_PRODUCT_PROPERTIES += \
+PRODUCT_SYSTEM_PROPERTIES += \
     ro.hardware.type=automotive \
-    ro.logd.size=8M \
-    ro.telemetry.metric_config_store_in_mb=10 \
+    ro.logd.size=8M
+
+PRODUCT_SYSTEM_EXT_PROPERTIES += \
+    ro.telemetry.metric_config_store_in_mb=10
 
 # Networking tools
 PRODUCT_PACKAGES += \
