@@ -172,6 +172,9 @@ on post-fs-data
     # work around b/183668221
     restorecon /data/misc
 
+    # set up the trace directory to allow saving coverage b/291081269
+    mkdir /data/misc/trace 0700 root root
+
     mkdir /data/local 0751 root root
     # For security reasons, /data/local/tmp should always be empty.
     # Do not place files or directories in /data/local/tmp
@@ -216,6 +219,12 @@ service console /system/bin/sh
     group shell log readproc
     seclabel u:r:shell:s0
     setenv HOSTNAME console
+
+on property:ro.debuggable=1
+    # Give writes to the same group for the trace folder on debug builds,
+    # it's further protected by selinux policy.
+    # The folder is used to store method traces.
+    chmod 0773 /data/misc/trace
 
 service sdv_package_registry_agent /system_ext/bin/sdv_package_registry_agent
     class core
