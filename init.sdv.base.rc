@@ -243,6 +243,15 @@ service sdv_lifecycle_agent /system_ext/bin/sdv_lifecycle_agent
 on property:dev.bootcomplete=1
     start sdv_lifecycle_agent
 
+# Declare and start the Orchestrator agent
+service sdv_orchestrator_agent /system_ext/bin/sdv_orchestrator_agent
+    class core
+    disabled
+    user system
+    group system
+on property:dev.bootcomplete=1
+    start sdv_orchestrator_agent
+
 # Declare and start the SDV SOME/IP stack agent.
 service sdv_someip_stack_agent /system_ext/bin/sdv_someip_stack_agent
     class core
