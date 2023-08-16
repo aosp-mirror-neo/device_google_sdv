@@ -59,9 +59,6 @@ on init
    write /linkerconfig/ld.config.txt \#
    chmod 644 /linkerconfig/ld.config.txt
 
-   # Start logd before any other services run to ensure we capture all of their logs.
-   start logd
-
    # TODO: minidroid does not use microdroid_manager. If/when this is fixed
    # align this change and others related to microdroid_manager back to the
    # microdroid init.rc
@@ -77,6 +74,11 @@ on init
    # wait for the activated status, by the time this line is reached it may be already be ready.
    wait_for_prop apexd.status ready
    perform_apex_config
+
+   # Start logd before any other services run to ensure we capture all of their logs.
+   # logd uses shared libraries that are distributed as APEXes, so it must be started after
+   # TODO(b/295824651): Start logd even earlier, before apexd-vm.
+   start logd
 
    # Notify to microdroid_manager that perform_apex_config is done.
    # Microdroid_manager shouldn't execute payload before this, because app
