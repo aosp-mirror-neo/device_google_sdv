@@ -16,6 +16,9 @@ include device/google/sdv/sdv_core_common/sdv_core_common.mk
 
 TARGET_BOARD_INFO_FILE := device/google/sdv/sdv_core_cf/android-info.txt
 
+PRODUCT_SYSTEM_PROPERTIES += \
+    ro.sdv.enable_seriallogging=true \
+
 PRODUCT_COPY_FILES += \
     device/google/sdv/init.sdv.base.rc:system/etc/init/hw/init.sdv.rc \
 
