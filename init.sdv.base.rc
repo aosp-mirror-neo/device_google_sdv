@@ -192,6 +192,17 @@ on boot
     setprop dev.bootcomplete 1
     write /dev/kmsg "VIRTUAL_DEVICE_BOOT_COMPLETED"
 
+# A copy of adb's service definition from packages/modules/adb/apex/adbd.rc.
+# TODO(b/296115390): Remove this. This is just a temporary hack to make adb working, but it will
+# break init once the root cause is fixed, and init .rc files in APEXes are loaded.
+service adbd /apex/com.android.adbd/bin/adbd --root_seclabel=u:r:su:s0
+    class core
+    socket adbd seqpacket 660 system system
+    disabled
+    override
+    seclabel u:r:adbd:s0
+    user root
+
 service tombstone_transmit /system/bin/tombstone_transmit.microdroid -cid 2 -port 2000 -remove_tombstones_after_transmitting
     user system
     group system
