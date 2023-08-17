@@ -14,7 +14,7 @@
 /(system_ext|system/system_ext)/bin/sdv_package_registry_agent u:object_r:sdv_pr_exec:s0
 
 # SDV Orchestrator agent
-/(system_ext|system/system_ext)/bin/sdv_orchestrator_agent u:object_r:sdv_orch_exec:s0
+/(system_ext|system/system_ext)/bin/sdv_orchestration_agent u:object_r:sdv_orch_exec:s0
 
 # SDV Lifecycle Sample
 /system/bin/lifecycle_sample                            u:object_r:lifecycle_sample_exec:s0
