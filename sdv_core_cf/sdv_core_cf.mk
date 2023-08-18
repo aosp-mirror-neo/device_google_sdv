@@ -29,3 +29,6 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_COPY_FILES += device/google/sdv/sdv_core_cf/ethernet/ethernet.sh:$(TARGET_COPY_OUT_SYSTEM_EXT)/bin/ethernet.sh
 PRODUCT_COPY_FILES += device/google/sdv/sdv_core_cf/ethernet/ethernet.rc:$(TARGET_COPY_OUT_SYSTEM)/etc/init/hw/init.ethernet.rc
+
+PRODUCT_PACKAGES += \
+    android.hardware.security.keymint-service

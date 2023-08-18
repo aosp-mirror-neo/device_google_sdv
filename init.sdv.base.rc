@@ -24,6 +24,7 @@ import /system/etc/init/logd.rc
 import /system/etc/init/logcatd.rc
 import /system/etc/init/hw/init.ethernet.rc
 import /vendor/etc/init/seriallogging.rc
+import /vendor/etc/init/android.hardware.security.keymint-service.rc
 
 # TODO(b/267320398) Not present on -user builds, same as TODO above
 # atrace.rc is required by Perfetto as well, since it sets up tracefs permissions.
@@ -142,6 +143,8 @@ on post-fs && property:ro.sdv.enable_seriallogging=true
     start seriallogging
 
 on late-fs
+    start vendor.keymint-default
+
     # Mount RW partitions which need run fsck
     mount_all --late
 
