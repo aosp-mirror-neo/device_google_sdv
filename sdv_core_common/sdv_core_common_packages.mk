@@ -31,6 +31,8 @@ PRODUCT_PACKAGES += sdv_someip_discovery_agent
 PRODUCT_PACKAGES += sdv_someip_stack_agent
 # Vehicle and Power mode agent
 PRODUCT_PACKAGES += sdv_vpm_agent
+# Orchestrator agent
+PRODUCT_PACKAGES += sdv_orchestrator_agent
 
 
 # SDV deployment configuration
