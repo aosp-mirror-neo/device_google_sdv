@@ -25,6 +25,12 @@ PRODUCT_PACKAGES += \
     ping6 \
     ip \
 
+# The defaults software Keymint HAL implementation which, among others, provides the
+# android.hardware.security.keymint.IRemotelyProvisionedComponent Binder AIDL service required by
+# Service Discovery, and other interfaces for encryption key management which are used by Keystore.
+PRODUCT_PACKAGES += \
+    android.hardware.security.keymint-service
+
 # com.android.i18n contains libandroidicu which is (optionally) required by libsqlite and rusqlite.
 # TODO(b/289366123): In order to save space, remove this APEX or parts of it. This APEX consumes
 # 37 MB of space, and has parts that are not needed by the Android version of SQLite. If the ICU
