@@ -75,7 +75,7 @@ on init
    # apexd.status to activated, but immediately transitions to ready. Therefore, it's not safe to
    # wait for the activated status, by the time this line is reached it may be already be ready.
    wait_for_prop apexd.status ready
-   perform_apex_config
+   perform_apex_config --bootstrap
 
    # Start logd before any other services run to ensure we capture all of their logs.
    # logd uses shared libraries that are distributed as APEXes, so it must be started after
@@ -198,17 +198,6 @@ on boot
     setprop sys.boot_completed 1
     setprop dev.bootcomplete 1
     write /dev/kmsg "VIRTUAL_DEVICE_BOOT_COMPLETED"
-
-# A copy of adb's service definition from packages/modules/adb/apex/adbd.rc.
-# TODO(b/296115390): Remove this. This is just a temporary hack to make adb working, but it will
-# break init once the root cause is fixed, and init .rc files in APEXes are loaded.
-service adbd /apex/com.android.adbd/bin/adbd --root_seclabel=u:r:su:s0
-    class core
-    socket adbd seqpacket 660 system system
-    disabled
-    override
-    seclabel u:r:adbd:s0
-    user root
 
 service tombstone_transmit /system/bin/tombstone_transmit.microdroid -cid 2 -port 2000 -remove_tombstones_after_transmitting
     user system
