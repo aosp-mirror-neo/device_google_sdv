@@ -25,6 +25,8 @@ PRODUCT_PACKAGES += sdv_sd_agent
 PRODUCT_PACKAGES += sdv_sd_cli
 # Service Authentication library
 PRODUCT_PACKAGES += libsdv_authn
+# SOME/IP broker
+PRODUCT_PACKAGES += sdv_someip_broker_agent
 # SOME/IP service discovery proxy
 PRODUCT_PACKAGES += sdv_someip_discovery_agent
 # SOME/IP stack agent
