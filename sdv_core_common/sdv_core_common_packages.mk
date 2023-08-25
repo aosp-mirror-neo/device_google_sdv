@@ -41,6 +41,7 @@ PRODUCT_PACKAGES += sdv_orchestrator_agent
 PRODUCT_PACKAGES += deployment_configuration.json \
     someip_deployment.json \
     someip_stack_deployment.json \
+    vvm_config.textproto \
 
 # SDV Sample applications
 PRODUCT_PACKAGES += \
