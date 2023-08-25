@@ -7,6 +7,9 @@
 # SDV proxy application for forwarding the connection between different VMs
 PRODUCT_HOST_PACKAGES += sdv_proxy \
     host_deployment_configuration.json \
+    sdv_vsomeip_virtual_ecu \
+    sdv_vsomeip_hello_tester \
+    sdv_vsomeip_counter_tester \
 
 ## SDV Core components (agent, libraries)
 # Shared component (utiltites for Core agents and libraries)
@@ -80,11 +83,14 @@ PRODUCT_PACKAGES += \
     sdv_client_tracing_sample \
     vpm_client_sample\
     vpm_system_agent_sample \
+    sdv_vsomeip_virtual_ecu \
+    sdv_vsomeip_hello_tester \
+    sdv_vsomeip_counter_tester \
     libsdv_dt_rust \
     dt_sample_publisher_rust \
     dt_sample_subscriber_rust \
     diag_manager_sample \
-    diag_service_sample \
+    diag_service_sample
 
 # SDV telemetry service executables
 PRODUCT_PACKAGES += \
