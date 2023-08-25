@@ -19,4 +19,7 @@ PRODUCT_MODEL := IVI and Software-Defined Vehicle Core
 # TODO hack to alloc sdv binary to be install to system partition
 PRODUCT_ENFORCE_ARTIFACT_PATH_REQUIREMENTS := false
 
+PRODUCT_COPY_FILES += \
+    device/google/sdv/init.sdv.common.rc:system/etc/init/init.sdv.rc
+
 include device/google/sdv/sdv_core_common/sdv_core_common_packages.mk

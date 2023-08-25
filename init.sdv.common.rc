@@ -1,0 +1,56 @@
+# Copyright 2023 Google LLC
+#
+# SDV's init .rc file which is used to start SDV specific services
+
+service sdv_package_registry_agent /system_ext/bin/sdv_package_registry_agent
+    class core
+    disabled
+    user system
+    group system
+on property:dev.bootcomplete=1
+    start sdv_package_registry_agent
+
+# Declare and start the SDV service discovery service.
+service sdv_sd_agent /system_ext/bin/sdv_sd_agent
+    class core
+    disabled
+    user root #TODO(b/285353950): use system
+    group root
+on property:dev.bootcomplete=1
+    start sdv_sd_agent
+
+# Declare and start the SDV Lifecycle manager agent.
+service sdv_lifecycle_agent /system_ext/bin/sdv_lifecycle_agent
+    class core
+    disabled
+    user system
+    group system
+on property:dev.bootcomplete=1
+    start sdv_lifecycle_agent
+
+# Declare and start the Orchestrator agent
+service sdv_orchestrator_agent /system_ext/bin/sdv_orchestrator_agent
+    class core
+    disabled
+    user system
+    group system
+on property:dev.bootcomplete=1
+    start sdv_orchestrator_agent
+
+# Declare and start the SDV SOME/IP stack agent.
+service sdv_someip_stack_agent /system_ext/bin/sdv_someip_stack_agent
+    class core
+    disabled
+    user system
+    group system
+on property:dev.bootcomplete=1
+    start sdv_someip_stack_agent
+
+# Declare and start the SDV SOME/IP service discovery agent.
+service sdv_someip_discovery_agent /system_ext/bin/sdv_someip_discovery_agent
+    class core
+    disabled
+    user system
+    group system
+on property:dev.bootcomplete=1
+    start sdv_someip_discovery_agent
