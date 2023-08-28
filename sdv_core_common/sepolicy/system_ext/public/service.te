@@ -1,5 +1,7 @@
 # Defines SDV SD Binder IPC service.
 type sdv_sd_service, protected_service, service_manager_type;
+type sdv_sd_identity, protected_service, service_manager_type;
+type sdv_sd_agent, protected_service, service_manager_type;
 
 # Defines SDV Core Binder IPC service.
 type sdv_core_service, protected_service, service_manager_type;
