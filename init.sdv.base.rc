@@ -18,6 +18,7 @@ import /init.environ.rc
 import /system/etc/init/mdnsd.rc
 import /system/etc/init/servicemanager.rc
 import /system/etc/init/logd.rc
+import /system/etc/init/hw/init.sdv.common.rc
 # TODO(b/267320398): this file does not exist in -user builds, but init can continue despite that.
 # Remove the import once we can rely on .rc files from /system/etc/init getting loaded
 # automatically.
@@ -234,56 +235,3 @@ on property:ro.debuggable=1
     # it's further protected by selinux policy.
     # The folder is used to store method traces.
     chmod 0773 /data/misc/trace
-
-service sdv_package_registry_agent /system_ext/bin/sdv_package_registry_agent
-    class core
-    disabled
-    user system
-    group system
-on property:dev.bootcomplete=1
-    start sdv_package_registry_agent
-
-# Declare and start the SDV service discovery service.
-service sdv_sd_agent /system_ext/bin/sdv_sd_agent
-    class core
-    disabled
-    user root #TODO(b/285353950): use system
-    group root
-on property:dev.bootcomplete=1
-    start sdv_sd_agent
-
-# Declare and start the SDV Lifecycle manager agent.
-service sdv_lifecycle_agent /system_ext/bin/sdv_lifecycle_agent
-    class core
-    disabled
-    user system
-    group system
-on property:dev.bootcomplete=1
-    start sdv_lifecycle_agent
-
-# Declare and start the Orchestrator agent
-service sdv_orchestrator_agent /system_ext/bin/sdv_orchestrator_agent
-    class core
-    disabled
-    user system
-    group system
-on property:dev.bootcomplete=1
-    start sdv_orchestrator_agent
-
-# Declare and start the SDV SOME/IP stack agent.
-service sdv_someip_stack_agent /system_ext/bin/sdv_someip_stack_agent
-    class core
-    disabled
-    user system
-    group system
-on property:dev.bootcomplete=1
-    start sdv_someip_stack_agent
-
-# Declare and start the SDV SOME/IP service discovery agent.
-service sdv_someip_discovery_agent /system_ext/bin/sdv_someip_discovery_agent
-    class core
-    disabled
-    user system
-    group system
-on property:dev.bootcomplete=1
-    start sdv_someip_discovery_agent
