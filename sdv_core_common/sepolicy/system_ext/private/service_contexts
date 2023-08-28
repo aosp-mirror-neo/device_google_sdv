@@ -1,5 +1,7 @@
 # SDV SD IPC service
 android.sdv.sd.IServiceManager u:object_r:sdv_sd_service:s0
+android.sdv.sd.IIdentityManager u:object_r:sdv_sd_identity:s0
+android.sdv.sd.IAgentManager u:object_r:sdv_sd_agent:s0
 
 # SDV Lifecycle manager agent
 # It has two independent binder services, and probably no process should use both. Following the
