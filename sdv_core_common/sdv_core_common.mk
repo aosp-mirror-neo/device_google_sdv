@@ -25,6 +25,11 @@ PRODUCT_PACKAGES += \
     ping6 \
     ip \
 
+ifneq ($(NATIVE_COVERAGE_PATHS),)
+# Needed by Tradefed code coverage tool: http://shortn/_MzG0a1dEoi
+PRODUCT_PACKAGES += awk
+endif
+
 # The defaults software Keymint HAL implementation which, among others, provides the
 # android.hardware.security.keymint.IRemotelyProvisionedComponent Binder AIDL service required by
 # Service Discovery, and other interfaces for encryption key management which are used by Keystore.
