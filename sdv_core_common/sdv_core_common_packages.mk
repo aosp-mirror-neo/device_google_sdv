@@ -74,6 +74,9 @@ PRODUCT_PACKAGES += \
     sdv_client_tracing_sample \
     vpm_client_sample\
     vpm_system_agent_sample \
+    libsdv_dt_rust \
+    dt_sample_publisher_rust \
+    dt_sample_subscriber_rust \
 
 # SDV telemetry service executables
 PRODUCT_PACKAGES += \
