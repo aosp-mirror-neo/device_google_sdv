@@ -1,0 +1,9 @@
+# SDV Mesh client and server can use Binder IPC.
+binder_call(sdv_mesh_client, sdv_mesh_server)
+binder_call(sdv_mesh_server, sdv_mesh_client)
+
+# SDV Mesh client can find the IPC service.
+allow sdv_mesh_client sdv_mesh_service:service_manager find;
+
+# SDV Mesh server can register the IPC service.
+add_service(sdv_mesh_server, sdv_mesh_service)
