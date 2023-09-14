@@ -35,7 +35,8 @@ PRODUCT_PACKAGES += sdv_someip_stack_agent
 PRODUCT_PACKAGES += sdv_vpm_agent
 # Orchestrator agent
 PRODUCT_PACKAGES += sdv_orchestrator_agent
-
+# Mesh agent
+PRODUCT_PACKAGES += sdv_mesh_agent
 
 # SDV deployment configuration
 PRODUCT_PACKAGES += deployment_configuration.json \

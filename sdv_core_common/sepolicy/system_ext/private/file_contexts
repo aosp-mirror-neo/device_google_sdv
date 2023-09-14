@@ -4,6 +4,9 @@
 # SDV service discovery agent
 /(system_ext|system/system_ext)/bin/sdv_sd_agent        u:object_r:sdv_sd_default_exec:s0
 
+# SDV mesh agent
+/(system_ext|system/system_ext)/bin/sdv_mesh_agent      u:object_r:sdv_mesh_default_exec:s0
+
 # SDV Lifecycle manager agent
 /(system_ext|system/system_ext)/bin/sdv_lifecycle_agent u:object_r:sdv_lc_default_exec:s0
 
