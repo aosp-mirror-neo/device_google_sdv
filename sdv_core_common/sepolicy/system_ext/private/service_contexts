@@ -6,6 +6,9 @@ android.sdv.sd.IAgentManager u:object_r:sdv_sd_agent:s0
 # SDV Mesh IPC service
 android.sdv.mesh.IMessageManager u:object_r:sdv_mesh_service:s0
 
+# RPCagent service
+android.sdv.rpc.IRpcAgent u:object_r:sdv_rpcagent_service:s0
+
 # SDV Lifecycle manager agent
 # It has two independent binder services, and probably no process should use both. Following the
 # Principle of Least Privilege, the two interfaces are assigned with different SELinux types, and

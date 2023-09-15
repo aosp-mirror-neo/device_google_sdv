@@ -7,6 +7,9 @@
 # SDV mesh agent
 /(system_ext|system/system_ext)/bin/sdv_mesh_agent      u:object_r:sdv_mesh_default_exec:s0
 
+# SDV service rpc agent
+/(system_ext|system/system_ext)/bin/rpcagent            u:object_r:sdv_rpcagent_default_exec:s0
+
 # SDV Lifecycle manager agent
 /(system_ext|system/system_ext)/bin/sdv_lifecycle_agent u:object_r:sdv_lc_default_exec:s0
 

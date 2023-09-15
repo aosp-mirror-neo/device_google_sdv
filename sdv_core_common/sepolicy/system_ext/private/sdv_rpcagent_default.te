@@ -1,0 +1,12 @@
+# RPC agent can register itself as a Binder IPC service.
+binder_call(sdv_rpcagent_server, servicemanager);
+
+# RPC agent is a core service and system process.
+core_service(sdv_rpcagent_default)
+typeattribute sdv_rpcagent_default sdv_rpcagent_server;
+
+# Allow the sample to use Service Discovery.
+typeattribute sdv_rpcagent_default sdv_sd_client;
+
+# RPC agent can use sockets for Binder RPC
+net_domain(sdv_rpcagent_default)

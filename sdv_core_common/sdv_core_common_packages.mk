@@ -33,6 +33,8 @@ PRODUCT_PACKAGES += sdv_someip_discovery_agent
 PRODUCT_PACKAGES += sdv_someip_stack_agent
 # Vehicle and Power mode agent
 PRODUCT_PACKAGES += sdv_vpm_agent
+# Rpc agent
+PRODUCT_PACKAGES += rpcagent
 # Orchestrator agent
 PRODUCT_PACKAGES += sdv_orchestration_agent
 # Mesh agent
@@ -49,6 +51,8 @@ PRODUCT_PACKAGES += deployment_configuration.json \
 PRODUCT_PACKAGES += \
     server_sdv_sample \
     client_sdv_sample \
+    server_rpc_sdv_sample \
+    client_rpc_sdv_sample \
     server_rust_sdv_sample \
     client_rust_sdv_sample \
     server_rust_tokio_sdv_sample \
