@@ -1,2 +1,4 @@
 # Orchestrator is a core SDV agent.
 core_service(sdv_orch)
+
+typeattribute sdv_orch sdv_lc_client;
