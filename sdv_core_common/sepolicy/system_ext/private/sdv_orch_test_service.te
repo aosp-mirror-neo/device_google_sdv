@@ -1,0 +1,16 @@
+userdebug_or_eng(`
+    type orchestration_service_test, domain;
+    typeattribute orchestration_service_test coredomain;
+    # Setting the sdv_lc_process_client attribute on the domain to inherit the SEpolicies defined for
+    # sdv_lc_process_client, thus, allowing the orchestration_service_test and the sdv_lc_server to communicate
+    # via Binder calls, and the sdv_lc_server to manage the orchestration_service_test.
+    typeattribute orchestration_service_test sdv_lc_process_client;
+    type orchestration_service_test_exec, exec_type, system_file_type, file_type;
+
+    # Required by the launchService() IPC on the IServiceManager Binder service to execute the
+    # orchestration_service_test.
+    # TODO(b/272343536): Currently, this rule has to be among the private policies that prevents
+    # moving this policy, thus, the orchestration_service_test to the vendor/product/oem partitions where it
+    # eventually should be.
+    domain_auto_trans(sdv_lc_server, orchestration_service_test_exec, orchestration_service_test)
+')
