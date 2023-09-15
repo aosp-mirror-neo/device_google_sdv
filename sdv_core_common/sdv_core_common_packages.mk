@@ -79,6 +79,8 @@ PRODUCT_PACKAGES += \
     libsdv_dt_rust \
     dt_sample_publisher_rust \
     dt_sample_subscriber_rust \
+    diag_manager_sample \
+    diag_service_sample \
 
 # SDV telemetry service executables
 PRODUCT_PACKAGES += \
