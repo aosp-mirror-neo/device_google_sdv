@@ -33,3 +33,6 @@
 
 # SDV Orchestration Service Sample
 /(system_ext|system/system_ext)/bin/orchestration_service_test                            u:object_r:orchestration_service_test_exec:s0
+
+# SDV Lifecycle Sample for integration tests
+/(system_ext|system/system_ext)/bin/lifecycle_service_test                            u:object_r:lifecycle_service_test_exec:s0
