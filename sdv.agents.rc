@@ -27,6 +27,16 @@ service sdv_mesh_agent /system_ext/bin/sdv_mesh_agent
 on property:dev.bootcomplete=1
     start sdv_mesh_agent
 
+# Declare and start the SDV RPCagent.
+service rpcagent /system_ext/bin/rpcagent
+    class core
+    disabled
+    user system
+    group system
+on property:dev.bootcomplete=1
+    start rpcagent
+
+
 # Declare and start the SDV Lifecycle manager agent.
 service sdv_lifecycle_agent /system_ext/bin/sdv_lifecycle_agent
     class core
