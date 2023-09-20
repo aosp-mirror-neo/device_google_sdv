@@ -20,6 +20,6 @@ PRODUCT_MODEL := IVI and Software-Defined Vehicle Core
 PRODUCT_ENFORCE_ARTIFACT_PATH_REQUIREMENTS := false
 
 PRODUCT_COPY_FILES += \
-    device/google/sdv/init.sdv.common.rc:system/etc/init/init.sdv.rc
+    device/google/sdv/sdv.agents.rc:system/etc/init/sdv.agents.rc
 
 include device/google/sdv/sdv_core_common/sdv_core_common_packages.mk
