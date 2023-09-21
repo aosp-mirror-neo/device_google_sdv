@@ -6,6 +6,7 @@
 SDV_CORE_SERVICES_PACKAGES = \
     dt_agent \
     libsdv_authn \
+    libsdv_dt_core \
     libsdv_dt \
     libsdv_dt_rust \
     libsdv_lifecycle_client \
