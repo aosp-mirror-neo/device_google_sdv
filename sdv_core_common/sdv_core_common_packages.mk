@@ -12,8 +12,6 @@ PRODUCT_HOST_PACKAGES += sdv_proxy \
     sdv_vsomeip_counter_tester \
 
 ## SDV Core components (agent, libraries)
-# Shared component (utiltites for Core agents and libraries)
-PRODUCT_PACKAGES += libsdv_shared
 # RPC library
 PRODUCT_PACKAGES += libsdvrpc
 # Package registry agent
