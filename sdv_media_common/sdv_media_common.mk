@@ -25,7 +25,6 @@ $(call inherit-product, device/google/cuttlefish/shared/virgl/device_vendor.mk)
 # Graphics allocator implementation
 PRODUCT_PACKAGES += \
     gralloc.minigbm \
-    gralloc.ranchu \
 
 # Audio related dependencies
 PRODUCT_PACKAGES += \
