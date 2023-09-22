@@ -81,6 +81,8 @@ PRODUCT_PACKAGES += \
     client_some_ip_sdv_sample \
     sdv_server_cpp_tracing_sample \
     sdv_client_cpp_tracing_sample \
+    sdv_server_rust_tracing_sample \
+    sdv_client_rust_tracing_sample \
     vpm_client_sample\
     vpm_system_agent_sample \
     sdv_vsomeip_virtual_ecu \
