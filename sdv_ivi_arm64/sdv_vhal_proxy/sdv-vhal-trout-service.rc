@@ -1,0 +1,4 @@
+service vendor.sdv-vehicle-hal-trout /vendor/bin/hw/android.hardware.automotive.vehicle@default-sdv-trout-service
+    class hal
+    user vehicle_network
+    group system inet

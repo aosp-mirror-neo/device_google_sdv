@@ -6,6 +6,14 @@
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_core_common/sepolicy/system_ext/private
 SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += device/google/sdv/sdv_core_common/sepolicy/system_ext/public
 
+# uncomment this to enable SDV Vehicle HAL Proxy
+# ENABLE_SDV_VHAL_PROXY := true
+ifeq ($(ENABLE_SDV_VHAL_PROXY),true)
+LOCAL_VHAL_PRODUCT_PACKAGE := android.hardware.automotive.vehicle@default-sdv-trout-service
+BOARD_SEPOLICY_DIRS += device/google/cuttlefish/shared/auto/sepolicy/vhal
+BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_ivi_common/sepolicy/vendor/google/
+endif
+
 $(call inherit-product, device/google/trout/aosp_trout_arm64.mk)
 
 PRODUCT_NAME := sdv_ivi_arm64

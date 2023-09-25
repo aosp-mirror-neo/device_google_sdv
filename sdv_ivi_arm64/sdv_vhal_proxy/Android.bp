@@ -1,0 +1,54 @@
+package {
+    default_applicable_licenses: ["sdv_license"],
+}
+
+cc_defaults {
+    name: "sdv_grpc_vehicle_hardware@cc_defaults",
+    vendor: true,
+    defaults: [
+        "vhal_proxy@cc_defaults",
+    ],
+    header_libs: [
+        "IVehicleHardware",
+    ],
+    static_libs: [
+        "android.hardware.automotive.vehicle@default-grpc-hardware-lib",
+    ],
+    shared_libs: [
+        "libgrpc++",
+        "libvhal_proxy",
+    ]
+}
+
+cc_library_static {
+    name: "sdv_grpc_vehicle_hardware_lib",
+    srcs: ["src/SdvGRPCVehicleHardware.cpp"],
+    local_include_dirs: ["include"],
+    export_include_dirs: ["include"],
+    defaults: [
+        "sdv_grpc_vehicle_hardware@cc_defaults",
+    ],
+    whole_static_libs: [
+        "android.hardware.automotive.vehicle@default-grpc-libgrpc",
+        "VehicleHalProtoMessageConverter",
+    ],
+}
+
+cc_binary {
+    name: "android.hardware.automotive.vehicle@default-sdv-trout-service",
+    srcs: ["sdv_trout_vehicle_service.cpp"],
+    vintf_fragments: ["sdv-vhal-trout-service.xml"],
+    init_rc: [
+        "sdv-vhal-trout-service.rc",
+        "trout-data-tunnel-service.rc",
+    ],
+    relative_install_path: "hw",
+    defaults: [
+        "sdv_grpc_vehicle_hardware@cc_defaults",
+    ],
+    static_libs: [
+        "android.hardware.automotive.utils.vsockinfo",
+        "DefaultVehicleHal",
+        "sdv_grpc_vehicle_hardware_lib",
+    ],
+}
