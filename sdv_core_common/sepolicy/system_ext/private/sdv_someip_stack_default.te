@@ -1,7 +1,0 @@
-# SOME/IP stack is a core SDV agent.
-core_service(sdv_someip_stack_default)
-
-# SOME/IP agent can use sockets
-net_domain(sdv_someip_stack_default)
-
-typeattribute sdv_someip_stack_default sdv_someip_stack_server;
