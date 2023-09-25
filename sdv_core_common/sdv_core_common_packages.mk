@@ -94,6 +94,7 @@ PRODUCT_PACKAGES += \
     diag_service_sample \
     sdv_sample_property_service \
     sdv_vhal_proxy_subscriber \
+    some_ip_dt_sample \
 
 # SDV telemetry service executables
 PRODUCT_PACKAGES += \
