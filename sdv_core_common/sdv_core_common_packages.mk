@@ -48,6 +48,7 @@ PRODUCT_PACKAGES += deployment_configuration.json \
     someip_stack_deployment.json \
     vvm_config.textproto \
     orch_config.textproto \
+    vsomeip_config.json \
 
 # SDV Sample applications
 PRODUCT_PACKAGES += \
