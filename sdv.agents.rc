@@ -65,11 +65,3 @@ service sdv_someip_broker_agent /vendor/bin/sdv_someip_broker_agent
 on property:dev.bootcomplete=1
     start sdv_someip_broker_agent
 
-# Declare and start the SDV SOME/IP service discovery agent.
-service sdv_someip_discovery_agent /system_ext/bin/sdv_someip_discovery_agent
-    class core
-    disabled
-    user system
-    group system
-on property:dev.bootcomplete=1
-    start sdv_someip_discovery_agent
