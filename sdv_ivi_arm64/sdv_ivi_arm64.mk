@@ -30,4 +30,5 @@ PRODUCT_ENFORCE_ARTIFACT_PATH_REQUIREMENTS := false
 PRODUCT_COPY_FILES += \
     device/google/sdv/sdv.agents.rc:system/etc/init/sdv.agents.rc
 
+include device/google/sdv/sdv_ivi_common/sdv_ivi_common.mk
 include device/google/sdv/sdv_core_common/sdv_core_common_packages.mk
