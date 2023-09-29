@@ -1,4 +1,0 @@
-service vendor.trout-data-tunnel-service /vendor/bin/dt_agent 4 3
-    class early_hal
-    user vehicle_network
-    group system inet
