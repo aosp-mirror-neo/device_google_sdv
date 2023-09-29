@@ -69,9 +69,7 @@ SDV_CORE_SERVICES_SAMPLE_PACKAGES = \
     some_ip_dt_sample \
     some_ip_dt_sample \
     structured_logging_sdv_sample \
-    tracing_sdv_rust_sample \
-    vpm_client_sample \
-    vpm_system_agent_sample
+    tracing_sdv_rust_sample
 
 SDV_CORE_SERVICES_HOST_PACKAGES += \
     sdv_vsomeip_counter_tester \
