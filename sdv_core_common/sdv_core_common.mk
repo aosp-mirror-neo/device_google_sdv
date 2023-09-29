@@ -44,7 +44,10 @@ PRODUCT_PACKAGES += \
 # functionality is not required in SDV then libsqlite and rusqlite can be built without it.
 PRODUCT_PACKAGES += com.android.i18n
 
-include device/google/sdv/sdv_core_common/sdv_core_common_packages.mk
+include device/google/sdv/sdv_core_common/sdv_packages_automotive_services.mk
+include device/google/sdv/sdv_core_common/sdv_packages_core_services.mk
+include device/google/sdv/sdv_core_common/sdv_packages_platform.mk
+include device/google/sdv/sdv_core_common/sdv_packages_telemetry.mk
 
 # Enable tracing on userdebug and eng
 ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
