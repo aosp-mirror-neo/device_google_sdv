@@ -12,6 +12,8 @@ SDV_AUTOMOTIVE_SERVICES_PACKAGES = \
 SDV_AUTOMOTIVE_SERVICES_SAMPLES_PACKAGES = \
     diag_manager_sample \
     diag_service_sample \
+    vpm_client_sample \
+    vpm_system_agent_sample
 
 SDV_AUTOMOTIVE_SERVICES_HOST_PACKAGES =
 
