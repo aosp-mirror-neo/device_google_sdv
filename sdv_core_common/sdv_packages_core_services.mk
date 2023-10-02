@@ -9,10 +9,10 @@ SDV_CORE_SERVICES_PACKAGES = \
     libsdv_dt \
     libsdv_dt_rust \
     libsdv_lifecycle_client \
+    libsdv_sd \
     libsdv_sd_rs \
     libsdvmiddleware_pubsub \
     libsomeip_runtime \
-    orch_config.textproto \
     orch_config.textproto \
     rpcagent \
     sdv_lifecycle_agent \
@@ -26,6 +26,7 @@ SDV_CORE_SERVICES_PACKAGES = \
     sdv_someip_stack_agent \
     someip_deployment.json \
     someip_stack_deployment.json \
+    vsomeip_config.json \
     vvm_config.textproto
 
 # Sample modules in core_services/
@@ -39,8 +40,6 @@ SDV_CORE_SERVICES_SAMPLE_PACKAGES = \
     com.android.sdv.samples.rochambeau \
     com.android.sdv.samples.rpc \
     compile_time_log_filtering_sdv_sample \
-    diag_manager_sample \
-    diag_service_sample \
     dt_sample_client_cpp \
     dt_sample_publisher_rust \
     dt_sample_subscriber_rust \
@@ -56,7 +55,6 @@ SDV_CORE_SERVICES_SAMPLE_PACKAGES = \
     sdv_sample_rpc_server \
     sdv_server_cpp_tracing_sample \
     sdv_server_rust_tracing_sample \
-    sdv_server_tracing_sample \
     sdv_vsomeip_conf_counter_tester_target \
     sdv_vsomeip_conf_hello_tester_target \
     sdv_vsomeip_conf_virtual_ecu_target \
