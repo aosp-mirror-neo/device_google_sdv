@@ -15,3 +15,6 @@ DEFAULT_GW_IP="$(getprop ro.boot.virt.static_gateway_ip "192.168.101.1")"
 ifconfig eth0 "$FIRST_IP"
 ifconfig eth0:0 "$SECOND_IP"
 ip r add default via "$DEFAULT_GW_IP"
+
+# Enable multicast on eth0 interface (required for SOME/IP SD)
+ip route add 224.0.0.0/4 dev eth0
