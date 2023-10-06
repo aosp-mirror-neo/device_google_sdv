@@ -48,9 +48,11 @@ include device/google/sdv/sdv_core_common/sdv_core_common_packages.mk
 
 # Enable tracing on userdebug and eng
 ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
-# Set the property for the system partition.
-PRODUCT_SYSTEM_PROPERTIES += \
-    persist.traced.enable=1
+  # Traced is the Perfetto system tracing service.
+  PRODUCT_SYSTEM_PROPERTIES += persist.traced.enable=1
+  # This property sets the tags to a default disabled state.
+  # ATrace instrumentation in apps expects the property to always be defined.
+  PRODUCT_SYSTEM_PROPERTIES += debug.atrace.tags.enableflags=0
 endif
 
 # Perfetto packages for tracing
