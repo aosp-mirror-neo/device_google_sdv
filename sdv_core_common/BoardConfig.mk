@@ -39,6 +39,10 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 134217728 # 128 MiB
 BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
 TARGET_USERIMAGES_USE_F2FS := true
 
+# Add VLAN support (provided by 8021q module)
+TARGET_KERNEL_MODULES_PATH ?= kernel/prebuilts/$(TARGET_KERNEL_USE)/$(TARGET_KERNEL_ARCH)
+BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(TARGET_KERNEL_MODULES_PATH)/8021q.ko
+
 ifneq ($(SDV_PREBUILT),true)
     # HOST_OUT is empty, so we cannot use it. See $(warning HOST_OUT is $(HOST_OUT)).
     host_out_dir := $(OUT_DIR)/host/linux-x86
