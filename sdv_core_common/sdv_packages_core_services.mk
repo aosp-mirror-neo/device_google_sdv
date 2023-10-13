@@ -72,6 +72,10 @@ SDV_CORE_SERVICES_SAMPLE_PACKAGES = \
     structured_logging_sdv_sample \
     tracing_sdv_rust_sample
 
+# Sample services for tests
+SDV_CORE_SERVICES_SAMPLE_PACKAGES += \
+    orchestration_service_test
+
 SDV_CORE_SERVICES_HOST_PACKAGES += \
     sdv_vsomeip_counter_tester \
     sdv_vsomeip_hello_tester \
