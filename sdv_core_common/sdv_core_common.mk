@@ -44,6 +44,12 @@ PRODUCT_PACKAGES += \
 # functionality is not required in SDV then libsqlite and rusqlite can be built without it.
 PRODUCT_PACKAGES += com.android.i18n
 
+# Including this package disables the logic in init which mounts the system partition to /product.
+# This logic would cause runtime errors, because the duplicated content of
+# /system/etc/vintf/manifest.xml at /product/etc/vintf/manifest.xml.
+# TODO(b/305625166): Remove this package once there's a /product partition defined in the fstab.
+PRODUCT_PACKAGES += gsi_skip_mount.cfg
+
 include device/google/sdv/sdv_core_common/sdv_packages_automotive_services.mk
 include device/google/sdv/sdv_core_common/sdv_packages_core_services.mk
 include device/google/sdv/sdv_core_common/sdv_packages_platform.mk
