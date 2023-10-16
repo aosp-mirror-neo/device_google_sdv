@@ -30,20 +30,3 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_COPY_FILES += device/google/sdv/sdv_core_cf/ethernet/ethernet.sh:$(TARGET_COPY_OUT_SYSTEM_EXT)/bin/ethernet.sh
 PRODUCT_COPY_FILES += device/google/sdv/sdv_core_cf/ethernet/ethernet.rc:$(TARGET_COPY_OUT_SYSTEM)/etc/init/hw/init.ethernet.rc
-
-
-# Keystore2 provides cryptographic interfaces for Android services and applications, such as
-# instances for security key management. Keystore2 is also required for file encryption, because
-# it's used by the vold daemon.
-PRODUCT_PACKAGES += keystore2
-# Adds the system (Android) framework manifest file (/system/etc/vintf/manifest.xml) which is
-# required by keystore2, because keystore2 is on /system, and it contains a vintf_fragment.
-# TODO(b/296978905): SDV should not use Android's system manifest, because it contains HALs that SDV
-# doesn't provide.
-PRODUCT_PACKAGES += system_manifest.xml
-# Adds the system (Android) framework compatibility matrices
-# (/system/etc/vintf/compatibility_matrix.*.xml) which are required by keystore2.
-# TODO(b/296978905): SDV should not use Android's system framework compatibility matrices, because
-# it lists HALs that SDV doesn't require from the device (probably, it doesn't cause an issue,
-# though, because these HALs are listed as optional).
-PRODUCT_PACKAGES += system_compatibility_matrix.xml
