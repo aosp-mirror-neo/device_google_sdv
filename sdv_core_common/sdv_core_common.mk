@@ -44,6 +44,28 @@ PRODUCT_PACKAGES += \
 # functionality is not required in SDV then libsqlite and rusqlite can be built without it.
 PRODUCT_PACKAGES += com.android.i18n
 
+# Including this package disables the logic in init which mounts the system partition to /product.
+# This logic would cause runtime errors, because the duplicated content of
+# /system/etc/vintf/manifest.xml at /product/etc/vintf/manifest.xml.
+# TODO(b/305625166): Remove this package once there's a /product partition defined in the fstab.
+PRODUCT_PACKAGES += gsi_skip_mount.cfg
+
+# Keystore2 provides cryptographic interfaces for Android services and applications, such as
+# instances for security key management. Keystore2 is also required for file encryption, because
+# it's used by the vold daemon.
+PRODUCT_PACKAGES += keystore2
+# Adds the system (Android) framework manifest file (/system/etc/vintf/manifest.xml) which is
+# required by keystore2, because keystore2 is on /system, and it contains a vintf_fragment.
+# TODO(b/296978905): SDV should not use Android's system manifest, because it contains HALs that SDV
+# doesn't provide.
+PRODUCT_PACKAGES += system_manifest.xml
+# Adds the system (Android) framework compatibility matrices
+# (/system/etc/vintf/compatibility_matrix.*.xml) which are required by keystore2.
+# TODO(b/296978905): SDV should not use Android's system framework compatibility matrices, because
+# it lists HALs that SDV doesn't require from the device (probably, it doesn't cause an issue,
+# though, because these HALs are listed as optional).
+PRODUCT_PACKAGES += system_compatibility_matrix.xml
+
 include device/google/sdv/sdv_core_common/sdv_packages_automotive_services.mk
 include device/google/sdv/sdv_core_common/sdv_packages_core_services.mk
 include device/google/sdv/sdv_core_common/sdv_packages_platform.mk
