@@ -50,7 +50,3 @@ ifneq ($(SDV_PREBUILT),true)
     # also be available as a downloadable artifact when an SDV target is built remotely.
     $(call dist-for-goals, dist_files, $(host_out_dir)/sdv_proxy.zip)
 endif
-
-# TODO(b/305897685): Remove this flag. It's set, because otherwise building SDV fails due to modules
-# unrelated to SDV, at the step when the ninja files are generated.
-BUILD_BROKEN_GENRULE_SANDBOXING := true
