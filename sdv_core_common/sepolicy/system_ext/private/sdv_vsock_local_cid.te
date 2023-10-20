@@ -1,0 +1,11 @@
+type vsock_local_cid, domain;
+typeattribute vsock_local_cid coredomain;
+type vsock_local_cid_exec, exec_type, system_file_type, file_type;
+
+init_daemon_domain(vsock_local_cid)
+
+# Required for logging to /dev/kmsg
+allow vsock_local_cid kmsg_device:chr_file w_file_perms;
+
+# Required to read the vsock local CID
+allow vsock_local_cid vsock_device:chr_file { ioctl open read };

@@ -28,6 +28,7 @@ SDV_CORE_SERVICES_PACKAGES = \
     someip_deployment.json \
     someip_stack_deployment.json \
     vsomeip_config.json \
+    vsock_local_cid \
     vvm_config.textproto \
     someip-config.proto \
     vsidl-config.proto
