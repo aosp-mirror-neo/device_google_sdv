@@ -74,7 +74,8 @@ SDV_CORE_SERVICES_SAMPLE_PACKAGES = \
 
 # Sample services for tests
 SDV_CORE_SERVICES_SAMPLE_PACKAGES += \
-    orchestration_service_test
+    orchestration_service_test \
+    lifecycle_service_test \
 
 SDV_CORE_SERVICES_HOST_PACKAGES += \
     sdv_vsomeip_counter_tester \
