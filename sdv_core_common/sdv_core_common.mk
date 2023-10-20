@@ -58,6 +58,11 @@ PRODUCT_PACKAGES += system_manifest.xml
 # though, because these HALs are listed as optional).
 PRODUCT_PACKAGES += system_compatibility_matrix.xml
 
+# vold (VOLume Daemon) and vdc (Volume Daemon Client, vold's command line client) are required for
+# file encryption, and User Data Checkpoint
+PRODUCT_PACKAGES += vold
+PRODUCT_PACKAGES += vdc
+
 include device/google/sdv/sdv_core_common/sdv_packages_automotive_services.mk
 include device/google/sdv/sdv_core_common/sdv_packages_core_services.mk
 include device/google/sdv/sdv_core_common/sdv_packages_platform.mk
@@ -92,6 +97,7 @@ PRODUCT_PACKAGES += \
 # Partition debugging utils
 PRODUCT_PACKAGES_DEBUG += \
     bootctl \
+    dmctl \ # device-mapper control
 
 # System update support
 PRODUCT_PACKAGES += \

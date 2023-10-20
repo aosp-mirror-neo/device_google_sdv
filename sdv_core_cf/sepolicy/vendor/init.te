@@ -1,3 +1,6 @@
 # init relabel vbmeta* and boot* symlinks under /dev/block/by-name/.
 allow init ab_block_device:lnk_file relabelto;
 allow init boot_block_device:lnk_file relabelto;
+
+# Required for encrypting the /data partition when calling `installkey /data`
+allow init kernel:system module_request;

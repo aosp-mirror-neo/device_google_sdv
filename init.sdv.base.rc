@@ -17,6 +17,7 @@
 import /init.environ.rc
 import /system/etc/init/mdnsd.rc
 import /system/etc/init/servicemanager.rc
+import /system/etc/init/vold.rc
 import /system/etc/init/logd.rc
 import /system/etc/init/keystore2.rc
 import /system/etc/init/sdv.agents.rc
@@ -133,12 +134,20 @@ on fs
     # Mount everything that does not require fsck
     mount_all --early
 
+on early-fs
+    # Once metadata has been mounted, we'll need vold to deal with userdata checkpointing
+    start vold
+
 on post-fs
+    exec - system system -- /system/bin/vdc checkpoint markBootAttempt
+
     # Once everything is setup, no need to modify /.
     # The bind+remount combination allows this to work in containers.
     mount rootfs rootfs / remount bind ro nodev
 
-    start keystore2
+    restorecon_recursive /metadata
+    mkdir /metadata/vold
+    chmod 0700 /metadata/vold
 
 on post-fs && property:ro.sdv.enable_seriallogging=true
     start seriallogging
@@ -158,6 +167,8 @@ on late-fs && property:ro.debuggable=1
 on post-fs-data
     mark_post_data
 
+    exec - system system -- /system/bin/vdc checkpoint prepareCheckpoint
+
     # We chown/chmod /data again so because mount is run as root + defaults
     chown system system /data
     chmod 0771 /data
@@ -165,25 +176,27 @@ on post-fs-data
     # reset.
     restorecon /data
 
-    mkdir /data/vendor 0771 root root
+    # Make sure we have the device encryption key.
+    installkey /data
+
+    mkdir /data/vendor 0771 root root encryption=Require
     mkdir /data/vendor/hardware 0771 root root
-    mkdir /data/vendor_ce 0771 root root
-    mkdir /data/vendor_de 0771 root root
+    mkdir /data/vendor_ce 0771 root root encryption=None
+    mkdir /data/vendor_de 0771 root root encryption=None
 
     # Start tombstoned early to be able to store tombstones.
     # microdroid doesn't have anr, but tombstoned requires it
-    mkdir /data/anr 0775 system system
-    mkdir /data/tombstones 0771 system system
+    mkdir /data/anr 0775 system system encryption=Require
+    mkdir /data/tombstones 0771 system system encryption=Require
     mkdir /data/vendor/tombstones 0771 root root
     start tombstoned
 
     # Taken from system/core/rootdir/init.rc
-    # TODO: b/282720006 - The original mkdir cmd had `encryption=Require`
     # Multi-installed APEXes are selected using persist props.
     # Load persist properties and override properties (if enabled) from /data,
     # before starting apexd.
     # /data/property should be created before `load_persist_props`
-    mkdir /data/property 0700 root root
+    mkdir /data/property 0700 root root encryption=Require
     load_persist_props
 
     # Some existing vendor rc files use 'on load_persist_props_action' to know
@@ -194,23 +207,21 @@ on post-fs-data
 
     # set up misc and keystore directory structure first so that we can end early boot and start
     # apexd
-    mkdir /data/misc 01771 system misc
+    mkdir /data/misc 01771 system misc encryption=Require
     # See aosp/1718974
     mkdir /data/misc/keystore 0700 keystore keystore
     # work around b/183668221
     restorecon /data/misc /data/misc/keystore
 
+    exec - system system -- /system/bin/vdc keymaster earlyBootEnded
+
     # set up the trace directory to allow saving coverage b/291081269
     mkdir /data/misc/trace 0700 root root
 
-    mkdir /data/local 0751 root root
+    mkdir /data/local 0751 root root encryption=Require
     # For security reasons, /data/local/tmp should always be empty.
     # Do not place files or directories in /data/local/tmp
     mkdir /data/local/tmp 0771 shell shell
-
-    # All permissions needed for integration test process that will use this dir to launch
-    # vsomeip instances
-    mkdir /data/vendor/vsomeip 0777 system system
 
     # set up directory to persist metric configs for Telemetry service
     mkdir /data/misc/telemetry 0770 system system
@@ -219,6 +230,11 @@ on post-fs-data
     # crashes.
     mkdir /data/misc/update_engine 0700 root root
     mkdir /data/misc/update_engine_log 02750 root log
+    mkdir /data/misc/vold 0700 root root
+
+    # All permissions needed for integration test process that will use this dir to launch
+    # vsomeip instances
+    mkdir /data/vendor/vsomeip 0777 system system
 
 on boot
     ifup lo
