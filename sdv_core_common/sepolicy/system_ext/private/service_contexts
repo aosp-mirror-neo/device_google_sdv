@@ -26,3 +26,5 @@ android.sdv.package_registry.IPackageRegistry u:object_r:sdv_pr_service:s0
 # SDV SOME/IP stack IPC interface
 android.system.someip.ISomeIpStack u:object_r:sdv_someip_stack_service:s0
 
+# SDV Lifecycle Manager binder service used in integration tests.
+android.sdv.lifecycle.test.IServiceCallbackVerifier u:object_r:sdv_lc_test_service_manager_service:s0
