@@ -27,6 +27,15 @@ service sdv_mesh_agent /system_ext/bin/sdv_mesh_agent
 on property:dev.bootcomplete=1
     start sdv_mesh_agent
 
+# Declare and start SDV Data Tunnel agent
+service dt_agent /vendor/bin/dt_agent /data/dt_mesh.csv
+    class core
+    disabled
+    user system
+    group system
+on property:dev.bootcomplete=1 && property:ro.boot.vsock_local_cid=*
+    start dt_agent
+
 # Declare and start the SDV RPCagent.
 service rpcagent /system_ext/bin/rpcagent
     class core
