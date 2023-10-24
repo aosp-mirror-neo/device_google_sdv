@@ -28,7 +28,9 @@ SDV_CORE_SERVICES_PACKAGES = \
     someip_deployment.json \
     someip_stack_deployment.json \
     vsomeip_config.json \
-    vvm_config.textproto
+    vvm_config.textproto \
+    someip-config.proto \
+    vsidl-config.proto
 
 # Sample modules in core_services/
 SDV_CORE_SERVICES_SAMPLE_PACKAGES = \
