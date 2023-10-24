@@ -5,11 +5,11 @@
 #
 # There are three variables to distinguish samples, packages and host packages.
 
-# Vehicle and Power mode agent and Diagnostics AIDL definitions
+# Vehicle and Power mode agent and Diagnostics AIDL and VSIDL definitions
 SDV_AUTOMOTIVE_SERVICES_PACKAGES = \
     sdv_vpm_agent \
     android.sdv.diagnostics-dist \
-
+    libdiagnostics_api-dist
 
 SDV_AUTOMOTIVE_SERVICES_SAMPLES_PACKAGES = \
     diag_manager_sample \
