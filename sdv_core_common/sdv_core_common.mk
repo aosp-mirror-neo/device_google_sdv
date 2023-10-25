@@ -19,8 +19,6 @@ PRODUCT_SYSTEM_PROPERTIES += \
 PRODUCT_SYSTEM_EXT_PROPERTIES += \
     ro.telemetry.metric_config_store_in_mb=10
 
-BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_core_common/sepolicy/vendor/
-
 # Networking tools
 PRODUCT_PACKAGES += \
     ping \
