@@ -1,3 +1,6 @@
+# SDV Data Tunnel agent
+/vendor/bin/dt_agent        u:object_r:sdv_dt_agent_default_exec:s0
+
 # SDV SOME/IP Stack
 /vendor/bin/sdv_someip_stack_agent u:object_r:sdv_someip_stack_default_exec:s0
 
