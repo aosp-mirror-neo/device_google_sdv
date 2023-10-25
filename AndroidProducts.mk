@@ -8,9 +8,9 @@ PRODUCT_MAKEFILES := \
     sdv_ivi_arm64:$(LOCAL_DIR)/sdv_ivi_arm64/sdv_ivi_arm64.mk
 
 COMMON_LUNCH_CHOICES := \
-    sdv_core_cf-userdebug \
-    sdv_core_arm64-userdebug \
-    sdv_media_cf-userdebug \
-    sdv_media_arm64-userdebug \
-    sdv_ivi_cf-userdebug \
-    sdv_ivi_arm64-userdebug
+    sdv_core_cf-trunk_staging-userdebug \
+    sdv_core_arm64-trunk_staging-userdebug \
+    sdv_media_cf-trunk_staging-userdebug \
+    sdv_media_arm64-trunk_staging-userdebug \
+    sdv_ivi_cf-trunk_staging-userdebug \
+    sdv_ivi_arm64-trunk_staging-userdebug
