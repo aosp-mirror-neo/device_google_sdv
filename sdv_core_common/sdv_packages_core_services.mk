@@ -13,6 +13,7 @@ SDV_CORE_SERVICES_PACKAGES = \
     libsdv_sd \
     libsdv_sd_rs \
     libsdvmiddleware_pubsub \
+    libsdv_config_provider \
     libsomeip_runtime \
     orch_config.textproto \
     rpcagent \
@@ -29,8 +30,8 @@ SDV_CORE_SERVICES_PACKAGES = \
     someip_stack_deployment.json \
     vsomeip_config.json \
     vvm_config.textproto \
-    someip-config.proto \
-    vsidl-config.proto
+    someip-config.binpb \
+    vsidl-config.binpb
 
 # Sample modules in core_services/
 SDV_CORE_SERVICES_SAMPLE_PACKAGES = \
@@ -69,7 +70,6 @@ SDV_CORE_SERVICES_SAMPLE_PACKAGES = \
     server_sdv_sample \
     service_authn_sample_bench \
     service_authn_sample_rs \
-    some_ip_dt_sample \
     some_ip_dt_sample \
     structured_logging_sdv_sample \
     tracing_sdv_rust_sample
