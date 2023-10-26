@@ -60,6 +60,9 @@ SDV_CORE_SERVICES_SAMPLE_PACKAGES = \
     sdv_sample_rpc_server \
     sdv_server_cpp_tracing_sample \
     sdv_server_rust_tracing_sample \
+    sdv_tire_alert_service \
+    sdv_tire_monitor_service \
+    sdv_tire_sensor_reader_service \
     sdv_vsomeip_conf_counter_tester_target \
     sdv_vsomeip_conf_hello_tester_target \
     sdv_vsomeip_conf_virtual_ecu_target \
