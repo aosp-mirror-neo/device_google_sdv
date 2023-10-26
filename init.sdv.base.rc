@@ -97,15 +97,6 @@ on init
    # timespan. 600 is the value used in system/core/rootdir/init.rc.
    write /proc/sys/net/unix/max_dgram_qlen 600
 
-service vsock_local_cid /system/bin/vsock_local_cid ro.boot.vsock_local_cid
-  class core
-  user root
-  group shell
-  oneshot
-
-on post-fs-data
-  start vsock_local_cid
-
 on property:dev.bootcomplete=1
     # Stop ueventd to save memory
     stop ueventd

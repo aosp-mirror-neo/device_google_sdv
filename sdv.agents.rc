@@ -2,6 +2,15 @@
 #
 # SDV's init .rc file which is used to start SDV specific services
 
+# Retrieve local vsock cid and store it in ro.boot.vsock_local_cid
+service vsock_local_cid /system/bin/vsock_local_cid ro.boot.vsock_local_cid
+  class core
+  user root
+  group shell
+  oneshot
+on post-fs-data
+  start vsock_local_cid
+
 service sdv_package_registry_agent /system_ext/bin/sdv_package_registry_agent
     class core
     disabled
@@ -33,7 +42,7 @@ service dt_agent /vendor/bin/dt_agent /data/dt_mesh.csv
     disabled
     user system
     group system
-on property:dev.bootcomplete=1 && property:ro.boot.vsock_local_cid=*
+on property:dev.bootcomplete=1
     start dt_agent
 
 # Declare and start the SDV RPCagent.
