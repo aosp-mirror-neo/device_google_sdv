@@ -37,11 +37,14 @@ on property:dev.bootcomplete=1
     start sdv_mesh_agent
 
 # Declare and start SDV Data Tunnel agent
+# TODO: launch as shell for compatibility with PDK8 where the agent
+# was launched manually via adb shell; system/system is the better
+# credential here, but will need some rework of the notification system
 service dt_agent /vendor/bin/dt_agent /data/dt_mesh.csv
     class core
     disabled
-    user system
-    group system
+    user shell
+    group shell
 on property:dev.bootcomplete=1
     start dt_agent
 
