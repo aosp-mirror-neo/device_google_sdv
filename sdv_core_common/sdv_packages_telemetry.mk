@@ -10,7 +10,6 @@ SDV_TELEMETRY_PACKAGES = \
 
 SDV_TELEMETRY_SAMPLE_PACKAGES = \
     telemetry_cpp_client \
-    telemetry_rust_client \
     telemetry_rust_c_client
 
 SDV_TELEMETRY_HOST_PACKAGES =
