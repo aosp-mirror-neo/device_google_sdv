@@ -63,6 +63,8 @@ SDV_CORE_SERVICES_SAMPLE_PACKAGES = \
     sdv_tire_alert_service \
     sdv_tire_monitor_service \
     sdv_tire_sensor_reader_service \
+    sdv_tire_status_supplier_service \
+    sdv_tire_status_consumer_service \
     sdv_vsomeip_conf_counter_tester_target \
     sdv_vsomeip_conf_hello_tester_target \
     sdv_vsomeip_conf_virtual_ecu_target \
