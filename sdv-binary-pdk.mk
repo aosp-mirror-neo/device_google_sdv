@@ -1,0 +1,24 @@
+sdv_binary_pdk_dist_dir := $(OUT_DIR)/dist/sdv-binary-pdk
+
+sdv_binary_pdk_vars := \
+  SDV_AUTOMOTIVE_SERVICES_HOST_PACKAGES \
+  SDV_AUTOMOTIVE_SERVICES_PACKAGES \
+  SDV_AUTOMOTIVE_SERVICES_SAMPLES_PACKAGES \
+  SDV_CORE_SERVICES_HOST_PACKAGES \
+  SDV_CORE_SERVICES_PACKAGES \
+  SDV_CORE_SERVICES_SAMPLE_PACKAGES \
+  SDV_PLATFORM_HOST_PACKAGES \
+  SDV_PLATFORM_PACKAGES \
+  SDV_PLATFORM_SAMPLE_PACKAGES \
+  SDV_TELEMETRY_HOST_PACKAGES \
+  SDV_TELEMETRY_PACKAGES \
+  SDV_TELEMETRY_SAMPLE_PACKAGES
+
+.PHONY: sdv_binary_pdk_dump_vars
+sdv_binary_pdk_dump_vars:
+	$(hide) mkdir -p $(sdv_binary_pdk_dist_dir)
+	$(foreach var,$(sdv_binary_pdk_vars), \
+		$(call dump-words-to-file,$($(var)),$(sdv_binary_pdk_dist_dir)/$(var).txt) \
+	)
+
+sdv-binary-pdk: sdv_binary_pdk_dump_vars
