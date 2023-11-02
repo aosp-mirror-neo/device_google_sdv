@@ -57,6 +57,7 @@ SDV_CORE_SERVICES_SAMPLE_PACKAGES = \
     sdv_poc \
     sdv_poc_client \
     sdv_sample_property_service \
+    sdv_sample_rpc_client \
     sdv_sample_rpc_server \
     sdv_server_cpp_tracing_sample \
     sdv_server_rust_tracing_sample \
