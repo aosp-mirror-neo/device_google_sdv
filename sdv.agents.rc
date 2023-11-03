@@ -76,7 +76,7 @@ service sdv_someip_stack_agent /vendor/bin/sdv_someip_stack_agent
     user system
     group system
     setenv VSOMEIP_CONFIGURATION /vendor/etc/someip/vsomeip_config.json
-on property:dev.bootcomplete=1
+on property:dev.bootcomplete=1 && property:ro.boot.vsock_local_cid=3
     start sdv_someip_stack_agent
 
 # Declare and start the SDV SOME/IP broker agent.
@@ -85,6 +85,6 @@ service sdv_someip_broker_agent /vendor/bin/sdv_someip_broker_agent
     disabled
     user system
     group system
-on property:dev.bootcomplete=1
+on property:dev.bootcomplete=1 && property:ro.boot.vsock_local_cid=3
     start sdv_someip_broker_agent
 
