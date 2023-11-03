@@ -44,6 +44,7 @@ SDV_CORE_SERVICES_SAMPLE_PACKAGES = \
     com.android.sdv.hello.apex \
     com.android.sdv.samples.rochambeau \
     com.android.sdv.samples.rpc \
+    com.android.sdv.samples.multivd.ipv4 \
     compile_time_log_filtering_sdv_sample \
     dt_sample_client_cpp \
     dt_sample_publisher_rust \
@@ -59,6 +60,8 @@ SDV_CORE_SERVICES_SAMPLE_PACKAGES = \
     sdv_sample_property_service \
     sdv_sample_rpc_client \
     sdv_sample_rpc_server \
+    sdv_sample_multivd_ipv4_server \
+    sdv_sample_multivd_ipv4_client \
     sdv_server_cpp_tracing_sample \
     sdv_server_rust_tracing_sample \
     sdv_tire_alert_service \
