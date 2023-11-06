@@ -17,6 +17,9 @@ BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_SIZE := 536870912
 # "to make build happy". We want the build to be happy too, so we do the same.
 BOARD_SUPER_PARTITION_SIZE := 537919488
 
+# Bumping userdata partition size to simplify development of apps (Harry) on SDV Media.
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 536870912 # 512 MiB
+
 # Enable goldfish's encoder.
 # TODO(b/113617962) Remove this if we decide to use
 # device/generic/opengl-transport to generate the encoder
