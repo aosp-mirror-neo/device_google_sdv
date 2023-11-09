@@ -1,0 +1,9 @@
+# SDV DT client and server can use Binder IPC.
+binder_call(sdv_dt_client, sdv_dt_server)
+binder_call(sdv_dt_server, sdv_dt_client)
+
+# SDV DT client and server can find the IPC service.
+allow sdv_dt_client sdv_dt_service:service_manager find;
+
+# SDV DT server can register the IPC service.
+add_service(sdv_dt_server, sdv_dt_service)

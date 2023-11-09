@@ -58,3 +58,9 @@ attribute sdv_someip_stack_client;
 attribute sdv_someip_stack_server;
 expandattribute sdv_someip_stack_client true;
 expandattribute sdv_someip_stack_server false;
+
+# Attributes for SDV DT server
+attribute sdv_dt_client;
+attribute sdv_dt_server;
+expandattribute sdv_dt_client true;
+expandattribute sdv_dt_server false;

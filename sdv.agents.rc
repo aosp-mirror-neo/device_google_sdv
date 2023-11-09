@@ -42,11 +42,11 @@ on property:dev.bootcomplete=1
 # was started manually via adb shell; system/system is the better
 # credential here, but we need to change how we obtain file descriptors for
 # notifications before we can stop relying on shell permissions
-service dt_agent /vendor/bin/dt_agent /data/dt_mesh.csv
+service dt_agent /system_ext/bin/dt_agent /data/dt_mesh.csv
     class core
     disabled
-    user shell
-    group shell
+    user system
+    group system
 on property:dev.bootcomplete=1
     start dt_agent
 

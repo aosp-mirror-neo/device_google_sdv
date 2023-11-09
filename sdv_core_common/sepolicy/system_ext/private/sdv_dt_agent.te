@@ -1,0 +1,15 @@
+# SD agent can register itself as a Binder IPC service.
+binder_call(sdv_dt_server, servicemanager);
+
+core_service(sdv_dt_agent);
+typeattribute sdv_dt_agent sdv_dt_server;
+
+# Allow the Data Tunnel Agent to use Service Discovery.
+typeattribute sdv_dt_agent sdv_dt_client;
+
+# Data Tunnel Agent can use sockets
+net_domain(sdv_dt_agent)
+allow sdv_dt_agent self:vsock_socket { connect create getopt read write getattr listen accept bind shutdown };
+
+allow sdv_someip_stack_client sdv_dt_agent:binder call;
+allow sdv_someip_stack_client sdv_dt_agent:fd use;

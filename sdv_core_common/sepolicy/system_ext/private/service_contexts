@@ -28,3 +28,6 @@ android.system.someip.ISomeIpStack u:object_r:sdv_someip_stack_service:s0
 
 # SDV Lifecycle Manager binder service used in integration tests.
 android.sdv.lifecycle.test.IServiceCallbackVerifier u:object_r:sdv_lc_test_service_manager_service:s0
+
+# SDV DT IPC service
+google.sdv.dt.IDataTunnelAgent u:object_r:sdv_dt_service:s0
