@@ -1,6 +1,15 @@
 # Copyright 2023 Google LLC
 # SDV Media specific board config shall go into this file.
 
+# This is usually set by sdv_core_common/BoardConfig (through
+# sdv_core_cf/BoardConfig.mk), but we want to add media-specific init logic on
+# top of that one. Because we set this everywhere with ?=, the first definition
+# applies. We need to make sure this is set before sdv_core_cf/BoardConfig.mk.
+#
+# TODO(b/267320398): clean this up once automatic importing of .rc files from
+# /etc/init/ works.
+LOCAL_ANDROIDBOOT_INIT_RC ?= /system/etc/init/hw/init.sdv_media.rc
+
 # Note: include order matters, sdv_media may need to override some of the
 # settings defined in core.
 include device/google/sdv/sdv_core_cf/BoardConfig.mk

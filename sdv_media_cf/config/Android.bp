@@ -1,0 +1,13 @@
+package {
+    default_applicable_licenses: ["sdv_license"],
+}
+
+// The configurations containing the default flag values when running SDV with Cuttlefish
+// (launch_cvd). For a current list of available flags run launch_cvd --help.
+
+// Run SDV Media with host GPU rendering.
+prebuilt_etc_host {
+    name: "cvd_config_sdv_media.json",
+    src: "config_sdv_media.json",
+    sub_dir: "cvd_config",
+}
