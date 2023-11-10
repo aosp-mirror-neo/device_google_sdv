@@ -196,6 +196,8 @@ on post-fs-data
     # Do not place files or directories in /data/local/tmp
     mkdir /data/local/tmp 0771 shell shell
 
+    mkdir /data/vsomeip 0777 system system
+
 on boot
     ifup lo
     hostname localhost
