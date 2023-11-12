@@ -6,6 +6,7 @@ type sdv_someip_sample_exec, system_file_type, exec_type, file_type;
 typeattribute sdv_someip_sample sdv_someip_stack_client;
 # Allow the sample to use Service Discovery.
 typeattribute sdv_someip_sample sdv_sd_client;
+typeattribute sdv_someip_sample sdv_dt_client;
 
 # Allow the sample to be launched from the shell, and make it transition to the `sdv_someip_sample`
 # domain when launched.

@@ -39,3 +39,6 @@
 
 # SDV Lifecycle Sample for integration tests
 /(system_ext|system/system_ext)/bin/lifecycle_service_test                            u:object_r:lifecycle_service_test_exec:s0
+
+# SDV Data Tunnel Agent
+/(system_ext|system/system_ext)/bin/dt_agent        u:object_r:sdv_dt_agent_exec:s0

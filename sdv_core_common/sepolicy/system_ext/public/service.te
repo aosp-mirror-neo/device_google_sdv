@@ -17,3 +17,6 @@ type sdv_pr_service, protected_service, service_manager_type;
 
 # Defines SOME/IP Stack IPC service.
 type sdv_someip_stack_service, protected_service, service_manager_type;
+
+# Defines SDV SD IPC service.
+type sdv_dt_service, protected_service, service_manager_type;
