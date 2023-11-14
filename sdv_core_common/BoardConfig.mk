@@ -8,12 +8,7 @@
 # set a few variables which serve as parameters for minidroid/BoardConfig.mk.
 # Overwrite androidboot.hardware in minidroid/BoardConfig.mk.
 LOCAL_ANDROIDBOOT_HARDWARE := sdv
-# Overwrite androidboot.init_rc in minidroid/BoardConfig.mk, and set SDV's init .rc script as the
-# primary one which is loaded first by the init process.
-# WARNING: the side-effect of specifying this property is that the init .rc files under
-# /{system,system_ext,vendor,odm,product}/etc/init/ are no longer imported automatically by the
-# init process, and they have to be explicitly imported from the primary init .rc file of SDV.
-LOCAL_ANDROIDBOOT_INIT_RC := /system/etc/init/hw/init.sdv.rc
+
 include device/google/cuttlefish/shared/minidroid/BoardConfig.mk
 
 # Defining the SEPolicies of the SDV packages located on the system_ext partition by amending the

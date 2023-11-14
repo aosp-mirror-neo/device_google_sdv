@@ -9,3 +9,6 @@ PRODUCT_DEVICE := sdv_media_cf
 
 $(call inherit-product, device/google/sdv/sdv_media_common/sdv_media_common.mk)
 $(call inherit-product, device/google/sdv/sdv_core_cf/sdv_core_cf.mk)
+
+$(call soong_config_append,cvd,launch_configs,cvd_config_sdv_media.json)
+TARGET_BOARD_INFO_FILE ?= device/google/sdv/sdv_media_cf/android-info.txt
