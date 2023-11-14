@@ -12,9 +12,10 @@ $(call soong_config_append,cvd,launch_configs,cvd_config_sdv.json)
 
 PRODUCT_NAME := sdv_core_cf
 PRODUCT_DEVICE := sdv_core_cf
-include device/google/sdv/sdv_core_common/sdv_core_common.mk
 
-TARGET_BOARD_INFO_FILE := device/google/sdv/sdv_core_cf/android-info.txt
+TARGET_BOARD_INFO_FILE ?= device/google/sdv/sdv_core_cf/android-info.txt
+
+include device/google/sdv/sdv_core_common/sdv_core_common.mk
 
 PRODUCT_SYSTEM_PROPERTIES += \
     ro.sdv.enable_seriallogging=true \
