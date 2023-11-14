@@ -76,6 +76,7 @@ service sdv_someip_stack_agent /vendor/bin/sdv_someip_stack_agent
     user system
     group system
     setenv VSOMEIP_CONFIGURATION /vendor/etc/someip/vsomeip_config.json
+    setenv VSOMEIP_BASE_PATH /data/vsomeip/
 on property:dev.bootcomplete=1 && property:ro.boot.vsock_local_cid=3
     start sdv_someip_stack_agent
 
