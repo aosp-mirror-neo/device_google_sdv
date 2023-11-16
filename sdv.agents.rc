@@ -45,8 +45,8 @@ on property:dev.bootcomplete=1
 service dt_agent /system_ext/bin/dt_agent /data/dt_mesh.csv
     class core
     disabled
-    user system
-    group system
+    user shell
+    group shell
 on property:dev.bootcomplete=1
     start dt_agent
 
