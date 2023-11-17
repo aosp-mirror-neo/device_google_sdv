@@ -83,6 +83,8 @@ SDV_CORE_SERVICES_SAMPLE_PACKAGES = \
     some_ip_dt_sample \
     structured_logging_sdv_sample \
     middleware_someip_sample \
+    sdv_grpc_client \
+    sdv_grpc_server \
 
 # Sample services for tests
 SDV_CORE_SERVICES_SAMPLE_PACKAGES += \
