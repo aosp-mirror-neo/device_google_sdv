@@ -1,0 +1,8 @@
+type sdv_sample_multivd_ipv4_client, domain;
+typeattribute sdv_sample_multivd_ipv4_client coredomain;
+type sdv_sample_multivd_ipv4_client_exec, system_file_type, exec_type, file_type;
+
+# They allow to run sdv_sample_multivd_ipv4_client from adb shell
+# without having root permissions. It's only used for development.
+domain_auto_trans(shell, sdv_sample_multivd_ipv4_client_exec, sdv_sample_multivd_ipv4_client)
+allow sdv_sample_multivd_ipv4_client shell:fd use;
