@@ -30,4 +30,4 @@ android.system.someip.ISomeIpStack u:object_r:sdv_someip_stack_service:s0
 android.sdv.lifecycle.test.IServiceCallbackVerifier u:object_r:sdv_lc_test_service_manager_service:s0
 
 # SDV DT IPC service
-google.sdv.dt.IDataTunnelAgent u:object_r:sdv_dt_service:s0
+google.sdv.dt.IDataTunnelAgent/default u:object_r:sdv_dt_service:s0
