@@ -25,6 +25,12 @@ PRODUCT_PACKAGES += \
     ping6 \
     ip \
 
+# TODO(b/314291529) remove this once libhidl can work without it.
+# This adds hwservicemanager and the allocator service to the device.
+PRODUCT_PACKAGES += \
+    hwservicemanager \
+    android.hidl.allocator@1.0-service
+
 ifneq ($(NATIVE_COVERAGE_PATHS),)
 # Needed by Tradefed code coverage tool: http://shortn/_MzG0a1dEoi
 PRODUCT_PACKAGES += awk
