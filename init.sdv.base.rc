@@ -130,9 +130,6 @@ on late-init
 
     trigger post-fs-data
 
-    # Load persist properties and override properties (if enabled) from /data.
-    trigger load_persist_props_action
-
     trigger early-boot
     trigger boot
 
@@ -183,6 +180,21 @@ on post-fs-data
     mkdir /data/tombstones 0771 system system
     mkdir /data/vendor/tombstones 0771 root root
     start tombstoned
+
+    # Taken from system/core/rootdir/init.rc
+    # TODO: b/282720006 - The original mkdir cmd had `encryption=Require`
+    # Multi-installed APEXes are selected using persist props.
+    # Load persist properties and override properties (if enabled) from /data,
+    # before starting apexd.
+    # /data/property should be created before `load_persist_props`
+    mkdir /data/property 0700 root root
+    load_persist_props
+
+    # Some existing vendor rc files use 'on load_persist_props_action' to know
+    # when persist props are ready. These are difficult to change due to GRF,
+    # so continue triggering this action here even though props are already loaded
+    # by the 'load_persist_props' call above.
+    trigger load_persist_props_action
 
     # set up misc and keystore directory structure first so that we can end early boot and start
     # apexd
