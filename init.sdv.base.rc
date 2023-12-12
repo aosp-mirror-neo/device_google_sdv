@@ -34,8 +34,6 @@ import /system/etc/init/perfetto.rc
 import /system/etc/init/atrace.rc
 import /system/etc/init/atrace_userdebug.rc
 
-import /system_ext/etc/init/hwservicemanager.rc
-
 # Cgroups are mounted right before early-init using list from /etc/cgroups.json
 on early-init
     # set RLIMIT_NICE to allow priorities from 19 to -20
@@ -93,8 +91,6 @@ on init
 
    setprop ro.debuggable ${ro.boot.microdroid.debuggable:-0}
    start servicemanager
-
-   start hwservicemanager
 
    # Increase the limit of buffered messages for UNIX sockets. The default is 10, which makes us
    # drop logs whenever any process dares to log more than just a handful of messages in a short
