@@ -19,6 +19,7 @@ PRODUCT_MANUFACTURER := Google
 PRODUCT_MODEL := IVI and Software-Defined Vehicle Core
 
 PRODUCT_PACKAGES += \
+    sdv_sample_gateway_service \
     sdv_vhal_proxy_subscriber \
 
 # TODO hack to alloc sdv binary to be install to system partition
