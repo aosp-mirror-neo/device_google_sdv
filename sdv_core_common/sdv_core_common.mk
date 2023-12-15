@@ -92,3 +92,4 @@ PRODUCT_PACKAGES += \
     bugreport \
     bugreportz \
     dumpstate \
+    dumpsys \
