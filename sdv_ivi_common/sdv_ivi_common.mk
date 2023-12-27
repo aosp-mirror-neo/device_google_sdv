@@ -21,9 +21,15 @@ PRODUCT_MODEL := IVI and Software-Defined Vehicle Core
 PRODUCT_PACKAGES += \
     sdv_sample_gateway_service \
     sdv_vhal_proxy_subscriber \
+    libsdvgateway \
+    libsdvgateway_jni \
+    SdvCarMonitorTestApp \
 
 # TODO hack to alloc sdv binary to be install to system partition
 PRODUCT_ENFORCE_ARTIFACT_PATH_REQUIREMENTS := false
+
+PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
+    vendor/lib64/libsdvgateway_jni \
 
 PRODUCT_COPY_FILES += \
     device/google/sdv/sdv.agents.rc:system/etc/init/sdv.agents.rc
