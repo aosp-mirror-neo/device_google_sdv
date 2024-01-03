@@ -20,3 +20,9 @@ type sdv_someip_stack_service, protected_service, service_manager_type;
 
 # Defines SDV SD IPC service.
 type sdv_dt_service, protected_service, service_manager_type;
+
+# Defines SDV Telemetry service.
+type sdv_telemetry_service, protected_service, service_manager_type;
+
+# Defines SDV Configurable Publisher Registry service.
+type sdv_configurable_publisher_registry_service, protected_service, service_manager_type;

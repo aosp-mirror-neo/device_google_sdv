@@ -25,6 +25,10 @@
 # SDV Lifecycle Sample
 /system/bin/lifecycle_sample                            u:object_r:lifecycle_sample_exec:s0
 
+# SDV Telemetry Service
+/(system_ext|system/system_ext)/bin/sdv_telemetry_service_agent    u:object_r:sdv_telemetry_exec:s0
+/data/misc/telemetry(/.*)?      u:object_r:telemetry_data_file:s0
+
 # Devices
 /dev/vsock                                              u:object_r:vsock_device:s0
 
