@@ -6,7 +6,7 @@
 # There are three variables to distinguish samples, packages and host packages.
 
 SDV_TELEMETRY_PACKAGES = \
-    sdv_telemetry_service
+    sdv_telemetry_service_agent
 
 SDV_TELEMETRY_SAMPLE_PACKAGES = \
     telemetry_cpp_client \
