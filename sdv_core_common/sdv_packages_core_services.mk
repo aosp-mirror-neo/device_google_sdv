@@ -12,7 +12,7 @@ SDV_CORE_SERVICES_PACKAGES = \
     libsdv_lifecycle_client \
     libsdv_sd \
     libsdv_sd_rs \
-    libsdvmiddleware_pubsub \
+    libsdv_middleware_pubsub \
     libsdv_config_provider \
     libsomeip_runtime \
     orch_config.textproto \
