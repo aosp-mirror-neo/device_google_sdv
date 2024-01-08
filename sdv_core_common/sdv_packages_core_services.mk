@@ -36,10 +36,8 @@ SDV_CORE_SERVICES_PACKAGES = \
 
 # Sample modules in core_services/
 SDV_CORE_SERVICES_SAMPLE_PACKAGES = \
-    client_rpc_sdv_sample \
     client_rust_tokio_sdv_sample \
     client_sdv_benchmark_sample \
-    client_sdv_sample \
     client_some_ip_sdv_sample \
     com.android.sdv.hello.apex \
     com.android.sdv.samples.rochambeau \
@@ -55,8 +53,6 @@ SDV_CORE_SERVICES_SAMPLE_PACKAGES = \
     logging_sdv_sample \
     sdv_client_cpp_tracing_sample \
     sdv_client_rust_tracing_sample \
-    sdv_poc \
-    sdv_poc_client \
     sdv_sample_property_service \
     sdv_sample_rpc_client \
     sdv_sample_rpc_server \
@@ -75,9 +71,7 @@ SDV_CORE_SERVICES_SAMPLE_PACKAGES = \
     sdv_vsomeip_counter_tester \
     sdv_vsomeip_hello_tester \
     sdv_vsomeip_virtual_ecu \
-    server_rpc_sdv_sample \
     server_rust_tokio_sdv_sample \
-    server_sdv_sample \
     service_authn_sample_bench \
     service_authn_sample_rs \
     some_ip_dt_sample \
