@@ -51,8 +51,13 @@ SDV_CORE_SERVICES_SAMPLE_PACKAGES = \
     log_filtering_sdv_sample \
     logging_sdv_rust_sample \
     logging_sdv_sample \
+    middleware_someip_sample \
     sdv_client_cpp_tracing_sample \
     sdv_client_rust_tracing_sample \
+    sdv_grpc_client \
+    sdv_grpc_client_cpp \
+    sdv_grpc_server \
+    sdv_grpc_server_cpp \
     sdv_sample_property_service \
     sdv_sample_rpc_client \
     sdv_sample_rpc_server \
@@ -76,9 +81,6 @@ SDV_CORE_SERVICES_SAMPLE_PACKAGES = \
     service_authn_sample_rs \
     some_ip_dt_sample \
     structured_logging_sdv_sample \
-    middleware_someip_sample \
-    sdv_grpc_client \
-    sdv_grpc_server \
 
 # Sample services for tests
 SDV_CORE_SERVICES_SAMPLE_PACKAGES += \
