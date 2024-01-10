@@ -1,0 +1,6 @@
+# The SDV Configurable Publisher Registry client and agent can call each other via Binder IPC.
+binder_call(sdv_configurable_publisher_registry_client, sdv_configurable_publisher_registry_server)
+binder_call(sdv_configurable_publisher_registry_server, sdv_configurable_publisher_registry_client)
+
+# The SDV Configurable Publisher Registry client has access to the IConfigurablePublisherRegistryService Binder IPC service.
+allow sdv_configurable_publisher_registry_client sdv_configurable_publisher_registry_service:service_manager find;

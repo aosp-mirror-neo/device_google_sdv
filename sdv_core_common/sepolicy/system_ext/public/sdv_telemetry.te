@@ -1,0 +1,9 @@
+# The SDV Telemetry agent can register the ITelemetryService Binder IPC service.
+add_service(sdv_telemetry_server, sdv_telemetry_service)
+
+# The SDV Telemetry client and agent can call each other via Binder IPC.
+binder_call(sdv_telemetry_client, sdv_telemetry_server)
+binder_call(sdv_telemetry_server, sdv_telemetry_client)
+
+# The SDV Telemetry client has access to the ITelemetryService Binder IPC service.
+allow sdv_telemetry_client sdv_telemetry_service:service_manager find;

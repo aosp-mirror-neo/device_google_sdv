@@ -64,3 +64,15 @@ attribute sdv_dt_client;
 attribute sdv_dt_server;
 expandattribute sdv_dt_client true;
 expandattribute sdv_dt_server false;
+
+# Attributes for SDV Telemetry server
+attribute sdv_telemetry_client;
+attribute sdv_telemetry_server;
+expandattribute sdv_telemetry_client true;
+expandattribute sdv_telemetry_server false;
+
+# Attributes for SDV Configurable Publisher Registry
+attribute sdv_configurable_publisher_registry_client;
+attribute sdv_configurable_publisher_registry_server;
+expandattribute sdv_configurable_publisher_registry_client true;
+expandattribute sdv_configurable_publisher_registry_server false;
