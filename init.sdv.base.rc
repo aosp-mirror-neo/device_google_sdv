@@ -211,6 +211,9 @@ on post-fs-data
 
     mkdir /data/vsomeip 0777 system system
 
+    # set up directory to persist metric configs for Telemetry service
+    mkdir /data/misc/telemetry 0770 system system
+
 on boot
     ifup lo
     hostname localhost
