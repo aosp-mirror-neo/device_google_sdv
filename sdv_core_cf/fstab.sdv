@@ -9,7 +9,7 @@ system /system ext4 noatime,ro,errors=panic wait,logical,first_stage_mount,avb=v
 # Based on Cuttlefish's f2fs fstab entry for userdata but with the flags for file-based and metadata
 # encryption.
 # TODO(b/282720006): enable encryption for the the userdata partition.
-/dev/block/by-name/userdata /data f2fs nodev,noatime,nosuid,inlinecrypt,reserve_root=32768 latemount,wait,check,quota,formattable,fscompress,checkpoint=fs
+/dev/block/by-name/userdata /data f2fs nodev,noatime,nosuid,inlinecrypt,reserve_root=32768 latemount,wait,check,quota,formattable,fscompress
 # Add all dynamic partitions except system, after this comment
 system_ext /system_ext ext4 noatime,ro,errors=panic wait,logical,first_stage_mount,avb=vbmeta_system
 vendor /vendor ext4 noatime,ro,errors=panic wait,logical,first_stage_mount,avb=vbmeta
