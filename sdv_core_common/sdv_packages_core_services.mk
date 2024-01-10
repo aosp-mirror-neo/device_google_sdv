@@ -81,6 +81,7 @@ SDV_CORE_SERVICES_SAMPLE_PACKAGES = \
     service_authn_sample_rs \
     some_ip_dt_sample \
     structured_logging_sdv_sample \
+    rpc_middleware_someip \
 
 # Sample services for tests
 SDV_CORE_SERVICES_SAMPLE_PACKAGES += \
