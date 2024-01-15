@@ -64,9 +64,6 @@ PRODUCT_PACKAGES += system_manifest.xml
 # though, because these HALs are listed as optional).
 PRODUCT_PACKAGES += system_compatibility_matrix.xml
 
-# Required by the keystore2_client_tests that are run with SDV on CI.
-PRODUCT_PACKAGES_DEBUG += libkeystore-engine
-
 include device/google/sdv/sdv_core_common/sdv_packages_automotive_services.mk
 include device/google/sdv/sdv_core_common/sdv_packages_core_services.mk
 include device/google/sdv/sdv_core_common/sdv_packages_platform.mk
