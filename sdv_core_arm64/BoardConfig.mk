@@ -12,9 +12,11 @@ BOARD_MOVE_RECOVERY_RESOURCES_TO_VENDOR_BOOT := false
 # Disable checks of VBMETA checksums which currently fails for SDV
 BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 2
 
-# Put Android into the UNLOCKED state
-BOARD_KERNEL_CMDLINE += androidboot.verifiedbootstate=orange
-BOARD_KERNEL_CMDLINE += androidboot.fstab_name=fstab androidboot.fstab_suffix=sdv
+# TODO(b/320639162): the effect of setting the BOARD_KERNEL_CMDLINE and BOARD_BOOTCONFIG build
+# variables depends on the hypervisor. They will work in a cf-based hypervisor, but some automotive
+# hypervisors ignore the setting here and configure the command line in their own configuration.
+# BOARD_KERNEL_CMDLINE += androidboot.my_boot_property=THIS_MIGHT_NOT_WORK
+# BOARD_BOOTCONFIG += androidboot.my_boot_property=THIS_MIGHT_NOT_WORK
 
 # Must set these variables before including sdv_core_common/BoardConfig.mk, because they are used in
 # minidroid/BoardConfig.mk which is included in sdv_core_common/BoardConfig.mk.
