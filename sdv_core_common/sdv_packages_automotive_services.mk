@@ -13,7 +13,8 @@ SDV_AUTOMOTIVE_SERVICES_SAMPLES_PACKAGES = \
     diag_manager_sample \
     diag_service_sample \
     diag_vsidl_manager_sample \
-    diag_vsidl_service_sample \
+    diag_vsidl_service_sample1 \
+    diag_vsidl_service_sample2 \
     sdv_con_cal_client \
     sdv_con_cal_service \
     vpm_client_sample \
