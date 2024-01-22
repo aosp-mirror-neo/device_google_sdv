@@ -98,3 +98,12 @@ service sdv_someip_broker_agent /vendor/bin/sdv_someip_broker_agent
 on property:dev.bootcomplete=1 && property:ro.boot.vsock_local_cid=3
     start sdv_someip_broker_agent
 
+
+# Declare and start the SDV VPM agent.
+service sdv_vpm_agent  /system_ext/bin/sdv_vpm_agent
+    class core
+    disabled
+    user system
+    group system
+on property:dev.bootcomplete=1
+    start sdv_vpm_agent

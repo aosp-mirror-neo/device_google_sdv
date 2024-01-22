@@ -5,8 +5,9 @@
 #
 # There are three variables to distinguish samples, packages and host packages.
 
-# Vehicle and Power mode agent
+# Vehicle and Power mode agent and poc.
 SDV_AUTOMOTIVE_SERVICES_PACKAGES = \
+    sdv_vpm_agent_poc \
     sdv_vpm_agent
 
 SDV_AUTOMOTIVE_SERVICES_SAMPLES_PACKAGES = \
