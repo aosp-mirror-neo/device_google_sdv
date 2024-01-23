@@ -1,15 +1,23 @@
+# <src>                         <mnt_point>     <type>  <mnt_flags options>                                     <fs_mgr_flags>
+
 # Non-dynamic, boot critical partitions
 # These partitions are A/B for SDV
-/dev/block/by-name/boot /boot emmc defaults recoveryonly,slotselect,first_stage_mount,avb=boot
-/dev/block/by-name/init_boot /init_boot emmc defaults recoveryonly,slotselect,first_stage_mount,avb=init_boot
-/dev/block/by-name/vendor_boot /vendor_boot emmc defaults recoveryonly,slotselect
+/dev/block/by-name/boot         /boot           emmc    defaults                                                recoveryonly,slotselect,first_stage_mount,avb=boot
+/dev/block/by-name/init_boot    /init_boot      emmc    defaults                                                recoveryonly,slotselect,first_stage_mount,avb=init_boot
+/dev/block/by-name/vendor_boot  /vendor_boot    emmc    defaults                                                recoveryonly,slotselect
+
 # The following partitions are not A/B for SDV
-system /system ext4 noatime,ro,errors=panic wait,logical,first_stage_mount,avb=vbmeta_system
+
+system                          /system         ext4    noatime,ro,errors=panic                                 wait,logical,first_stage_mount,avb=vbmeta_system
+
 # Add all non-dynamic partitions except system, after this comment
+
 # Based on Cuttlefish's f2fs fstab entry for userdata but with the flags for file-based and metadata
 # encryption.
 # TODO(b/282720006): enable encryption for the the userdata partition.
-/dev/block/by-name/userdata /data f2fs nodev,noatime,nosuid,inlinecrypt,reserve_root=32768 latemount,wait,check,quota,formattable,fscompress
+/dev/block/by-name/userdata     /data           f2fs    nodev,noatime,nosuid,inlinecrypt,reserve_root=32768     latemount,wait,check,quota,formattable,fscompress
+
 # Add all dynamic partitions except system, after this comment
-system_ext /system_ext ext4 noatime,ro,errors=panic wait,logical,first_stage_mount,avb=vbmeta_system
-vendor /vendor ext4 noatime,ro,errors=panic wait,logical,first_stage_mount,avb=vbmeta
+
+system_ext                      /system_ext     ext4    noatime,ro,errors=panic                                 wait,logical,first_stage_mount,avb=vbmeta_system
+vendor                          /vendor         ext4    noatime,ro,errors=panic                                 wait,logical,first_stage_mount,avb=vbmeta
