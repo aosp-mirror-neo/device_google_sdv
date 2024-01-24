@@ -5,7 +5,6 @@
 
 on post-fs-data
     exec_start sdv-ethernet-setup
-    ifup eth1
 
 service sdv-ethernet-setup /system_ext/bin/ethernet.sh
     class core
