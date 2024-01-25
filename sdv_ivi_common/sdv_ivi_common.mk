@@ -23,7 +23,6 @@ PRODUCT_PACKAGES += \
     sdv_vhal_proxy_subscriber \
     libsdvgateway \
     libsdvgateway_jni \
-    SdvCarMonitorTestApp \
 
 # TODO hack to alloc sdv binary to be install to system partition
 PRODUCT_ENFORCE_ARTIFACT_PATH_REQUIREMENTS := false
