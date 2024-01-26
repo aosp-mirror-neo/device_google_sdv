@@ -39,7 +39,6 @@ SDV_CORE_SERVICES_PACKAGES = \
 SDV_CORE_SERVICES_SAMPLE_PACKAGES = \
     client_rust_tokio_sdv_sample \
     client_sdv_benchmark_sample \
-    client_some_ip_sdv_sample \
     com.android.sdv.hello.apex \
     com.android.sdv.samples.rochambeau \
     com.android.sdv.samples.rpc \
