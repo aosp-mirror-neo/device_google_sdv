@@ -15,10 +15,10 @@ google.sdv.rpc.IRpcAgent/default u:object_r:sdv_rpcagent_service:s0
 # the  rules for them are defined independently.
 # ILifecycleManager is an external interface to manage SDV services. It contains commands such as
 # start, stop, etc.
-android.sdv.lifecycle.ILifecycleManager          u:object_r:sdv_lc_manager_service:s0
+google.sdv.lifecycle.ILifecycleManager/default          u:object_r:sdv_lc_manager_service:s0
 # IServiceManager is an internal interface that Lifecycle manager agent and the spawned SDV services
 # use to communicate.
-android.sdv.lifecycle.internal.IServiceManager u:object_r:sdv_lc_service_manager_service:s0
+google.sdv.lifecycle.internal.IServiceManager/default u:object_r:sdv_lc_service_manager_service:s0
 
 # IPackageRegistry is an interface that services use to read SDV service metadata.
 android.sdv.package_registry.IPackageRegistry u:object_r:sdv_pr_service:s0
