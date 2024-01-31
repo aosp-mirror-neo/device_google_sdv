@@ -24,6 +24,8 @@ PRODUCT_PACKAGES += \
     libsdvgateway \
     libsdvgateway_jni \
 
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += device/google/sdv/comp_matrix.xml
+
 # TODO hack to alloc sdv binary to be install to system partition
 PRODUCT_ENFORCE_ARTIFACT_PATH_REQUIREMENTS := false
 
