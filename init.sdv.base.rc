@@ -28,6 +28,7 @@ import /system/etc/init/hw/init.ethernet.rc
 import /vendor/etc/init/seriallogging.rc
 import /vendor/etc/init/android.hardware.security.keymint-service.rc
 import /system/etc/init/dumpstate.rc
+import /system/etc/init/tombstoned.rc
 
 # TODO(b/267320398) Not present on -user builds, same as TODO above
 # atrace.rc is required by Perfetto as well, since it sets up tracefs permissions.
