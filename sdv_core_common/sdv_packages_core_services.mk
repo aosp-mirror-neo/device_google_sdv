@@ -32,8 +32,8 @@ SDV_CORE_SERVICES_PACKAGES = \
     vsomeip_config.json \
     vsock_local_cid \
     vvm_config.textproto \
-    someip-config.binpb \
-    vsidl-config.binpb
+    libsomeip_messages_catalog-someip-config.binpb \
+    libsomeip_messages_catalog-vsidl-config.binpb
 
 # Sample modules in core_services/
 SDV_CORE_SERVICES_SAMPLE_PACKAGES = \
