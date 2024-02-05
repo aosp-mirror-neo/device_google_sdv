@@ -1,2 +1,0 @@
-# Vehicle Mode and Power Management core SDV agent.
-core_service(sdv_vpm)

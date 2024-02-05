@@ -23,7 +23,7 @@
 /(system_ext|system/system_ext)/bin/sdv_orchestration_agent u:object_r:sdv_orch_exec:s0
 
 # SDV VPM agent
-/(system_ext|system/system_ext)/bin/sdv_vpm_agent u:object_r:sdv_vpm_exec:s0
+/(system_ext|system/system_ext)/bin/sdv_vpm_agent u:object_r:sdv_vpm_agent_exec:s0
 
 # SDV Lifecycle Sample
 /system/bin/lifecycle_sample                            u:object_r:lifecycle_sample_exec:s0

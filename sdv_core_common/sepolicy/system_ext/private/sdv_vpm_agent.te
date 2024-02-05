@@ -1,0 +1,12 @@
+# Vehicle Mode and Power Management core SDV agent.
+core_service(sdv_vpm_agent)
+
+# Vehicle Mode and Power Management can call the RPC agent.
+typeattribute sdv_vpm_agent sdv_rpcagent_client;
+
+# Vehicle Mode and Power Management can call the DataTunnel SDV agent.
+typeattribute sdv_vpm_agent sdv_dt_client;
+
+# Vehicle Mode and Power Management ServiceDiscovery agent.
+typeattribute sdv_vpm_agent sdv_sd_client;
+
