@@ -14,7 +14,6 @@ SDV_CORE_SERVICES_PACKAGES = \
     libsdv_sd_rs \
     libsdv_middleware_pubsub \
     libsdv_config_provider \
-    libsomeip_runtime \
     orch_config.textproto \
     rpcagent \
     sdv_lifecycle_agent \
@@ -27,7 +26,6 @@ SDV_CORE_SERVICES_PACKAGES = \
     broker_config.json \
     sdv_someip_discovery_agent \
     sdv_someip_stack_agent \
-    someip_deployment.json \
     someip_stack_deployment.json \
     vsomeip_config.json \
     vsock_local_cid \
