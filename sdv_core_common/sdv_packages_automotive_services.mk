@@ -16,10 +16,12 @@ SDV_AUTOMOTIVE_SERVICES_SAMPLES_PACKAGES = \
     diag_provider2_sample \
     sdv_con_cal_client \
     sdv_con_cal_service \
-    vpm_client_sample \
-    vpm_system_agent_sample \
     libdiagnostics_sample_catalog-diagnostics-config.binpb \
-    libdiagnostics_sample_catalog-vsidl-config.binpb
+    libdiagnostics_sample_catalog-vsidl-config.binpb \
+    vpm_poc_client_sample \
+    vpm_poc_system_agent_sample \
+    vepsm \
+    vpm_vehicle_state_client \
 
 SDV_AUTOMOTIVE_SERVICES_HOST_PACKAGES =
 
