@@ -1,5 +1,2 @@
 # SDV SOME/IP Stack
 /vendor/bin/sdv_someip_stack_agent u:object_r:sdv_someip_stack_default_exec:s0
-
-# SDV SOME/IP Broker
-/vendor/bin/sdv_someip_broker_agent u:object_r:sdv_someip_broker_default_exec:s0
