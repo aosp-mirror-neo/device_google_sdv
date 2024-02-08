@@ -19,7 +19,9 @@ SDV_AUTOMOTIVE_SERVICES_SAMPLES_PACKAGES = \
     sdv_con_cal_client \
     sdv_con_cal_service \
     vpm_client_sample \
-    vpm_system_agent_sample
+    vpm_system_agent_sample \
+    libdiagnostics_sample_catalog-diagnostics-config.binpb \
+    libdiagnostics_sample_catalog-vsidl-config.binpb
 
 SDV_AUTOMOTIVE_SERVICES_HOST_PACKAGES =
 
