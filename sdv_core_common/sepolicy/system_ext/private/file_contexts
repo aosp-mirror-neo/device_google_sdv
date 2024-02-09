@@ -25,8 +25,11 @@
 # SDV VPM agent
 /(system_ext|system/system_ext)/bin/sdv_vpm_agent u:object_r:sdv_vpm_exec:s0
 
-# SDV Lifecycle Sample
+# SDV Lifecycle C++ Sample
 /system/bin/lifecycle_sample                            u:object_r:lifecycle_sample_exec:s0
+
+# SDV Lifecycle Rust Sample
+/system/bin/lifecycle_sample_rust                       u:object_r:lifecycle_sample_exec:s0
 
 # SDV Telemetry Service
 /(system_ext|system/system_ext)/bin/sdv_telemetry_service_agent    u:object_r:sdv_telemetry_exec:s0

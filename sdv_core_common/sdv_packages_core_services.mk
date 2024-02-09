@@ -47,6 +47,7 @@ SDV_CORE_SERVICES_SAMPLE_PACKAGES = \
     dt_sample_publisher_rust \
     dt_sample_subscriber_rust \
     lifecycle_sample \
+    lifecycle_sample_rust \
     log_filtering_sdv_sample \
     logging_sdv_rust_sample \
     logging_sdv_sample \
