@@ -53,10 +53,10 @@ SDV_CORE_SERVICES_SAMPLE_PACKAGES = \
     middleware_someip_sample \
     sdv_client_cpp_tracing_sample \
     sdv_client_rust_tracing_sample \
+    sdv_cluster_grpc_client_cpp \
+    sdv_cluster_grpc_server_cpp \
     sdv_grpc_client \
-    sdv_grpc_client_cpp \
     sdv_grpc_server \
-    sdv_grpc_server_cpp \
     sdv_sample_property_service \
     sdv_sample_rpc_client \
     sdv_sample_rpc_server \
@@ -71,6 +71,8 @@ SDV_CORE_SERVICES_SAMPLE_PACKAGES = \
     sdv_tire_sensor_reader_service \
     sdv_tire_status_supplier_service \
     sdv_tire_status_consumer_service \
+    sdv_tpms_grpc_client_cpp \
+    sdv_tpms_grpc_server_cpp \
     sdv_vsomeip_conf_counter_tester_target \
     sdv_vsomeip_conf_hello_tester_target \
     sdv_vsomeip_conf_virtual_ecu_target \
