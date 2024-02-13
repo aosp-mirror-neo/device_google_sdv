@@ -22,13 +22,23 @@ BOARD_SYSTEM_EXTIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_COPY_OUT_SYSTEM_EXT := system_ext
 
 TARGET_AVB_SYSTEM_EXT_HASHTREE_ALGORITHM ?= sha256
-BOARD_AVB_SYSTEM_EXT_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm $(TARGET_AVB_SYSTEM_HASHTREE_ALGORITHM)
+BOARD_AVB_SYSTEM_EXT_ADD_HASHTREE_FOOTER_ARGS += \
+  --hash_algorithm $(TARGET_AVB_SYSTEM_EXT_HASHTREE_ALGORITHM)
+
+BOARD_USES_PRODUCTIMAGE := true
+BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE := ext4
+TARGET_COPY_OUT_PRODUCT := product
+
+TARGET_AVB_PRODUCT_HASHTREE_ALGORITHM ?= sha256
+BOARD_AVB_PRODUCT_ADD_HASHTREE_FOOTER_ARGS += \
+  --hash_algorithm $(TARGET_AVB_PRODUCT_HASHTREE_ALGORITHM)
 
 # Extend the vbmeta_system.img from minidroid (which already contains the hashtree metadata of
-# system) with system_ext's hashtree metadata.
-BOARD_AVB_VBMETA_SYSTEM += system_ext
-# Add system_ext to the super.img from minidroid which already contains system and vendor.
-BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_PARTITION_LIST += system_ext
+# system) with system_ext's and product's hashtree metadata.
+BOARD_AVB_VBMETA_SYSTEM += system_ext product
+# Add system_ext and product to the super.img from minidroid which already contains system and
+# vendor.
+BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_PARTITION_LIST += system_ext product
 
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 134217728 # 128 MiB
 BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs

@@ -42,12 +42,6 @@ PRODUCT_PACKAGES += \
 # functionality is not required in SDV then libsqlite and rusqlite can be built without it.
 PRODUCT_PACKAGES += com.android.i18n
 
-# Including this package disables the logic in init which mounts the system partition to /product.
-# This logic would cause runtime errors, because the duplicated content of
-# /system/etc/vintf/manifest.xml at /product/etc/vintf/manifest.xml.
-# TODO(b/305625166): Remove this package once there's a /product partition defined in the fstab.
-PRODUCT_PACKAGES += gsi_skip_mount.cfg
-
 # Keystore2 provides cryptographic interfaces for Android services and applications, such as
 # instances for security key management. Keystore2 is also required for file encryption, because
 # it's used by the vold daemon.
