@@ -7,9 +7,9 @@ typeattribute sdv_dt_agent sdv_dt_server;
 # Allow the Data Tunnel Agent to use Service Discovery.
 typeattribute sdv_dt_agent sdv_dt_client;
 
+allow sdv_dt_client sdv_dt_agent:fifo_file { read write };
+allow sdv_dt_client sdv_dt_agent:fd use;
+
 # Data Tunnel Agent can use sockets
 net_domain(sdv_dt_agent)
 allow sdv_dt_agent self:vsock_socket { connect create getopt read write getattr listen accept bind shutdown };
-
-allow sdv_someip_stack_client sdv_dt_agent:binder call;
-allow sdv_someip_stack_client sdv_dt_agent:fd use;

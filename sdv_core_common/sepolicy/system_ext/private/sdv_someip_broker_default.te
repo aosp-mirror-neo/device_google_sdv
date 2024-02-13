@@ -1,0 +1,10 @@
+# SOME/IP Broker is a core SDV agent.
+core_service(sdv_someip_broker_default);
+
+typeattribute sdv_someip_broker_default sdv_someip_stack_client;
+
+typeattribute sdv_someip_broker_default sdv_rpcagent_client;
+
+typeattribute sdv_someip_broker_default sdv_sd_client;
+
+typeattribute sdv_someip_broker_default sdv_dt_client;
