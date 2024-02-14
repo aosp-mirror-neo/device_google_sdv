@@ -25,6 +25,8 @@ service sdv_sd_agent /system_ext/bin/sdv_sd_agent
     disabled
     user root #TODO(b/285353950): use system
     group root
+    enter_namespace net /mnt/run/sd_mesh
+
 on property:dev.bootcomplete=1
     start sdv_sd_agent
 
