@@ -26,10 +26,6 @@ PRODUCT_PACKAGES += \
 
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += device/google/sdv/comp_matrix.xml
 
-# Add VLAN support (provided by 8021q module)
-BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(TARGET_KERNEL_MODULES_PATH)/8021q.ko
-PRODUCT_COPY_FILES += device/google/sdv/sdv_ivi_common/init.kernel_module.rc:$(TARGET_COPY_OUT_SYSTEM)/etc/init/init.kernel_module.rc
-
 # TODO hack to alloc sdv binary to be install to system partition
 PRODUCT_ENFORCE_ARTIFACT_PATH_REQUIREMENTS := false
 

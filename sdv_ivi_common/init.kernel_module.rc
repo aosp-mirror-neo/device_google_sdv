@@ -1,5 +1,0 @@
-# TODO ideally, we shouldn't need this, as modules defined in BOARD_VENDOR_RAMDISK_KERNEL_MODULES
-# are automatically inserted if BOARD_VENDOR_RAMDISK_KERNEL_MODULES is defined in the BoardConfig.mk direvtly.
-# However since we inherit Boardconfig from cutlefish, we need to manually insert the driver here
-on late-fs
-	insmod /system_dlkm/lib/modules/8021q.ko
