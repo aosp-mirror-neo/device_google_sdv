@@ -10,13 +10,6 @@ include device/google/cuttlefish/shared/virgl/BoardConfig.mk
 BOARD_VENDOR_SEPOLICY_DIRS += device/google/cuttlefish/shared/sepolicy/vendor
 BOARD_VENDOR_SEPOLICY_DIRS += device/google/cuttlefish/shared/sepolicy/vendor/google
 
-# Size defined in device/google/cuttlefish/shared/minidroid/BoardConfig.mk
-# (256MB) is too small to fit all the modules below. Increase it to 512MB.
-BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_SIZE := 536870912
-# Minidroid sets this to BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_SIZE + 1MB
-# "to make build happy". We want the build to be happy too, so we do the same.
-BOARD_SUPER_PARTITION_SIZE := 537919488
-
 # Bumping userdata partition size to simplify development of apps (Harry) on SDV Media.
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 536870912 # 512 MiB
 

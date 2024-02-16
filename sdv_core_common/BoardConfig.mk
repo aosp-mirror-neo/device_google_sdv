@@ -40,6 +40,13 @@ BOARD_AVB_VBMETA_SYSTEM += system_ext product
 # vendor.
 BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_PARTITION_LIST += system_ext product
 
+# Size defined in device/google/cuttlefish/shared/minidroid/BoardConfig.mk (256MB) is too small to
+# for SDV. Increase it to 512MB.
+BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_SIZE := 536870912
+# Minidroid sets this to BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_SIZE + 1MB "to make build happy".
+# We want the build to be happy too, so we do the same.
+BOARD_SUPER_PARTITION_SIZE := 537919488
+
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 134217728 # 128 MiB
 BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
 TARGET_USERIMAGES_USE_F2FS := true
