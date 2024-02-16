@@ -58,6 +58,9 @@ SDV_CORE_SERVICES_SAMPLE_PACKAGES = \
     sdv_cluster_grpc_server_cpp \
     sdv_grpc_client \
     sdv_grpc_server \
+    sdv_mirror_controller_service \
+    sdv_mirror_manager_service \
+    sdv_mirror_status_printer_service \
     sdv_sample_property_service \
     sdv_sample_rpc_client \
     sdv_sample_rpc_server \
