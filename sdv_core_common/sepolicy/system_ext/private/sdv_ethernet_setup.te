@@ -29,3 +29,11 @@ allow sdv_ethernet_setup system_file:file execute_no_trans;
 
 # Required for `ip route` operations.
 allow sdv_ethernet_setup self:netlink_route_socket { bind create getattr nlmsg_write read setopt write };
+
+# Required for `ip netns` and move ethernet interface into a particular network namespace operations.
+allow sdv_ethernet_setup self:netlink_route_socket nlmsg_read;
+allow sdv_ethernet_setup tmpfs:dir { add_name create mounton write };
+allow sdv_ethernet_setup tmpfs:file { create mounton open read };
+allow sdv_ethernet_setup nsfs:file { open read };
+allow sdv_ethernet_setup proc_filesystems:file { getattr open read };
+allow sdv_ethernet_setup self:capability sys_admin;

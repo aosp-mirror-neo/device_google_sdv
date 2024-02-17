@@ -39,3 +39,4 @@ include device/google/sdv/sdv_core_common/sdv_packages_automotive_services.mk
 include device/google/sdv/sdv_core_common/sdv_packages_core_services.mk
 include device/google/sdv/sdv_core_common/sdv_packages_platform.mk
 include device/google/sdv/sdv_core_common/sdv_packages_telemetry.mk
+include device/google/sdv/sdv_core_common/sdv_ethernet_setup.mk
