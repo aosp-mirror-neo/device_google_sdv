@@ -1,9 +1,9 @@
-# Copyright 2023 Google LLC
+# Copyright 2023-2024 Google LLC
 #
 # All the packages in automotive_services/ required to be installed into the target
 # or made available to the host are placed here.
 #
-# There are three variables to distinguish samples, packages and host packages.
+# There are four variables to distinguish device samples/packages and host samples/packages.
 
 # Vehicle and Power mode agent and poc.
 SDV_AUTOMOTIVE_SERVICES_PACKAGES = \
@@ -23,8 +23,8 @@ SDV_AUTOMOTIVE_SERVICES_SAMPLES_PACKAGES = \
 
 SDV_AUTOMOTIVE_SERVICES_HOST_PACKAGES =
 
+SDV_AUTOMOTIVE_SERVICES_HOST_SAMPLES_PACKAGES =
+
 PRODUCT_PACKAGES += $(SDV_AUTOMOTIVE_SERVICES_PACKAGES) $(SDV_AUTOMOTIVE_SERVICES_SAMPLES_PACKAGES)
 
-ifneq ($(SDV_PREBUILT),true)
-    PRODUCT_HOST_PACKAGES += $(SDV_AUTOMOTIVE_SERVICES_HOST_PACKAGES)
-endif
+PRODUCT_HOST_PACKAGES += $(SDV_AUTOMOTIVE_SERVICES_HOST_PACKAGES) $(SDV_AUTOMOTIVE_SERVICES_HOST_SAMPLES_PACKAGES)

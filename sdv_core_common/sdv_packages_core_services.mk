@@ -1,7 +1,9 @@
-# Copyright 2023 Google LLC
+# Copyright 2023-2024 Google LLC
 #
 # All the packages in core_services/ required to be installed into the target
 # or made available to the host are placed here.
+#
+# There are four variables to distinguish device samples/packages and host samples/packages.
 
 SDV_CORE_SERVICES_PACKAGES = \
     dt_agent \
@@ -34,7 +36,7 @@ SDV_CORE_SERVICES_PACKAGES = \
     libsomeip_messages_catalog-vsidl-config.binpb
 
 # Sample modules in core_services/
-SDV_CORE_SERVICES_SAMPLE_PACKAGES = \
+SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     client_rust_tokio_sdv_sample \
     client_sdv_benchmark_sample \
     com.android.sdv.hello.apex \
@@ -86,19 +88,17 @@ SDV_CORE_SERVICES_SAMPLE_PACKAGES = \
     some_ip_dt_sample \
     structured_logging_sdv_sample \
     rpc_middleware_someip \
-
-# Sample services for tests
-SDV_CORE_SERVICES_SAMPLE_PACKAGES += \
     orchestration_service_test \
     lifecycle_service_test \
 
 SDV_CORE_SERVICES_HOST_PACKAGES += \
+    vsidl_code_generator \
+
+SDV_CORE_SERVICES_HOST_SAMPLES_PACKAGES += \
     sdv_vsomeip_counter_tester \
     sdv_vsomeip_hello_tester \
     sdv_vsomeip_virtual_ecu
 
-PRODUCT_PACKAGES += $(SDV_CORE_SERVICES_PACKAGES) $(SDV_CORE_SERVICES_SAMPLE_PACKAGES)
+PRODUCT_PACKAGES += $(SDV_CORE_SERVICES_PACKAGES) $(SDV_CORE_SERVICES_SAMPLES_PACKAGES)
 
-ifneq ($(SDV_PREBUILT),true)
-    PRODUCT_HOST_PACKAGES += $(SDV_CORE_SERVICES_HOST_PACKAGES)
-endif
+PRODUCT_HOST_PACKAGES += $(SDV_CORE_SERVICES_HOST_PACKAGES) $(SDV_CORE_SERVICES_HOST_SAMPLES_PACKAGES)
