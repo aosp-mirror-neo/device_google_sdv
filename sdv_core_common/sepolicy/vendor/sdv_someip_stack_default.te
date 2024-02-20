@@ -1,11 +1,16 @@
 type sdv_someip_stack_default, domain;
-
 typeattribute sdv_someip_stack_default mlstrustedsubject;
 typeattribute sdv_someip_stack_default sdv_core_server;
 type sdv_someip_stack_default_exec, exec_type, file_type, vendor_file_type;
 init_daemon_domain(sdv_someip_stack_default)
 
+type vsomeip_data_file, file_type, data_file_type;
+
 # SOME/IP agent can use sockets
 net_domain(sdv_someip_stack_default)
 
 typeattribute sdv_someip_stack_default sdv_someip_stack_server;
+
+allow sdv_someip_stack_default vsomeip_data_file:dir { write add_name search };
+allow sdv_someip_stack_default vsomeip_data_file:file { create write open lock };
+allow sdv_someip_stack_default vsomeip_data_file:sock_file { write create setattr };
