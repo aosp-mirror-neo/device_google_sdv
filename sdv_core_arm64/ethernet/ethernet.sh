@@ -16,21 +16,6 @@ ifconfig eth0 "$FIRST_IP"
 ifconfig eth0:0 "$SECOND_IP"
 ip r add default via "$DEFAULT_GW_IP"
 
-# create a vlan for service discovery mesh
-ip link add link eth0 name sd_mesh type vlan id 1
-
-# move the service discovery mesh into a difference namespace solely for service
-# discovery use, so only service discovery can access that vlan interface
-# for security isolation
-# Currently we use same ip address, it is perfectly okay to have same ip
-# address, since it is in different vlan interface
-ip netns add sd_mesh
-ip link set sd_mesh netns sd_mesh
-ip netns exec sd_mesh ifconfig sd_mesh $FIRST_IP
-ip netns exec sd_mesh ip route add 224.0.0.0/4 dev sd_mesh
-ip netns exec sd_mesh ip link set dev lo up
-ip netns exec ifup sd_mesh
-
 # Enable multicast on eth0 interface (required for SOME/IP SD)
 ip route add 224.0.0.0/4 dev eth0
 ifup eth0
