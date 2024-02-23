@@ -6,13 +6,8 @@
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_core_common/sepolicy/system_ext/private
 SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += device/google/sdv/sdv_core_common/sepolicy/system_ext/public
 BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_core_common/sepolicy/vendor/
-
-# uncomment this to enable SDV Vehicle HAL Proxy
-# ENABLE_SDV_VHAL_PROXY := true
-ifeq ($(ENABLE_SDV_VHAL_PROXY),true)
 BOARD_SEPOLICY_DIRS += device/google/cuttlefish/shared/auto/sepolicy/vhal
 BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_ivi_common/sepolicy/vendor/google/
-endif
 
 PRODUCT_BRAND := Google
 PRODUCT_MANUFACTURER := Google
