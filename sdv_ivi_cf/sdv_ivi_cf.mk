@@ -8,10 +8,7 @@ $(call inherit-product, device/google/cuttlefish/vsoc_x86_64_only/auto/aosp_cf.m
 PRODUCT_NAME := sdv_ivi_cf
 PRODUCT_DEVICE := sdv_ivi_cf
 
-ifeq ($(ENABLE_SDV_VHAL_PROXY),true)
 LOCAL_VHAL_PRODUCT_PACKAGE := android.hardware.automotive.vehicle@V1-sdv-emulator-service
-BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
-endif
 
 include device/google/sdv/sdv_ivi_common/sdv_ivi_common.mk
 

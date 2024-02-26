@@ -8,8 +8,6 @@ $(call inherit-product, device/google/trout/aosp_trout_arm64.mk)
 PRODUCT_NAME := sdv_ivi_arm64
 PRODUCT_DEVICE := trout_arm64
 
-ifeq ($(ENABLE_SDV_VHAL_PROXY),true)
 LOCAL_VHAL_PRODUCT_PACKAGE := android.hardware.automotive.vehicle@default-sdv-trout-service
-endif
 
 include device/google/sdv/sdv_ivi_common/sdv_ivi_common.mk
