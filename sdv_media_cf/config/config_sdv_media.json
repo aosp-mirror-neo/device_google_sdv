@@ -8,7 +8,7 @@
   "enable_modem_simulator": false,
   "gpu_mode" : "drm_virgl",
   "display0": "width=1920,height=1080",
-  "memory_mb" : 256,
+  "memory_mb" : 2048,
   "start_gnss_proxy": false,
   "start_webrtc": true,
   "use_pmem": false,
