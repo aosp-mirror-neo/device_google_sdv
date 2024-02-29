@@ -83,5 +83,6 @@ PRODUCT_PACKAGES_DEBUG += \
 PRODUCT_PACKAGES += \
     bugreport \
     bugreportz \
+    cmd \
     dumpstate \
     dumpsys \
