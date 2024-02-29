@@ -95,6 +95,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     rpc_middleware_someip \
     orchestration_service_test \
     lifecycle_service_test \
+    lifecycle_rust_service_test \
 
 SDV_CORE_SERVICES_HOST_PACKAGES += \
     vsidl_code_generator \
