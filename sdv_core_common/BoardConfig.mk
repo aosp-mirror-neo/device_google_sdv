@@ -43,9 +43,12 @@ BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_PARTITION_LIST += system_ext product
 # Size defined in device/google/cuttlefish/shared/minidroid/BoardConfig.mk (256MB) is too small to
 # for SDV. Increase it to 512MB.
 BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_SIZE := 536870912
-# Minidroid sets this to BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_SIZE + 1MB "to make build happy".
-# We want the build to be happy too, so we do the same.
-BOARD_SUPER_PARTITION_SIZE := 537919488
+
+# The super partition is sized to 2*dynamic partition size + overhead.
+# Double dynamic parititon accounts for A/B slots for updates.
+# Overhead is 4 MiB as recommended in
+# https://source.android.com/docs/core/ota/dynamic_partitions/implement#dyanimic-partitions-sizing
+BOARD_SUPER_PARTITION_SIZE := 1077936128
 
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 134217728 # 128 MiB
 BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
@@ -60,3 +63,16 @@ host_out_dir := $(OUT_DIR)/host/linux-x86
 # Output sdv_proxy.zip to the out/dist/ directory when make dist is run. This way sdv_proxy.zip will
 # also be available as a downloadable artifact when an SDV target is built remotely.
 $(call dist-for-goals, dist_files, $(host_out_dir)/sdv_proxy.zip)
+
+# A/B update support
+AB_OTA_UPDATER := true
+AB_OTA_PARTITIONS := \
+  boot \
+  init_boot \
+  vendor_boot \
+  system \
+  system_ext \
+  product \
+  vbmeta_system \
+  vendor \
+  vbmeta
