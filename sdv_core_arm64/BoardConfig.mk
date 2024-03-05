@@ -27,11 +27,6 @@ TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_VARIANT := cortex-a53
 include device/google/sdv/sdv_core_common/BoardConfig.mk
 
-# Must overwrite the value of BOARD_SUPER_PARTITION_SIZE set in minidroid/BoardConfig.mk included in
-# sdv_core_common/BoardConfig.mk, because the arm64 image dependencies have a different size than
-# x86_64/cf, which results in a larger image size than minidroid provides.
-BOARD_SUPER_PARTITION_SIZE := 1073741824
-
 # Must come after including sdv_core_common/BoardConfig.mk, because that includes
 # minidroid/BoardConfig.mk which resets BOARD_VENDOR_RAMDISK_KERNEL_MODULES.
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(KERNEL_MODULES_PATH)/virtio_mmio.ko
