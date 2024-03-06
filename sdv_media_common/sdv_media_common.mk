@@ -20,11 +20,15 @@ TARGET_VULKAN_SUPPORT := true
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/cuttlefish/shared/sepolicy/system_ext/private
 $(call inherit-product, device/google/cuttlefish/shared/graphics/device_vendor.mk)
 $(call inherit-product, device/google/cuttlefish/shared/swiftshader/device_vendor.mk)
-$(call inherit-product, device/google/cuttlefish/shared/virgl/device_vendor.mk)
 
 # Graphics allocator implementation
 PRODUCT_PACKAGES += \
     gralloc.minigbm \
+
+# EGL/GLES implementation with virgl backend enabled.
+# TODO(b/326956485): remove when migration to ANGLE+gfxstream is done
+PRODUCT_SOONG_NAMESPACES += device/google/sdv/prebuilts
+PRODUCT_PACKAGES += libGLES_mesa
 
 # Audio related dependencies
 PRODUCT_PACKAGES += \
