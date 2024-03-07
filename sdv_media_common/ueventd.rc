@@ -1,0 +1,7 @@
+# virtio-gpu
+/dev/dri/card0 0660 system graphics
+/dev/dri/controlD64 0660 system graphics
+/dev/dri/renderD128 0666 system graphics
+
+# virtio-video cameras, v4l2loopback
+/dev/video* 0600 system camera
