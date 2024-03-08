@@ -1,0 +1,15 @@
+drops {
+  android_build_drop {
+    build_id: "P71126331"
+    target: "sdv_media_arm64-userdebug"
+    source_file: "libglapi.so"
+  }
+  dest_file: "prebuilts/arm64/libglapi.so"
+  version: "20.3.4"
+  version_group: ""
+  git_project: "device/google/sdv"
+  git_branch: "udc-swcar-dev"
+  transform: TRANSFORM_NONE
+  transform_options {
+  }
+}
