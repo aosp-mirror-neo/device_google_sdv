@@ -1,0 +1,15 @@
+drops {
+  android_build_drop {
+    build_id: "P71126384"
+    target: "sdv_media_cf-userdebug"
+    source_file: "libGLES_mesa.so"
+  }
+  dest_file: "prebuilts/x86_64/libGLES_mesa.so"
+  version: "20.3.4"
+  version_group: ""
+  git_project: "device/google/sdv"
+  git_branch: "udc-swcar-dev"
+  transform: TRANSFORM_NONE
+  transform_options {
+  }
+}
