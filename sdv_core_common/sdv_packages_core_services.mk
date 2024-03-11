@@ -59,6 +59,10 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     sdv_client_rust_tracing_sample \
     sdv_cluster_grpc_client_cpp \
     sdv_cluster_grpc_server_cpp \
+    sdv_compatibility_sample_publisher_old_service \
+    sdv_compatibility_sample_publisher_new_service \
+    sdv_compatibility_sample_subscriber_new_service \
+    sdv_compatibility_sample_subscriber_old_service \
     sdv_grpc_client \
     sdv_grpc_server \
     sdv_mirror_controller_service \
