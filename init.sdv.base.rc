@@ -99,10 +99,6 @@ on init
    # timespan. 600 is the value used in system/core/rootdir/init.rc.
    write /proc/sys/net/unix/max_dgram_qlen 600
 
-on property:dev.bootcomplete=1
-    # Stop ueventd to save memory
-    stop ueventd
-
 on init && property:ro.boot.microdroid.debuggable=1
     # Mount tracefs (with GID=AID_READTRACEFS)
     mount tracefs tracefs /sys/kernel/tracing gid=3012
