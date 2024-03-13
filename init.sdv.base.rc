@@ -29,6 +29,8 @@ import /vendor/etc/init/seriallogging.rc
 import /vendor/etc/init/android.hardware.security.keymint-service.rc
 import /system/etc/init/dumpstate.rc
 import /system/etc/init/tombstoned.rc
+import /system/etc/init/update_engine.rc
+import /system/etc/init/update_verifier.rc
 
 # TODO(b/267320398) Not present on -user builds, same as TODO above
 # atrace.rc is required by Perfetto as well, since it sets up tracefs permissions.
@@ -258,3 +260,8 @@ on property:ro.debuggable=1
     # it's further protected by selinux policy.
     # The folder is used to store method traces.
     chmod 0773 /data/misc/trace
+
+on nonencrypted
+    # The update engine is normally started via `class_start late_start` but since we don't have it
+    # we start it manually at the same point the class would've been started.
+    start update_engine
