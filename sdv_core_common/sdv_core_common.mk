@@ -86,3 +86,7 @@ PRODUCT_PACKAGES += \
     cmd \
     dumpstate \
     dumpsys \
+
+# Partition debugging utils
+PRODUCT_PACKAGES_DEBUG += \
+    bootctl \

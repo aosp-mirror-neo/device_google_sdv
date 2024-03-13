@@ -142,7 +142,7 @@ on post-fs && property:ro.sdv.enable_seriallogging=true
     start seriallogging
 
 on late-fs
-    start vendor.keymint-default
+    class_start early_hal
 
     # Mount RW partitions which need run fsck
     mount_all --late

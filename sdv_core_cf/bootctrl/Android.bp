@@ -1,0 +1,33 @@
+// Copyright 2023 Google LLC
+
+package {
+    default_applicable_licenses: ["sdv_license"],
+}
+
+prebuilt_etc {
+    name: "android.hardware.boot-service-sdv.default.rc",
+    src: "android.hardware.boot-service-sdv.default.rc",
+    installable: false,
+}
+
+// TODO (b/314918820) - this build target is only here as a workaround for the VINTF fragment
+// loading issue. When the issue is resolved we should switch to the default implementation.
+apex {
+    name: "com.android.hardware.boot-sdv",
+    vendor: true,
+    manifest: "apex_manifest.json",
+    file_contexts: "apex_file_contexts",
+    key: "com.android.hardware.key",
+    certificate: ":com.android.hardware.certificate",
+    updatable: false,
+
+    binaries: [
+        "android.hardware.boot-service.default",
+    ],
+    vintf_fragments: [
+        "android.hardware.boot-service-sdv.default.xml",
+    ],
+    prebuilts: [
+        "android.hardware.boot-service-sdv.default.rc",
+    ],
+}
