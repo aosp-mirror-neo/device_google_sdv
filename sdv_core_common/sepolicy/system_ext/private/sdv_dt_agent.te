@@ -1,11 +1,14 @@
-# SD agent can register itself as a Binder IPC service.
-binder_call(sdv_dt_server, servicemanager);
-
-core_service(sdv_dt_agent);
+core_service(sdv_dt_agent)
 typeattribute sdv_dt_agent sdv_dt_server;
 
+# Allow the Data Tunnel Agent to use Binder IPCs.
+binder_use(sdv_dt_agent)
+
 # Allow the Data Tunnel Agent to use Service Discovery.
-typeattribute sdv_dt_agent sdv_dt_client;
+typeattribute sdv_dt_agent sdv_sd_client;
+
+# Allow the Data Tunnel Agent to use the RPC Agent.
+typeattribute sdv_dt_agent sdv_rpcagent_client;
 
 allow sdv_dt_client sdv_dt_agent:fifo_file { read write };
 allow sdv_dt_client sdv_dt_agent:fd use;
