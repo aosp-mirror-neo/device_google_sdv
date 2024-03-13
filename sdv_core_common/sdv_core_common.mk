@@ -90,3 +90,13 @@ PRODUCT_PACKAGES += \
 # Partition debugging utils
 PRODUCT_PACKAGES_DEBUG += \
     bootctl \
+
+# System update support
+PRODUCT_PACKAGES += \
+  update_engine \
+  update_verifier \
+  com.android.os.statsd # TODO: b/328227527 - remove when update_engine can run without statsd
+
+# Utilities for debugging updates
+PRODUCT_PACKAGES_DEBUG += \
+  update_engine_client \
