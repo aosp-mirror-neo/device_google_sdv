@@ -64,13 +64,15 @@ include device/google/sdv/sdv_core_common/sdv_packages_platform.mk
 include device/google/sdv/sdv_core_common/sdv_packages_telemetry.mk
 include device/google/sdv/sdv_core_common/sdv_ethernet_setup.mk
 
-# Enable tracing on userdebug and eng
+# Enable tracing and test services on userdebug and eng
 ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
   # Traced is the Perfetto system tracing service.
   PRODUCT_SYSTEM_PROPERTIES += persist.traced.enable=1
   # This property sets the tags to a default disabled state.
   # ATrace instrumentation in apps expects the property to always be defined.
   PRODUCT_SYSTEM_PROPERTIES += debug.atrace.tags.enableflags=0
+  # Include SDV Test Packages
+  -include vendor/google_testing/software_defined_vehicle/build/sdv_packages_test.mk
 endif
 
 # Perfetto packages for tracing
