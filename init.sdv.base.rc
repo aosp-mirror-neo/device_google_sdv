@@ -215,6 +215,11 @@ on post-fs-data
     # set up directory to persist metric configs for Telemetry service
     mkdir /data/misc/telemetry 0770 system system
 
+    # Directories to persist update_engine data to track update settings over failed attempts and
+    # crashes.
+    mkdir /data/misc/update_engine 0700 root root
+    mkdir /data/misc/update_engine_log 02750 root log
+
 on boot
     ifup lo
     hostname localhost
