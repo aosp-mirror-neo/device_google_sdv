@@ -5,7 +5,7 @@ binder_call(sdv_telemetry_server, servicemanager);
 type telemetry_data_file, file_type, data_file_type, core_data_file_type;
 
 # SDV Telemetry Service agent is a core service and system process.
-core_service(sdv_telemetry)
+core_service(sdv_telemetry);
 
 # SDV Telemetry Service agent can register telemetry service and configurable
 # publisher registry service
@@ -19,3 +19,11 @@ allow sdv_telemetry telemetry_data_file:file create_file_perms;
 # SDV Telemetry Service agent can register Configurable Publisher Registry and its Binder IPC services.
 add_service(sdv_telemetry, sdv_telemetry_service)
 add_service(sdv_telemetry, sdv_configurable_publisher_registry_service)
+
+# Allows to issue Binder calls to the service from adb shell
+# without having root permissions. It is used for running telemetry service
+# integration tests.
+userdebug_or_eng(`
+    allow sdv_telemetry shell:binder call;
+    binder_call(shell, sdv_telemetry);
+')
