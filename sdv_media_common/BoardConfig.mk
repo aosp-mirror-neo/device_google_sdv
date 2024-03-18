@@ -2,13 +2,10 @@
 # SDV Media specific board config shall go into this file.
 
 # Based on device/google/trout/shared/BoardConfig.mk
-include device/google/cuttlefish/shared/graphics/BoardConfig.mk
-include device/google/cuttlefish/shared/swiftshader/BoardConfig.mk
-
-# Based on device/google/cuttlefish/shared/BoardConfig.mk
-BOARD_VENDOR_SEPOLICY_DIRS += device/google/cuttlefish/shared/sepolicy/vendor
-BOARD_VENDOR_SEPOLICY_DIRS += device/google/cuttlefish/shared/sepolicy/vendor/google
-BOARD_VENDOR_SEPOLICY_DIRS += device/google/cuttlefish/shared/virgl/sepolicy
+# device/google/cuttlefish/shared/graphics/BoardConfig.mk
+BOARD_VENDOR_SEPOLICY_DIRS += \
+    device/google/sdv/sdv_media_common/sepolicy \
+    external/minigbm/cros_gralloc/sepolicy
 
 # Bumping userdata partition size to simplify development of apps (Harry) on SDV Media.
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 536870912 # 512 MiB
