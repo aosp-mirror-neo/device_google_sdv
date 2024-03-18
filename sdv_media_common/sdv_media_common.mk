@@ -12,17 +12,18 @@
 # true in Android.bp, or for manual tests, run them with:
 #   LD_LIBRARY_PATH=/vendor/lib64/egl:/vendor/lib64/hw
 
-# From device/google/cuttlefish/shared/device.mk
-# Setting this makes other Cuttlefish device_vendor.mk's include Vulkan libs
-TARGET_VULKAN_SUPPORT := true
-
 # From device/google/cuttlefish/shared/auto/device_vendor.mk
-SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/cuttlefish/shared/sepolicy/system_ext/private
-$(call inherit-product, device/google/cuttlefish/shared/graphics/device_vendor.mk)
-$(call inherit-product, device/google/cuttlefish/shared/swiftshader/device_vendor.mk)
+PRODUCT_COPY_FILES += \
+    device/google/cuttlefish/shared/config/graphics/init_graphics.vendor.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init_graphics.vendor.rc \
 
-# Graphics allocator implementation
+PRODUCT_PACKAGES += com.google.cf.vulkan
+PRODUCT_VENDOR_PROPERTIES += ro.vulkan.apex=com.google.cf.vulkan
+
+$(call soong_config_set,cvd,RELEASE_SM_OPEN_DECLARED_PASSTHROUGH_HAL,$(RELEASE_SM_OPEN_DECLARED_PASSTHROUGH_HAL))
+PRODUCT_PACKAGES += com.google.cf.gralloc
 PRODUCT_PACKAGES += \
+    android.hardware.graphics.allocator-service.minigbm \
+    mapper.minigbm \
     gralloc.minigbm \
 
 # EGL/GLES implementation with virgl backend enabled.
