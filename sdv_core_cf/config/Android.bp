@@ -3,7 +3,7 @@ package {
 }
 
 // The configuration containing the default flag values when running SDV with Cuttlefish
-// (launch_cvd). For a current list of available flags run launch_cvd --help.
+// (`cvd start`). For a current list of available flags run `cvd start --help`.
 prebuilt_etc_host {
     name: "cvd_config_sdv.json",
     src: "config_sdv.json",
