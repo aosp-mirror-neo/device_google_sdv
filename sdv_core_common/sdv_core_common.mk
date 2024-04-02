@@ -33,8 +33,6 @@ PRODUCT_USE_DYNAMIC_PARTITIONS := true
 PRODUCT_BUILD_VENDOR_IMAGE := true
 TARGET_COPY_OUT_VENDOR := vendor
 
-PRODUCT_BRAND := generic
-
 # Stolen from microdroid/Android.bp
 PRODUCT_PACKAGES += \
     init_second_stage \
@@ -81,14 +79,6 @@ PRODUCT_PACKAGES += \
     toolbox \
     toybox \
 
-# Test Binder RPC services
-PRODUCT_PACKAGES += \
-    minidroid_sd \
-    server_minidroid \
-    client_minidroid \
-    client_minidroid_rust \
-    vsock-test
-
 # Additional packages
 PRODUCT_PACKAGES += \
     com.android.runtime \
@@ -100,24 +90,17 @@ PRODUCT_PACKAGES += \
     com.android.adbd \
     mdnsd \
 
-PRODUCT_COPY_FILES += \
-    device/google/cuttlefish/shared/minidroid/fstab.minidroid:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.minidroid \
-    device/google/cuttlefish/shared/minidroid/fstab.minidroid:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.minidroid \
-
 # FIXME: Hack to get some rootdirs created
 PRODUCT_PACKAGES += \
     init.environ.rc
 
 PRODUCT_COPY_FILES += \
-    device/google/cuttlefish/shared/minidroid/init.rc:system/etc/init/hw/init.minidroid.rc \
     packages/modules/Virtualization/microdroid/ueventd.rc:vendor/etc/ueventd.rc \
     device/google/cuttlefish/shared/config/seriallogging.rc:vendor/etc/init/seriallogging.rc \
 
 DEVICE_MANIFEST_FILE := \
     device/google/cuttlefish/shared/minidroid/minidroid_vendor_manifest.xml
 PRODUCT_PACKAGES += vendor_compatibility_matrix.xml
-
-TARGET_BOARD_INFO_FILE ?= device/google/cuttlefish/shared/minidroid/android-info.txt
 
 PRODUCT_VENDOR_PROPERTIES += \
     ro.soc.manufacturer=$(PRODUCT_MANUFACTURER) \

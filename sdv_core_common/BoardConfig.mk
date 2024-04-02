@@ -4,9 +4,6 @@
 # * sdv_core_arm64
 # * sdv_core_cf
 
-# SDV's BoardConfig includes and extends minidroid/BoardConfig.mk. Before including it, we must
-# set a few variables which serve as parameters for minidroid/BoardConfig.mk.
-# Overwrite androidboot.hardware in minidroid/BoardConfig.mk.
 LOCAL_ANDROIDBOOT_HARDWARE := sdv
 
 TARGET_KERNEL_USE ?= 6.1
@@ -59,11 +56,6 @@ TARGET_USERIMAGES_SPARSE_EROFS_DISABLED ?= true
 TARGET_USERIMAGES_SPARSE_EXT_DISABLED ?= true
 TARGET_USERIMAGES_SPARSE_F2FS_DISABLED ?= true
 
-# FIXME: Not needed for minidroid, but needs fixes to CF assembler
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 67108864
-BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := ext4
-TARGET_USERIMAGES_USE_EXT4 := true
-
 BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864
 BOARD_INIT_BOOT_IMAGE_PARTITION_SIZE := 8388608
 BOARD_VENDOR_BOOTIMAGE_PARTITION_SIZE := 67108864
@@ -72,7 +64,7 @@ BOARD_AVB_ENABLE := true
 BOARD_AVB_ALGORITHM := SHA256_RSA4096
 BOARD_AVB_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
 
-BOARD_AVB_VBMETA_SYSTEM := system
+BOARD_AVB_VBMETA_SYSTEM := system system_ext product
 BOARD_AVB_VBMETA_SYSTEM_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
 BOARD_AVB_VBMETA_SYSTEM_ALGORITHM := SHA256_RSA4096
 BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
@@ -102,11 +94,6 @@ PRODUCT_COPY_FILES += \
 BOARD_BOOTLOADER_IN_UPDATE_PACKAGE := true
 BOARD_RAMDISK_USE_LZ4 := true
 
-# Default to minidroid, if not set.
-LOCAL_ANDROIDBOOT_HARDWARE ?= minidroid
-# Default to minidroid's primary init .rc, if not set.
-LOCAL_ANDROIDBOOT_INIT_RC ?= /system/etc/init/hw/init.minidroid.rc
-
 BOARD_KERNEL_CMDLINE += printk.devkmsg=on
 BOARD_KERNEL_CMDLINE += audit=1
 BOARD_KERNEL_CMDLINE += panic=-1
@@ -130,12 +117,16 @@ BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 BOARD_INIT_BOOT_HEADER_VERSION := 4
 BOARD_MKBOOTIMG_INIT_ARGS += --header_version $(BOARD_INIT_BOOT_HEADER_VERSION)
 
-BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_PARTITION_LIST := system vendor
-# reserve 256MiB for dynamic partition metadata
-BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_SIZE := 268435456
+BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_PARTITION_LIST := system vendor system_ext product
+# reserve 512MiB for dynamic partition metadata
+BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_SIZE := 536870912
 
-# 1MiB bigger than the dynamic partition to make build happy...
-BOARD_SUPER_PARTITION_SIZE := 269484032
+# The super partition is sized to 2*dynamic partition size + overhead.
+# Double dynamic parititon accounts for A/B slots for updates.
+# Overhead is 4 MiB as recommended in
+# https://source.android.com/docs/core/ota/dynamic_partitions/implement#dyanimic-partitions-sizing
+BOARD_SUPER_PARTITION_SIZE := 1077936128
+
 BOARD_SUPER_PARTITION_GROUPS := google_system_dynamic_partitions
 BOARD_BUILD_SUPER_IMAGE_BY_DEFAULT := true
 BOARD_SUPER_IMAGE_IN_UPDATE_PACKAGE := true
@@ -166,21 +157,6 @@ TARGET_COPY_OUT_PRODUCT := product
 TARGET_AVB_PRODUCT_HASHTREE_ALGORITHM ?= sha256
 BOARD_AVB_PRODUCT_ADD_HASHTREE_FOOTER_ARGS += \
   --hash_algorithm $(TARGET_AVB_PRODUCT_HASHTREE_ALGORITHM)
-
-# Extend the vbmeta_system.img from minidroid (which already contains the hashtree metadata of
-# system) with system_ext's and product's hashtree metadata.
-BOARD_AVB_VBMETA_SYSTEM += system_ext product
-# Add system_ext and product to the super.img from minidroid which already contains system and
-# vendor.
-BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_PARTITION_LIST += system_ext product
-
-BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_SIZE := 536870912
-
-# The super partition is sized to 2*dynamic partition size + overhead.
-# Double dynamic parititon accounts for A/B slots for updates.
-# Overhead is 4 MiB as recommended in
-# https://source.android.com/docs/core/ota/dynamic_partitions/implement#dyanimic-partitions-sizing
-BOARD_SUPER_PARTITION_SIZE := 1077936128
 
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 134217728 # 128 MiB
 BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
