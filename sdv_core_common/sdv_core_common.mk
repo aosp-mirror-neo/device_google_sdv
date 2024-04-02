@@ -8,6 +8,117 @@ PRODUCT_BRAND := google
 PRODUCT_MANUFACTURER := Google
 PRODUCT_MODEL := Software-Defined Vehicle Core
 
+$(call inherit-product, $(SRC_TARGET_DIR)/product/generic_ramdisk.mk)
+
+PRODUCT_COMPRESSED_APEX := false
+$(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
+
+PRODUCT_SYSTEM_PROPERTIES += \
+    service.adb.listen_addrs=vsock:5555 \
+
+VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
+BOOT_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
+PRODUCT_VENDOR_PROPERTIES += \
+    ro.vendor.boot_security_patch=$(BOOT_SECURITY_PATCH)
+
+# Disable Treble and the VNDK
+PRODUCT_FULL_TREBLE_OVERRIDE := false
+PRODUCT_USE_VNDK_OVERRIDE := false
+PRODUCT_USE_PRODUCT_VNDK_OVERRIDE := false
+
+PRODUCT_SHIPPING_API_LEVEL := 33
+
+PRODUCT_USE_DYNAMIC_PARTITIONS := true
+
+PRODUCT_BUILD_VENDOR_IMAGE := true
+TARGET_COPY_OUT_VENDOR := vendor
+
+PRODUCT_BRAND := generic
+
+# Stolen from microdroid/Android.bp
+PRODUCT_PACKAGES += \
+    init_second_stage \
+    libbinder \
+    libbinder_ndk \
+    libstdc++ \
+    secilc \
+    libadbd_auth \
+    libadbd_fs \
+    heapprofd_client_api \
+    libartpalette-system \
+    apexd \
+    atrace \
+    debuggerd \
+    linker \
+    servicemanager \
+    service \
+    tombstoned \
+    tombstone_transmit.microdroid \
+    cgroups.json \
+    task_profiles.json \
+    public.libraries.android.txt \
+    logcat \
+    logd \
+
+# Packages included only for eng or userdebug builds
+# su needed for logpersist.* commands
+PRODUCT_PACKAGES_DEBUG += \
+    logpersist.start \
+    su \
+
+# Start logcatd by default and keep up to 30 rotated files around in userdebug/eng builds
+ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
+PRODUCT_PROPERTY_OVERRIDES += \
+  logd.logpersistd=logcatd \
+  logd.logpersistd.size=30
+endif
+
+# Shell and utilities
+PRODUCT_PACKAGES += \
+    reboot \
+    sh \
+    strace \
+    toolbox \
+    toybox \
+
+# Test Binder RPC services
+PRODUCT_PACKAGES += \
+    minidroid_sd \
+    server_minidroid \
+    client_minidroid \
+    client_minidroid_rust \
+    vsock-test
+
+# Additional packages
+PRODUCT_PACKAGES += \
+    com.android.runtime \
+    libc.bootstrap \
+    libdl.bootstrap \
+    libdl_android.bootstrap \
+    libm.bootstrap \
+    selinux_policy \
+    com.android.adbd \
+    mdnsd \
+
+PRODUCT_COPY_FILES += \
+    device/google/cuttlefish/shared/minidroid/fstab.minidroid:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.minidroid \
+    device/google/cuttlefish/shared/minidroid/fstab.minidroid:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.minidroid \
+
+# FIXME: Hack to get some rootdirs created
+PRODUCT_PACKAGES += \
+    init.environ.rc
+
+PRODUCT_COPY_FILES += \
+    device/google/cuttlefish/shared/minidroid/init.rc:system/etc/init/hw/init.minidroid.rc \
+    packages/modules/Virtualization/microdroid/ueventd.rc:vendor/etc/ueventd.rc \
+    device/google/cuttlefish/shared/config/seriallogging.rc:vendor/etc/init/seriallogging.rc \
+
+DEVICE_MANIFEST_FILE := \
+    device/google/cuttlefish/shared/minidroid/minidroid_vendor_manifest.xml
+PRODUCT_PACKAGES += vendor_compatibility_matrix.xml
+
+TARGET_BOARD_INFO_FILE ?= device/google/cuttlefish/shared/minidroid/android-info.txt
+
 PRODUCT_VENDOR_PROPERTIES += \
     ro.soc.manufacturer=$(PRODUCT_MANUFACTURER) \
     ro.soc.model=$(PRODUCT_DEVICE)
