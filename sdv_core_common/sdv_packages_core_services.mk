@@ -92,6 +92,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     sdv_vsomeip_hello_tester \
     sdv_vsomeip_sdv_hello_tester \
     sdv_vsomeip_virtual_ecu \
+    sdv_vsomeip_hey_tester \
     server_rust_tokio_sdv_sample \
     service_authn_sample_bench \
     service_authn_sample_rs \
