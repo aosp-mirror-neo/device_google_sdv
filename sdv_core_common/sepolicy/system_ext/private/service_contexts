@@ -30,7 +30,7 @@ android.sdv.lifecycle.test.IServiceCallbackVerifier u:object_r:sdv_lc_test_servi
 google.sdv.dt.IDataTunnelAgent/default u:object_r:sdv_dt_service:s0
 
 # SDV Telemetry service
-google.sdv.telemetry.ITelemetryService/default u:object_r:sdv_telemetry_service:s0
+android.sdv.telemetry.ITelemetryService/default u:object_r:sdv_telemetry_service:s0
 
 # SDV Configurable Publisher Registry service
-google.sdv.telemetry.configurable_publisher.IConfigurablePublisherRegistry/default u:object_r:sdv_configurable_publisher_registry_service:s0
+android.sdv.telemetry.configurable_publisher.IConfigurablePublisherRegistry/default u:object_r:sdv_configurable_publisher_registry_service:s0
