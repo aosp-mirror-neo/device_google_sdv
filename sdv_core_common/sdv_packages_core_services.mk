@@ -22,7 +22,7 @@ SDV_CORE_SERVICES_PACKAGES = \
     sdv_lifecycle_agent \
     sdv_mesh_agent \
     sdv_orchestration_agent \
-    sdv_package_registry_agent \
+    sdv_service_bundles_registry_agent \
     sdv_sd_agent \
     sdv_sd_cli \
     sdv_someip_broker_agent \

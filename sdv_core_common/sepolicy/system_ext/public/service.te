@@ -10,7 +10,7 @@ type sdv_mesh_service, protected_service, service_manager_type;
 type sdv_rpcagent_service, protected_service, service_manager_type;
 
 # Defines SDV Lifecycle Manager IPC service.
-type sdv_pr_service, protected_service, service_manager_type;
+type sdv_sbr_service, protected_service, service_manager_type;
 
 # Defines SOME/IP Stack IPC service.
 type sdv_someip_stack_service, protected_service, service_manager_type;
