@@ -89,9 +89,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     sdv_vsomeip_conf_hello_tester_target \
     sdv_vsomeip_conf_virtual_ecu_target \
     sdv_vsomeip_counter_tester \
-    sdv_vsomeip_hello_tester \
     sdv_vsomeip_sdv_hello_tester \
-    sdv_vsomeip_virtual_ecu \
     sdv_vsomeip_hey_tester \
     server_rust_tokio_sdv_sample \
     service_authn_sample_bench \
@@ -109,12 +107,8 @@ SDV_CORE_SERVICES_HOST_PACKAGES += \
 
 SDV_CORE_SERVICES_HOST_SAMPLES_PACKAGES += \
     sdv_vsomeip_counter_tester \
-    sdv_vsomeip_hello_tester \
-    sdv_vsomeip_virtual_ecu \
     sdv_vsomeip_sdv_hello_tester \
     sdv_vsomeip_conf_counter_tester_host \
-    sdv_vsomeip_conf_hello_tester_host \
-    sdv_vsomeip_conf_virtual_ecu_host
 
 PRODUCT_PACKAGES += $(SDV_CORE_SERVICES_PACKAGES) $(SDV_CORE_SERVICES_SAMPLES_PACKAGES)
 
