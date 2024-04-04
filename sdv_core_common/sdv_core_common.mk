@@ -28,6 +28,14 @@ PRODUCT_USE_PRODUCT_VNDK_OVERRIDE := false
 
 PRODUCT_SHIPPING_API_LEVEL := 33
 
+# Treble is not enabled yet but we enforce VINTF manifests as a step to enable it.
+PRODUCT_ENFORCE_VINTF_MANIFEST_OVERRIDE := true
+
+DEVICE_MANIFEST_FILE := device/google/sdv/sdv_core_common/sdv_vendor_manifest.xml
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += device/google/sdv/comp_matrix.xml
+
+PRODUCT_PACKAGES += vendor_compatibility_matrix.xml
+
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 PRODUCT_BUILD_VENDOR_IMAGE := true
@@ -97,10 +105,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     packages/modules/Virtualization/microdroid/ueventd.rc:vendor/etc/ueventd.rc \
     device/google/cuttlefish/shared/config/seriallogging.rc:vendor/etc/init/seriallogging.rc \
-
-DEVICE_MANIFEST_FILE := \
-    device/google/cuttlefish/shared/minidroid/minidroid_vendor_manifest.xml
-PRODUCT_PACKAGES += vendor_compatibility_matrix.xml
 
 PRODUCT_VENDOR_PROPERTIES += \
     ro.soc.manufacturer=$(PRODUCT_MANUFACTURER) \
