@@ -26,4 +26,9 @@ add_service(sdv_telemetry, sdv_configurable_publisher_registry_service)
 userdebug_or_eng(`
     allow sdv_telemetry shell:binder call;
     binder_call(shell, sdv_telemetry);
+    allow shell vendor_file:file read;
+    allow shell vendor_file:file open;
+    allow shell vendor_file:file getattr;
+    allow shell vendor_file:file map;
+    allow shell vendor_file:file execute;
 ')
