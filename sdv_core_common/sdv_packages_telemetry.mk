@@ -6,11 +6,13 @@
 # There are four variables to distinguish device samples/packages and host samples/packages.
 
 SDV_TELEMETRY_PACKAGES = \
-    sdv_telemetry_service_agent
+    sdv_telemetry_service_agent \
+    sdv_ivi_telemetry_service_agent
 
 SDV_TELEMETRY_SAMPLES_PACKAGES = \
     telemetry_cpp_client \
     telemetry_rust_c_client \
+    telemetry_ivi_rust_c_client \
     telemetry_sample_publisher \
     dt_telemetry_sample_publisher
 
