@@ -96,6 +96,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     service_authn_sample_bench \
     service_authn_sample_rs \
     some_ip_dt_sample \
+    structured_logging_sdv_rust_sample \
     structured_logging_sdv_sample \
     someip_rpc_someip_server \
     someip_rpc_sdv_server \
