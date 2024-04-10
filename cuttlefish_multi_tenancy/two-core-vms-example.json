@@ -1,0 +1,37 @@
+{
+  "common": {
+    "host_package": "<REPLACE_THIS_BY_REPO_ROOT>/out_sdv_core/host/linux-x86"
+  },
+  "instances": [
+    {
+      "vm": {
+        "memory_mb": 256,
+        "use_sdcard": false
+      },
+      "disk": {
+        "default_build": "<REPLACE_THIS_BY_REPO_ROOT>/out_sdv_core/target/product/sdv_core_cf"
+      },
+      "boot": {
+        "extra_bootconfig_args": "androidboot.virt.vmname=instance1 androidboot.virt.address=3"
+      },
+      "security": {
+        "guest_enforce_security": false
+      }
+    },
+    {
+      "vm": {
+        "memory_mb": 256,
+        "use_sdcard": false
+      },
+      "disk": {
+        "default_build": "<REPLACE_THIS_BY_REPO_ROOT>/out_sdv_core/target/product/sdv_core_cf"
+      },
+      "boot": {
+        "extra_bootconfig_args": "androidboot.virt.vmname=instance2 androidboot.virt.address=4"
+      },
+      "security": {
+        "guest_enforce_security": false
+      }
+    }
+  ]
+}
