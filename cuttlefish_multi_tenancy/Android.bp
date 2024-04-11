@@ -1,0 +1,13 @@
+// Copyright 2024 Google LLC
+
+package {
+    default_applicable_licenses: ["sdv_license"],
+}
+
+prebuilt_etc_host {
+    name: "two-core-vms-example.json",
+    src: "two-core-vms-example.json",
+    dist: {
+        targets: ["dist_files"],
+    },
+}
