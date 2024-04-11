@@ -109,6 +109,8 @@ where
 
 You can use the started VMs, for instance, for running samples, such as
 `system/software_defined_vehicle/core_services/samples/sdv_gateway/grpc_cpp`.
+From the sample descriptions, skip the initial steps that build SDV and start
+the VMs, because they are already running.
 
 ## Stop the VMs
 
