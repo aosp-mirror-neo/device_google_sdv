@@ -32,4 +32,37 @@ include device/google/sdv/sdv_core_common/BoardConfig.mk
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(KERNEL_MODULES_PATH)/virtio_mmio.ko
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(KERNEL_MODULES_PATH)/virtio_dma_buf.ko
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(KERNEL_MODULES_PATH)/nd_virtio.ko
+
+# The open-dice driver is a thin layer that passes a memory region specified in the Device Tree
+# (DT) to the user space, used for passing the DICE Chain from the bootloader to user space.
+# The memory regions in the DT is specified using a reserved-memory node which is tagged for
+# open-dice by specifying "google,open-dice" in the `compatible` property. For instance:
+#
+# reserved-memory {
+#   // The number of u32 cells to represent the address of a memory region
+#   #address-cells = <2>;
+#   // The number of u32 cells to represent the size of a memory region
+#   #size-cells = <2>;
+#   ranges;
+#   dice {
+#     compatible = "google,open-dice";
+#     no-map;
+#     // The address and the size of the memory region that is passed to the open-dice driver.
+#     // First two hex numbers (cells) represent the address of the memory region, the last two
+#     // represent its size.
+#     reg = <0x0 0xD1C30000 0x0 0x1000>;
+#   };
+# };
+#
+# The open-dice driver exposes the content(s) of the specified memory region(s) as
+# /dev/open-dice<n> device(s) (e.g. /dev/open-dice0). See common/drivers/misc/open-dice.c in the
+# Linux kernel repository on an example how to use /dev/open-dice0.
+#
+# See also packages/modules/Virtualization/pvmfw/README.md for an example usage of the open-dice
+# driver in the Protected Virtual Machine (pVM) Firmware for Microdroid.
+#
+# Note that the open-dice driver is only added to the arm64 target, because it relies on the DT
+# which is not supported on x86.
+BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(KERNEL_MODULES_PATH)/open-dice.ko
+
 BOARD_GENERIC_RAMDISK_KERNEL_MODULES_LOAD := dm-user.ko
