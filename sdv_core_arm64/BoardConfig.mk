@@ -44,7 +44,8 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(KERNEL_MODULES_PATH)/nd_virtio.ko
 #   // The number of u32 cells to represent the size of a memory region
 #   #size-cells = <2>;
 #   ranges;
-#   dice {
+#   // The unit address (after the @) must match the address in the reg property
+#   dice@D1C30000 {
 #     compatible = "google,open-dice";
 #     no-map;
 #     // The address and the size of the memory region that is passed to the open-dice driver.
