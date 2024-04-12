@@ -25,6 +25,9 @@
 # SDV VPM agent
 /(system_ext|system/system_ext)/bin/sdv_vpm_agent u:object_r:sdv_vpm_agent_exec:s0
 
+# SDV Lifecycle Service Bundle runner
+/system/bin/lifecycle_service_bundle_runner              u:object_r:lifecycle_service_bundle_runner_exec:s0
+
 # SDV Telemetry Service
 /(system_ext|system/system_ext)/bin/sdv_telemetry_service_agent    u:object_r:sdv_telemetry_exec:s0
 /(system_ext|system/system_ext)/bin/sdv_ivi_telemetry_service_agent    u:object_r:sdv_telemetry_exec:s0
@@ -41,10 +44,6 @@
 
 # SDV Orchestration Service Sample
 /(system_ext|system/system_ext)/bin/orchestration_service_test                            u:object_r:orchestration_service_test_exec:s0
-
-# SDV Lifecycle Sample for integration tests
-/(system_ext|system/system_ext)/bin/lifecycle_service_test                            u:object_r:lifecycle_service_test_exec:s0
-/(system_ext|system/system_ext)/bin/lifecycle_rust_service_test                       u:object_r:lifecycle_service_test_exec:s0
 
 # SDV Data Tunnel Agent
 /(system_ext|system/system_ext)/bin/dt_agent        u:object_r:sdv_dt_agent_exec:s0
