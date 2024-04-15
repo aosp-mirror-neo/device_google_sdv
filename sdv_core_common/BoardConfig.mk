@@ -4,12 +4,137 @@
 # * sdv_core_arm64
 # * sdv_core_cf
 
-# SDV's BoardConfig includes and extends minidroid/BoardConfig.mk. Before including it, we must
-# set a few variables which serve as parameters for minidroid/BoardConfig.mk.
-# Overwrite androidboot.hardware in minidroid/BoardConfig.mk.
 LOCAL_ANDROIDBOOT_HARDWARE := sdv
 
-include device/google/cuttlefish/shared/minidroid/BoardConfig.mk
+TARGET_KERNEL_USE ?= 6.1
+TARGET_KERNEL_ARCH ?= $(TARGET_ARCH)
+TARGET_KERNEL_PATH ?= kernel/prebuilts/$(TARGET_KERNEL_USE)/$(TARGET_KERNEL_ARCH)/kernel-$(TARGET_KERNEL_USE)
+KERNEL_MODULES_PATH ?= \
+    kernel/prebuilts/common-modules/virtual-device/$(TARGET_KERNEL_USE)/$(subst _,-,$(TARGET_KERNEL_ARCH))
+PRODUCT_COPY_FILES += $(TARGET_KERNEL_PATH):kernel
+
+# The list of modules strictly/only required either to reach second stage
+# init, OR for recovery. Do not use this list to workaround second stage
+# issues.
+RAMDISK_KERNEL_MODULES := \
+    failover.ko \
+    net_failover.ko \
+    virtio_blk.ko \
+    virtio_console.ko \
+    virtio_net.ko \
+    virtio_pci.ko \
+    virtio_pci_modern_dev.ko \
+    virtio-rng.ko \
+    vmw_vsock_virtio_transport.ko \
+
+BOARD_VENDOR_RAMDISK_KERNEL_MODULES := \
+    $(patsubst %,$(KERNEL_MODULES_PATH)/%,$(RAMDISK_KERNEL_MODULES))
+
+# GKI >5.15 will have and require virtio_pci_legacy_dev.ko
+BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(wildcard $(KERNEL_MODULES_PATH)/virtio_pci_legacy_dev.ko)
+# GKI >6.4 will have an required vmw_vsock_virtio_transport_common.ko and vsock.ko
+BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
+	$(wildcard $(KERNEL_MODULES_PATH)/vmw_vsock_virtio_transport_common.ko) \
+	$(wildcard $(KERNEL_MODULES_PATH)/vsock.ko)
+
+TARGET_NO_RECOVERY := true
+
+BOARD_VENDOR_RAMDISK_KERNEL_MODULES_BLOCKLIST_FILE := \
+    device/google/cuttlefish/shared/modules.blocklist
+
+BOARD_VENDOR_RAMDISK_KERNEL_MODULES_OPTIONS_FILE := \
+    device/google/cuttlefish/shared/config/first_stage_modules.options
+
+TARGET_BOOTLOADER_BOARD_NAME := cutf
+
+BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
+
+# Disable sparse on all filesystem images
+# This will prevent sparsing of super.img
+TARGET_USERIMAGES_SPARSE_EROFS_DISABLED ?= true
+TARGET_USERIMAGES_SPARSE_EXT_DISABLED ?= true
+TARGET_USERIMAGES_SPARSE_F2FS_DISABLED ?= true
+
+BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864
+BOARD_INIT_BOOT_IMAGE_PARTITION_SIZE := 8388608
+BOARD_VENDOR_BOOTIMAGE_PARTITION_SIZE := 67108864
+
+BOARD_AVB_ENABLE := true
+BOARD_AVB_ALGORITHM := SHA256_RSA4096
+BOARD_AVB_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
+
+BOARD_AVB_VBMETA_SYSTEM := system system_ext product
+BOARD_AVB_VBMETA_SYSTEM_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
+BOARD_AVB_VBMETA_SYSTEM_ALGORITHM := SHA256_RSA4096
+BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
+BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX_LOCATION := 1
+
+BOARD_AVB_BOOT_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
+BOARD_AVB_BOOT_ALGORITHM := SHA256_RSA4096
+BOARD_AVB_BOOT_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
+BOARD_AVB_BOOT_ROLLBACK_INDEX_LOCATION := 2
+
+BOARD_AVB_INIT_BOOT_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
+BOARD_AVB_INIT_BOOT_ALGORITHM := SHA256_RSA4096
+BOARD_AVB_INIT_BOOT_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
+BOARD_AVB_INIT_BOOT_ROLLBACK_INDEX_LOCATION := 3
+
+TARGET_AVB_SYSTEM_HASHTREE_ALGORITHM ?= sha256
+BOARD_AVB_SYSTEM_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm $(TARGET_AVB_SYSTEM_HASHTREE_ALGORITHM)
+
+BOARD_MALLOC_ALIGNMENT := 16
+
+BOARD_USES_GENERIC_KERNEL_IMAGE := true
+
+PRODUCT_COPY_FILES += \
+    device/google/cuttlefish/dtb.img:dtb.img \
+    device/google/cuttlefish/required_images:required_images \
+
+BOARD_BOOTLOADER_IN_UPDATE_PACKAGE := true
+BOARD_RAMDISK_USE_LZ4 := true
+
+BOARD_KERNEL_CMDLINE += printk.devkmsg=on
+BOARD_KERNEL_CMDLINE += audit=1
+BOARD_KERNEL_CMDLINE += panic=-1
+BOARD_KERNEL_CMDLINE += 8250.nr_uarts=1
+BOARD_KERNEL_CMDLINE += cma=0
+BOARD_KERNEL_CMDLINE += firmware_class.path=/vendor/etc/
+BOARD_KERNEL_CMDLINE += loop.max_part=7
+BOARD_KERNEL_CMDLINE += init=/init
+BOARD_BOOTCONFIG += androidboot.hardware=$(LOCAL_ANDROIDBOOT_HARDWARE)
+BOARD_BOOTCONFIG += \
+    androidboot.init_rc=$(LOCAL_ANDROIDBOOT_INIT_RC)
+BOARD_BOOTCONFIG += \
+    kernel.vmw_vsock_virtio_transport_common.virtio_transport_max_vsock_pkt_buf_size=16384
+BOARD_BOOTCONFIG += \
+    androidboot.microdroid.debuggable=1 \
+    androidboot.adb.enabled=1
+
+BOARD_INCLUDE_DTB_IN_BOOTIMG := true
+BOARD_BOOT_HEADER_VERSION := 4
+BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
+BOARD_INIT_BOOT_HEADER_VERSION := 4
+BOARD_MKBOOTIMG_INIT_ARGS += --header_version $(BOARD_INIT_BOOT_HEADER_VERSION)
+
+BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_PARTITION_LIST := system vendor system_ext product
+# reserve 512MiB for dynamic partition metadata
+BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_SIZE := 536870912
+
+# The super partition is sized to 2*dynamic partition size + overhead.
+# Double dynamic parititon accounts for A/B slots for updates.
+# Overhead is 4 MiB as recommended in
+# https://source.android.com/docs/core/ota/dynamic_partitions/implement#dyanimic-partitions-sizing
+BOARD_SUPER_PARTITION_SIZE := 1077936128
+
+BOARD_SUPER_PARTITION_GROUPS := google_system_dynamic_partitions
+BOARD_BUILD_SUPER_IMAGE_BY_DEFAULT := true
+BOARD_SUPER_IMAGE_IN_UPDATE_PACKAGE := true
+
+TARGET_SKIP_OTA_PACKAGE := true
+TARGET_SKIP_OTATOOLS_PACKAGE := true
+
+BOARD_VENDOR_SEPOLICY_DIRS += device/google/cuttlefish/shared/sepolicy/vendor/seriallogging
 
 # Defining the SEPolicies of the SDV packages located on the system_ext partition by amending the
 # private and public policies of the partition. See system/sepolicy/README.md for more details.
@@ -32,23 +157,6 @@ TARGET_COPY_OUT_PRODUCT := product
 TARGET_AVB_PRODUCT_HASHTREE_ALGORITHM ?= sha256
 BOARD_AVB_PRODUCT_ADD_HASHTREE_FOOTER_ARGS += \
   --hash_algorithm $(TARGET_AVB_PRODUCT_HASHTREE_ALGORITHM)
-
-# Extend the vbmeta_system.img from minidroid (which already contains the hashtree metadata of
-# system) with system_ext's and product's hashtree metadata.
-BOARD_AVB_VBMETA_SYSTEM += system_ext product
-# Add system_ext and product to the super.img from minidroid which already contains system and
-# vendor.
-BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_PARTITION_LIST += system_ext product
-
-# Size defined in device/google/cuttlefish/shared/minidroid/BoardConfig.mk (256MB) is too small to
-# for SDV. Increase it to 512MB.
-BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_SIZE := 536870912
-
-# The super partition is sized to 2*dynamic partition size + overhead.
-# Double dynamic parititon accounts for A/B slots for updates.
-# Overhead is 4 MiB as recommended in
-# https://source.android.com/docs/core/ota/dynamic_partitions/implement#dyanimic-partitions-sizing
-BOARD_SUPER_PARTITION_SIZE := 1077936128
 
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 134217728 # 128 MiB
 BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs

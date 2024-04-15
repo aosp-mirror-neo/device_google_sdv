@@ -18,8 +18,7 @@ BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 2
 # BOARD_KERNEL_CMDLINE += androidboot.my_boot_property=THIS_MIGHT_NOT_WORK
 # BOARD_BOOTCONFIG += androidboot.my_boot_property=THIS_MIGHT_NOT_WORK
 
-# Must set these variables before including sdv_core_common/BoardConfig.mk, because they are used in
-# minidroid/BoardConfig.mk which is included in sdv_core_common/BoardConfig.mk.
+# Must set these variables before including sdv_core_common/BoardConfig.mk.
 TARGET_BOARD_PLATFORM := vsoc_arm64
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
