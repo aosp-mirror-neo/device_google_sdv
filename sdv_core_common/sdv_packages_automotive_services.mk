@@ -22,7 +22,7 @@ SDV_AUTOMOTIVE_SERVICES_SAMPLES_PACKAGES = \
     vpm_poc_system_agent_sample \
     vepsm \
     vpm_vehicle_state_client \
-    sdv_user_profile_service \
+    sdv_user_preferences_service \
     sdv_hvac_service \
     sdv_hmi_service \
 
