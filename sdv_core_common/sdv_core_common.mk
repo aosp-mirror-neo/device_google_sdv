@@ -195,9 +195,8 @@ PRODUCT_PACKAGES_DEBUG += \
 
 # System update support
 PRODUCT_PACKAGES += \
-  update_engine \
+  update_engine_nostats \
   update_verifier \
-  com.android.os.statsd # TODO: b/328227527 - remove when update_engine can run without statsd
 
 # Utilities for debugging updates
 PRODUCT_PACKAGES_DEBUG += \
