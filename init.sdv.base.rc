@@ -30,7 +30,7 @@ import /vendor/etc/init/seriallogging.rc
 import /vendor/etc/init/android.hardware.security.keymint-service.rc
 import /system/etc/init/dumpstate.rc
 import /system/etc/init/tombstoned.rc
-import /system/etc/init/update_engine.rc
+import /system/etc/init/update_engine_nostats.rc
 import /system/etc/init/update_verifier.rc
 
 # TODO(b/267320398) Not present on -user builds, same as TODO above
