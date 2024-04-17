@@ -84,9 +84,18 @@ on init
    wait_for_prop apexd.status ready
    perform_apex_config --bootstrap
 
+   # Increase the limit of buffered messages for UNIX sockets. The default is 10, which makes us
+   # drop logs whenever any process dares to log more than just a handful of messages in a short
+   # timespan. 600 is the value used in system/core/rootdir/init.rc.
+   #
+   # This *must* be set before starting logd - its value is copied over to UNIX socket's
+   # sk_max_ack_backlog when the socket is created, so later changes don't apply to existing
+   # sockets. See unix_create1 at http://shortn/_OyBceREJ0r
+   #
    # Start logd before any other services run to ensure we capture all of their logs.
    # logd uses shared libraries that are distributed as APEXes, so it must be started after
    # TODO(b/295824651): Start logd even earlier, before apexd-vm.
+   write /proc/sys/net/unix/max_dgram_qlen 600
    start logd
 
    # Notify to microdroid_manager that perform_apex_config is done.
@@ -96,11 +105,6 @@ on init
 
    setprop ro.debuggable ${ro.boot.microdroid.debuggable:-0}
    start servicemanager
-
-   # Increase the limit of buffered messages for UNIX sockets. The default is 10, which makes us
-   # drop logs whenever any process dares to log more than just a handful of messages in a short
-   # timespan. 600 is the value used in system/core/rootdir/init.rc.
-   write /proc/sys/net/unix/max_dgram_qlen 600
 
 on init && property:ro.boot.microdroid.debuggable=1
     # Mount tracefs (with GID=AID_READTRACEFS)
