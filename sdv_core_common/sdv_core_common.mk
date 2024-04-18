@@ -21,20 +21,14 @@ BOOT_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 PRODUCT_VENDOR_PROPERTIES += \
     ro.vendor.boot_security_patch=$(BOOT_SECURITY_PATCH)
 
-# Disable Treble and the VNDK
-PRODUCT_FULL_TREBLE_OVERRIDE := false
-PRODUCT_USE_VNDK_OVERRIDE := false
-PRODUCT_USE_PRODUCT_VNDK_OVERRIDE := false
-
-PRODUCT_SHIPPING_API_LEVEL := 33
-
-# Treble is not enabled yet but we enforce VINTF manifests as a step to enable it.
-PRODUCT_ENFORCE_VINTF_MANIFEST_OVERRIDE := true
-
+# Android V SDK level, matches target-level 202404 in the device manifest.
+PRODUCT_SHIPPING_API_LEVEL := 35
 DEVICE_MANIFEST_FILE := device/google/sdv/sdv_core_common/sdv_vendor_manifest.xml
+
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += device/google/sdv/comp_matrix.xml
 
 PRODUCT_PACKAGES += vendor_compatibility_matrix.xml
+PRODUCT_PACKAGES += system_ext_manifest.xml
 
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
