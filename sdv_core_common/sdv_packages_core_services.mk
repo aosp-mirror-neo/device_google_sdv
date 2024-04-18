@@ -65,6 +65,8 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     sdv_compatibility_sample_subscriber_old_service \
     sdv_same_unit_type_sample_publisher_service \
     sdv_same_unit_type_sample_subscriber_service \
+    sdv_same_unit_type_sample_server_service \
+    sdv_same_unit_type_sample_client_service \
     sdv_grpc_client \
     sdv_grpc_server \
     sdv_mirror_controller_service \
