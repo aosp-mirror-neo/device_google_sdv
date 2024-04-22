@@ -93,6 +93,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     sdv_vsomeip_counter_tester \
     sdv_vsomeip_sdv_hello_tester \
     sdv_vsomeip_hey_tester \
+    sdv_vsomeip_side_mirror_tester \
     server_rust_tokio_sdv_sample \
     service_authn_sample_bench \
     service_authn_sample_rs \
