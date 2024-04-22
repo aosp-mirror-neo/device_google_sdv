@@ -1,2 +1,2 @@
 config=sdv
-vhost_user_vsock=false
+vhost_user_vsock=true
