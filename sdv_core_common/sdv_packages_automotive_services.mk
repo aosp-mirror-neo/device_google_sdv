@@ -7,7 +7,6 @@
 
 # Vehicle and Power mode agent and poc.
 SDV_AUTOMOTIVE_SERVICES_PACKAGES = \
-    sdv_vpm_agent_poc \
     sdv_vpm_agent
 
 SDV_AUTOMOTIVE_SERVICES_SAMPLES_PACKAGES = \
@@ -18,8 +17,6 @@ SDV_AUTOMOTIVE_SERVICES_SAMPLES_PACKAGES = \
     sdv_con_cal_service \
     libdiagnostics_sample_catalog-diagnostics-config.binpb \
     libdiagnostics_sample_catalog-vsidl-config.binpb \
-    vpm_poc_client_sample \
-    vpm_poc_system_agent_sample \
     vepsm \
     vpm_vehicle_state_client \
     sdv_user_preferences_service \
