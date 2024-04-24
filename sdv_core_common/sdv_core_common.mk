@@ -35,6 +35,9 @@ PRODUCT_USE_DYNAMIC_PARTITIONS := true
 PRODUCT_BUILD_VENDOR_IMAGE := true
 TARGET_COPY_OUT_VENDOR := vendor
 
+# Enable OTA from target file.
+PRODUCT_BUILD_GENERIC_OTA_PACKAGE := true
+
 # Stolen from microdroid/Android.bp
 PRODUCT_PACKAGES += \
     init_second_stage \

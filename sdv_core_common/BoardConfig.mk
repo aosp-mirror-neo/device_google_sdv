@@ -131,9 +131,6 @@ BOARD_SUPER_PARTITION_GROUPS := google_system_dynamic_partitions
 BOARD_BUILD_SUPER_IMAGE_BY_DEFAULT := true
 BOARD_SUPER_IMAGE_IN_UPDATE_PACKAGE := true
 
-TARGET_SKIP_OTA_PACKAGE := true
-TARGET_SKIP_OTATOOLS_PACKAGE := true
-
 BOARD_VENDOR_SEPOLICY_DIRS += device/google/cuttlefish/shared/sepolicy/vendor/seriallogging
 
 # Defining the SEPolicies of the SDV packages located on the system_ext partition by amending the
