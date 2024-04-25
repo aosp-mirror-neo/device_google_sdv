@@ -15,6 +15,7 @@
 # have to be imported in order to take effect.
 
 import /init.environ.rc
+import /system/etc/init/apexd.rc
 import /system/etc/init/mdnsd.rc
 import /system/etc/init/servicemanager.rc
 import /system/etc/init/vold.rc
@@ -46,6 +47,17 @@ on early-init
 
     start ueventd
 
+    # create an empty ld.config.txt before running any non-static exectuables (apexd and
+    # linkerconfig) to suppress "ld.config.txt not found" warnings.
+    write /linkerconfig/ld.config.txt \#
+    chmod 644 /linkerconfig/ld.config.txt
+
+    # Run apexd-bootstrap so that APEXes that provide critical libraries
+    # become available. Note that this is executed as exec_start to ensure that
+    # the libraries are available to the processes started after this statement.
+    exec_start apexd-bootstrap
+    perform_apex_config --bootstrap
+
 on init
    mkdir /mnt/apk 0755 system system
    mkdir /mnt/extra-apk 0755 root root
@@ -63,26 +75,9 @@ on init
    chmod 0666 /dev/binderfs/binder
    chmod 0666 /dev/binderfs/vndbinder
 
-   # create an empty ld.config.txt before running any non-static exectuables (apexd and
-   # linkerconfig) to suppress "ld.config.txt not found" warnings.
-   write /linkerconfig/ld.config.txt \#
-   chmod 644 /linkerconfig/ld.config.txt
-
-   # TODO: minidroid does not use microdroid_manager. If/when this is fixed
-   # align this change and others related to microdroid_manager back to the
-   # microdroid init.rc
-   start apexd-vm
-
    # restore the SELinux security context for /mnt/extra-apk so microdroid_manager can create
    # subdirectories
    restorecon /mnt/extra-apk
-
-   # Wait for apexd to finish activating APEXes before starting more processes.
-   # Note that minidroid starts apexd in VM mode in which apexd doesn't wait for init after setting
-   # apexd.status to activated, but immediately transitions to ready. Therefore, it's not safe to
-   # wait for the activated status, by the time this line is reached it may be already be ready.
-   wait_for_prop apexd.status ready
-   perform_apex_config --bootstrap
 
    # Increase the limit of buffered messages for UNIX sockets. The default is 10, which makes us
    # drop logs whenever any process dares to log more than just a handful of messages in a short
@@ -153,6 +148,21 @@ on post-fs
     mkdir /metadata/vold
     chmod 0700 /metadata/vold
 
+    # Create directories for snapshots
+    mkdir /metadata/ota 0750 root system
+    mkdir /metadata/ota/snapshots 0750 root
+    mkdir /data/misc/snapshotctl_log 0755 root root
+
+    # Create APEX directories
+    mkdir /metadata/apex 0700 root system
+    mkdir /metadata/apex/sessions 0700 root system
+    # On some devices core Android see a weird behaviour in which /metadata/apex doesn't
+    # have a correct label. To workaround this bug, explicitly call restorecon
+    # on /metadata/apex. For most of the boot sequences /metadata/apex will
+    # already have a correct selinux label, meaning that this call will be a
+    # no-op.
+    restorecon_recursive /metadata/apex
+
 on post-fs && property:ro.sdv.enable_seriallogging=true
     start seriallogging
 
@@ -187,6 +197,8 @@ on post-fs-data
     mkdir /data/vendor/hardware 0771 root root
     mkdir /data/vendor_ce 0771 root root encryption=None
     mkdir /data/vendor_de 0771 root root encryption=None
+    mkdir /data/misc_ce 0551 system misc encryption=None
+    mkdir /data/misc_de 0551 system misc encryption=None
 
     # Start tombstoned early to be able to store tombstones.
     # microdroid doesn't have anr, but tombstoned requires it
@@ -194,6 +206,16 @@ on post-fs-data
     mkdir /data/tombstones 0771 system system encryption=Require
     mkdir /data/vendor/tombstones 0771 root root
     start tombstoned
+
+    # Make sure that apexd is started in the default namespace
+    enter_default_mount_ns
+
+    # set up keystore directory structure first so that we can end early boot
+    # and start apexd
+    mkdir /data/misc 01771 system misc encryption=Require
+    mkdir /data/misc/keystore 0700 keystore keystore
+    # work around b/183668221
+    restorecon /data/misc /data/misc/keystore
 
     # Taken from system/core/rootdir/init.rc
     # Multi-installed APEXes are selected using persist props.
@@ -240,6 +262,43 @@ on post-fs-data
     # vsomeip instances
     mkdir /data/vendor/vsomeip 0777 system system
 
+    # /data/apex is now available. Start apexd to scan and activate APEXes.
+    #
+    # To handle userspace reboots, make sure that apexd is started cleanly here
+    # (set apexd.status="") and that it is restarted if it's already running.
+    #
+    # /data/apex uses encryption=None because direct I/O support is needed on
+    # APEX files, but some devices don't support direct I/O on encrypted files.
+    # Also, APEXes are public information, similar to the system image.
+    # /data/apex/decompressed and /data/apex/ota_reserved override this setting;
+    # they are encrypted so that files in them can be hard-linked into
+    # /data/rollback which is encrypted.
+    mkdir /data/apex 0755 root system encryption=None
+    mkdir /data/apex/active 0755 root system
+    mkdir /data/apex/backup 0700 root system
+    mkdir /data/apex/decompressed 0755 root system encryption=Require
+    mkdir /data/apex/hashtree 0700 root system
+    mkdir /data/apex/sessions 0700 root system
+    mkdir /data/app-staging 0751 system system encryption=DeleteIfNecessary
+    mkdir /data/apex/ota_reserved 0700 root system encryption=Require
+    setprop apexd.status ""
+    restart apexd
+
+    mkdir /data/misc/installd 0700 root root
+    mkdir /data/misc/apexdata 0711 root root
+    mkdir /data/misc/apexrollback 0700 root root
+
+    # Wait for apexd to finish activating APEXes before starting more processes.
+    wait_for_prop apexd.status activated
+    perform_apex_config
+
+    # Allow apexd to snapshot and restore device encrypted apex data in the case
+    # of a rollback. APEXes should not access this data until this has been
+    # completed and apexd.status becomes "ready".
+    exec_start apexd-snapshotde
+
+    restart adbd
+
 on boot
     ifup lo
     hostname localhost
@@ -254,13 +313,6 @@ service tombstone_transmit /system/bin/tombstone_transmit.microdroid -cid 2 -por
     user system
     group system
     shutdown critical
-
-service apexd-vm /system/bin/apexd --vm
-    user root
-    group system
-    oneshot
-    disabled
-    capabilities CHOWN DAC_OVERRIDE DAC_READ_SEARCH FOWNER SYS_ADMIN
 
 service ueventd /system/bin/ueventd
     class core
