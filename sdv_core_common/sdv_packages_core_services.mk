@@ -33,7 +33,7 @@ SDV_CORE_SERVICES_PACKAGES = \
     vsock_local_cid \
     vvm_config.textproto \
     libsomeip_messages_catalog-someip-config.binpb \
-    libsomeip_messages_catalog-vsidl-config.binpb
+    libsomeip_messages_catalog-vsidl-config.binpb \
 
 # Sample modules in core_services/
 SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
@@ -64,6 +64,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     sdv_compatibility_sample_subscriber_old_service \
     sdv_cuj_core_001_pub \
     sdv_cuj_core_001_sub \
+    sdv_dt_publisher_cpp \
     sdv_same_unit_type_sample_publisher_service \
     sdv_same_unit_type_sample_subscriber_service \
     sdv_same_unit_type_sample_server_service \
