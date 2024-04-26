@@ -27,7 +27,6 @@ SDV_CORE_SERVICES_PACKAGES = \
     sdv_sd_cli \
     sdv_someip_broker_agent \
     broker_config.json \
-    sdv_someip_discovery_agent \
     sdv_someip_stack_agent \
     someip_stack_deployment.json \
     vsomeip_config.json \
