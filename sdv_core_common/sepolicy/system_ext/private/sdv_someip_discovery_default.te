@@ -1,8 +1,0 @@
-# SOME/IP SD proxy agent is a core SDV agent.
-core_service(sdv_someip_discovery_default)
-
-# SOME/IP SD agent can use sockets
-net_domain(sdv_someip_discovery_default)
-
-typeattribute sdv_someip_discovery_default sdv_someip_stack_client;
-typeattribute sdv_someip_discovery_default sdv_sd_client;
