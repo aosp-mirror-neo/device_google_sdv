@@ -104,6 +104,10 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     orchestration_service_test \
     lifecycle_service_test \
     lifecycle_rust_service_test \
+    sdv_health_monitor \
+    sdv_sample_health_monitored_service \
+    sdv_sample_health_monitoring_service \
+    sdv_vsomeip_vehicle_health_monitor_sample \
 
 SDV_CORE_SERVICES_HOST_PACKAGES += \
     vsidl_code_generator \
