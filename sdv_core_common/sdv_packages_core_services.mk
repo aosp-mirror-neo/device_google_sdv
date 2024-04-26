@@ -109,11 +109,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
 SDV_CORE_SERVICES_HOST_PACKAGES += \
     vsidl_code_generator \
 
-SDV_CORE_SERVICES_HOST_SAMPLES_PACKAGES += \
-    sdv_vsomeip_counter_tester \
-    sdv_vsomeip_sdv_hello_tester \
-    sdv_vsomeip_conf_counter_tester_host \
-    sdv_vsomeip_hey_tester \
+SDV_CORE_SERVICES_HOST_SAMPLES_PACKAGES +=
 
 PRODUCT_PACKAGES += $(SDV_CORE_SERVICES_PACKAGES) $(SDV_CORE_SERVICES_SAMPLES_PACKAGES)
 
