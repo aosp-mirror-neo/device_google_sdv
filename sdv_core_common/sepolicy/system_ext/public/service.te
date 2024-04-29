@@ -9,9 +9,6 @@ type sdv_mesh_service, protected_service, service_manager_type;
 # Define Rpcagent service.
 type sdv_rpcagent_service, protected_service, service_manager_type;
 
-# Defines SDV Core Binder IPC service.
-type sdv_core_service, protected_service, service_manager_type;
-
 # Defines SDV Lifecycle Manager IPC service.
 type sdv_pr_service, protected_service, service_manager_type;
 

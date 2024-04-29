@@ -1,9 +1,6 @@
 # RPC agent is a core service and system process.
 core_service(sdv_rpcagent_default)
 
-# Allow the RPC agent to use Binder IPCs.
-binder_use(sdv_rpcagent_default)
-
 typeattribute sdv_rpcagent_default sdv_rpcagent_server;
 
 # Allow the sample to use Service Discovery.
