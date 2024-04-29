@@ -12,11 +12,6 @@ PRODUCT_DEVICE := sdv_core_arm64
 
 include device/google/sdv/sdv_core_common/sdv_core_common.mk
 
-
-PRODUCT_PRODUCT_PROPERTIES += \
-    persist.adb.tcp.port=5555 \
-    ro.debuggable=1
-
 PRODUCT_PACKAGES += \
     dlkm_loader \
     tcpdump \
