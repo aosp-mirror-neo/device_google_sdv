@@ -1,7 +1,9 @@
 # TODO(b/272343536): Remove this rule. It allows to issue Binder calls to the service from adb shell
 # without having root permissions. It's only used for development. For instance:
 # adb shell service call android.sdv.lifecycle.ILifecycleManager 4 s16 "lifecycle_sample"
-binder_call(shell, sdv_lc_server)
+userdebug_or_eng(`
+  binder_call(shell, sdv_lc_server)
+')
 
 # Policy rules for the client processes spawned by the sdv_lc_server.
 
