@@ -1,5 +1,0 @@
-
-# Core agent can register itself as a Binder IPC service.
-binder_call(sdv_core_server, servicemanager);
-
-core_service(sdv_core_default)

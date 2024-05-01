@@ -9,4 +9,3 @@ typeattribute sdv_vpm_agent sdv_dt_client;
 
 # Vehicle Mode and Power Management ServiceDiscovery agent.
 typeattribute sdv_vpm_agent sdv_sd_client;
-

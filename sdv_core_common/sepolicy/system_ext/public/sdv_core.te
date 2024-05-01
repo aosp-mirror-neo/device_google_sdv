@@ -1,9 +1,0 @@
-# SDV core client and SD server can use Binder IPC.
-binder_call(sdv_core_client, sdv_sd_server)
-binder_call(sdv_sd_server, sdv_core_client)
-
-# SDV Core client can find the Core IPC service.
-allow sdv_core_client sdv_core_service:service_manager find;
-
-# SDV Core server can register the IPC service.
-add_service(sdv_core_server, sdv_core_service)

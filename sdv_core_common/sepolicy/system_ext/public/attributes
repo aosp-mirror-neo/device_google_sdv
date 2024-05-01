@@ -37,12 +37,6 @@ attribute sdv_rpcagent_server;
 expandattribute sdv_rpcagent_client true;
 expandattribute sdv_rpcagent_server false;
 
-# Attributes for BI Core clients and servers
-attribute sdv_core_client;
-attribute sdv_core_server;
-expandattribute sdv_core_client true;
-expandattribute sdv_core_server false;
-
 # Attributes for SDV Lifecycle clients and servers
 attribute sdv_lc_client;
 attribute sdv_lc_server;

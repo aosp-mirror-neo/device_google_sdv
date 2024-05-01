@@ -1,7 +1,3 @@
-
-# SD agent can register itself as a Binder IPC service.
-binder_call(sdv_sd_server, servicemanager);
-
 # SD agent is a core service and system process.
 core_service(sdv_sd_default)
 typeattribute sdv_sd_default sdv_sd_server;
@@ -12,4 +8,3 @@ allow sdv_sd_default self:vsock_socket { connect create getopt read write getatt
 
 # SD agent can read the CID of the VM.
 allow sdv_sd_default vsock_device:chr_file { ioctl open read };
-
