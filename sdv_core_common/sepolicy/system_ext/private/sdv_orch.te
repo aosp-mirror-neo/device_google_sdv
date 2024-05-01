@@ -1,9 +1,6 @@
 # Orchestrator is a core SDV agent.
 core_service(sdv_orch)
 
-# Orchestrator uses binder.
-binder_use(sdv_orch)
-
 # Orchestrator can call the lifecycle agent.
 typeattribute sdv_orch sdv_lc_client;
 

@@ -1,6 +1,3 @@
-# SDV Telemetry agent can register itself as a Binder IPC service.
-binder_call(sdv_telemetry_server, servicemanager);
-
 # File used by telemetry service for data persistance
 type telemetry_data_file, file_type, data_file_type, core_data_file_type;
 

@@ -1,8 +1,10 @@
 type sdv_someip_stack_default, domain;
 typeattribute sdv_someip_stack_default mlstrustedsubject;
-typeattribute sdv_someip_stack_default sdv_core_server;
 type sdv_someip_stack_default_exec, exec_type, file_type, vendor_file_type;
 init_daemon_domain(sdv_someip_stack_default)
+
+# Allow the sdv_someip_stack_default domain to use Binder IPC
+binder_use(sdv_someip_stack_default)
 
 type vsomeip_data_file, file_type, data_file_type;
 
