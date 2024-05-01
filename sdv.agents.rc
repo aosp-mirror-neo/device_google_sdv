@@ -80,7 +80,7 @@ service sdv_telemetry_service_agent /system_ext/bin/sdv_telemetry_service_agent
     disabled
     user system
     group system
-on property:dev.bootcomplete=1 && property:ro.build.product=sdv_core_*
+on property:dev.bootcomplete=1 && property:ro.build.product=sdv_core_cf
     start sdv_telemetry_service_agent
 
 # Declare and start the SDV SOME/IP stack agent.
