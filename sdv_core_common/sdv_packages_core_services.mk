@@ -62,6 +62,8 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     sdv_compatibility_sample_publisher_new_service \
     sdv_compatibility_sample_subscriber_new_service \
     sdv_compatibility_sample_subscriber_old_service \
+    sdv_cuj_core_001_pub \
+    sdv_cuj_core_001_sub \
     sdv_same_unit_type_sample_publisher_service \
     sdv_same_unit_type_sample_subscriber_service \
     sdv_same_unit_type_sample_server_service \
