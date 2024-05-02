@@ -4,6 +4,6 @@
 import /system/etc/init/hw/init.sdv.base.rc
 
 on boot
-    setprop service.adb.listen_addrs tcp:5555,vsock:5555
-    start adbd
+    # Start a shell on the `earlycon` serial port. Allows inspecting the system
+    # state when adb fails to start up.
     start console
