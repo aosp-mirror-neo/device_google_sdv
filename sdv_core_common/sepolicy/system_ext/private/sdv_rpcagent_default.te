@@ -6,8 +6,8 @@ typeattribute sdv_rpcagent_default sdv_rpcagent_server;
 # Allow the sample to use Service Discovery.
 typeattribute sdv_rpcagent_default sdv_sd_client;
 
-# RPC agent can use sockets for Binder RPC
+# RPC agent can create sockets.
 net_domain(sdv_rpcagent_default)
 
 # The clients of the rpc agent only call it to obtain sockets, hence, they always need these socket permissions
-allow sdv_rpcagent_client sdv_rpcagent_server:tcp_socket { listen read write accept getattr shutdown };
+allow sdv_rpcagent_client sdv_rpcagent_server:tcp_socket { listen read write accept getattr shutdown getopt };

@@ -8,7 +8,14 @@ allow sdv_sample_rpc_client self:vsock_socket { create connect getopt read write
 # without having root permissions. It's only used for development.
 domain_auto_trans(shell, sdv_sample_rpc_client_exec, sdv_sample_rpc_client)
 allow sdv_sample_rpc_client shell:fd use;
-# These rules would silence the policy errors that are logged when sdv_sample_rpc_client is called,
-# but they don't seem to be necessary for sdv_sample_rpc_client to successfully complete the RPC.
-# allow sdv_sample_rpc_client adbd:fd use;
-# allow sdv_sample_rpc_client adbd:unix_stream_socket { read write };
+allow sdv_sample_rpc_client adbd:fd use;
+allow sdv_sample_rpc_client adbd:unix_stream_socket { read write };
+
+# SDV Sample RPC Client uses binder.
+binder_use(sdv_sample_rpc_client)
+
+# Sample RPC Client calls Service Discovery.
+typeattribute sdv_sample_rpc_client sdv_sd_client;
+
+# Sample RPC Client calls RPC Agent.
+typeattribute sdv_sample_rpc_client sdv_rpcagent_client;
