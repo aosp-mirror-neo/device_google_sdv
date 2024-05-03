@@ -54,3 +54,7 @@
 
 # SDV Data Tunnel Agent
 /(system_ext|system/system_ext)/bin/dt_agent        u:object_r:sdv_dt_agent_exec:s0
+
+# SDV sample RPC
+/system/bin/sdv_sample_rpc_server        u:object_r:sdv_sample_rpc_server_exec:s0
+/system/bin/sdv_sample_rpc_client        u:object_r:sdv_sample_rpc_client_exec:s0
