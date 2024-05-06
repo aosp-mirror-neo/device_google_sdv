@@ -13,6 +13,6 @@ net_domain(sdv_someip_stack_default)
 
 typeattribute sdv_someip_stack_default sdv_someip_stack_server;
 
-allow sdv_someip_stack_default vsomeip_data_file:dir { write add_name search };
-allow sdv_someip_stack_default vsomeip_data_file:file { create write open lock };
+allow sdv_someip_stack_default vsomeip_data_file:dir rw_dir_perms;
+allow sdv_someip_stack_default vsomeip_data_file:file create_file_perms;
 allow sdv_someip_stack_default vsomeip_data_file:sock_file { write create setattr };
