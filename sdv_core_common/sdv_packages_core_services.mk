@@ -113,6 +113,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     lifecycle_rust_service_test \
     sdv_health_monitor \
     sdv_sample_health_monitored_service \
+    sdv_sample_second_health_monitored_service \
     sdv_sample_health_monitoring_service \
     sdv_vsomeip_vehicle_health_monitor_sample \
 
