@@ -1,0 +1,4 @@
+userdebug_or_eng(`
+    # Allow vendor_init to set logd.logpersistd properties
+    set_prop(vendor_init, logpersistd_logging_prop)
+')
