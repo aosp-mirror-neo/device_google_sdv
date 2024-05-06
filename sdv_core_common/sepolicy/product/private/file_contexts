@@ -1,0 +1,4 @@
+# SDV Lifecycle C++ Sample
+/product/bin/lifecycle_sample                            u:object_r:lifecycle_sample_exec:s0
+# SDV Lifecycle Rust Sample
+/product/bin/lifecycle_sample_rust                       u:object_r:lifecycle_sample_exec:s0
