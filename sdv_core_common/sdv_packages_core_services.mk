@@ -114,13 +114,16 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     sdv_health_monitor \
     sdv_sample_health_monitored_service \
     sdv_sample_second_health_monitored_service \
-    sdv_sample_health_monitoring_service \
-    sdv_vsomeip_vehicle_health_monitor_sample \
+    sdv_sample_health_monitoring_service
 
 SDV_CORE_SERVICES_HOST_PACKAGES += \
     vsidl_code_generator \
 
-SDV_CORE_SERVICES_HOST_SAMPLES_PACKAGES +=
+SDV_CORE_SERVICES_HOST_SAMPLES_PACKAGES += \
+    sdv_vsomeip_hello_service_sample \
+    sdv_vsomeip_sdv_hello_client_sample \
+    sdv_vsomeip_tire_pressure_sample \
+    sdv_vsomeip_vehicle_health_monitor_sample
 
 PRODUCT_PACKAGES += $(SDV_CORE_SERVICES_PACKAGES) $(SDV_CORE_SERVICES_SAMPLES_PACKAGES)
 
