@@ -13,4 +13,8 @@ userdebug_or_eng(`
     # moving this policy, thus, the orchestration_service_test to the vendor/product/oem partitions where it
     # eventually should be.
     domain_auto_trans(sdv_lc_server, orchestration_service_test_exec, orchestration_service_test)
+
+    # TODO(b/313827965): Define proper deplyoment strategy for orch config
+    # Allow setting the orchestrator_config_path_prop in the orchestrator tests
+    set_prop(shell, orchestrator_config_path_prop)
 ')

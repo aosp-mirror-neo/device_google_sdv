@@ -111,6 +111,12 @@ PRODUCT_SYSTEM_PROPERTIES += \
 PRODUCT_SYSTEM_EXT_PROPERTIES += \
     ro.telemetry.metric_config_store_in_mb=10
 
+# TODO(b/313827965): Define proper deployment strategy for orch config
+# Path to the orchestrator configuration.
+# ?= sets it only if there are no other assignments yet, so we do not overwrite the value.
+PRODUCT_SYSTEM_EXT_PROPERTIES += \
+    sdv.orchestrator_config_path?=etc/orch/orch_config.textproto
+
 # Networking tools
 PRODUCT_PACKAGES += \
     ping \
