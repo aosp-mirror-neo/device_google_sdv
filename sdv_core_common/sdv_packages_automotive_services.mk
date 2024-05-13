@@ -21,6 +21,7 @@ SDV_AUTOMOTIVE_SERVICES_SAMPLES_PACKAGES = \
     vpm_vehicle_state_client \
     sdv_user_preferences_service \
     sdv_hvac_service \
+    sdv_car_seats_service \
     sdv_hmi_service \
 
 
