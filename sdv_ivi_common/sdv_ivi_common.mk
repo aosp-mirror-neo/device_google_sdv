@@ -5,6 +5,7 @@
 
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_core_common/sepolicy/system_ext/private
 SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += device/google/sdv/sdv_core_common/sepolicy/system_ext/public
+PRODUCT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_core_common/sepolicy/product/private
 BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_core_common/sepolicy/vendor/
 BOARD_SEPOLICY_DIRS += device/google/cuttlefish/shared/auto/sepolicy/vhal
 BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_ivi_common/sepolicy/vendor/google/
