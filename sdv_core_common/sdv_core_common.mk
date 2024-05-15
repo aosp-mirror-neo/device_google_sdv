@@ -162,6 +162,7 @@ PRODUCT_PACKAGES += vold
 PRODUCT_PACKAGES += vdc
 
 include device/google/sdv/sdv_core_common/sdv_packages_automotive_services.mk
+include device/google/sdv/sdv_core_common/sdv_packages_base_services.mk
 include device/google/sdv/sdv_core_common/sdv_packages_core_services.mk
 include device/google/sdv/sdv_core_common/sdv_packages_platform.mk
 include device/google/sdv/sdv_core_common/sdv_packages_telemetry.mk
