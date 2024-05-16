@@ -16,8 +16,8 @@
 # SDV Lifecycle manager agent
 /(system_ext|system/system_ext)/bin/sdv_lifecycle_agent u:object_r:sdv_lc_default_exec:s0
 
-# SDV Package Registry agent
-/(system_ext|system/system_ext)/bin/sdv_package_registry_agent u:object_r:sdv_pr_exec:s0
+# SDV Service Bundles Registry agent
+/(system_ext|system/system_ext)/bin/sdv_service_bundles_registry_agent u:object_r:sdv_sbr_exec:s0
 
 # SDV Orchestrator agent
 /(system_ext|system/system_ext)/bin/sdv_orchestration_agent u:object_r:sdv_orch_exec:s0

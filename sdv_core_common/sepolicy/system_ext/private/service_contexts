@@ -24,8 +24,8 @@ google.sdv.lifecycle.ILifecycleManager/default          u:object_r:sdv_lc_manage
 # use to communicate.
 google.sdv.lifecycle.internal.IServiceManager/default u:object_r:sdv_lc_service_manager_service:s0
 
-# IPackageRegistry is an interface that services use to read SDV service metadata.
-android.sdv.package_registry.IPackageRegistry u:object_r:sdv_pr_service:s0
+# IRegistry is an interface that services use to read SDV service metadata.
+google.sdv.service_bundles_registry.IRegistry u:object_r:sdv_sbr_service:s0
 
 # SDV Lifecycle Manager binder service used in integration tests.
 android.sdv.lifecycle.test.IServiceCallbackVerifier u:object_r:sdv_lc_test_service_manager_service:s0

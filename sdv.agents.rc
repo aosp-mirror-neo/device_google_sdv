@@ -11,13 +11,13 @@ service vsock_local_cid /system/bin/vsock_local_cid ro.boot.vsock_local_cid
 on post-fs-data
   start vsock_local_cid
 
-service sdv_package_registry_agent /system_ext/bin/sdv_package_registry_agent
+service sdv_service_bundles_registry_agent /system_ext/bin/sdv_service_bundles_registry_agent
     class core
     disabled
     user system
     group system
 on property:dev.bootcomplete=1
-    start sdv_package_registry_agent
+    start sdv_service_bundles_registry_agent
 
 # Declare and start the SDV service discovery service.
 service sdv_sd_agent /system_ext/bin/sdv_sd_agent

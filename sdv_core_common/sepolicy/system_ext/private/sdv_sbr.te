@@ -1,0 +1,12 @@
+# SDV Service Bundles Registry agent is a core service and system process.
+core_service(sdv_sbr)
+
+# SDV Service Bundles Registry can read apex_metadata.json files from APEX mount directory.
+allow sdv_sbr apex_mnt_dir:dir { read open };
+allow sdv_sbr apex_info_file:file getattr;
+
+# SDV Lifecycle service can call Service Bundles Registry.
+binder_call(sdv_lc_server, sdv_sbr)
+
+# SDV Service Bundles Registry agent can register its Binder IPC services.
+add_service(sdv_sbr, sdv_sbr_service)
