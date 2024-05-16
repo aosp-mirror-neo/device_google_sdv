@@ -32,4 +32,4 @@ PRODUCT_COPY_FILES += device/google/sdv/sdv_core_cf/ethernet/ethernet.sh:$(TARGE
 PRODUCT_COPY_FILES += device/google/sdv/sdv_core_cf/ethernet/ethernet.rc:$(TARGET_COPY_OUT_SYSTEM)/etc/init/hw/init.ethernet.rc
 
 # BootControl HAL for Cuttlefish
-PRODUCT_PACKAGES += com.android.hardware.boot-sdv
+PRODUCT_PACKAGES += com.android.hardware.boot
