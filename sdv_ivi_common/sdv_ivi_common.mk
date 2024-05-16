@@ -26,6 +26,7 @@ include device/google/sdv/sdv_ivi_common/sdv_packages_ivi_services.mk
 # TODO(b/318739373): Remove these and only add the services needed on SDV_IVI for
 # SDV-IVI Comms, VHAL Proxy, Telemetry and other components needed on this target.
 include device/google/sdv/sdv_core_common/sdv_packages_automotive_services.mk
+include device/google/sdv/sdv_core_common/sdv_packages_base_services.mk
 include device/google/sdv/sdv_core_common/sdv_packages_core_services.mk
 include device/google/sdv/sdv_core_common/sdv_packages_platform.mk
 include device/google/sdv/sdv_core_common/sdv_packages_telemetry.mk
