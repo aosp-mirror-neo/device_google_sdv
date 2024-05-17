@@ -1,0 +1,51 @@
+# Copyright 2024 Google LLC
+#
+# SDV-IVI's init .rc file which is used to start SDV specific services on IVI.
+# TODO(b/318739373): Add Telemetry IVI service.
+
+# Retrieve local vsock cid and store it in ro.boot.vsock_local_cid
+service vsock_local_cid /system/bin/vsock_local_cid ro.boot.vsock_local_cid
+  class core
+  user root
+  group shell
+  oneshot
+on post-fs-data
+  start vsock_local_cid
+
+# Declare the SDV service discovery service.
+service sdv_sd_agent /system_ext/bin/sdv_sd_agent
+    class core
+    disabled
+    user root
+    group root
+    enter_namespace net /mnt/run/sd_mesh
+
+# Declare the SDV NASCAR Mesh service.
+service sdv_mesh_agent /system_ext/bin/sdv_mesh_agent
+    class core
+    disabled
+    user system
+    group system
+
+# Declare the SDV Data Tunnel agent.
+service dt_agent /system_ext/bin/dt_agent
+    class core
+    disabled
+    user shell
+    group shell
+
+# Declare the SDV RPCagent.
+service rpcagent /system_ext/bin/rpcagent
+    class core
+    disabled
+    user system
+    group system
+# TODO(b/326115833): comment out for now, to allow grpc-java to create socket directly in the mean time
+#    enter_namespace net /mnt/run/rpcagent
+
+# Start the SDV agents in order of declaration.
+on property:dev.bootcomplete=1
+    start sdv_sd_agent
+    start sdv_mesh_agent
+    start dt_agent
+    start rpcagent
