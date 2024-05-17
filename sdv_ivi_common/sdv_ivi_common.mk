@@ -23,6 +23,7 @@ PRODUCT_COPY_FILES += \
     device/google/sdv/sdv.agents.rc:system/etc/init/sdv.agents.rc
 
 include device/google/sdv/sdv_ivi_common/sdv_packages_ivi_services.mk
+include device/google/sdv/sdv_ivi_common/sdv_packages_ivi_telemetry.mk
 # TODO(b/318739373): Remove these and only add the services needed on SDV_IVI for
 # SDV-IVI Comms, VHAL Proxy, Telemetry and other components needed on this target.
 include device/google/sdv/sdv_core_common/sdv_packages_automotive_services.mk
@@ -30,6 +31,3 @@ include device/google/sdv/sdv_core_common/sdv_packages_base_services.mk
 include device/google/sdv/sdv_core_common/sdv_packages_core_services.mk
 include device/google/sdv/sdv_core_common/sdv_packages_platform.mk
 include device/google/sdv/sdv_core_common/sdv_ethernet_setup.mk
-
-# Telemetry packages for SDV IVI.
-PRODUCT_PACKAGES += $(SDV_IVI_TELEMETRY_PACKAGES) $(SDV_IVI_TELEMETRY_SAMPLES_PACKAGES)

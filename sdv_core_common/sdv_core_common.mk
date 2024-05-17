@@ -165,10 +165,8 @@ include device/google/sdv/sdv_core_common/sdv_packages_automotive_services.mk
 include device/google/sdv/sdv_core_common/sdv_packages_base_services.mk
 include device/google/sdv/sdv_core_common/sdv_packages_core_services.mk
 include device/google/sdv/sdv_core_common/sdv_packages_platform.mk
+include device/google/sdv/sdv_core_common/sdv_packages_telemetry.mk
 include device/google/sdv/sdv_core_common/sdv_ethernet_setup.mk
-
-# Telemetry packages for SDV Core.
-PRODUCT_PACKAGES += $(SDV_CORE_TELEMETRY_PACKAGES) $(SDV_CORE_TELEMETRY_SAMPLES_PACKAGES)
 
 # Enable tracing and test services on userdebug and eng
 ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
