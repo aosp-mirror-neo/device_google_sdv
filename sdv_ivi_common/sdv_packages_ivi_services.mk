@@ -11,6 +11,7 @@ SDV_IVI_SERVICES_PACKAGES = \
     libvhal_proxy \
     libvhal_proxy_config_loader \
     libvhal_proxy_proto_cpp \
+    android.hardware.automotive.vehicle@V1-sdv-emulator-service
 
 # Samples in core_services/ specific to SDV_IVI target
 SDV_IVI_SERVICES_SAMPLES_PACKAGES = \
