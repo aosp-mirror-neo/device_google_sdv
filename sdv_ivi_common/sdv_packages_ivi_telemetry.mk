@@ -14,6 +14,7 @@ SDV_IVI_TELEMETRY_PACKAGES = \
 
 SDV_IVI_TELEMETRY_SAMPLES_PACKAGES = \
     telemetry_ivi_rust_c_client \
+    telemetry_sample_publisher
 
 SDV_IVI_TELEMETRY_HOST_PACKAGES =
 
