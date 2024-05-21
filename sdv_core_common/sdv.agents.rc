@@ -1,6 +1,6 @@
 # Copyright 2023 Google LLC
 #
-# SDV's init .rc file which is used to start SDV specific services
+# SDV Core's init .rc file which is used to start SDV specific services.
 
 # Retrieve local vsock cid and store it in ro.boot.vsock_local_cid
 service vsock_local_cid /system/bin/vsock_local_cid ro.boot.vsock_local_cid
