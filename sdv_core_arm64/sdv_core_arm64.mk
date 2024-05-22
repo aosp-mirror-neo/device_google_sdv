@@ -16,6 +16,9 @@ PRODUCT_PACKAGES += \
     dlkm_loader \
     tcpdump \
 
+# For reading and wiping the open-dice device
+PRODUCT_PACKAGES_DEBUG += open-dice-device-tool
+
 PRODUCT_CHARACTERISTICS := nosdcard,automotive
 
 PRODUCT_COPY_FILES += \
