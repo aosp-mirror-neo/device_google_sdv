@@ -15,6 +15,7 @@ SDV_CORE_TELEMETRY_PACKAGES = \
 SDV_CORE_TELEMETRY_SAMPLES_PACKAGES = \
     telemetry_rust_c_client \
     telemetry_sample_data_tunnel_publisher_speed \
+    telemetry_sample_data_tunnel_publisher_tire_pressure \
     dt_telemetry_sample_publisher
 
 SDV_CORE_TELEMETRY_HOST_PACKAGES =
