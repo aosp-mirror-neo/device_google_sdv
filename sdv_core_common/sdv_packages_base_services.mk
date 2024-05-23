@@ -33,10 +33,6 @@ SDV_BASE_SERVICES_SAMPLES_PACKAGES = \
     sdv_cluster_grpc_server_cpp \
     sdv_grpc_client \
     sdv_grpc_server \
-    sdv_sample_multivd_ipv4_server \
-    sdv_sample_multivd_ipv4_client \
-    sdv_sample_multivd_vsock_client \
-    sdv_sample_multivd_vsock_server \
     sdv_sample_rpc_client \
     sdv_sample_rpc_server \
     sdv_tpms_grpc_client_cpp \
