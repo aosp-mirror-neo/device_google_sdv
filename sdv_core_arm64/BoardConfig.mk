@@ -65,6 +65,7 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(KERNEL_MODULES_PATH)/nd_virtio.ko
 #
 # Note that the open-dice driver is only added to the arm64 target, because it relies on the DT
 # which is not supported on x86.
-BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(KERNEL_MODULES_PATH)/open-dice.ko
+# TODO: b/341313012 - add open-dice.ko a system kernel module instead
+BOARD_VENDOR_RAMDISK_KERNEL_MODULES += kernel/prebuilts/$(TARGET_KERNEL_USE)/$(TARGET_KERNEL_ARCH)/open-dice.ko
 
 BOARD_GENERIC_RAMDISK_KERNEL_MODULES_LOAD := dm-user.ko
