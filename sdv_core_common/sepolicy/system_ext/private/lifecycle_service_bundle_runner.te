@@ -1,25 +1,25 @@
-type lifecycle_service_test, domain;
-typeattribute lifecycle_service_test coredomain;
+type lifecycle_service_bundle_runner, domain;
+typeattribute lifecycle_service_bundle_runner coredomain;
 
 # Setting the sdv_lc_process_client attribute on the domain to inherit the SEpolicies defined for
-# sdv_lc_process_client, thus, allowing the lifecycle_service_test and the sdv_lc_server to communicate
-# via Binder calls, and the sdv_lc_server to manage the lifecycle_service_test.
-typeattribute lifecycle_service_test sdv_lc_process_client;
+# sdv_lc_process_client, thus, allowing the lifecycle_service_bundle_runner and the sdv_lc_server to communicate
+# via Binder calls, and the sdv_lc_server to manage the lifecycle_service_bundle_runner.
+typeattribute lifecycle_service_bundle_runner sdv_lc_process_client;
 # lifecycle_service_test provides a binder implementation.
-typeattribute lifecycle_service_test sdv_lc_server;
+typeattribute lifecycle_service_bundle_runner sdv_lc_server;
 
-type lifecycle_service_test_exec, exec_type, system_file_type, file_type;
+type lifecycle_service_bundle_runner_exec, exec_type, system_file_type, file_type;
 
 # Required by the launchService() IPC on the IServiceManager Binder service to execute the
-# lifecycle_service_test.
+# lifecycle_service_bundle_runner.
 # TODO(b/272343536): Currently, this rule has to be among the private policies that prevents
 # moving this policy, thus, the lifecycle_service_test to the vendor/product/oem partitions where it
 # eventually should be.
-domain_auto_trans(sdv_lc_server, lifecycle_service_test_exec, lifecycle_service_test)
+domain_auto_trans(sdv_lc_server, lifecycle_service_bundle_runner_exec, lifecycle_service_bundle_runner)
 
 # Defines the Lifecycle Manager Callback Binder IPC service (IServiceCallbackVerifier) that is used in
 # the LM integration tests to check if certain calls from LM where called.
 type sdv_lc_test_service_manager_service, protected_service, service_manager_type;
 
 # Lifecycle Service Test Service can register its Binder IPC service.
-add_service(lifecycle_service_test, sdv_lc_test_service_manager_service)
+add_service(lifecycle_service_bundle_runner, sdv_lc_test_service_manager_service)

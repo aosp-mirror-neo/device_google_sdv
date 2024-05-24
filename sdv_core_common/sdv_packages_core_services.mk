@@ -13,6 +13,7 @@ SDV_CORE_SERVICES_PACKAGES = \
     sdv_lifecycle_agent \
     sdv_orchestration_agent \
     sdv_service_bundles_registry_agent \
+    lifecycle_service_bundle_runner \
     sdv_someip_broker_agent \
     broker_config.json \
     sdv_someip_stack_agent \
@@ -32,8 +33,9 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     com.android.sdv.samples.multivd.ipv4 \
     com.android.sdv.samples.multivd.vsock \
     compile_time_log_filtering_sdv_sample \
-    lifecycle_sample \
-    lifecycle_sample_rust \
+    com.android.sdv.samples.lifecycle.apex \
+    liblifecycle_rust_service_bundle_test \
+    liblifecycle_cpp_service_bundle_test \
     log_filtering_sdv_sample \
     logging_sdv_rust_sample \
     logging_sdv_sample \
@@ -78,9 +80,6 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     structured_logging_sdv_sample \
     someip_rpc_someip_server \
     someip_rpc_sdv_server \
-    orchestration_service_test \
-    lifecycle_service_test \
-    lifecycle_rust_service_test \
     sdv_health_monitor \
     sdv_sample_health_monitored_service \
     sdv_sample_second_health_monitored_service \
