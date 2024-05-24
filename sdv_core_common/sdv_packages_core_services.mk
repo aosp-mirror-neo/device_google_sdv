@@ -33,8 +33,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     com.android.sdv.samples.multivd.ipv4 \
     com.android.sdv.samples.multivd.vsock \
     compile_time_log_filtering_sdv_sample \
-    liboem_service_bundle_rust_sample \
-    liboem_service_bundle_cpp_sample \
+    com.android.sdv.samples.lifecycle.apex \
     liblifecycle_rust_service_bundle_test \
     liblifecycle_cpp_service_bundle_test \
     log_filtering_sdv_sample \
