@@ -1,34 +1,55 @@
 # Copyright 2024 Google LLC
 
-sdv_binary_pdk_dist_dir := $(OUT_DIR)/dist/sdv-binary-pdk
+sdv_binary_pdk_dir := $(PRODUCT_OUT)/sdv-binary-pdk
+sdv_binary_pdk_collector := $(HOST_OUT)/bin/binary_pdk_collector
+sdv-binary-pdk-zip := $(sdv_binary_pdk_dir)/sdv-binary-pdk.zip
+sdv_binary_pdk_packages_dir := $(sdv_binary_pdk_dir)/packages
+sdv_binary_pdk_archive_dir := $(sdv_binary_pdk_dir)/archive
 
 sdv_binary_pdk_vars := \
   SDV_AUTOMOTIVE_SERVICES_HOST_PACKAGES \
   SDV_AUTOMOTIVE_SERVICES_HOST_SAMPLES_PACKAGES \
   SDV_AUTOMOTIVE_SERVICES_PACKAGES \
   SDV_AUTOMOTIVE_SERVICES_SAMPLES_PACKAGES \
+  SDV_BASE_SERVICES_PACKAGES \
+  SDV_BASE_SERVICES_SAMPLES_PACKAGES \
+  SDV_BASE_SERVICES_HOST_PACKAGES \
+  SDV_BASE_SERVICES_HOST_SAMPLES_PACKAGES \
   SDV_CORE_SERVICES_HOST_PACKAGES \
   SDV_CORE_SERVICES_HOST_SAMPLES_PACKAGES \
   SDV_CORE_SERVICES_PACKAGES \
   SDV_CORE_SERVICES_SAMPLES_PACKAGES \
-  SDV_IVI_HOST_PACKAGES \
-  SDV_IVI_HOST_SAMPLES_PACKAGES \
+  SDV_CORE_TELEMETRY_HOST_PACKAGES \
+  SDV_CORE_TELEMETRY_HOST_SAMPLES_PACKAGES \
+  SDV_CORE_TELEMETRY_PACKAGES \
+  SDV_CORE_TELEMETRY_SAMPLES_PACKAGES \
+  SDV_IVI_SERVICES_HOST_PACKAGES \
+  SDV_IVI_SERVICES_HOST_SAMPLES_PACKAGES \
   SDV_IVI_SERVICES_PACKAGES \
   SDV_IVI_SERVICES_SAMPLES_PACKAGES \
+  SDV_IVI_TELEMETRY_HOST_PACKAGES \
+  SDV_IVI_TELEMETRY_HOST_SAMPLES_PACKAGES \
+  SDV_IVI_TELEMETRY_PACKAGES \
+  SDV_IVI_TELEMETRY_SAMPLES_PACKAGES \
   SDV_PLATFORM_HOST_PACKAGES \
   SDV_PLATFORM_HOST_SAMPLES_PACKAGES \
   SDV_PLATFORM_PACKAGES \
-  SDV_PLATFORM_SAMPLES_PACKAGES \
-  SDV_TELEMETRY_HOST_PACKAGES \
-  SDV_TELEMETRY_HOST_SAMPLES_PACKAGES \
-  SDV_TELEMETRY_PACKAGES \
-  SDV_TELEMETRY_SAMPLES_PACKAGES
+  SDV_PLATFORM_SAMPLES_PACKAGES
 
-.PHONY: sdv_binary_pdk_dump_vars
-sdv_binary_pdk_dump_vars:
-	$(hide) mkdir -p $(sdv_binary_pdk_dist_dir)
+sdv-binary-pdk: $(sdv-binary-pdk-zip)
+
+$(sdv-binary-pdk-zip):
+	$(hide) rm -rf $(sdv_binary_pdk_packages_dir)
+	$(hide) mkdir -p $(sdv_binary_pdk_packages_dir)
 	$(foreach var,$(sdv_binary_pdk_vars), \
-		$(call dump-words-to-file,$($(var)),$(sdv_binary_pdk_dist_dir)/$(var).txt) \
+		$(call dump-words-to-file,$($(var)),$(sdv_binary_pdk_packages_dir)/$(var).txt) \
 	)
+	echo "This file is empty on purpose" > $(sdv-binary-pdk-zip)
 
-sdv-binary-pdk: sdv_binary_pdk_dump_vars
+$(call add-clean-step, rm -rf $(sdv_binary_pdk_dir))
+
+$(call dist-for-goals, sdv-binary-pdk, \
+	$(sdv-binary-pdk-zip):sdv-binary-pdk/sdv-binary-pdk.zip \
+)
+
+$(call declare-1p-container,$(sdv-binary-pdk-zip),)
