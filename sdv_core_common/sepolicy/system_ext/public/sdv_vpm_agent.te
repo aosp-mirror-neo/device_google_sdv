@@ -1,0 +1,10 @@
+
+# The VPM agent can register the IPowerStateClientApi Binder IPC service.
+add_service(sdv_vpm_agent_notification_server, sdv_vpm_agent_notification_service)
+
+# The VPM client and agent can call each other via Binder IPC.
+binder_call(sdv_vpm_agent_notification_client, sdv_vpm_agent_notification_server)
+binder_call(sdv_vpm_agent_notification_server, sdv_vpm_agent_notification_client)
+
+# The VPM client has access to the IPowerStateClientApi Binder IPC service.
+allow sdv_vpm_agent_notification_client sdv_vpm_agent_notification_service:service_manager find;

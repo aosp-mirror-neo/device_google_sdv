@@ -38,3 +38,6 @@ google.sdv.telemetry.ITelemetryService/default u:object_r:sdv_telemetry_service:
 
 # SDV Configurable Publisher Registry service
 google.sdv.telemetry.configurable_publisher.IConfigurablePublisherRegistry/default u:object_r:sdv_configurable_publisher_registry_service:s0
+
+# SDV VPM binder power callback service interface.
+google.sdv.vpm.IPowerStateClientApi u:object_r:sdv_vpm_agent_notification_service:s0
