@@ -70,3 +70,9 @@ attribute sdv_configurable_publisher_registry_client;
 attribute sdv_configurable_publisher_registry_server;
 expandattribute sdv_configurable_publisher_registry_client true;
 expandattribute sdv_configurable_publisher_registry_server false;
+
+# Attributes for SDV VPM notifications.
+attribute sdv_vpm_agent_notification_client;
+attribute sdv_vpm_agent_notification_server;
+expandattribute sdv_vpm_agent_notification_client true;
+expandattribute sdv_vpm_agent_notification_server false;
