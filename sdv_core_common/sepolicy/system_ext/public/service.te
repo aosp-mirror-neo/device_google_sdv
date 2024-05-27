@@ -23,3 +23,6 @@ type sdv_telemetry_service, protected_service, service_manager_type;
 
 # Defines SDV Configurable Publisher Registry service.
 type sdv_configurable_publisher_registry_service, protected_service, service_manager_type;
+
+# Defines SDV VPM binder power callback service interface.
+type sdv_vpm_agent_notification_service, protected_service, service_manager_type;
