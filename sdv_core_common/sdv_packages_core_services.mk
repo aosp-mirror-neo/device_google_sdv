@@ -6,7 +6,8 @@
 # There are four variables to distinguish device samples/packages and host samples/packages.
 
 SDV_CORE_SERVICES_PACKAGES = \
-    libsdv_lifecycle_client \
+    libsdv_lifecycle_client_rust \
+    libsdv_lifecycle_client_cpp \
     libsdv_middleware_pubsub \
     libsdv_config_provider \
     orch_config.textproto \
