@@ -1,0 +1,19 @@
+type sdv_user_preferences_sample, domain;
+
+type sdv_user_preferences_sample_exec, vendor_file_type, exec_type, file_type;
+
+# Allow the sdv_user_preferences_sample domain to use Binder IPC
+binder_use(sdv_user_preferences_sample)
+
+# SDV User Preferences samples can use sockets
+net_domain(sdv_user_preferences_sample)
+
+# Allow the sample to be launched from the shell, and make it transition to the `sdv_user_preferences_sample`
+# domain when launched.
+domain_auto_trans(shell, sdv_user_preferences_sample_exec, sdv_user_preferences_sample)
+allow sdv_user_preferences_sample shell:fd use;
+
+# Allow the sample to use Service Discovery, Data Tunnel and RPC Agent.
+typeattribute sdv_user_preferences_sample sdv_sd_client;
+typeattribute sdv_user_preferences_sample sdv_dt_client;
+typeattribute sdv_user_preferences_sample sdv_rpcagent_client;
