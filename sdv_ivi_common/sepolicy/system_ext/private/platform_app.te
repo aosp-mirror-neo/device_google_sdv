@@ -1,0 +1,4 @@
+# For the SdvCarMonitorTestApp:
+typeattribute platform_app sdv_sd_client;
+typeattribute platform_app sdv_rpcagent_client;
+typeattribute platform_app sdv_dt_client;

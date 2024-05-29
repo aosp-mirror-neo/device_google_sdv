@@ -1,0 +1,5 @@
+# The sepolicy defines additional rules for the default Vehicle HAL on Automotive devices
+
+# Allow the Vehicle HAL to use the SDV Data Tunnel
+# TODO: b/343720094 - VHAL should not use Data Tunnel directly.
+typeattribute hal_vehicle_default sdv_dt_client;
