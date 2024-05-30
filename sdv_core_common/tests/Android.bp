@@ -1,4 +1,4 @@
-// Copyright 2023 Google LLC
+// Copyright 2024 Google LLC
 
 package {
     default_applicable_licenses: ["sdv_license"],
@@ -9,6 +9,7 @@ rust_test {
     srcs: ["sdv_keymint_test.rs"],
     defaults: [
         "sdv@rust_defaults",
+        "keymint_use_latest_hal_aidl_rust",
     ],
     test_suites: [
         "general-tests",
@@ -16,8 +17,11 @@ rust_test {
     ],
     auto_gen_config: true,
     rustlibs: [
+        "android.hardware.security.rkp-V3-rust",
         "libbinder_rs",
         "liblog_rust",
-        "android.hardware.security.rkp-V3-rust",
+        "libsdv_log_rust",
     ],
+
+    require_root: true,
 }
