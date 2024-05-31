@@ -18,6 +18,7 @@ SDV_AUTOMOTIVE_SERVICES_SAMPLES_PACKAGES = \
     libdiagnostics_sample_catalog-diagnostics-config.binpb \
     libdiagnostics_sample_catalog-vsidl-config.binpb \
     vepsm \
+    vpm_power_state_client \
     vpm_vehicle_state_client \
     sdv_user_preferences_service \
     sdv_hvac_service \
