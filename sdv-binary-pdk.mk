@@ -36,15 +36,29 @@ sdv_binary_pdk_vars := \
   SDV_PLATFORM_PACKAGES \
   SDV_PLATFORM_SAMPLES_PACKAGES
 
+sdv-all-targets := $(foreach var,$(sdv_binary_pdk_vars), $(strip $($(var))) )
+sdv-all-targets-files := $(foreach m, $(sdv-all-targets), $(sort $(ALL_MODULES.$(m).INSTALLED)))
+
+sdv-binary-pdk: $(sdv_binary_pdk_collector) $(sdv-all-targets) $(sdv-binary-pdk-zip)
 sdv-binary-pdk: $(sdv-binary-pdk-zip)
 
-$(sdv-binary-pdk-zip):
+$(sdv-binary-pdk-zip): $(sdv_binary_pdk_collector) $(sdv-all-targets-files) $(BUILT_SYSTEMIMAGE) $(BUILT_VENDORIMAGE_TARGET) $(BUILT_PRODUCTIMAGE_TARGET) $(BUILT_SYSTEM_EXTIMAGE_TARGET) $(MODULE_INFO_JSON) $(SOONG_ZIP)
 	$(hide) rm -rf $(sdv_binary_pdk_packages_dir)
 	$(hide) mkdir -p $(sdv_binary_pdk_packages_dir)
 	$(foreach var,$(sdv_binary_pdk_vars), \
 		$(call dump-words-to-file,$($(var)),$(sdv_binary_pdk_packages_dir)/$(var).txt) \
 	)
-	echo "This file is empty on purpose" > $(sdv-binary-pdk-zip)
+	$(hide) $(sdv_binary_pdk_collector) \
+		--target-name $(TARGET_PRODUCT) \
+		--src-dir . \
+		--out-dir $(OUT_DIR) \
+		--binary-dir $(sdv_binary_pdk_archive_dir)
+
+	$(hide) $(SOONG_ZIP) \
+		-C $(sdv_binary_pdk_archive_dir) \
+		-D $(sdv_binary_pdk_archive_dir) \
+		-d \
+		-o $(sdv-binary-pdk-zip)
 
 $(call add-clean-step, rm -rf $(sdv_binary_pdk_dir))
 
