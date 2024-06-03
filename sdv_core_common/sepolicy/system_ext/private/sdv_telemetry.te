@@ -16,3 +16,6 @@ allow sdv_telemetry telemetry_data_file:file create_file_perms;
 # SDV Telemetry Service agent can register Configurable Publisher Registry and its Binder IPC services.
 add_service(sdv_telemetry, sdv_telemetry_service)
 add_service(sdv_telemetry, sdv_configurable_publisher_registry_service)
+
+# SDV Telemetry Service uses the Data Tunnel
+typeattribute sdv_telemetry sdv_dt_client;
