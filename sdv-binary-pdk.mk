@@ -49,7 +49,7 @@ $(sdv-binary-pdk-zip): $(sdv_binary_pdk_collector) $(sdv-all-targets-files) $(BU
 		$(call dump-words-to-file,$($(var)),$(sdv_binary_pdk_packages_dir)/$(var).txt) \
 	)
 	$(hide) $(sdv_binary_pdk_collector) \
-		--target-name $(TARGET_PRODUCT) \
+		--target-name $(TARGET_DEVICE) \
 		--src-dir . \
 		--out-dir $(OUT_DIR) \
 		--binary-dir $(sdv_binary_pdk_archive_dir)
