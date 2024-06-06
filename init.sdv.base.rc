@@ -58,6 +58,10 @@ on early-init
     exec_start apexd-bootstrap
     perform_apex_config --bootstrap
 
+    # Consume and wipe the contents of /dev/open-dice0 as early as possible
+    # TODO: b/345448000 - Run init_open_dice even earlier, before apexd-bootstrap.
+    exec_start init_open_dice
+
 on init
    mkdir /mnt/apk 0755 system system
    mkdir /mnt/extra-apk 0755 root root
