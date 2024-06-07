@@ -13,6 +13,7 @@ SDV_BASE_SERVICES_PACKAGES = \
     dt_agent \
     libsdv_authn \
     libsdv_authz_policy \
+    libsdv_comms_id \
     libsdv_dt_core \
     libsdv_dt \
     libsdv_dt_rust \
