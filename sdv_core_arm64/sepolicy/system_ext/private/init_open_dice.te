@@ -1,0 +1,5 @@
+type init_open_dice, domain;
+typeattribute init_open_dice coredomain;
+type init_open_dice_exec, exec_type, system_file_type, file_type;
+
+init_daemon_domain(init_open_dice)

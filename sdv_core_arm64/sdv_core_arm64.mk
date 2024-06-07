@@ -19,6 +19,9 @@ PRODUCT_PACKAGES += \
 # For reading and wiping the open-dice device
 PRODUCT_PACKAGES_DEBUG += open-dice-device-tool
 
+# init_open_dice runs on early init, consumes and wipes the open-dice device
+PRODUCT_PACKAGES += init_open_dice
+
 PRODUCT_CHARACTERISTICS := nosdcard,automotive
 
 PRODUCT_COPY_FILES += \

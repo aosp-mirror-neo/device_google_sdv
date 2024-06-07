@@ -26,6 +26,8 @@ TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_VARIANT := cortex-a53
 include device/google/sdv/sdv_core_common/BoardConfig.mk
 
+SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_core_arm64/sepolicy/system_ext/private
+
 # Must come after including sdv_core_common/BoardConfig.mk, because that includes
 # minidroid/BoardConfig.mk which resets BOARD_VENDOR_RAMDISK_KERNEL_MODULES.
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(KERNEL_MODULES_PATH)/virtio_mmio.ko
