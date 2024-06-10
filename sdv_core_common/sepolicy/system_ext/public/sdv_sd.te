@@ -6,8 +6,10 @@ binder_call(sdv_sd_server, sdv_sd_client)
 allow sdv_sd_client sdv_sd_service:service_manager find;
 allow sdv_sd_client sdv_sd_identity:service_manager find;
 allow sdv_sd_client sdv_sd_agent:service_manager find;
+allow sdv_sd_client service_discovery_agent:service_manager find;
 
 # SDV SD server can register the IPC service.
 add_service(sdv_sd_server, sdv_sd_service)
 add_service(sdv_sd_server, sdv_sd_identity)
 add_service(sdv_sd_server, sdv_sd_agent)
+add_service(sdv_sd_server, service_discovery_agent)
