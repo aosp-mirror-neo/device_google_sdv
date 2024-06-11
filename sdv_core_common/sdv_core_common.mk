@@ -8,6 +8,10 @@ PRODUCT_BRAND := google
 PRODUCT_MANUFACTURER := Google
 PRODUCT_MODEL := Software-Defined Vehicle Core
 
+# Release Configuration map
+PRODUCT_RELEASE_CONFIG_MAPS += $(wildcard build/release/automotive/release_config_map.textproto)
+PRODUCT_RELEASE_CONFIG_MAPS += $(wildcard vendor/google_shared/build/release/automotive/release_config_map.textproto)
+
 $(call inherit-product, $(SRC_TARGET_DIR)/product/generic_ramdisk.mk)
 
 PRODUCT_COMPRESSED_APEX := false
