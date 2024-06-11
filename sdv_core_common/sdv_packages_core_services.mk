@@ -35,6 +35,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     com.android.sdv.samples.multivd.vsock \
     compile_time_log_filtering_sdv_sample \
     com.android.sdv.samples.lifecycle.apex \
+    com.android.sdv.samples.orch.apex \
     liblifecycle_rust_service_bundle_test \
     liblifecycle_cpp_service_bundle_test \
     log_filtering_sdv_sample \
