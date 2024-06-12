@@ -14,3 +14,6 @@ system_internal_prop(orchestrator_config_path_prop)
 get_prop(sdv_orch, orchestrator_config_path_prop)
 # Init can set the orchestrator_config_path_prop property
 set_prop(init, orchestrator_config_path_prop)
+
+# Orchestrator is a power state client
+typeattribute sdv_orch sdv_vpm_agent_notification_client;
