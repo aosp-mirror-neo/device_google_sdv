@@ -5,4 +5,4 @@ ro.boot.vsock_local_cid u:object_r:vsock_local_cid_prop:s0
 # TODO(b/313827965): Define proper deplyoment strategy for orch config
 # The orchestrator_config_path_prop is set only by init and read by orchestrator to configure the path
 # to the configuration file.
-sdv.orchestrator_config_path u:object_r:orchestrator_config_path_prop:s0
+persist.sdv.orchestrator_config_path u:object_r:orchestrator_config_path_prop:s0
