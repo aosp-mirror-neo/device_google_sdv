@@ -119,7 +119,7 @@ PRODUCT_SYSTEM_EXT_PROPERTIES += \
 # Path to the orchestrator configuration.
 # ?= sets it only if there are no other assignments yet, so we do not overwrite the value.
 PRODUCT_SYSTEM_EXT_PROPERTIES += \
-    sdv.orchestrator_config_path?=etc/orch/orch_config.textproto
+    persist.sdv.orchestrator_config_path?=etc/orch/orch_config.textproto
 
 # Networking tools
 PRODUCT_PACKAGES += \
