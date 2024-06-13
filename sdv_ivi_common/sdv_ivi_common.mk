@@ -15,6 +15,10 @@ PRODUCT_BRAND := Google
 PRODUCT_MANUFACTURER := Google
 PRODUCT_MODEL := IVI and Software-Defined Vehicle Core
 
+# Release Configuration map
+PRODUCT_RELEASE_CONFIG_MAPS += $(wildcard build/release/automotive/release_config_map.textproto)
+PRODUCT_RELEASE_CONFIG_MAPS += $(wildcard vendor/google_shared/build/release/automotive/release_config_map.textproto)
+
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += device/google/sdv/comp_matrix.xml
 
 # TODO hack to alloc sdv binary to be install to system partition
