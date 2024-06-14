@@ -120,3 +120,12 @@ service sdv_orchestration_agent /system_ext/bin/sdv_orchestration_agent
     group system
 on property:dev.bootcomplete=1
     start sdv_orchestration_agent
+
+# Declare and start the SDV Update Manager agent.
+service sdv_update_manager_agent /system_ext/bin/sdv_update_manager_agent
+    class core
+    disabled
+    user system
+    group system
+on property:dev.bootcomplete=1
+    start sdv_update_manager_agent

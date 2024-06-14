@@ -1,0 +1,8 @@
+# Update Manager is a core SDV agent.
+core_service(sdv_update_manager_agent)
+
+# Update Manager can call the ServiceDiscovery agent.
+typeattribute sdv_update_manager_agent sdv_sd_client;
+
+# Update Manager can call the RPC agent.
+typeattribute sdv_update_manager_agent sdv_rpcagent_client;

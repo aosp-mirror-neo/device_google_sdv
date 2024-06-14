@@ -9,6 +9,9 @@
 # SDV Orchestrator agent
 /(system_ext|system/system_ext)/bin/sdv_orchestration_agent u:object_r:sdv_orch_exec:s0
 
+# SDV Update Manager agent
+/(system_ext|system/system_ext)/bin/sdv_update_manager_agent u:object_r:sdv_update_manager_agent_exec:s0
+
 # SDV VPM agent
 /(system_ext|system/system_ext)/bin/sdv_vpm_agent u:object_r:sdv_vpm_agent_exec:s0
 

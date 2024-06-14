@@ -23,6 +23,7 @@ SDV_CORE_SERVICES_PACKAGES = \
     libsdv_comms_ctx_ffi \
     libsdv_comms_id_ffi \
     libsdv_comms_sd_ffi \
+    sdv_update_manager_agent \
 
 # Sample modules in core_services/
 SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
@@ -76,6 +77,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     sdv_tire_sensor_reader_service \
     sdv_tire_status_supplier_service \
     sdv_tire_status_consumer_service \
+    sdv_update_manager_client \
     sdv_vsomeip_conf_counter_tester_target \
     sdv_vsomeip_counter_tester \
     sdv_vsomeip_sdv_hello_tester \
