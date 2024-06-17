@@ -58,6 +58,8 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     sdv_same_unit_type_sample_server_service_cc \
     sdv_same_unit_type_sample_publisher_service_cc \
     sdv_same_unit_type_sample_client_service_cc \
+    sdv_mw_metadata_sample_publisher_service \
+    sdv_mw_metadata_sample_subscriber_service \
     sdv_mirror_controller_service \
     sdv_mirror_manager_service \
     sdv_mirror_sdv_mirror_modern_service \
