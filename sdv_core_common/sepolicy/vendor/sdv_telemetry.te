@@ -1,0 +1,34 @@
+# The SDV Telemetry agent can register the ITelemetryService Binder IPC service.
+add_service(sdv_telemetry_server, sdv_telemetry_service)
+
+# The SDV Telemetry client and agent can call each other via Binder IPC.
+binder_call(sdv_telemetry_client, sdv_telemetry_server)
+binder_call(sdv_telemetry_server, sdv_telemetry_client)
+
+# The SDV Telemetry client has access to the ITelemetryService Binder IPC service.
+allow sdv_telemetry_client sdv_telemetry_service:service_manager find;
+
+# File used by telemetry service for data persistance
+type telemetry_data_file, file_type, data_file_type;
+
+# SDV Telemetry Service agent is a core service.
+type sdv_telemetry, domain;
+typeattribute sdv_telemetry mlstrustedsubject;
+type sdv_telemetry_exec, exec_type, file_type, vendor_file_type;
+init_daemon_domain(sdv_telemetry)
+
+# Allow the sdv_telemetry domain to use Binder IPC
+binder_use(sdv_telemetry);
+
+# SDV Telemetry Service agent can register telemetry service and configurable
+# publisher registry service
+typeattribute sdv_telemetry sdv_telemetry_server;
+typeattribute sdv_telemetry sdv_configurable_publisher_registry_server;
+
+# SDV Telemetry agent can read and write directories and files to the /data/ dir
+allow sdv_telemetry telemetry_data_file:dir create_dir_perms;
+allow sdv_telemetry telemetry_data_file:file create_file_perms;
+
+# SDV Telemetry Service agent can register Configurable Publisher Registry and its Binder IPC services.
+add_service(sdv_telemetry, sdv_telemetry_service)
+add_service(sdv_telemetry, sdv_configurable_publisher_registry_service)

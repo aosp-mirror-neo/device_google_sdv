@@ -29,6 +29,9 @@ PRODUCT_ENFORCE_ARTIFACT_PATH_REQUIREMENTS := false
 PRODUCT_COPY_FILES += \
     device/google/sdv/sdv_ivi_common/sdv.agents.rc:system/etc/init/sdv.agents.rc
 
+PRODUCT_VENDOR_PROPERTIES += \
+    ro.vendor.telemetry.metric_config_store_in_mb=10
+
 include device/google/sdv/sdv_ivi_common/sdv_packages_ivi_services.mk
 include device/google/sdv/sdv_ivi_common/sdv_packages_ivi_telemetry.mk
 include device/google/sdv/sdv_core_common/sdv_packages_base_services.mk
