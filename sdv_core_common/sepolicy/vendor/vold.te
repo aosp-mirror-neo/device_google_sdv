@@ -1,0 +1,4 @@
+# Copyright 2024 Google LLC
+
+# For crypto modules
+allow vold kernel:system module_request;

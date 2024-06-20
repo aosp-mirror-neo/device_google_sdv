@@ -27,6 +27,7 @@ TARGET_CPU_VARIANT := cortex-a53
 include device/google/sdv/sdv_core_common/BoardConfig.mk
 
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_core_arm64/sepolicy/system_ext/private
+BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_core_arm64/sepolicy/vendor
 
 # Must come after including sdv_core_common/BoardConfig.mk, because that includes
 # minidroid/BoardConfig.mk which resets BOARD_VENDOR_RAMDISK_KERNEL_MODULES.
