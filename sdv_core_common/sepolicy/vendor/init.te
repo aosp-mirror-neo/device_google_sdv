@@ -1,3 +1,5 @@
+# Copyright 2024 Google LLC
+
 # init relabel vbmeta* and boot* symlinks under /dev/block/by-name/.
 allow init ab_block_device:lnk_file relabelto;
 allow init boot_block_device:lnk_file relabelto;
