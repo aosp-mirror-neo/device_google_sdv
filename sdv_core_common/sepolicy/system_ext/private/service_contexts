@@ -35,7 +35,7 @@ google.sdv.lifecycle.internal.IServiceManager/default u:object_r:sdv_lc_service_
 google.sdv.service_bundles_registry.IRegistry u:object_r:sdv_sbr_service:s0
 
 # SDV Lifecycle Manager binder service used in integration tests.
-android.sdv.lifecycle.test.IServiceCallbackVerifier u:object_r:sdv_lc_test_service_manager_service:s0
+google.sdv.lifecycle.test.IServiceCallbackVerifier/default u:object_r:sdv_lc_test_service_manager_service:s0
 
 # SDV DT IPC service
 google.sdv.dt.IDataTunnelAgent/default u:object_r:sdv_dt_service:s0
