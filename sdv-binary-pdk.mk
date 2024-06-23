@@ -39,7 +39,7 @@ sdv_binary_pdk_vars := \
 sdv-all-targets := $(foreach var,$(sdv_binary_pdk_vars), $(strip $($(var))) )
 sdv-all-targets-files := $(foreach m, $(sdv-all-targets), $(sort $(ALL_MODULES.$(m).INSTALLED)))
 
-sdv-binary-pdk: $(sdv_binary_pdk_collector) $(sdv-all-targets) $(sdv-binary-pdk-zip)
+sdv-binary-pdk: module-info $(sdv_binary_pdk_collector) $(sdv-all-targets) $(sdv-binary-pdk-zip)
 sdv-binary-pdk: $(sdv-binary-pdk-zip)
 
 $(sdv-binary-pdk-zip): $(sdv_binary_pdk_collector) $(sdv-all-targets-files) $(BUILT_SYSTEMIMAGE) $(BUILT_VENDORIMAGE_TARGET) $(BUILT_PRODUCTIMAGE_TARGET) $(BUILT_SYSTEM_EXTIMAGE_TARGET) $(MODULE_INFO_JSON) $(SOONG_ZIP)
