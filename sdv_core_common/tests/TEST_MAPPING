@@ -1,0 +1,9 @@
+{
+  "sdv_device_configuration_tests_presubmit": [],
+  "sdv_device_configuration_tests_postsubmit": [],
+  "sdv_device_configuration_integration_tests_presubmit": [
+    {
+      "name": "sdv_keymint_test"
+    }
+  ]
+}
