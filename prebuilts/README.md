@@ -1,3 +1,5 @@
+<!-- Copyright 2024 Google LLC -->
+
 # SDV Media prebuilt Mesa GLES libraries
 
 This directory contains prebuilt `libGLES_mesa.so` libraries for SDV Media.

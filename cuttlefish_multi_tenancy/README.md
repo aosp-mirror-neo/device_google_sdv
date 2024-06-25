@@ -1,3 +1,5 @@
+<!-- Copyright 2024 Google LLC -->
+
 # Example configuration for using Cuttlefish Multi-tenancy with SDV
 
 [Cuttlefish multi-tenancy](https://source.android.com/docs/devices/cuttlefish/multi-tenancy)
