@@ -4,4 +4,4 @@
 /dev/dri/renderD128 0666 system graphics
 
 # virtio-video cameras, v4l2loopback
-/dev/video* 0600 system camera
+/dev/video* 0660 system camera

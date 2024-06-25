@@ -6,3 +6,8 @@ ro.boot.vsock_local_cid u:object_r:vsock_local_cid_prop:s0
 # The orchestrator_config_path_prop is set only by init and read by orchestrator to configure the path
 # to the configuration file.
 persist.sdv.orchestrator_config_path u:object_r:orchestrator_config_path_prop:s0
+
+# drm.gpu.vendor_name is referred by mesa3d and therefore harry service.
+# TODO(b/349450954): Temporarily, we assign this property to graphics_config_prop and may want to
+#                    move it to more proper context such as vendor_graphics_config_prop later.
+drm.gpu.vendor_name u:object_r:graphics_config_prop:s0
