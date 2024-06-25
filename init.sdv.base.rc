@@ -258,14 +258,14 @@ on post-fs-data
     # Do not place files or directories in /data/local/tmp
     mkdir /data/local/tmp 0771 shell shell
 
-    # set up directory to persist metric configs for Telemetry service
-    mkdir /data/misc/telemetry 0770 system system
-
     # Directories to persist update_engine data to track update settings over failed attempts and
     # crashes.
     mkdir /data/misc/update_engine 0700 root root
     mkdir /data/misc/update_engine_log 02750 root log
     mkdir /data/misc/vold 0700 root root
+
+    # set up directory to persist metric configs for Telemetry service
+    mkdir /data/vendor/telemetry 0770 system system
 
     # All permissions needed for integration test process that will use this dir to launch
     # vsomeip instances

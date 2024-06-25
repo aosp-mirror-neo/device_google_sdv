@@ -108,12 +108,12 @@ PRODUCT_VENDOR_PROPERTIES += \
     ro.soc.manufacturer=$(PRODUCT_MANUFACTURER) \
     ro.soc.model=$(PRODUCT_DEVICE)
 
+PRODUCT_VENDOR_PROPERTIES += \
+    ro.vendor.telemetry.metric_config_store_in_mb=10
+
 PRODUCT_SYSTEM_PROPERTIES += \
     ro.hardware.type=automotive \
     ro.logd.size=8M
-
-PRODUCT_SYSTEM_EXT_PROPERTIES += \
-    ro.telemetry.metric_config_store_in_mb=10
 
 # TODO(b/313827965): Define proper deployment strategy for orch config
 # Path to the orchestrator configuration.
