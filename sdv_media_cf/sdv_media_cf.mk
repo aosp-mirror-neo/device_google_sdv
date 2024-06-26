@@ -12,3 +12,7 @@ $(call inherit-product, device/google/sdv/sdv_core_cf/sdv_core_cf.mk)
 
 $(call soong_config_append,cvd,launch_configs,cvd_config_sdv_media.json)
 TARGET_BOARD_INFO_FILE ?= device/google/sdv/sdv_media_cf/android-info.txt
+
+# Cuttlefish v4l2 camera support
+PRODUCT_PACKAGES += cuttlefish_v4l2_streamer
+PRODUCT_PACKAGES += sdv_draw_camera_rust

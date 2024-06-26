@@ -1,1 +1,2 @@
 config=sdv_media
+vhost_user_vsock=true
