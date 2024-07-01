@@ -13,9 +13,6 @@
       },
       "boot": {
         "extra_bootconfig_args": "androidboot.virt.vmname=instance1 androidboot.virt.address=3"
-      },
-      "security": {
-        "guest_enforce_security": false
       }
     },
     {
@@ -28,9 +25,6 @@
       },
       "boot": {
         "extra_bootconfig_args": "androidboot.virt.vmname=instance2 androidboot.virt.address=4"
-      },
-      "security": {
-        "guest_enforce_security": false
       }
     }
   ]
