@@ -36,6 +36,7 @@ PRODUCT_PACKAGES += \
     libtinyalsav2 \
     tinyplay2 \
     tinymix2 \
+    tinycap2 \
 
 # Sample application that renders to multiple displays.
 PRODUCT_PACKAGES += sdv_multi_display_sample_rust
