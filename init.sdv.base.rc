@@ -258,6 +258,17 @@ on post-fs-data
     # Do not place files or directories in /data/local/tmp
     mkdir /data/local/tmp 0771 shell shell
 
+    # Create directories to push tests to for each linker namespace.
+    # Create the subdirectories in case the first test is run as root
+    # so it doesn't end up owned by root.
+    # Set directories to be executable by any process so that debuggerd,
+    # aka crash_dump, can read any executables/shared libraries.
+    mkdir /data/local/tests 0701 shell shell
+    mkdir /data/local/tests/product 0701 shell shell
+    mkdir /data/local/tests/system 0701 shell shell
+    mkdir /data/local/tests/unrestricted 0701 shell shell
+    mkdir /data/local/tests/vendor 0701 shell shell
+
     # Directories to persist update_engine data to track update settings over failed attempts and
     # crashes.
     mkdir /data/misc/update_engine 0700 root root
