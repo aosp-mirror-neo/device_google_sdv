@@ -1,3 +1,5 @@
+# Copyright 2024 Google LLC
+
 type sdv_ethernet_setup, domain;
 typeattribute sdv_ethernet_setup coredomain;
 type sdv_ethernet_setup_exec, exec_type, system_file_type, file_type;

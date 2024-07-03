@@ -1,3 +1,5 @@
+# Copyright 2024 Google LLC
+
 type sdv_sample_multivd_ipv4_client, domain;
 typeattribute sdv_sample_multivd_ipv4_client coredomain;
 type sdv_sample_multivd_ipv4_client_exec, system_file_type, exec_type, file_type;

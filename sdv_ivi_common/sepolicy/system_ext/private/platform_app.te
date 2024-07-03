@@ -1,3 +1,5 @@
+# Copyright 2024 Google LLC
+
 # For the SdvCarMonitorTestApp:
 typeattribute platform_app sdv_sd_client;
 typeattribute platform_app sdv_rpcagent_client;

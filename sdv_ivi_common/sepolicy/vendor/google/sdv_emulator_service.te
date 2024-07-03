@@ -1,3 +1,4 @@
+# Copyright 2024 Google LLC
 # The sepolicy defines additional rules for the default Vehicle HAL on Automotive devices
 
 # Allow the Vehicle HAL to use the SDV Data Tunnel

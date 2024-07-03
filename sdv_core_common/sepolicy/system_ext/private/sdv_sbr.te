@@ -1,3 +1,5 @@
+# Copyright 2024 Google LLC
+
 # SDV Service Bundles Registry agent is a core service and system process.
 core_service(sdv_sbr)
 

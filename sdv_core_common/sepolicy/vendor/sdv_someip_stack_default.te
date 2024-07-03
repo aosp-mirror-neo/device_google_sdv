@@ -1,3 +1,5 @@
+# Copyright 2024 Google LLC
+
 type sdv_someip_stack_default, domain;
 typeattribute sdv_someip_stack_default mlstrustedsubject;
 type sdv_someip_stack_default_exec, exec_type, file_type, vendor_file_type;

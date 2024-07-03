@@ -1,3 +1,5 @@
+# Copyright 2024 Google LLC
+
 type lifecycle_service_bundle_runner, domain;
 typeattribute lifecycle_service_bundle_runner coredomain;
 

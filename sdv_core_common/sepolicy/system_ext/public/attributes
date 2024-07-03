@@ -1,3 +1,5 @@
+# Copyright 2024 Google LLC
+
 # Attributes for SDV SD clients and servers
 # Attributes provide a convenient mechanism to maintain compatibility with the SD server's clients.
 # The required permissions can be granted to the attribute, and the clients' domains can use this

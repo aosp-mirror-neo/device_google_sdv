@@ -1,2 +1,4 @@
+# Copyright 2024 Google LLC
+
 # SDV Lifecycle service has access to the Service Bundles Registry Binder service.
 allow sdv_lc_server sdv_sbr_service:service_manager find;

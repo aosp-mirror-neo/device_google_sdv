@@ -1,3 +1,5 @@
+# Copyright 2024 Google LLC
+
 # SOME/IP sample
 type sdv_someip_sample, domain;
 typeattribute sdv_someip_sample coredomain;

@@ -1,3 +1,5 @@
+# Copyright 2024 Google LLC
+
 # Vehicle Mode and Power Management core SDV agent.
 core_service(sdv_vpm_agent)
 

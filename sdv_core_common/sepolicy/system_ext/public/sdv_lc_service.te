@@ -1,3 +1,5 @@
+# Copyright 2024 Google LLC
+
 # Defines the external SDV Lifecycle Binder IPC service.
 type sdv_lc_manager_service, protected_service, service_manager_type;
 

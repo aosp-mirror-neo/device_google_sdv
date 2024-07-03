@@ -1,2 +1,4 @@
+# Copyright 2024 Google LLC
+
 # /proc/<pid>/ns
 genfscon nsfs / u:object_r:nsfs:s0

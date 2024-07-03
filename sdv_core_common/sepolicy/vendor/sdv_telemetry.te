@@ -1,3 +1,5 @@
+# Copyright 2024 Google LLC
+
 # The SDV Telemetry agent can register the ITelemetryService Binder IPC service.
 add_service(sdv_telemetry_server, sdv_telemetry_service)
 

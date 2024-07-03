@@ -1,3 +1,5 @@
+# Copyright 2024 Google LLC
+
 # Policy rules for the client processes spawned by the sdv_lc_server.
 
 # Required by the launchService() Binder IPC.

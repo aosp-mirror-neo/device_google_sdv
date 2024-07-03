@@ -1,3 +1,5 @@
+# Copyright 2024 Google LLC
+
 # SDV Mesh client and server can use Binder IPC.
 binder_call(sdv_mesh_client, sdv_mesh_server)
 binder_call(sdv_mesh_server, sdv_mesh_client)

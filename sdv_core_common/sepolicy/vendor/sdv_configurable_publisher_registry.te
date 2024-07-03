@@ -1,3 +1,5 @@
+# Copyright 2024 Google LLC
+
 # The SDV Configurable Publisher Registry client and agent can call each other via Binder IPC.
 binder_call(sdv_configurable_publisher_registry_client, sdv_configurable_publisher_registry_server)
 binder_call(sdv_configurable_publisher_registry_server, sdv_configurable_publisher_registry_client)

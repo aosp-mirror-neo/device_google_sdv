@@ -1,3 +1,5 @@
+# Copyright 2024 Google LLC
+
 # SDV RPC client and server can use Binder IPC.
 binder_call(sdv_rpcagent_client, sdv_rpcagent_server)
 binder_call(sdv_rpcagent_server, sdv_rpcagent_client)

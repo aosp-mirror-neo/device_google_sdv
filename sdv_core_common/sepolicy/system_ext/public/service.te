@@ -1,3 +1,5 @@
+# Copyright 2024 Google LLC
+
 # Defines SDV SD Binder IPC service.
 type sdv_sd_service, protected_service, service_manager_type;
 type sdv_sd_identity, protected_service, service_manager_type;

@@ -1,3 +1,5 @@
+# Copyright 2024 Google LLC
+
 type vsock_local_cid, domain;
 typeattribute vsock_local_cid coredomain;
 type vsock_local_cid_exec, exec_type, system_file_type, file_type;

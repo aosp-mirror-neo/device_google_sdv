@@ -1,3 +1,5 @@
+# Copyright 2024 Google LLC
+
 # SOME/IP Stack can register the IPC service (defined in service.te).
 add_service(sdv_someip_stack_server, sdv_someip_stack_service)
 

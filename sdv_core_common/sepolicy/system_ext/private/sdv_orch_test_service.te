@@ -1,3 +1,5 @@
+# Copyright 2024 Google LLC
+
 # orchestration_service_test_exec is referenced from the file_contexts file in all build variants.
 # Defining it only for userdebug and eng builds would make the user build fail.
 type orchestration_service_test_exec, exec_type, system_file_type, file_type;

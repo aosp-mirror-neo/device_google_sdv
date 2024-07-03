@@ -1,2 +1,4 @@
+# Copyright 2024 Google LLC
+
 # SDV SOME/IP stack IPC interface
 google.sdv.someip.ISomeIpStack/default u:object_r:sdv_someip_stack_service:s0

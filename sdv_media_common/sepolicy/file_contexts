@@ -1,3 +1,5 @@
+# Copyright 2024 Google LLC
+
 # TODO(b/330118443): minimize the list further
 # device/google/cuttlefish/shared/graphics/sepolicy/file_contexts
 /dev/dri u:object_r:gpu_device:s0

@@ -1,3 +1,5 @@
+# Copyright 2024 Google LLC
+
 #####################################
 # core_service(service_domain)
 # Declare service_domain as system process

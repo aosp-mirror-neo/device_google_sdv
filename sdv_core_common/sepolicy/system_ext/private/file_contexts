@@ -1,3 +1,5 @@
+# Copyright 2024 Google LLC
+
 # The ethernet setup script for SDV.
 /(system_ext|system/system_ext)/bin/ethernet/ethernet(.*)\.sh        u:object_r:sdv_ethernet_setup_exec:s0
 

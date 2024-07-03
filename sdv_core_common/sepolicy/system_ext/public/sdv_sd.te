@@ -1,3 +1,5 @@
+# Copyright 2024 Google LLC
+
 # SDV SD client and server can use Binder IPC.
 binder_call(sdv_sd_client, sdv_sd_server)
 binder_call(sdv_sd_server, sdv_sd_client)

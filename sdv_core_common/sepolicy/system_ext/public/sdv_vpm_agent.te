@@ -1,3 +1,4 @@
+# Copyright 2024 Google LLC
 
 # The VPM agent can register the IPowerStateClientApi Binder IPC service.
 add_service(sdv_vpm_agent_notification_server, sdv_vpm_agent_notification_service)

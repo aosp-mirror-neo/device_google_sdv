@@ -1,3 +1,5 @@
+# Copyright 2024 Google LLC
+
 # SDV SD IPC service
 # TODO(b/325515090): Remove the IServiceManager, IIdentityManager and
 # IAgentManager when migration to API V2 is complete.

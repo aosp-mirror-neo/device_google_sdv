@@ -1,3 +1,5 @@
+# Copyright 2024 Google LLC
+
 # Attributes for SDV Telemetry server
 attribute sdv_telemetry_client;
 attribute sdv_telemetry_server;

@@ -1,3 +1,5 @@
+# Copyright 2024 Google LLC
+
 # The open-dice devices are exposed by the open-dice kernel driver.
 # Only /dev/open-dice0 should be actually used and present.
 /dev/open-dice.*         u:object_r:open_dice_device:s0
