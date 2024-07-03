@@ -1,0 +1,32 @@
+# Copyright 2024 Google LLC
+
+##########################
+# Devices
+#
+/dev/vsock                                              u:object_r:vsock_device:s0
+
+##########################
+# system_ext files
+#
+
+# The ethernet setup script for SDV.
+/(system_ext|system/system_ext)/bin/ethernet/ethernet(.*)\.sh        u:object_r:sdv_ethernet_setup_exec:s0
+
+# vsock local CID system propery setup
+/system/bin/vsock_local_cid u:object_r:vsock_local_cid_exec:s0
+
+# SDV service discovery agent
+/(system_ext|system/system_ext)/bin/sdv_sd_agent        u:object_r:sdv_sd_default_exec:s0
+
+# SDV mesh agent
+/(system_ext|system/system_ext)/bin/sdv_mesh_agent      u:object_r:sdv_mesh_default_exec:s0
+
+# SDV service rpc agent
+/(system_ext|system/system_ext)/bin/rpcagent            u:object_r:sdv_rpcagent_default_exec:s0
+
+# SDV Data Tunnel Agent
+/(system_ext|system/system_ext)/bin/dt_agent        u:object_r:sdv_dt_agent_exec:s0
+
+# SDV sample RPC
+/system/bin/sdv_sample_rpc_server        u:object_r:sdv_sample_rpc_server_exec:s0
+/system/bin/sdv_sample_rpc_client        u:object_r:sdv_sample_rpc_client_exec:s0

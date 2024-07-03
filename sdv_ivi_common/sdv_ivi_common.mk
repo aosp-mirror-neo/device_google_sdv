@@ -3,11 +3,9 @@
 # Software-Defined Vehicle (SDV) is a headless vehicle Android OS.
 # The 'IVI' variant defines the head unit Android OS + SDV components.
 
-SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_core_common/sepolicy/system_ext/private
+SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/system_ext/private
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_ivi_common/sepolicy/system_ext/private
-SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += device/google/sdv/sdv_core_common/sepolicy/system_ext/public
-PRODUCT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_core_common/sepolicy/product/private
-BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_core_common/sepolicy/vendor/
+SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/system_ext/public
 BOARD_SEPOLICY_DIRS += device/google/cuttlefish/shared/auto/sepolicy/vhal
 BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_ivi_common/sepolicy/vendor/google/
 
