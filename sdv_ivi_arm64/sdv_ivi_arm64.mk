@@ -11,3 +11,4 @@ PRODUCT_DEVICE := trout_arm64
 LOCAL_VHAL_PRODUCT_PACKAGE := android.hardware.automotive.vehicle@default-sdv-trout-service
 
 include device/google/sdv/sdv_ivi_common/sdv_ivi_common.mk
+include device/google/sdv/deprecated.mk

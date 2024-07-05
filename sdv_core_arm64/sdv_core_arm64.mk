@@ -11,6 +11,7 @@ PRODUCT_NAME := sdv_core_arm64
 PRODUCT_DEVICE := sdv_core_arm64
 
 include device/google/sdv/sdv_core_common/sdv_core_common.mk
+include device/google/sdv/deprecated.mk
 
 PRODUCT_PACKAGES += \
     dlkm_loader \
