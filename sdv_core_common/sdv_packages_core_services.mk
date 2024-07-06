@@ -29,6 +29,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     client_sdv_benchmark_sample \
     com.android.sdv.hello.apex \
     com.android.sdv.samples.service_bundle_registry.apex_with_one_service_bundle_a \
+    com.android.sdv.samples.service_bundle_registry.apex_with_json_manifest \
     com.android.sdv.samples.rochambeau \
     com.android.sdv.samples.rpc \
     com.android.sdv.samples.multivd.ipv4 \
