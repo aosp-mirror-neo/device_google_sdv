@@ -25,4 +25,3 @@
 
 # SDV Telemetry Service
 /vendor/bin/sdv_telemetry_service_agent    u:object_r:sdv_telemetry_exec:s0
-/data/vendor/telemetry(/.*)?      u:object_r:telemetry_data_file:s0

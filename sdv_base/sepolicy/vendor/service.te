@@ -1,0 +1,8 @@
+# Copyright 2024 Google LLC
+
+# Defines SDV Telemetry service.
+type sdv_telemetry_service, protected_service, service_manager_type;
+
+# TODO: b/343460855 Remove Configurable Publisher from base and move to ivi after RPC support is available
+# Defines SDV Configurable Publisher Registry service.
+type sdv_configurable_publisher_registry_service, protected_service, service_manager_type;

@@ -17,11 +17,5 @@ google.sdv.service_bundles_registry.IRegistry u:object_r:sdv_sbr_service:s0
 # SDV Lifecycle Manager binder service used in integration tests.
 google.sdv.lifecycle.test.IServiceCallbackVerifier/default u:object_r:sdv_lc_test_service_manager_service:s0
 
-# SDV Telemetry service
-google.sdv.telemetry.ITelemetryService/default u:object_r:sdv_telemetry_service:s0
-
-# SDV Configurable Publisher Registry service
-google.sdv.telemetry.configurable_publisher.IConfigurablePublisherRegistry/default u:object_r:sdv_configurable_publisher_registry_service:s0
-
 # SDV VPM binder power callback service interface.
 google.sdv.vpm.IPowerStateClientApi u:object_r:sdv_vpm_agent_notification_service:s0

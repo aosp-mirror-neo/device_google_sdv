@@ -25,6 +25,7 @@ binder_use(sdv_telemetry);
 # SDV Telemetry Service agent can register telemetry service and configurable
 # publisher registry service
 typeattribute sdv_telemetry sdv_telemetry_server;
+# TODO: b/343460855 Remove Configurable Publisher from base and move to ivi after RPC support is available
 typeattribute sdv_telemetry sdv_configurable_publisher_registry_server;
 
 # SDV Telemetry agent can read and write directories and files to the /data/ dir
@@ -36,4 +37,5 @@ typeattribute sdv_telemetry sdv_dt_client;
 
 # SDV Telemetry Service agent can register Configurable Publisher Registry and its Binder IPC services.
 add_service(sdv_telemetry, sdv_telemetry_service)
+# TODO: b/343460855 Remove Configurable Publisher from base and move to ivi after RPC support is available
 add_service(sdv_telemetry, sdv_configurable_publisher_registry_service)
