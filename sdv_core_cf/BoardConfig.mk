@@ -7,8 +7,6 @@ TARGET_ARCH := x86_64
 TARGET_ARCH_VARIANT := silvermont
 TARGET_CPU_ABI := x86_64
 
-BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_core_cf/sepolicy/vendor/
-
 # Set SDV's init .rc script as the primary one which is loaded first by the init process.
 # WARNING: the side-effect of specifying this property is that the init .rc files under
 # /{system,system_ext,vendor,odm,product}/etc/init/ are no longer imported automatically by the

@@ -1,5 +1,0 @@
-# Copyright 2024 Google LLC
-
-# Device types
-# TODO: b/348364339 - move the types common with the sdv_core_arm64 target to sdv_core_common/
-type ab_block_device, dev_type;
