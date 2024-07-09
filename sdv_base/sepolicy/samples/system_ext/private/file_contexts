@@ -1,0 +1,5 @@
+# Copyright 2024 Google LLC
+
+# SDV sample RPC
+/system/bin/sdv_sample_rpc_server        u:object_r:sdv_sample_rpc_server_exec:s0
+/system/bin/sdv_sample_rpc_client        u:object_r:sdv_sample_rpc_client_exec:s0

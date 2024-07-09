@@ -17,9 +17,3 @@
 
 # SDV SOME/IP Broker
 /(system_ext|system/system_ext)/bin/sdv_someip_broker_agent                u:object_r:sdv_someip_broker_default_exec:s0
-
-# SDV SOME/IP rust client sample
-/(system_ext|system/system_ext)/bin/client_some_ip_sdv_sample    u:object_r:sdv_someip_sample_exec:s0
-
-# SDV Orchestration Service Sample
-/(system_ext|system/system_ext)/bin/orchestration_service_test                            u:object_r:orchestration_service_test_exec:s0
