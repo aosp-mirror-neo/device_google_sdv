@@ -1,0 +1,16 @@
+# Copyright 2024 Google LLC
+
+# Defines SDV SD Binder IPC service.
+type sdv_sd_service, protected_service, service_manager_type;
+type sdv_sd_identity, protected_service, service_manager_type;
+type sdv_sd_agent, protected_service, service_manager_type;
+type service_discovery_agent, protected_service, service_manager_type;
+
+# Defines SDV Mesh Binder IPC service.
+type sdv_mesh_service, protected_service, service_manager_type;
+
+# Define Rpcagent service.
+type sdv_rpcagent_service, protected_service, service_manager_type;
+
+# Defines SDV SD IPC service.
+type sdv_dt_service, protected_service, service_manager_type;

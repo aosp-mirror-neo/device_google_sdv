@@ -1,0 +1,5 @@
+# Copyright 2024 Google LLC
+
+# The vsock_local_cid property is written by the vsock_local_cid service once and then read by
+# data tunnel
+ro.boot.vsock_local_cid u:object_r:vsock_local_cid_prop:s0

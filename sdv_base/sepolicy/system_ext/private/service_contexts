@@ -1,0 +1,26 @@
+# Copyright 2024 Google LLC
+
+# SDV SD IPC service
+# TODO(b/325515090): Remove the IServiceManager, IIdentityManager and
+# IAgentManager when migration to API V2 is complete.
+google.sdv.sd.IServiceManager/default u:object_r:sdv_sd_service:s0
+google.sdv.sd.IIdentityManager/default u:object_r:sdv_sd_identity:s0
+google.sdv.sd.IAgentManager/default u:object_r:sdv_sd_agent:s0
+
+# SDV Identity Agent service.
+google.sdv.identity.IIdentityAgent/default u:object_r:sdv_sd_identity:s0
+# SDV Service Registration Agent service.
+google.sdv.service_discovery.discovery.IServiceRegistrationAgent/default u:object_r:sdv_sd_service:s0
+# SDV Transport Support Agent service.
+google.sdv.service_discovery.discovery.ITransportSupportAgent/default u:object_r:sdv_sd_agent:s0
+# SDV Service Discovery Agent service.
+google.sdv.service_discovery.discovery.IServiceDiscoveryAgent/default u:object_r:service_discovery_agent:s0
+
+# SDV Mesh IPC service
+android.sdv.mesh.IMessageManager u:object_r:sdv_mesh_service:s0
+
+# RPCagent service
+google.sdv.rpc.IRpcAgent/default u:object_r:sdv_rpcagent_service:s0
+
+# SDV DT IPC service
+google.sdv.dt.IDataTunnelAgent/default u:object_r:sdv_dt_service:s0

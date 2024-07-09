@@ -1,0 +1,46 @@
+# Copyright 2024 Google LLC
+
+# Attributes for SDV SD clients and servers
+# Attributes provide a convenient mechanism to maintain compatibility with the SD server's clients.
+# The required permissions can be granted to the attribute, and the clients' domains can use this
+# attribute to obtain the required permissions: typeattribute my_clients_domain sdv_sd_client.
+# For more details see:
+# https://android.googlesource.com/platform/external/selinux/+/1089665e31a647a5f0ba2eabe8ac6232b384bed9
+attribute sdv_sd_client;
+attribute sdv_sd_server;
+
+attribute sdv_mesh_client;
+attribute sdv_mesh_server;
+
+# Expansion options control whether the attributes are expanded within the SELinux rules for
+# performance optimizations. For instance, let's say that there is a MyService service that uses the
+# SDV SD service, and the SELinux domain associated with the MyService process is my_service.
+# my_service has the sdv_sd_client attribute to inherit the rules to be able to use the SDV SD
+# service. Then the `allow sdv_sd_client sdv_sd_service:service_manager find` rule is at build time
+# expanded to `allow my_service sdv_sd_service:service_manager find`.
+# For more details see:
+# https://android.googlesource.com/platform/external/selinux/+/1089665e31a647a5f0ba2eabe8ac6232b384bed9
+expandattribute sdv_sd_client true;
+
+# expandattribute false is a mechanism to preserve the attribute in the policy binary even if it's
+# unused. sdv_sd_server must be preserved, because it's used to exclude the domains that have the
+# sdv_sd_server attribute from a neverallow within the add_service() macro. Stripping sdv_sd_server
+# from the policy binary and thus removing it from its domains would make device certification (CTS)
+# fail, because neverallow rules are asserted during CTS, and the domains wouldn't have the
+# attribute to be excluded from the rules. (neverallow rules are absent when the policy binary is
+# built, so an attribute referenced in neverallow rules won't count as usage).
+# For more details see:
+# https://android.googlesource.com/platform/external/selinux/+/1089665e31a647a5f0ba2eabe8ac6232b384bed9
+expandattribute sdv_sd_server false;
+
+# Attributes for RPCagent
+attribute sdv_rpcagent_client;
+attribute sdv_rpcagent_server;
+expandattribute sdv_rpcagent_client true;
+expandattribute sdv_rpcagent_server false;
+
+# Attributes for SDV DT server
+attribute sdv_dt_client;
+attribute sdv_dt_server;
+expandattribute sdv_dt_client true;
+expandattribute sdv_dt_server false;
