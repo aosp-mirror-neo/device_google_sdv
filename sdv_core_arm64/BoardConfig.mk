@@ -1,7 +1,7 @@
 # Copyright 2023 Google LLC
 # SDV Core specific board config shall go into this file.
 
-HOST_CROSS_OS := linux_bionic
+HOST_CROSS_OS := linux_musl
 HOST_CROSS_ARCH := arm64
 HOST_CROSS_2ND_ARCH :=
 
