@@ -22,6 +22,9 @@ SDV_CORE_SERVICES_PACKAGES = \
     vsomeip_config.json \
     libsomeip_messages_catalog-someip-config.binpb \
     libsomeip_messages_catalog-vsidl-config.binpb \
+    libsdv_comms_ctx_ffi \
+    libsdv_comms_id_ffi \
+    libsdv_comms_sd_ffi \
 
 # Sample modules in core_services/
 SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
