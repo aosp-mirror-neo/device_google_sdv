@@ -1,4 +1,0 @@
-# Copyright 2024 Google LLC
-
-# Device types
-type open_dice_device, dev_type;
