@@ -14,6 +14,9 @@
   "sdv_device_configuration_integration_tests_presubmit": [
     {
       "name": "sdv_keymint_test"
+    },
+    {
+      "name": "sdv_pstore_test"
     }
   ]
 }
