@@ -11,6 +11,7 @@ binder_use(sdv_lc_process_client)
 
 # Required by the killService() Binder IPC.
 allow sdv_lc_server sdv_lc_process_client:process sigkill;
+allow sdv_lc_server self:process { setexec };
 
 # SDV Lifecycle agent is a core service and system process.
 core_service(sdv_lc_default)
