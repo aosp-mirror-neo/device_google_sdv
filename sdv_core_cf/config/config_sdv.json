@@ -10,6 +10,5 @@
   "memory_mb" : 256,
   "start_gnss_proxy": false,
   "start_webrtc": false,
-  "use_pmem": false,
   "use_sdcard" : false
 }
