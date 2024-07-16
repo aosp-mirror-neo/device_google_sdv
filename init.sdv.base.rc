@@ -376,3 +376,13 @@ on nonencrypted
     # The update engine is normally started via `class_start late_start` but since we don't have it
     # we start it manually at the same point the class would've been started.
     start update_engine
+
+# Borrowed from system/core/bootstat/bootstat.rc.
+# Populate the standard Android sys.boot.reason property. SDV doesn't include
+# entire bootstat because of its dependency on libstatssocket.
+#
+# Mirror bootloader boot reason to system boot reason
+# ro.boot.bootreason should be set by init already
+# before post-fs trigger
+on post-fs && property:ro.boot.bootreason=*
+    setprop sys.boot.reason ${ro.boot.bootreason}
