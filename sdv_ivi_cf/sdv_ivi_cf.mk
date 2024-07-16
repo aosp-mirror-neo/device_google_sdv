@@ -11,6 +11,7 @@ PRODUCT_DEVICE := sdv_ivi_cf
 LOCAL_VHAL_PRODUCT_PACKAGE := android.hardware.automotive.vehicle@V1-sdv-emulator-service
 
 include device/google/sdv/sdv_ivi_common/sdv_ivi_common.mk
+include device/google/sdv/sdv_base/sdv_samples_base_services.mk
 
 # include ethernet.rc in init.rc file to start on boot for ivi
 PRODUCT_COPY_FILES += device/google/sdv/sdv_ivi_cf/ethernet/ethernet.sh:$(TARGET_COPY_OUT_SYSTEM_EXT)/bin/ethernet/ethernet.sh

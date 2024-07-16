@@ -32,7 +32,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_VENDOR_PROPERTIES += \
     ro.vendor.telemetry.metric_config_store_in_mb=10
 
+include device/google/sdv/sdv_base/sdv_base.mk
 include device/google/sdv/sdv_ivi_common/sdv_packages_ivi_services.mk
 include device/google/sdv/sdv_ivi_common/sdv_packages_ivi_telemetry.mk
-include device/google/sdv/sdv_core_common/sdv_packages_base_services.mk
 include device/google/sdv/sdv_core_common/sdv_ethernet_setup.mk

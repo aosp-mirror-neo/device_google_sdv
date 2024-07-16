@@ -1,0 +1,28 @@
+# Copyright 2024 Google LLC
+#
+# Sample packages for SDV base components.
+#
+# They are not included by sdv_base.mk, only by downstream targets.
+
+SDV_BASE_SERVICES_SAMPLES_PACKAGES = \
+    dt_sample_client_cpp \
+    dt_sample_publisher_rust \
+    dt_sample_subscriber_rust \
+    sdv_cluster_grpc_client_cpp \
+    sdv_cluster_grpc_server_cpp \
+    sdv_dt_publisher_cpp \
+    sdv_dt_subscriber_cpp \
+    sdv_grpc_client \
+    sdv_grpc_server \
+    sdv_sample_rpc_client \
+    sdv_sample_rpc_server \
+    sdv_tpms_grpc_client_cpp \
+    sdv_tpms_grpc_server_cpp \
+    service_authn_sample_bench \
+    service_authn_sample_rs \
+
+SDV_BASE_SERVICES_HOST_SAMPLES_PACKAGES =
+
+PRODUCT_PACKAGES += $(SDV_BASE_SERVICES_SAMPLES_PACKAGES)
+
+PRODUCT_HOST_PACKAGES += $(SDV_BASE_SERVICES_HOST_SAMPLES_PACKAGES)
