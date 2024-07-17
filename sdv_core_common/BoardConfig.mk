@@ -117,7 +117,7 @@ BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 BOARD_INIT_BOOT_HEADER_VERSION := 4
 BOARD_MKBOOTIMG_INIT_ARGS += --header_version $(BOARD_INIT_BOOT_HEADER_VERSION)
 
-BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_PARTITION_LIST := system vendor system_ext product
+BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_PARTITION_LIST := system vendor system_ext product vendor_dlkm
 # reserve 512MiB for dynamic partition metadata
 BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_SIZE := 536870912
 
@@ -167,6 +167,12 @@ TARGET_USERIMAGES_USE_F2FS := true
 # The /metadata partition is required for metadata encryption
 BOARD_USES_METADATA_PARTITION := true
 
+# Vendor DLKM partition
+# https://source.android.com/docs/core/architecture/partitions/vendor-odm-dlkm-partition
+BOARD_USES_VENDOR_DLKMIMAGE := true
+BOARD_VENDOR_DLKMIMAGE_FILE_SYSTEM_TYPE := ext4
+TARGET_COPY_OUT_VENDOR_DLKM := vendor_dlkm
+
 # Add VLAN support (provided by 8021q module)
 TARGET_KERNEL_MODULES_PATH ?= kernel/prebuilts/$(TARGET_KERNEL_USE)/$(TARGET_KERNEL_ARCH)
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(TARGET_KERNEL_MODULES_PATH)/8021q.ko
@@ -188,4 +194,5 @@ AB_OTA_PARTITIONS := \
   product \
   vbmeta_system \
   vendor \
-  vbmeta
+  vbmeta \
+  vendor_dlkm \
