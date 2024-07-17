@@ -6,6 +6,7 @@ package {
 
 rust_test {
     name: "sdv_keymint_test",
+    team: "trendy_team_automotive",
     srcs: ["sdv_keymint_test.rs"],
     defaults: [
         "sdv@rust_defaults",
@@ -23,5 +24,20 @@ rust_test {
         "libsdv_log_rust",
     ],
 
+    require_root: true,
+}
+
+rust_test {
+    name: "sdv_pstore_test",
+    team: "trendy_team_automotive",
+    srcs: ["pstore/sdv_pstore_test.rs"],
+    defaults: [
+        "sdv@rust_defaults",
+    ],
+    test_suites: [
+        "general-tests",
+        "automotive-sdv-tests",
+    ],
+    test_config: "pstore/AndroidTest.xml",
     require_root: true,
 }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2024 Google LLC -->
+
+<!-- Based on rust_device_test_config_template.xml -->
+<configuration description="Config for SDV pstore test">
+    <option name="test-suite-tag" value="apct" />
+    <option name="test-suite-tag" value="apct-native" />
+
+    <!-- Make sure there is some data in the pstore then reboot -->
+    <target_preparer class="com.android.tradefed.targetprep.RunCommandTargetPreparer">
+        <!--
+          Silence the logs temporarily. pstore has limited capacity, so printing
+          enough logs between the write and reboot may make us miss the message.
+        -->
+        <option name="run-command" value="setprop log.tag SILENT" />
+        <!-- Wipe existing pstore contents, if any -->
+        <option name="run-command" value="rm -rf /sys/fs/pstore/*" />
+        <option name="run-command" value="echo HelloPstore > /dev/pmsg0" />
+        <option name="throw-if-cmd-fail" value="true" />
+    </target_preparer>
+    <target_preparer class="com.android.tradefed.targetprep.RebootTargetPreparer" />
+    <target_preparer class="com.android.tradefed.targetprep.PushFilePreparer">
+        <option name="cleanup" value="true" />
+        <option name="push" value="sdv_pstore_test->/data/local/tmp/sdv_pstore_test" />
+    </target_preparer>
+
+    <test class="com.android.tradefed.testtype.rust.RustBinaryTest" >
+        <option name="test-device-path" value="/data/local/tmp" />
+        <option name="module-name" value="sdv_pstore_test" />
+    </test>
+</configuration>
