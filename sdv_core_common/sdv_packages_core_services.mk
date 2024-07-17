@@ -85,7 +85,6 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     sdv_vsomeip_group_tester \
     sdv_vsomeip_side_mirror_tester \
     server_rust_tokio_sdv_sample \
-    some_ip_dt_sample \
     structured_logging_sdv_rust_sample \
     structured_logging_sdv_sample \
     someip_rpc_someip_server \
