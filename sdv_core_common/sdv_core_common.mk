@@ -26,7 +26,8 @@ PRODUCT_VENDOR_PROPERTIES += \
 PRODUCT_SHIPPING_API_LEVEL := 35
 DEVICE_MANIFEST_FILE := device/google/sdv/sdv_core_common/sdv_vendor_manifest.xml
 
-DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += device/google/sdv/comp_matrix.xml
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
+    device/google/sdv/sdv_base/device_system_compatibility_matrix.xml
 
 PRODUCT_PACKAGES += vendor_compatibility_matrix.xml
 PRODUCT_PACKAGES += system_ext_manifest.xml
