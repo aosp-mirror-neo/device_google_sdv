@@ -20,6 +20,7 @@ SDV_CORE_TELEMETRY_SAMPLES_PACKAGES = \
     telemetry_sample_data_tunnel_publisher_error_report \
     dt_telemetry_sample_publisher \
     telemetry_sample_publisher \
+    telemetry_sample_getter_publisher \
     sdv_telemetry_simulator
 
 SDV_CORE_TELEMETRY_HOST_PACKAGES =
