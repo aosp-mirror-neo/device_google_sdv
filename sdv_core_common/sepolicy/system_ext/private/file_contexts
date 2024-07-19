@@ -16,7 +16,7 @@
 /(system_ext|system/system_ext)/bin/sdv_vpm_agent u:object_r:sdv_vpm_agent_exec:s0
 
 # SDV Lifecycle Service Bundle runner
-/system/bin/lifecycle_service_bundle_runner              u:object_r:lifecycle_service_bundle_runner_exec:s0
+/(system_ext|system/system_ext)/bin/lifecycle_service_bundle_runner u:object_r:lifecycle_service_bundle_runner_exec:s0
 
 # SDV SOME/IP Broker
-/(system_ext|system/system_ext)/bin/sdv_someip_broker_agent                u:object_r:sdv_someip_broker_default_exec:s0
+/(system_ext|system/system_ext)/bin/sdv_someip_broker_agent u:object_r:sdv_someip_broker_default_exec:s0
