@@ -14,6 +14,10 @@ $(call soong_config_append,cvd,launch_configs,cvd_config_sdv_media.json)
 TARGET_BOARD_INFO_FILE ?= device/google/sdv/sdv_media_cf/android-info.txt
 
 include device/google/sdv/sdv_base/sdv_samples_base_services.mk
+include device/google/sdv/sdv_core_base/sdv_samples_automotive_services.mk
+include device/google/sdv/sdv_core_base/sdv_samples_core_services.mk
+include device/google/sdv/sdv_core_base/sdv_samples_platform.mk
+include device/google/sdv/sdv_core_base/sdv_samples_telemetry.mk
 
 # Cuttlefish v4l2 camera support
 PRODUCT_PACKAGES += cuttlefish_v4l2_streamer

@@ -1,0 +1,28 @@
+# Copyright 2023-2024 Google LLC
+#
+# All the samples from automotive_services/.
+#
+# These are not included in sdv_core_base.mk. Targets need to include them explicitly.
+
+SDV_AUTOMOTIVE_SERVICES_SAMPLES_PACKAGES = \
+    diag_manager_sample \
+    diag_provider1_sample \
+    diag_provider2_sample \
+    sdv_con_cal_client \
+    sdv_con_cal_service \
+    libdiagnostics_sample_catalog-diagnostics-config.binpb \
+    libdiagnostics_sample_catalog-vsidl-config.binpb \
+    vepsm \
+    vpm_power_state_client \
+    vpm_vehicle_state_client \
+    sdv_user_preferences_service \
+    sdv_hvac_service \
+    sdv_car_seats_service \
+    sdv_hmi_service \
+
+
+SDV_AUTOMOTIVE_SERVICES_HOST_SAMPLES_PACKAGES =
+
+PRODUCT_PACKAGES += $(SDV_AUTOMOTIVE_SERVICES_SAMPLES_PACKAGES)
+
+PRODUCT_HOST_PACKAGES += $(SDV_AUTOMOTIVE_SERVICES_HOST_SAMPLES_PACKAGES)
