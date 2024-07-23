@@ -102,7 +102,7 @@ PRODUCT_PACKAGES += \
     init.environ.rc
 
 PRODUCT_COPY_FILES += \
-    packages/modules/Virtualization/microdroid/ueventd.rc:vendor/etc/ueventd.rc \
+    device/google/sdv/sdv_core_common/ueventd.rc:vendor/etc/ueventd.rc \
     device/google/cuttlefish/shared/config/seriallogging.rc:vendor/etc/init/seriallogging.rc \
 
 PRODUCT_VENDOR_PROPERTIES += \
