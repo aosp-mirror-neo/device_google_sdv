@@ -1,0 +1,8 @@
+
+# Copyright 2024 Google LLC
+
+# SDV Telemetry service
+google.sdv.telemetry.ITelemetryService/default u:object_r:sdv_telemetry_service:s0
+
+# SDV Configurable Publisher Registry service
+google.sdv.telemetry.configurable_publisher.IConfigurablePublisherRegistry/default u:object_r:sdv_configurable_publisher_registry_service:s0

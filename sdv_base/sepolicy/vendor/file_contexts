@@ -1,0 +1,4 @@
+# Copyright 2024 Google LLC
+
+# SDV Telemetry Service
+/data/vendor/telemetry(/.*)?      u:object_r:telemetry_data_file:s0

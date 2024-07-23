@@ -6,6 +6,7 @@ attribute sdv_telemetry_server;
 expandattribute sdv_telemetry_client true;
 expandattribute sdv_telemetry_server false;
 
+# TODO: b/343460855 Remove Configurable Publisher from base and move to ivi after RPC support is available
 # Attributes for SDV Configurable Publisher Registry
 attribute sdv_configurable_publisher_registry_client;
 attribute sdv_configurable_publisher_registry_server;
