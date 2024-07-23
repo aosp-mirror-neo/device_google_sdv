@@ -11,9 +11,12 @@ fn sysfs_pstore_pmsg_has_contents_after_reboot() {
     let contents = std::fs::read("/sys/fs/pstore/pmsg-ramoops-0").unwrap();
     let expected = b"HelloPstore";
     // String defined in AndroidTest.xml
-    assert!(contents.as_slice().windows(expected.len()).any(|b| b == expected),
-            "content: {:?} not found in /sys/fs/pstore/pmsg-ramoops-0:\n{:?}",
-            String::from_utf8_lossy(expected), String::from_utf8_lossy(&contents));
+    assert!(
+        contents.as_slice().windows(expected.len()).any(|b| b == expected),
+        "content: {:?} not found in /sys/fs/pstore/pmsg-ramoops-0:\n{:?}",
+        String::from_utf8_lossy(expected),
+        String::from_utf8_lossy(&contents)
+    );
 }
 
 #[test]
