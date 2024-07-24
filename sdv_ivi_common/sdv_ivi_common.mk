@@ -36,4 +36,4 @@ PRODUCT_VENDOR_PROPERTIES += \
 include device/google/sdv/sdv_base/sdv_base.mk
 include device/google/sdv/sdv_ivi_common/sdv_packages_ivi_services.mk
 include device/google/sdv/sdv_ivi_common/sdv_packages_ivi_telemetry.mk
-include device/google/sdv/sdv_core_common/sdv_ethernet_setup.mk
+include device/google/sdv/sdv_core_base/sdv_ethernet_setup.mk

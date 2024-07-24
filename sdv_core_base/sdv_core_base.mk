@@ -24,7 +24,7 @@ PRODUCT_VENDOR_PROPERTIES += \
 
 # Android V SDK level, matches target-level 202404 in the device manifest.
 PRODUCT_SHIPPING_API_LEVEL := 35
-DEVICE_MANIFEST_FILE := device/google/sdv/sdv_core_common/sdv_vendor_manifest.xml
+DEVICE_MANIFEST_FILE := device/google/sdv/sdv_core_base/sdv_vendor_manifest.xml
 
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
     device/google/sdv/sdv_base/device_system_compatibility_matrix.xml
@@ -102,7 +102,7 @@ PRODUCT_PACKAGES += \
     init.environ.rc
 
 PRODUCT_COPY_FILES += \
-    device/google/sdv/sdv_core_common/ueventd.rc:vendor/etc/ueventd.rc \
+    device/google/sdv/sdv_core_base/ueventd.rc:vendor/etc/ueventd.rc \
     device/google/cuttlefish/shared/config/seriallogging.rc:vendor/etc/init/seriallogging.rc \
 
 PRODUCT_VENDOR_PROPERTIES += \
@@ -167,11 +167,11 @@ PRODUCT_PACKAGES += vold
 PRODUCT_PACKAGES += vdc
 
 include device/google/sdv/sdv_base/sdv_base.mk
-include device/google/sdv/sdv_core_common/sdv_packages_automotive_services.mk
-include device/google/sdv/sdv_core_common/sdv_packages_core_services.mk
-include device/google/sdv/sdv_core_common/sdv_packages_platform.mk
-include device/google/sdv/sdv_core_common/sdv_packages_telemetry.mk
-include device/google/sdv/sdv_core_common/sdv_ethernet_setup.mk
+include device/google/sdv/sdv_core_base/sdv_packages_automotive_services.mk
+include device/google/sdv/sdv_core_base/sdv_packages_core_services.mk
+include device/google/sdv/sdv_core_base/sdv_packages_platform.mk
+include device/google/sdv/sdv_core_base/sdv_packages_telemetry.mk
+include device/google/sdv/sdv_core_base/sdv_ethernet_setup.mk
 
 # Enable tracing and test services on userdebug and eng
 ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))

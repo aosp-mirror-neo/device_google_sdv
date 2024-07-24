@@ -14,7 +14,7 @@ PRODUCT_DEVICE := sdv_core_cf
 
 TARGET_BOARD_INFO_FILE ?= device/google/sdv/sdv_core_cf/android-info.txt
 
-include device/google/sdv/sdv_core_common/sdv_core_common.mk
+include device/google/sdv/sdv_core_base/sdv_core_base.mk
 include device/google/sdv/sdv_base/sdv_samples_base_services.mk
 
 PRODUCT_SYSTEM_PROPERTIES += \
@@ -22,7 +22,7 @@ PRODUCT_SYSTEM_PROPERTIES += \
 
 PRODUCT_COPY_FILES += \
     device/google/sdv/init.sdv.base.rc:system/etc/init/hw/init.sdv.rc \
-    device/google/sdv/sdv_core_common/sdv.agents.rc:system/etc/init/sdv.agents.rc \
+    device/google/sdv/sdv_core_base/sdv.agents.rc:system/etc/init/sdv.agents.rc \
     device/google/sdv/sdv_core_cf/vvmtruststore.rc:system/etc/init/vvmtruststore.rc
 
 # fstab.<name> must match with the value of the androidboot.hardware property.

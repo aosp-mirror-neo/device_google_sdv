@@ -1,7 +1,7 @@
 # Copyright 2023 Google LLC
 # SDV Media specific board config shall go into this file.
 
-# This is usually set by sdv_core_common/BoardConfig (through
+# This is usually set by sdv_core_base/BoardConfig (through
 # sdv_core_cf/BoardConfig.mk), but we want to add media-specific init logic on
 # top of that one. Because we set this everywhere with ?=, the first definition
 # applies. We need to make sure this is set before sdv_core_cf/BoardConfig.mk.

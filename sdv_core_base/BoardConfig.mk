@@ -137,12 +137,12 @@ BOARD_VENDOR_SEPOLICY_DIRS += device/google/cuttlefish/shared/sepolicy/vendor/se
 # private and public policies of the partition. See system/sepolicy/README.md for more details.
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/system_ext/private
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/samples/system_ext/private
-SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_core_common/sepolicy/system_ext/private
-SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_core_common/sepolicy/samples/system_ext/private
+SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_core_base/sepolicy/system_ext/private
+SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_core_base/sepolicy/samples/system_ext/private
 SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/system_ext/public
-SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += device/google/sdv/sdv_core_common/sepolicy/system_ext/public
-PRODUCT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_core_common/sepolicy/product/private
-BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_core_common/sepolicy/vendor/
+SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += device/google/sdv/sdv_core_base/sepolicy/system_ext/public
+PRODUCT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_core_base/sepolicy/product/private
+BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_core_base/sepolicy/vendor/
 BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/vendor
 
 BOARD_USES_SYSTEM_EXTIMAGE := true
@@ -202,4 +202,4 @@ BOARD_ROOT_EXTRA_FOLDERS := vvmtruststore
 
 # "m custom_images" must be called for that image to be created.
 PRODUCT_CUSTOM_IMAGE_MAKEFILES := \
-  device/google/sdv/sdv_core_common/vvmtruststore.mk
+  device/google/sdv/sdv_core_base/vvmtruststore.mk
