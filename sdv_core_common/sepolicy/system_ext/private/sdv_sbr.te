@@ -10,5 +10,10 @@ allow sdv_sbr apex_info_file:file getattr;
 # SDV Lifecycle service can call Service Bundles Registry.
 binder_call(sdv_lc_server, sdv_sbr)
 
+# SDV Orchestration service can call Service Bundles Registry.
+binder_call(sdv_orch, sdv_sbr)
+# SDV Lifecycle service has access to the Service Bundles Registry Binder service.
+allow sdv_orch sdv_sbr_service:service_manager find;
+
 # SDV Service Bundles Registry agent can register its Binder IPC services.
 add_service(sdv_sbr, sdv_sbr_service)
