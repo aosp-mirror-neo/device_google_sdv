@@ -12,7 +12,7 @@
         "default_build": "<REPLACE_THIS_BY_REPO_ROOT>/out_sdv_core/target/product/sdv_core_cf"
       },
       "boot": {
-        "extra_bootconfig_args": "androidboot.virt.vmname=instance1 androidboot.virt.address=3"
+        "extra_bootconfig_args": "androidboot.sdv.instance_name=instance1 androidboot.virt.address=3"
       }
     },
     {
@@ -24,7 +24,7 @@
         "default_build": "<REPLACE_THIS_BY_REPO_ROOT>/out_sdv_core/target/product/sdv_core_cf"
       },
       "boot": {
-        "extra_bootconfig_args": "androidboot.virt.vmname=instance2 androidboot.virt.address=4"
+        "extra_bootconfig_args": "androidboot.sdv.instance_name=instance2 androidboot.virt.address=4"
       }
     }
   ]
