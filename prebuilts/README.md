@@ -50,7 +50,7 @@ Binaries included in this directory were compiled this way.
    ```
    croot device/google/sdv
    repo start mesa-prebuilt .
-   cat <<EOF >>./sdv_media_common/sdv_media_common.mk
+   cat <<EOF >>./sdv_media_base/sdv_media_base.mk
    \$(call dist-for-goals,dist_files,\$(OUT_DIR)/target/product/\$(TARGET_PRODUCT)/vendor/lib64/egl/libGLES_mesa.so)
    \$(call dist-for-goals,dist_files,\$(OUT_DIR)/target/product/\$(TARGET_PRODUCT)/vendor/lib64/libglapi.so)
    \$(call dist-for-goals,dist_files,\$(OUT_DIR)/target/product/\$(TARGET_PRODUCT)/vendor/lib64/dri/gallium_dri.so)

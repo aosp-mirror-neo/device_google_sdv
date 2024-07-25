@@ -42,6 +42,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += sdv_multi_display_sample_rust
 
 PRODUCT_COPY_FILES += \
-    device/google/sdv/sdv_media_common/init.sdv_media.rc:system/etc/init/hw/init.sdv_media.rc \
-    device/google/sdv/sdv_media_common/ueventd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/ueventd.rc \
+    device/google/sdv/sdv_media_base/init.sdv_media.rc:system/etc/init/hw/init.sdv_media.rc \
+    device/google/sdv/sdv_media_base/ueventd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/ueventd.rc \
 
