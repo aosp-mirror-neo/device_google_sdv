@@ -5,10 +5,10 @@
 
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/system_ext/private
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/samples/system_ext/private
-SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_ivi_common/sepolicy/system_ext/private
+SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_ivi_base/sepolicy/system_ext/private
 SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/system_ext/public
 BOARD_SEPOLICY_DIRS += device/google/cuttlefish/shared/auto/sepolicy/vhal
-BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_ivi_common/sepolicy/vendor/google/
+BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_ivi_base/sepolicy/vendor/google/
 BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/vendor
 
 PRODUCT_BRAND := Google
@@ -28,12 +28,12 @@ PRODUCT_ENFORCE_ARTIFACT_PATH_REQUIREMENTS := false
 # TODO(b/341159539): Figure out the correct init order for SDV agents on IVI wrt other
 # binaries started at init on IVI.
 PRODUCT_COPY_FILES += \
-    device/google/sdv/sdv_ivi_common/sdv.agents.rc:system/etc/init/sdv.agents.rc
+    device/google/sdv/sdv_ivi_base/sdv.agents.rc:system/etc/init/sdv.agents.rc
 
 PRODUCT_VENDOR_PROPERTIES += \
     ro.vendor.telemetry.metric_config_store_in_mb=10
 
 include device/google/sdv/sdv_base/sdv_base.mk
-include device/google/sdv/sdv_ivi_common/sdv_packages_ivi_services.mk
-include device/google/sdv/sdv_ivi_common/sdv_packages_ivi_telemetry.mk
+include device/google/sdv/sdv_ivi_base/sdv_packages_ivi_services.mk
+include device/google/sdv/sdv_ivi_base/sdv_packages_ivi_telemetry.mk
 include device/google/sdv/sdv_core_base/sdv_ethernet_setup.mk
