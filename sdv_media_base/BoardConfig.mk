@@ -4,7 +4,7 @@
 # Based on device/google/trout/shared/BoardConfig.mk
 # device/google/cuttlefish/shared/graphics/BoardConfig.mk
 BOARD_VENDOR_SEPOLICY_DIRS += \
-    device/google/sdv/sdv_media_common/sepolicy \
+    device/google/sdv/sdv_media_base/sepolicy \
     external/minigbm/cros_gralloc/sepolicy
 
 # Bumping userdata partition size to simplify development of apps (Harry) on SDV Media.

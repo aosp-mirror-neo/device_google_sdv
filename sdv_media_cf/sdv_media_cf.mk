@@ -7,7 +7,7 @@
 PRODUCT_NAME := sdv_media_cf
 PRODUCT_DEVICE := sdv_media_cf
 
-$(call inherit-product, device/google/sdv/sdv_media_common/sdv_media_common.mk)
+$(call inherit-product, device/google/sdv/sdv_media_base/sdv_media_base.mk)
 $(call inherit-product, device/google/sdv/sdv_core_cf/sdv_core_cf.mk)
 
 $(call soong_config_append,cvd,launch_configs,cvd_config_sdv_media.json)
@@ -18,6 +18,7 @@ include device/google/sdv/sdv_core_base/sdv_samples_automotive_services.mk
 include device/google/sdv/sdv_core_base/sdv_samples_core_services.mk
 include device/google/sdv/sdv_core_base/sdv_samples_platform.mk
 include device/google/sdv/sdv_core_base/sdv_samples_telemetry.mk
+include device/google/sdv/sdv_media_base/sdv_samples_media.mk
 
 # Cuttlefish v4l2 camera support
 PRODUCT_PACKAGES += cuttlefish_v4l2_streamer
