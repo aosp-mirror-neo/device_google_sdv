@@ -6,6 +6,15 @@ typeattribute sdv_dt_agent sdv_dt_server;
 # Allow the Data Tunnel Agent to use Service Discovery.
 typeattribute sdv_dt_agent sdv_sd_client;
 
+# Defines SDV IAgent IPC service.
+type sdv_dt_iagent, protected_service, service_manager_type;
+
+# Allow the Data Tunnel Agent to register IAgentService
+add_service(sdv_dt_server, sdv_dt_iagent);
+
+# Allow IAgentService to communicate with IDataTunnel
+typeattribute sdv_dt_iagent sdv_dt_client;
+
 # Allow the Data Tunnel Agent to use the RPC Agent.
 typeattribute sdv_dt_agent sdv_rpcagent_client;
 
