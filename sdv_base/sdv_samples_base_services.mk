@@ -12,8 +12,6 @@ SDV_BASE_SERVICES_SAMPLES_PACKAGES = \
     sdv_cluster_grpc_server_cpp \
     sdv_dt_publisher_cpp \
     sdv_dt_subscriber_cpp \
-    sdv_grpc_client \
-    sdv_grpc_server \
     sdv_sample_rpc_client \
     sdv_sample_rpc_server \
     sdv_tpms_grpc_client_cpp \
