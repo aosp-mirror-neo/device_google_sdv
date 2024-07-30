@@ -251,6 +251,13 @@ on post-fs-data
     # by the 'load_persist_props' call above.
     trigger load_persist_props_action
 
+    # A directory for storage for service bundles
+    # TODO: b/367934029 - eventually, all service bundles will have their own, isolated directory
+    # within this directory, and service bundles won't be able to directly write
+    # service_bundle_data, but now, this can be used as a data directory by all service bundles
+    # temporarily
+    mkdir /data/service_bundle_data 0770 system system
+
     # set up misc and keystore directory structure first so that we can end early boot and start
     # apexd
     mkdir /data/misc 01771 system misc encryption=Require

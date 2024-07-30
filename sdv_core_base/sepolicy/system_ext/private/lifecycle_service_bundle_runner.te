@@ -30,3 +30,9 @@ type sdv_lc_test_service_manager_service, protected_service, service_manager_typ
 
 # Lifecycle Service Test Service can register its Binder IPC service.
 add_service(lifecycle_service_bundle_runner, sdv_lc_test_service_manager_service)
+
+# File used by service bundles to persist data
+type service_bundle_data, file_type, data_file_type, core_data_file_type;
+
+allow lifecycle_service_bundle_runner service_bundle_data:dir create_dir_perms;
+allow lifecycle_service_bundle_runner service_bundle_data:file create_file_perms;
