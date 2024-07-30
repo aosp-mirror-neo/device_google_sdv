@@ -40,6 +40,11 @@ TARGET_COPY_OUT_VENDOR := vendor
 # Enable OTA from target file.
 PRODUCT_BUILD_GENERIC_OTA_PACKAGE := true
 
+# TODO: b/356431569 - This is a quick fix for the missing ro.build. properties. Find a final
+# solution for adding them back.
+PRODUCT_PACKAGES += \
+    system-build.prop \
+
 # Stolen from microdroid/Android.bp
 PRODUCT_PACKAGES += \
     init_second_stage \
