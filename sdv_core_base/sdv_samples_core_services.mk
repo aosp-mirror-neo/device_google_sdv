@@ -24,6 +24,8 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     logging_sdv_rust_sample \
     logging_sdv_sample \
     middleware_someip_sample \
+    sdv_client_cpp_tracing_sample \
+    sdv_client_rust_tracing_sample \
     sdv_compatibility_sample_publisher_old_service \
     sdv_compatibility_sample_publisher_new_service \
     sdv_compatibility_sample_subscriber_new_service \
@@ -45,6 +47,8 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     sdv_mirror_sdv_mirror_modern_service \
     sdv_mirror_status_printer_service \
     sdv_sample_property_service \
+    sdv_server_cpp_tracing_sample \
+    sdv_server_rust_tracing_sample \
     sdv_tire_alert_service \
     sdv_tire_monitor_service \
     sdv_tire_sensor_reader_service \
@@ -73,8 +77,6 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     libsomeip_messages_catalog-vsidl-config.binpb \
     libhealthmonitor_messages_catalog-vsidl-config.binpb \
     libhealthmonitor_messages_catalog-config.binpb \
-    com.android.sdv.samples.tracing \
-    sdv_server_rust_tracing_sample \
 
 SDV_CORE_SERVICES_HOST_SAMPLES_PACKAGES += \
     sdv_vsomeip_hello_service_sample \
