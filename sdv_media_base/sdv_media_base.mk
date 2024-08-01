@@ -36,5 +36,5 @@ PRODUCT_PACKAGES += \
     libtinyalsav2 \
 
 PRODUCT_COPY_FILES += \
-    device/google/sdv/sdv_media_base/init.sdv_media.rc:system/etc/init/hw/init.sdv_media.rc \
+    device/google/sdv/sdv_media_base/init.sdv_media_base.rc:system/etc/init/init.sdv_media_base.rc \
     device/google/sdv/sdv_media_base/ueventd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/ueventd.rc \

@@ -1,0 +1,17 @@
+# Copyright 2023 Google LLC
+#
+# Root init.rc for sdv_core_cf.
+
+import /system/etc/init/init.sdv_core_base.rc
+import /system/etc/init/vvmtruststore.rc
+
+# Declare and start the sample SDV SOME/IP stack agent.
+service sdv_someip_stack_agent /vendor/bin/sdv_someip_stack_agent
+    class core
+    disabled
+    user system
+    group system
+    setenv VSOMEIP_CONFIGURATION /vendor/etc/someip/vsomeip_config.json
+    setenv VSOMEIP_BASE_PATH /data/vendor/vsomeip/
+on property:dev.bootcomplete=1 && property:ro.boot.vsock_local_cid=3
+    start sdv_someip_stack_agent

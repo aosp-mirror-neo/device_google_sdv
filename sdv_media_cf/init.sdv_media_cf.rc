@@ -1,0 +1,6 @@
+# Copyright 2023 Google LLC
+#
+# Root init.rc for sdv_media_cf.
+
+import /system/etc/init/hw/init.sdv_core_cf.rc
+import /system/etc/init/init.sdv_media_base.rc

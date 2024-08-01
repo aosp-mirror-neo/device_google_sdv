@@ -107,6 +107,7 @@ PRODUCT_PACKAGES += \
     init.environ.rc
 
 PRODUCT_COPY_FILES += \
+    device/google/sdv/sdv_core_base/init.sdv_core_base.rc:system/etc/init/init.sdv_core_base.rc \
     device/google/sdv/sdv_core_base/sdv.agents.rc:system/etc/init/sdv.agents.rc \
     device/google/sdv/sdv_core_base/ueventd.rc:vendor/etc/ueventd.rc \
     device/google/cuttlefish/shared/config/seriallogging.rc:vendor/etc/init/seriallogging.rc \

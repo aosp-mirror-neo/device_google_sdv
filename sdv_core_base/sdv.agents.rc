@@ -83,17 +83,6 @@ service sdv_telemetry_service_agent /vendor/bin/sdv_telemetry_service_agent
 on property:dev.bootcomplete=1 && property:ro.build.product=sdv_core_cf
     start sdv_telemetry_service_agent
 
-# Declare and start the SDV SOME/IP stack agent.
-service sdv_someip_stack_agent /vendor/bin/sdv_someip_stack_agent
-    class core
-    disabled
-    user system
-    group system
-    setenv VSOMEIP_CONFIGURATION /vendor/etc/someip/vsomeip_config.json
-    setenv VSOMEIP_BASE_PATH /data/vendor/vsomeip/
-on property:dev.bootcomplete=1 && property:ro.boot.vsock_local_cid=3
-    start sdv_someip_stack_agent
-
 # Declare and start the SDV SOME/IP broker agent.
 service sdv_someip_broker_agent /system_ext/bin/sdv_someip_broker_agent
     class core

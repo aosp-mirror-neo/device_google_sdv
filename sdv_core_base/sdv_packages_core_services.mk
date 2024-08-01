@@ -14,10 +14,6 @@ SDV_CORE_SERVICES_PACKAGES = \
     sdv_service_bundles_registry_agent \
     lifecycle_service_bundle_runner \
     sdv_someip_broker_agent \
-    broker_config.json \
-    sdv_someip_stack_agent \
-    someip_stack_deployment.json \
-    vsomeip_config.json \
     libsdv_comms_ctx_ffi \
     libsdv_comms_id_ffi \
     libsdv_comms_sd_ffi \

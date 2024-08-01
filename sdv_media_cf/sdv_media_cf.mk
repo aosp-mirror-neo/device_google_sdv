@@ -20,6 +20,9 @@ include device/google/sdv/sdv_core_base/sdv_samples_platform.mk
 include device/google/sdv/sdv_core_base/sdv_samples_telemetry.mk
 include device/google/sdv/sdv_media_base/sdv_samples_media.mk
 
+PRODUCT_COPY_FILES += \
+    device/google/sdv/sdv_media_cf/init.sdv_media_cf.rc:system/etc/init/hw/init.sdv_media_cf.rc \
+
 # Cuttlefish v4l2 camera support
 PRODUCT_PACKAGES += cuttlefish_v4l2_streamer
 PRODUCT_PACKAGES += sdv_draw_camera_rust

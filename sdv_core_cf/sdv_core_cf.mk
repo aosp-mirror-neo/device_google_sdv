@@ -24,8 +24,12 @@ include device/google/sdv/sdv_core_base/sdv_samples_telemetry.mk
 PRODUCT_SYSTEM_PROPERTIES += \
     ro.sdv.enable_seriallogging=true \
 
+# Root init.rc. File path must match LOCAL_ANDROIDBOOT_INIT_RC defined in BoardConfig.mk.
 PRODUCT_COPY_FILES += \
-    device/google/sdv/init.sdv.base.rc:system/etc/init/hw/init.sdv.rc \
+    device/google/sdv/sdv_core_cf/init.sdv_core_cf.rc:$(TARGET_COPY_OUT_SYSTEM)/etc/init/hw/init.sdv_core_cf.rc \
+
+PRODUCT_COPY_FILES += \
+    device/google/sdv/sdv_core_base/init.sdv_core_base.rc:system/etc/init/init.sdv_core_base.rc \
     device/google/sdv/sdv_core_cf/vvmtruststore.rc:system/etc/init/vvmtruststore.rc
 
 # fstab.<name> must match with the value of the androidboot.hardware property.
@@ -38,3 +42,14 @@ PRODUCT_COPY_FILES += device/google/sdv/sdv_core_cf/ethernet/ethernet.rc:$(TARGE
 
 # BootControl HAL for Cuttlefish
 PRODUCT_PACKAGES += com.android.hardware.boot
+
+# Sample implementation of the SOME/IP stack
+PRODUCT_PACKAGES += \
+    sdv_someip_stack_agent \
+    vsomeip_config.json \
+
+# Configuration file overrides
+
+## SOME/IP broker config
+PRODUCT_PACKAGES += broker_config.json
+PRODUCT_SYSTEM_PROPERTIES += ro.sdv.someip.broker_config=/system/etc/someip/broker_config.json

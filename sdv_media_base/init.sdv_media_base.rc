@@ -1,8 +1,6 @@
 # Copyright 2023 Google LLC
 # SDV's primary init .rc file which is loaded first by the init process.
 
-import /system/etc/init/hw/init.sdv.rc
-
 on early-init
     # HACK: Set properties to avoid dependency on surfaceflinger and
     # hwservicemanager.

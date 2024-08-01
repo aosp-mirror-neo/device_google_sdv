@@ -8,7 +8,7 @@
 #
 # TODO(b/267320398): clean this up once automatic importing of .rc files from
 # /etc/init/ works.
-LOCAL_ANDROIDBOOT_INIT_RC ?= /system/etc/init/hw/init.sdv_media.rc
+LOCAL_ANDROIDBOOT_INIT_RC ?= /system/etc/init/hw/init.sdv_media_cf.rc
 
 # Note: include order matters, sdv_media may need to override some of the
 # settings defined in core.
