@@ -8,6 +8,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     client_rust_tokio_sdv_sample \
     client_sdv_benchmark_sample \
     com.android.sdv.hello.apex \
+    com.sdv.test1 \
     com.android.sdv.samples.service_bundle_registry.apex_with_one_service_bundle_cpp \
     com.android.sdv.samples.service_bundle_registry.apex_with_one_service_bundle_rust \
     com.android.sdv.samples.service_bundle_registry.apex_with_two_service_bundles_cpp_rust \
