@@ -23,3 +23,8 @@ binder_call(sdv_gateway_server, sdv_gateway_client)
 
 # The SDV Gateway client has access to the ISdvGateway Binder IPC service.
 allow sdv_gateway_client sdv_gateway_service:service_manager find;
+
+# The SDV Gateway server is a client for SDV Comms stack agents on IVI.
+typeattribute sdv_gateway sdv_sd_client;
+typeattribute sdv_gateway sdv_rpcagent_client;
+typeattribute sdv_gateway sdv_dt_client;
