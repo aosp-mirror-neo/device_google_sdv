@@ -12,9 +12,3 @@ echo Setting IP address for eth1: $IP > /dev/kmsg
 ifconfig eth1 $IP
 ip route add 224.0.0.0/4 dev eth1
 ifup eth1
-
-# Temp workaround for PDK12- Add IP rule commands to allow applications in
-# any network namespace to open sockets
-ip rule add from all lookup main pref 0
-ip route add default dev eth1
-ip route flush cache
