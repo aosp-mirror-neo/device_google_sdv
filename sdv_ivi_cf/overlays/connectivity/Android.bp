@@ -1,0 +1,13 @@
+// Copyright 2024 Google LLC
+
+package {
+    default_applicable_licenses: ["sdv_license"],
+}
+
+runtime_resource_overlay {
+    name: "sdv_ivi_cf_overlay_connectivity",
+    resource_dirs: ["res"],
+    manifest: "AndroidManifest.xml",
+    sdk_version: "current",
+    product_specific: true,
+}
