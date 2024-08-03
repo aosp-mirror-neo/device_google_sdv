@@ -112,8 +112,10 @@ PRODUCT_PACKAGES += \
     mdnsd \
 
 # FIXME: Hack to get some rootdirs created
+# TODO: b/360314949 - remove when b/353429422 (Migrate init.environ.rc to Soong) is fixed
 PRODUCT_PACKAGES += \
-    init.environ.rc
+    init.environ.rc \
+    sdv_bugreport_folder_override \
 
 PRODUCT_COPY_FILES += \
     device/google/sdv/sdv_core_base/init.sdv_core_base.rc:system/etc/init/init.sdv_core_base.rc \
