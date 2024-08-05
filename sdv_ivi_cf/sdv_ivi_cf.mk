@@ -17,4 +17,4 @@ include device/google/sdv/sdv_ivi_base/sdv_samples_ivi_telemetry.mk
 
 # include ethernet.rc in init.rc file to start on boot for ivi
 PRODUCT_COPY_FILES += device/google/sdv/sdv_ivi_cf/ethernet/ethernet.sh:$(TARGET_COPY_OUT_SYSTEM_EXT)/bin/ethernet/ethernet.sh
-PRODUCT_COPY_FILES += device/google/sdv/sdv_core_cf/ethernet/ethernet.rc:$(TARGET_COPY_OUT_SYSTEM)/etc/init/init.ethernet.rc
+PRODUCT_COPY_FILES += device/google/sdv/sdv_cf/ethernet/ethernet.rc:$(TARGET_COPY_OUT_SYSTEM)/etc/init/init.ethernet.rc
