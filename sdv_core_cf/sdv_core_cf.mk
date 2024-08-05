@@ -26,7 +26,6 @@ PRODUCT_SYSTEM_PROPERTIES += \
 
 PRODUCT_COPY_FILES += \
     device/google/sdv/init.sdv.base.rc:system/etc/init/hw/init.sdv.rc \
-    device/google/sdv/sdv_core_base/sdv.agents.rc:system/etc/init/sdv.agents.rc \
     device/google/sdv/sdv_core_cf/vvmtruststore.rc:system/etc/init/vvmtruststore.rc
 
 # fstab.<name> must match with the value of the androidboot.hardware property.
