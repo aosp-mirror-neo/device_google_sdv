@@ -29,3 +29,6 @@ PRODUCT_HOST_PACKAGES += $(SDV_IVI_SERVICES_HOST_PACKAGES)
 
 PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
     vendor/lib64/libsdvgateway_jni
+
+# Include the packagemanagerproxyd service
+include packages/services/Car/cpp/packagemanagerproxy/service/products/packagemanagerproxy.mk
