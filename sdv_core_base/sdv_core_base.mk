@@ -3,6 +3,9 @@
 # Software-Defined Vehicle (SDV) is a headless vehicle Android OS.
 # The 'Core' device/product/model defines the base SDV functionality to be reused/inherited by other
 # functional SDV profiles (cluster, telemetry, telematics, etc) and by the OEMs.
+#
+# sdv_core_base defines all the SDV Core elements. It's intended to be included
+# by OEM targets that require SDV Core functionality.
 
 PRODUCT_BRAND := google
 PRODUCT_MANUFACTURER := Google

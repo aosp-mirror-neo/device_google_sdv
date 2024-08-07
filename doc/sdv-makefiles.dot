@@ -1,0 +1,50 @@
+// Copyright 2024 Google LLC
+
+digraph {
+  rankdir = RB;
+
+  subgraph {
+    sdv_base [shape="ellipse"];
+    sdv_core_base [shape="ellipse"];
+    sdv_ivi_base [shape="ellipse"];
+    sdv_media_base [shape="ellipse"];
+    sdv_cf [shape="ellipse"];
+
+    oem_core_cf [shape="rectangle", label="oem_core_cf\n(example)"];
+    sdv_core_cf [shape="rectangle"];
+    sdv_media_cf [shape="rectangle"];
+    sdv_ivi_cf [shape="rectangle"];
+
+    sdv_base -> sdv_core_base
+    sdv_base -> sdv_ivi_base
+
+    sdv_core_base -> oem_core_cf
+    sdv_core_base -> sdv_core_cf
+    sdv_core_base -> sdv_media_base
+
+    sdv_media_base -> sdv_media_cf
+
+    sdv_ivi_base -> sdv_ivi_cf
+
+    oem_core_cf -> sdv_cf [dir="back"];
+    sdv_core_cf -> sdv_cf [dir="back"];
+    sdv_media_cf -> sdv_cf [dir="back"];
+
+    { rank = same; sdv_base; }
+    { rank = same; sdv_core_base; sdv_ivi_base; }
+    { rank = same; sdv_media_base; }
+    { rank = same; oem_core_cf; sdv_core_cf; sdv_media_cf; sdv_ivi_cf; }
+    { rank = same; sdv_cf; }
+  }
+
+  subgraph cluster_Legend {
+    label = "Legend";
+
+    makefile [label="Inheritable makefile"];
+    lunch_target [label="Lunch target", shape="rectangle"];
+  }
+
+  // force the legend to be underneath
+  sdv_cf -> makefile [style="invis"];
+  sdv_cf -> lunch_target [style="invis"];
+}

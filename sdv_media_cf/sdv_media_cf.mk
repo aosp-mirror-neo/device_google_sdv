@@ -3,6 +3,12 @@
 # Software-Defined Vehicle (SDV) is a headless vehicle Android OS.
 # The 'Media' device/product/model, AKA "Rapid Boot VM"/RBVM, is an SDV variant
 # with audio/video support.
+#
+# sdv_media_cf is a sample lunch target that implements the SDV Media
+# functionality. It includes all the Google-provided samples.
+#
+# sdv_media_cf is not meant to be extended by OEM targets. Use sdv_media_base
+# instead.
 
 PRODUCT_NAME := sdv_media_cf
 PRODUCT_DEVICE := sdv_media_cf
