@@ -44,6 +44,7 @@ PRODUCT_BUILD_GENERIC_OTA_PACKAGE := true
 # solution for adding them back.
 PRODUCT_PACKAGES += \
     system-build.prop \
+    system_ext-build.prop \
 
 # Stolen from microdroid/Android.bp
 PRODUCT_PACKAGES += \
