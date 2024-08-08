@@ -46,8 +46,13 @@ PRODUCT_BUILD_GENERIC_OTA_PACKAGE := true
 # TODO: b/356431569 - This is a quick fix for the missing ro.build. properties. Find a final
 # solution for adding them back.
 PRODUCT_PACKAGES += \
+    odm-build.prop \
+    oem-build.prop \
+    product-build.prop \
     system-build.prop \
+    system_dlkm-build.prop \
     system_ext-build.prop \
+    vendor-build.prop \
 
 # Stolen from microdroid/Android.bp
 PRODUCT_PACKAGES += \
