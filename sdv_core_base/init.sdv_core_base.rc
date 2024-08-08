@@ -335,6 +335,8 @@ on boot
     domainname localdomain
     ifup eth1
 
+    exec - system system -- /system/bin/vdc checkpoint commitChanges
+
     setprop sys.boot_completed 1
     setprop dev.bootcomplete 1
     write /dev/kmsg "VIRTUAL_DEVICE_BOOT_COMPLETED"
