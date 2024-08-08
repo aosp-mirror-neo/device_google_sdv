@@ -13,6 +13,11 @@ PRODUCT_DEVICE := sdv_ivi_cf
 
 LOCAL_VHAL_PRODUCT_PACKAGE := android.hardware.automotive.vehicle@V1-sdv-emulator-service
 
+# Configuration file overrides
+
+## VvmConfig
+PRODUCT_SDV_VVM_CONFIG := system/software_defined_vehicle/core_services/service_discovery/sdv_sd_agent/configs/vvm_config.textproto
+
 include device/google/sdv/sdv_ivi_base/sdv_ivi_base.mk
 include device/google/sdv/sdv_base/sdv_samples_base_services.mk
 include device/google/sdv/sdv_ivi_base/sdv_samples_ivi_services.mk

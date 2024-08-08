@@ -18,6 +18,15 @@ PRODUCT_DEVICE := sdv_core_cf
 
 TARGET_BOARD_INFO_FILE ?= device/google/sdv/sdv_core_cf/android-info.txt
 
+# Configuration file overrides
+
+## SOME/IP broker config
+PRODUCT_PACKAGES += broker_config.json
+PRODUCT_SYSTEM_PROPERTIES += ro.sdv.someip.broker_config=/system/etc/someip/broker_config.json
+
+## VvmConfig
+PRODUCT_SDV_VVM_CONFIG := system/software_defined_vehicle/core_services/service_discovery/sdv_sd_agent/configs/vvm_config.textproto
+
 include device/google/sdv/sdv_core_base/sdv_core_base.mk
 include device/google/sdv/sdv_cf/sdv_cf.mk
 
@@ -43,9 +52,3 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     sdv_someip_stack_agent \
     vsomeip_config.json \
-
-# Configuration file overrides
-
-## SOME/IP broker config
-PRODUCT_PACKAGES += broker_config.json
-PRODUCT_SYSTEM_PROPERTIES += ro.sdv.someip.broker_config=/system/etc/someip/broker_config.json
