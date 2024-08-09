@@ -36,4 +36,12 @@ OEM targets are intended to directly inherit from one SDV "base" target, and a
 ## Sample targets
 
 `sdv_core_cf`, `sdv_media_cf` and `sdv_ivi_cf` are examples of the complete SDV
-targets deriver from the ones above.
+targets derived from the ones above.
+
+## Configuration overrides
+
+Downstream lunch targets can provide their own configuration for some SDV
+components defined by SDV "base" targets.
+
+See `sdv_core_cf/sdv_core_cf.mk` for an example of injecting custom
+target-specific configuration.
