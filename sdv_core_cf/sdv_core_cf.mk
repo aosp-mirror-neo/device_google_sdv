@@ -21,7 +21,7 @@ TARGET_BOARD_INFO_FILE ?= device/google/sdv/sdv_core_cf/android-info.txt
 # Configuration file overrides
 
 ## SOME/IP broker config
-PRODUCT_PACKAGES += broker_config.json
+SDV_SOMEIP_BROKER_CONFIG := broker_config.json
 PRODUCT_SYSTEM_PROPERTIES += ro.sdv.someip.broker_config=/system/etc/someip/broker_config.json
 
 ## VvmConfig

@@ -3,6 +3,10 @@
 # All the packages from core_services/ required to be installed into the target
 # or made available to the host are placed here.
 
+ifeq ($(SDV_SOMEIP_BROKER_CONFIG),)
+  $(error $$SDV_SOMEIP_BROKER_CONFIG not set)
+endif
+
 SDV_CORE_SERVICES_PACKAGES = \
     libsdv_lifecycle_client_rust \
     libsdv_lifecycle_client_cpp \
@@ -18,6 +22,7 @@ SDV_CORE_SERVICES_PACKAGES = \
     libsdv_comms_id_ffi \
     libsdv_comms_sd_ffi \
     sdv_update_manager_agent \
+    $(SDV_SOMEIP_BROKER_CONFIG) \
 
 SDV_CORE_SERVICES_HOST_PACKAGES += \
     vsidl_code_generator \
