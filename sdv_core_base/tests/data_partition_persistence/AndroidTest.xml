@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2024 Google LLC -->
+
+<configuration description="Data Partition Persistence Test">
+  <!--
+    Tests that the data partition is persistent across reboots
+  -->
+  <target_preparer class="com.android.tradefed.targetprep.PythonVirtualenvPreparer">
+    <option name="disable" value="true" />
+    <option name="dep-module" value="mobly" />
+  </target_preparer>
+  <test class="com.android.tradefed.testtype.mobly.MoblyBinaryHostTest">
+    <!-- The mobly-par-file-name should match the module name -->
+    <option name="mobly-par-file-name" value="data_partition_persistence_test" />
+    <!-- Timeout limit in milliseconds for all test cases of the python binary -->
+    <option name="mobly-test-timeout" value="180000" />
+    <!-- Testbed config file -->
+    <option name="mobly-config-file-name" value="data_partition_persistence_test.yaml" />
+  </test>
+</configuration>

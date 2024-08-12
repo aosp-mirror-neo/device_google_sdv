@@ -13,6 +13,9 @@
   ],
   "sdv_device_configuration_integration_tests_presubmit": [
     {
+      "name": "data_partition_persistence_test"
+    },
+    {
       "name": "sdv_keymint_test"
     },
     {
