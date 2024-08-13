@@ -1,0 +1,1 @@
+allow priv_app sdv_configurable_publisher_registry_service:service_manager find;

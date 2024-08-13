@@ -6,3 +6,5 @@
 # by OEM targets that needs to use the SDV communication stack.
 
 include device/google/sdv/sdv_base/sdv_packages_base_services.mk
+
+PRODUCT_PACKAGES += sdv_product_compatibility_matrix.xml
