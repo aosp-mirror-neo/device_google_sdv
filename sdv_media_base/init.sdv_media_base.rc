@@ -33,9 +33,9 @@ on early-init
     # - emulation - for hardware-accelerated GLES using gfxstream
     # - angle - for GLES implemented on top of Vulkan API. For software
     #           emulated GLES, use this with ro.hardware.vulkan = pastel.
-    setprop ro.hardware.egl ${ro.boot.hardware.egl}
+    setprop ro.hardware.egl ${ro.boot.hardware.egl:-angle}
 
     # Vulkan implementation:
     # - ranchu - for hardware-accelerated Vulkan using gfxstream
     # - pastel - for software emulated Vulkan
-    setprop ro.hardware.vulkan ${ro.boot.hardware.vulkan}
+    setprop ro.hardware.vulkan ${ro.boot.hardware.vulkan:-ranchu}

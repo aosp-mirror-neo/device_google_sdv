@@ -31,6 +31,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_SOONG_NAMESPACES += device/google/sdv/prebuilts
 PRODUCT_PACKAGES += libGLES_mesa
 
+PRODUCT_PACKAGES += \
+    libEGL_angle \
+    libGLESv1_CM_angle \
+    libGLESv2_angle \
+
 # Audio related dependencies
 PRODUCT_PACKAGES += \
     libtinyalsav2 \
