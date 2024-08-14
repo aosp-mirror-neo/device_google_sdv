@@ -8,5 +8,8 @@ typeattribute sdv_sd_default sdv_sd_server;
 net_domain(sdv_sd_default)
 allow sdv_sd_default self:vsock_socket { connect create getopt read write getattr listen accept bind shutdown };
 
+# SD Mesh gRPC server needs access to /proc/sys/net/core/somaxconn
+allow sdv_sd_default proc_net:file { read open getattr };
+
 # SD agent can read the CID of the VM.
 allow sdv_sd_default vsock_device:chr_file { ioctl open read };
