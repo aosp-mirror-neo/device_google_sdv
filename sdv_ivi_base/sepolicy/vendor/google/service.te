@@ -1,0 +1,4 @@
+# Copyright 2024 Google LLC
+
+# Defines SDV Gateway service.
+type sdv_gateway_service, protected_service, service_manager_type;

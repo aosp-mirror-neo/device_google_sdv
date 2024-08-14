@@ -1,0 +1,4 @@
+# Copyright 2024 Google LLC
+
+# SDV Gateway service
+google.sdv.gateway.ISdvGateway/default u:object_r:sdv_gateway_service:s0

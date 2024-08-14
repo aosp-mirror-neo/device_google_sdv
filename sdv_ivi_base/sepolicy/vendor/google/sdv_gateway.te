@@ -1,0 +1,25 @@
+# Copyright 2024 Google LLC
+
+# TODO: b/328846455 - Figure out how to allow privileged apps on product/
+# and vendor/ partition to call the ISdvGateway AIDL.
+
+# SDV Gateway Service is a core service.
+type sdv_gateway, domain;
+typeattribute sdv_gateway mlstrustedsubject;
+type sdv_gateway_exec, exec_type, file_type, vendor_file_type;
+init_daemon_domain(sdv_gateway)
+
+typeattribute sdv_gateway sdv_gateway_server;
+
+# SDV Gateway can register the ISdvGateway service.
+add_service(sdv_gateway_server, sdv_gateway_service)
+
+# Allow the SDV Gateway domain to use Binder IPC
+binder_use(sdv_gateway_server);
+
+# The SDV Gateway client and agent can call each other via Binder IPC.
+binder_call(sdv_gateway_client, sdv_gateway_server)
+binder_call(sdv_gateway_server, sdv_gateway_client)
+
+# The SDV Gateway client has access to the ISdvGateway Binder IPC service.
+allow sdv_gateway_client sdv_gateway_service:service_manager find;

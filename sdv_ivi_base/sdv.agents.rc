@@ -44,9 +44,17 @@ service rpcagent /system_ext/bin/rpcagent
 # time
 #    enter_namespace net /mnt/run/rpcagent
 
-# Start the SDV agents in order of declaration.
+# Declare the SDV Gateway service.
+service sdv_gateway /vendor/bin/sdv_gateway
+    class core
+    disabled
+    user system
+    group system
+
+# Start the SDV agents before starting the SDV Gateway service.
 on property:dev.bootcomplete=1
     start sdv_sd_agent
     start sdv_mesh_agent
     start dt_agent
     start rpcagent
+    start sdv_gateway

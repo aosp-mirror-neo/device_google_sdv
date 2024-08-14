@@ -1,5 +1,8 @@
 # Copyright 2024 Google LLC
 
+# TODO: b/344653947 - Determine which class of apps can have access to SDV Gateway.
+
+# TODO: b/328846455 - Remove these once the test app is completely migrated to SDV Gateway AIDL.
 # For the SdvCarMonitorTestApp:
 typeattribute platform_app sdv_sd_client;
 typeattribute platform_app sdv_rpcagent_client;

@@ -6,13 +6,14 @@
 
 # Components in core_services/ specific to SDV_IVI target
 SDV_IVI_SERVICES_PACKAGES = \
+    android.hardware.automotive.vehicle@V1-sdv-emulator-service \
     libsdvgateway \
     libsdvgateway_jni \
     libsdvgateway_vendor_jni \
     libvhal_proxy \
     libvhal_proxy_config_loader \
     libvhal_proxy_proto_cpp \
-    android.hardware.automotive.vehicle@V1-sdv-emulator-service
+    sdv_gateway \
 
 SDV_IVI_SERVICES_HOST_PACKAGES = \
     vsidl_code_generator
