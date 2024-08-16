@@ -11,7 +11,7 @@ BOARD_VENDOR_SEPOLICY_DIRS += \
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 536870912 # 512 MiB
 
 # Enable goldfish's encoder.
-# TODO(b/113617962) Remove this if we decide to use
+# TODO: b/113617962 - Remove this if we decide to use
 # device/generic/opengl-transport to generate the encoder
 BUILD_EMULATOR_OPENGL_DRIVER := true
 BUILD_EMULATOR_OPENGL := true

@@ -9,7 +9,7 @@ typeattribute sdv_orch sdv_lc_client;
 # Orchestrator can call the DataTunnel SDV agent.
 typeattribute sdv_orch sdv_dt_client;
 
-# TODO(b/313827965): Define proper deplyoment strategy for orch config
+# TODO: b/313827965 - Define proper deplyoment strategy for orch config
 # orchestrator_config_path_prop is a system internal property
 system_internal_prop(orchestrator_config_path_prop)
 # Orchestrator is the only one that can read the orchestrator_config_path_prop

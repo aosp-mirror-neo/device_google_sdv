@@ -19,7 +19,7 @@ typeattribute lifecycle_service_bundle_runner sdv_sd_client;
 
 # Required by the launchService() IPC on the IServiceManager Binder service to execute the
 # lifecycle_service_bundle_runner.
-# TODO(b/272343536): Currently, this rule has to be among the private policies that prevents
+# TODO: b/272343536 - Currently, this rule has to be among the private policies that prevents
 # moving this policy, thus, the lifecycle_service_test to the vendor/product/oem partitions where it
 # eventually should be.
 domain_auto_trans(sdv_lc_server, lifecycle_service_bundle_runner_exec, lifecycle_service_bundle_runner)

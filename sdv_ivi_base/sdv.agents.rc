@@ -1,7 +1,7 @@
 # Copyright 2024 Google LLC
 #
 # SDV-IVI's init .rc file which is used to start SDV specific services on IVI.
-# TODO(b/318739373): Add Telemetry IVI service.
+# TODO: b/318739373 - Add Telemetry IVI service.
 
 # Retrieve local vsock cid and store it in ro.boot.vsock_local_cid
 service vsock_local_cid /system/bin/vsock_local_cid ro.boot.vsock_local_cid
@@ -40,7 +40,8 @@ service rpcagent /system_ext/bin/rpcagent
     disabled
     user system
     group system
-# TODO(b/326115833): comment out for now, to allow grpc-java to create socket directly in the mean time
+# TODO: b/326115833 - comment out for now, to allow grpc-java to create socket directly in the mean
+# time
 #    enter_namespace net /mnt/run/rpcagent
 
 # Start the SDV agents in order of declaration.

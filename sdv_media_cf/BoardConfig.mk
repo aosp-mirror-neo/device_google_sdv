@@ -6,7 +6,7 @@
 # top of that one. Because we set this everywhere with ?=, the first definition
 # applies. We need to make sure this is set before sdv_core_cf/BoardConfig.mk.
 #
-# TODO(b/267320398): clean this up once automatic importing of .rc files from
+# TODO: b/267320398 - clean this up once automatic importing of .rc files from
 # /etc/init/ works.
 LOCAL_ANDROIDBOOT_INIT_RC ?= /system/etc/init/hw/init.sdv_media_cf.rc
 

@@ -5,8 +5,8 @@
 #
 # Targets that need additional custom rules import it from a target-specific .rc file.
 
-# TODO(b/267320398): because the androidboot.init_rc property is set in the BoardConfig.mk, the init
-# process doesn't automatically import the init .rc files placed in the
+# TODO: b/267320398 - because the androidboot.init_rc property is set in the BoardConfig.mk, the
+# init process doesn't automatically import the init .rc files placed in the
 # /{system,system_ext,vendor,odm,product}/etc/init/ directories, only the init .rc files that are
 # imported in this script. APEXes can include init .rc files that will be installed to the
 # /system_ext or the /vendor partition (depending on the configuration of the APEX) using the
@@ -22,7 +22,7 @@ import /system/etc/init/vold.rc
 import /system/etc/init/logd.rc
 import /system/etc/init/keystore2.rc
 import /system/etc/init/sdv.agents.rc
-# TODO(b/267320398): this file does not exist in -user builds, but init can continue despite that.
+# TODO: b/267320398 - this file does not exist in -user builds, but init can continue despite that.
 # Remove the import once we can rely on .rc files from /system/etc/init getting loaded
 # automatically.
 import /system/etc/init/logcatd.rc
@@ -33,7 +33,7 @@ import /system/etc/init/tombstoned.rc
 import /system/etc/init/update_engine_nostats.rc
 import /system/etc/init/update_verifier.rc
 
-# TODO(b/267320398) Not present on -user builds, same as TODO above
+# TODO: b/267320398 - Not present on -user builds, same as TODO above
 # atrace.rc is required by Perfetto as well, since it sets up tracefs permissions.
 import /system/etc/init/perfetto.rc
 import /system/etc/init/atrace.rc
@@ -111,7 +111,7 @@ on init
    #
    # Start logd before any other services run to ensure we capture all of their logs.
    # logd uses shared libraries that are distributed as APEXes, so it must be started after
-   # TODO(b/295824651): Start logd even earlier, before apexd-vm.
+   # TODO: b/295824651 - Start logd even earlier, before apexd-vm.
    write /proc/sys/net/unix/max_dgram_qlen 600
    start logd
 
