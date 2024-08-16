@@ -8,7 +8,7 @@ init_daemon_domain(sdv_sample_rpc_server)
 
 allow sdv_sample_rpc_server self:vsock_socket { create getopt read write getattr listen accept bind };
 
-# TODO(b/272517270): Remove these rules. They allow to run sdv_sample_rpc_server from adb shell
+# TODO: b/272517270 - Remove these rules. They allow to run sdv_sample_rpc_server from adb shell
 # without having root permissions. It's only used for development.
 domain_auto_trans(shell, sdv_sample_rpc_server_exec, sdv_sample_rpc_server)
 allow sdv_sample_rpc_server shell:fd use;

@@ -28,7 +28,7 @@ DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
 # TODO hack to alloc sdv binary to be install to system partition
 PRODUCT_ENFORCE_ARTIFACT_PATH_REQUIREMENTS := false
 
-# TODO(b/341159539): Figure out the correct init order for SDV agents on IVI wrt other
+# TODO: b/341159539 - Figure out the correct init order for SDV agents on IVI wrt other
 # binaries started at init on IVI.
 PRODUCT_COPY_FILES += \
     device/google/sdv/sdv_ivi_base/sdv.agents.rc:system/etc/init/sdv.agents.rc

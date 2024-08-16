@@ -27,7 +27,7 @@ PRODUCT_PACKAGES += \
     gralloc.minigbm \
 
 # EGL/GLES implementation with virgl backend enabled.
-# TODO(b/326956485): remove when migration to ANGLE+gfxstream is done
+# TODO: b/326956485 - remove when migration to ANGLE+gfxstream is done
 PRODUCT_SOONG_NAMESPACES += device/google/sdv/prebuilts
 PRODUCT_PACKAGES += libGLES_mesa
 

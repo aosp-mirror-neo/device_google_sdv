@@ -132,7 +132,7 @@ PRODUCT_SYSTEM_PROPERTIES += \
     ro.hardware.type=automotive \
     ro.logd.size=8M
 
-# TODO(b/313827965): Define proper deployment strategy for orch config
+# TODO: b/313827965 - Define proper deployment strategy for orch config
 # Path to the orchestrator configuration.
 # ?= sets it only if there are no other assignments yet, so we do not overwrite the value.
 PRODUCT_SYSTEM_EXT_PROPERTIES += \
@@ -156,7 +156,7 @@ PRODUCT_PACKAGES += \
     android.hardware.security.keymint-service
 
 # com.android.i18n contains libandroidicu which is (optionally) required by libsqlite and rusqlite.
-# TODO(b/289366123): In order to save space, remove this APEX or parts of it. This APEX consumes
+# TODO: b/289366123 - In order to save space, remove this APEX or parts of it. This APEX consumes
 # 37 MB of space, and has parts that are not needed by the Android version of SQLite. If the ICU
 # functionality is not required in SDV then libsqlite and rusqlite can be built without it.
 PRODUCT_PACKAGES += com.android.i18n
@@ -167,12 +167,12 @@ PRODUCT_PACKAGES += com.android.i18n
 PRODUCT_PACKAGES += keystore2
 # Adds the system (Android) framework manifest file (/system/etc/vintf/manifest.xml) which is
 # required by keystore2, because keystore2 is on /system, and it contains a vintf_fragment.
-# TODO(b/296978905): SDV should not use Android's system manifest, because it contains HALs that SDV
-# doesn't provide.
+# TODO: b/296978905 - SDV should not use Android's system manifest, because it contains HALs that
+# SDV doesn't provide.
 PRODUCT_PACKAGES += system_manifest.xml
 # Adds the system (Android) framework compatibility matrices
 # (/system/etc/vintf/compatibility_matrix.*.xml) which are required by keystore2.
-# TODO(b/296978905): SDV should not use Android's system framework compatibility matrices, because
+# TODO: b/296978905 - SDV should not use Android's system framework compatibility matrices, because
 # it lists HALs that SDV doesn't require from the device (probably, it doesn't cause an issue,
 # though, because these HALs are listed as optional).
 PRODUCT_PACKAGES += system_compatibility_matrix.xml

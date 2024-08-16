@@ -44,7 +44,7 @@ license {
 }
 
 // Mesa EGL/GLES implementation with Gallium virgl backend enabled.
-// TODO(b/326956485): remove when migration to ANGLE+gfxstream is done
+// TODO: b/326956485 - remove when migration to ANGLE+gfxstream is done
 cc_prebuilt_library_shared {
     name: "libGLES_mesa",
     licenses: ["libGLES_mesa_license"],
@@ -75,7 +75,7 @@ cc_prebuilt_library_shared {
 }
 
 // Dependency of libGLES_mesa.
-// TODO(b/326956485): remove when migration to ANGLE+gfxstream is done
+// TODO: b/326956485 - remove when migration to ANGLE+gfxstream is done
 cc_prebuilt_library_shared {
     name: "libglapi",
     licenses: ["libglapi_license"],
@@ -96,7 +96,7 @@ cc_prebuilt_library_shared {
 }
 
 // Dependency of libGLES_mesa.
-// TODO(b/326956485): remove when migration to ANGLE+gfxstream is done
+// TODO: b/326956485 - remove when migration to ANGLE+gfxstream is done
 cc_prebuilt_library_shared {
     name: "gallium_dri",
     licenses: ["gallium_dri_license"],
@@ -130,7 +130,7 @@ cc_prebuilt_library_shared {
 // Fortunately we only need virtio_gpu Gallium module that provides virgl
 // support, and only on 64-bit builds.
 //
-// TODO(b/326956485): remove when migration to ANGLE+gfxstream is done
+// TODO: b/326956485 - remove when migration to ANGLE+gfxstream is done
 install_symlink {
     name: "gallium_dri_virtio_gpu_symlink",
     symlink_target: "gallium_dri.so",
