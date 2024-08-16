@@ -8,5 +8,6 @@ typeattribute sdv_someip_broker_default sdv_someip_stack_client;
 typeattribute sdv_someip_broker_default sdv_rpcagent_client;
 
 typeattribute sdv_someip_broker_default sdv_sd_client;
+allow sdv_someip_broker_default sdv_transport_support_service:service_manager find;
 
 typeattribute sdv_someip_broker_default sdv_dt_client;

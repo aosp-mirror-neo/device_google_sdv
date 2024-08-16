@@ -7,6 +7,8 @@ typeattribute sdv_rpcagent_default sdv_rpcagent_server;
 
 # Allow the sample to use Service Discovery.
 typeattribute sdv_rpcagent_default sdv_sd_client;
+# Additionally allow Data Tunnel Agent to use Transport Support Service
+allow sdv_rpcagent_default sdv_transport_support_service:service_manager find;
 
 # RPC agent can create sockets.
 net_domain(sdv_rpcagent_default)
