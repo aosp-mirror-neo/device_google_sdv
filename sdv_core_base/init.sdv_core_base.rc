@@ -115,11 +115,6 @@ on init
    write /proc/sys/net/unix/max_dgram_qlen 600
    start logd
 
-   # Notify to microdroid_manager that perform_apex_config is done.
-   # Microdroid_manager shouldn't execute payload before this, because app
-   # payloads are not designed to run with bootstrap bionic
-   setprop apex_config.done true
-
    setprop ro.debuggable ${ro.boot.microdroid.debuggable:-0}
    start servicemanager
 
