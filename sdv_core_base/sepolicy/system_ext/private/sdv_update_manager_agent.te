@@ -6,3 +6,12 @@ typeattribute sdv_update_manager_agent sdv_sd_client;
 
 # Update Manager can call the RPC agent.
 typeattribute sdv_update_manager_agent sdv_rpcagent_client;
+
+# Update Manager can call UpdateEngine and UpdateEngine can issue callbacks to Update Manager.
+allow sdv_update_manager_agent update_engine_stable_service:service_manager find;
+binder_call(sdv_update_manager_agent, update_engine)
+binder_call(update_engine, sdv_update_manager_agent)
+
+# Read OTA zip file at /data/ota_package/. This matches update_engine's permissions.
+allow sdv_update_manager_agent ota_package_file:file r_file_perms;
+allow sdv_update_manager_agent ota_package_file:dir r_dir_perms;
