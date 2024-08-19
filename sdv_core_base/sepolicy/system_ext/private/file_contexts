@@ -21,4 +21,7 @@
 # SDV SOME/IP Broker
 /(system_ext|system/system_ext)/bin/sdv_someip_broker_agent u:object_r:sdv_someip_broker_default_exec:s0
 
+# SDV Health Monitor
+/(system_ext|system/system_ext)/bin/sdv_health_monitor_stable u:object_r:sdv_health_monitor_stable_exec:s0
+
 /vvmtruststore(/.*)? u:object_r:system_file:s0

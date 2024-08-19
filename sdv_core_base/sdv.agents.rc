@@ -111,3 +111,16 @@ service sdv_update_manager_agent /system_ext/bin/sdv_update_manager_agent
     group system
 on property:dev.bootcomplete=1
     start sdv_update_manager_agent
+
+
+# Declare and start the SDV Health Monitoring agent.
+# The VM restart is to be controlled by the OEM, therefore, critical property is not set. By default,
+# the process can't be restarted more frequently than 5 seconds (the minimal value, it is already set by default).
+# This means that potentially VM will be restarted by the OEM before the Health Monitor is restarted by Android in case of its crash.
+service sdv_health_monitor_stable /system_ext/bin/sdv_health_monitor_stable
+    class core
+    disabled
+    user system
+    group system
+on property:dev.bootcomplete=1
+    start sdv_health_monitor_stable

@@ -1,0 +1,20 @@
+# Copyright 2024 Google LLC
+
+# Health Monitor is a core SDV agent.
+core_service(sdv_health_monitor_stable)
+
+# Health Monitor can call the DataTunnel SDV agent.
+typeattribute sdv_health_monitor_stable sdv_dt_client;
+
+# Health Monitor can call the Service Discovery agent.
+typeattribute sdv_health_monitor_stable sdv_sd_client;
+
+# Health Monitor can call the RPC agent.
+typeattribute sdv_health_monitor_stable sdv_rpcagent_client;
+
+# health_monitor_config_path_prop is a system internal property
+system_internal_prop(health_monitor_config_path_prop)
+# Health Monitor is the only one that can read the health_monitor_config_path_prop
+get_prop(sdv_health_monitor_stable, health_monitor_config_path_prop)
+# Init can set the health_monitor_config_path_prop property
+set_prop(init, health_monitor_config_path_prop)

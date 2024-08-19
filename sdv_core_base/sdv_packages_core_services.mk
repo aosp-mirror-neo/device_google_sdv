@@ -7,6 +7,7 @@ ifeq ($(SDV_SOMEIP_BROKER_CONFIG),)
   $(error $$SDV_SOMEIP_BROKER_CONFIG not set)
 endif
 
+
 SDV_CORE_SERVICES_PACKAGES = \
     libsdv_lifecycle_client_rust \
     libsdv_lifecycle_client_cpp \
