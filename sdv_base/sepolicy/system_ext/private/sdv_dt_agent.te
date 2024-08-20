@@ -5,6 +5,8 @@ typeattribute sdv_dt_agent sdv_dt_server;
 
 # Allow the Data Tunnel Agent to use Service Discovery.
 typeattribute sdv_dt_agent sdv_sd_client;
+# Additionally allow Data Tunnel Agent to use Transport Support Service
+allow sdv_dt_agent sdv_transport_support_service:service_manager find;
 
 # Allow the Data Tunnel Agent to use the RPC Agent.
 typeattribute sdv_dt_agent sdv_rpcagent_client;
