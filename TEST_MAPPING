@@ -25,6 +25,9 @@
     },
     {
       "name": "sdv_pstore_test"
+    },
+    {
+      "name": "sdv_verified_boot_test"
     }
   ]
 }
