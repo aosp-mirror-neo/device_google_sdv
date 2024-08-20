@@ -9,7 +9,6 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     client_sdv_benchmark_sample \
     com.android.sdv.hello.apex \
     com.sdv.test1 \
-    com.android.sdv.samples.logging \
     com.android.sdv.samples.service_bundle_registry.apex_with_one_service_bundle_cpp \
     com.android.sdv.samples.service_bundle_registry.apex_with_one_service_bundle_rust \
     com.android.sdv.samples.service_bundle_registry.apex_with_two_service_bundles_cpp_rust \
@@ -18,10 +17,14 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     com.android.sdv.samples.rpc \
     com.android.sdv.samples.multivd.ipv4 \
     com.android.sdv.samples.multivd.vsock \
+    compile_time_log_filtering_sdv_sample \
     com.android.sdv.samples.lifecycle.apex \
     com.android.sdv.samples.orch.apex \
     liblifecycle_rust_service_bundle_test \
     liblifecycle_cpp_service_bundle_test \
+    log_filtering_sdv_sample \
+    logging_sdv_rust_sample \
+    logging_sdv_sample \
     middleware_someip_sample \
     sdv_compatibility_sample_publisher_old_service \
     sdv_compatibility_sample_publisher_new_service \
@@ -57,6 +60,8 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     sdv_vsomeip_group_tester \
     sdv_vsomeip_side_mirror_tester \
     server_rust_tokio_sdv_sample \
+    structured_logging_sdv_rust_sample \
+    structured_logging_sdv_sample \
     someip_rpc_someip_server \
     someip_rpc_sdv_server \
     orch_custom_mode_sample_charging \
