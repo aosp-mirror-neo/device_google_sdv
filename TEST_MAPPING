@@ -8,12 +8,6 @@
     // 2. Remove this comment
   ],
   "sdv_device_configuration_tests_postsubmit": [
-    // Empty test suites get auto-suspended on go/atp. When adding the first
-    // test here:
-    // 1. Activate this test on go/atp
-    // 2. Remove this comment
-  ],
-  "sdv_device_configuration_integration_tests_presubmit": [
     {
       "name": "data_partition_persistence_test"
     },
@@ -21,10 +15,12 @@
       "name": "sdv_bugreport_test"
     },
     {
-      "name": "sdv_keymint_test"
-    },
-    {
       "name": "sdv_pstore_test"
+    }
+  ],
+  "sdv_device_configuration_integration_tests_presubmit": [
+    {
+      "name": "sdv_keymint_test"
     },
     {
       "name": "sdv_verified_boot_test"
