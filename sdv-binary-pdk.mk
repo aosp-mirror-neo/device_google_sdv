@@ -6,6 +6,10 @@ sdv-binary-pdk-zip := $(sdv_binary_pdk_dir)/sdv-binary-pdk.zip
 sdv_binary_pdk_packages_dir := $(sdv_binary_pdk_dir)/packages
 sdv_binary_pdk_archive_dir := $(sdv_binary_pdk_dir)/archive
 
+# Set SDV_BINARY_PDK_OVERRIDE_MODULES_FILE to the module override file
+# to override which modules are collected; or to add modules which are
+# collected for other targets
+
 sdv_binary_pdk_vars := \
   SDV_AUTOMOTIVE_SERVICES_HOST_PACKAGES \
   SDV_AUTOMOTIVE_SERVICES_HOST_SAMPLES_PACKAGES \
@@ -50,6 +54,7 @@ $(sdv-binary-pdk-zip): $(sdv_binary_pdk_collector) $(sdv-all-targets-files) $(BU
 	)
 	$(hide) $(sdv_binary_pdk_collector) \
 		--target-name $(TARGET_DEVICE) \
+		$(if $(SDV_BINARY_PDK_OVERRIDE_MODULES_FILE),--target-overrides $(SDV_BINARY_PDK_OVERRIDE_MODULES_FILE),) \
 		--src-dir . \
 		--out-dir $(OUT_DIR) \
 		--binary-dir $(sdv_binary_pdk_archive_dir)
