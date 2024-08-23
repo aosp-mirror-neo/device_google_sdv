@@ -23,6 +23,7 @@ SDV_CORE_SERVICES_PACKAGES = \
     libsdv_comms_id_ffi \
     libsdv_comms_sd_ffi \
     sdv_update_manager_agent \
+    sdv.sample.apex.fake.update.manager \
     $(SDV_SOMEIP_BROKER_CONFIG) \
 
 SDV_CORE_SERVICES_HOST_PACKAGES += \
