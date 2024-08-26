@@ -1,0 +1,13 @@
+# Copyright 2024 Google LLC
+
+# TODO: b/344653947 - Determine which class of apps can have access to SDV Gateway.
+
+# TODO: b/347569668 - Remove these once the test app is completely migrated to SDV Gateway AIDL,
+# ie: there is no mUseAidl flag and the JNI layer is removed.
+# For the SdvCarMonitorTestApp:
+typeattribute priv_app sdv_sd_client;
+typeattribute priv_app sdv_rpcagent_client;
+typeattribute priv_app sdv_dt_client;
+
+# SdvCarMonitorTestApp is a client of the SDV Gateway and calls Binder API.
+typeattribute priv_app sdv_gateway_client;

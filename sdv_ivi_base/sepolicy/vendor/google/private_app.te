@@ -1,6 +1,0 @@
-# Copyright 2024 Google LLC
-
-# SdvCarMonitorTestApp is a client of the SDV Gateway and calls Binder API.
-# This policy is effective independently of which partition (system_ext, vendor, etc)
-# the platform_app is installed to.
-typeattribute platform_app sdv_gateway_client;

@@ -1,8 +1,5 @@
 # Copyright 2024 Google LLC
 
-# TODO: b/328846455 - Figure out how to allow privileged apps on product/
-# and vendor/ partition to call the ISdvGateway AIDL.
-
 # SDV Gateway Service is a core service.
 type sdv_gateway, domain;
 typeattribute sdv_gateway mlstrustedsubject;
