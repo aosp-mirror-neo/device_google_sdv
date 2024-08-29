@@ -19,7 +19,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     com.android.sdv.samples.multivd.ipv4 \
     com.android.sdv.samples.multivd.vsock \
     com.sdv.google.sample.lifecycle.apex \
-    com.android.sdv.samples.orch.apex \
+    com.sdv.google.sample.orch.apex \
     liblifecycle_rust_service_bundle_test \
     liblifecycle_cpp_service_bundle_test \
     middleware_someip_sample \
