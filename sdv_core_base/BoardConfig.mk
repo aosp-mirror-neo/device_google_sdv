@@ -200,5 +200,5 @@ AB_OTA_PARTITIONS := \
 BOARD_ROOT_EXTRA_FOLDERS := vvmtruststore
 
 # "m custom_images" must be called for that image to be created.
-PRODUCT_CUSTOM_IMAGE_MAKEFILES := \
+PRODUCT_CUSTOM_IMAGE_MAKEFILES += \
   device/google/sdv/sdv_core_base/vvmtruststore.mk

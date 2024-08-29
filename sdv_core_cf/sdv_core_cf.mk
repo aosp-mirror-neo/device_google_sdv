@@ -52,3 +52,4 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     sdv_someip_stack_agent \
     vsomeip_config.json \
+
