@@ -10,10 +10,10 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     com.android.sdv.hello.apex \
     com.sdv.test1 \
     com.android.sdv.samples.logging \
-    com.android.sdv.samples.service_bundle_registry.apex_with_one_service_bundle_cpp \
-    com.android.sdv.samples.service_bundle_registry.apex_with_one_service_bundle_rust \
-    com.android.sdv.samples.service_bundle_registry.apex_with_two_service_bundles_cpp_rust \
-    com.android.sdv.samples.service_bundle_registry.apex_with_invalid_sdv_metadata \
+    com.sdv.google.sample.service_bundle_registry.apex_with_one_service_bundle_cpp \
+    com.sdv.google.sample.service_bundle_registry.apex_with_one_service_bundle_rust \
+    com.sdv.google.sample.service_bundle_registry.apex_with_two_service_bundles_cpp_rust \
+    com.sdv.google.sample.service_bundle_registry.apex_with_invalid_sdv_metadata \
     com.android.sdv.samples.rochambeau \
     com.android.sdv.samples.rpc \
     com.android.sdv.samples.multivd.ipv4 \
