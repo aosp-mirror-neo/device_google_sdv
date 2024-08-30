@@ -18,8 +18,6 @@
 # SDV service discovery agent
 /(system_ext|system/system_ext)/bin/sdv_sd_agent        u:object_r:sdv_sd_default_exec:s0
 
-# SDV mesh agent
-/(system_ext|system/system_ext)/bin/sdv_mesh_agent      u:object_r:sdv_mesh_default_exec:s0
 
 # SDV service rpc agent
 /(system_ext|system/system_ext)/bin/rpcagent            u:object_r:sdv_rpcagent_default_exec:s0
