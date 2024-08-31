@@ -26,8 +26,8 @@ PRODUCT_RELEASE_CONFIG_MAPS += $(wildcard vendor/google_shared/build/release/aut
 # TODO hack to alloc sdv binary to be install to system partition
 PRODUCT_ENFORCE_ARTIFACT_PATH_REQUIREMENTS := false
 
-# TODO: b/328846455 - Migrate to Soong way of adding product compatibility matrix.
-DEVICE_PRODUCT_COMPATIBILITY_MATRIX_FILE += device/google/sdv/sdv_ivi_base/product_comp_matrix.xml
+# Product compatibility matrix for the SDV Gateway.
+PRODUCT_PACKAGES += sdv_gateway_product_comp_matrix.xml
 
 # TODO: b/341159539 - Figure out the correct init order for SDV agents on IVI wrt other
 # binaries started at init on IVI.
