@@ -23,7 +23,6 @@ SDV_BASE_SERVICES_PACKAGES = \
     libsdv_sd_rs \
     libsdv_status \
     rpcagent \
-    sdv_mesh_agent \
     sdv_sd_agent \
     sdv_sd_cli \
     vsock_local_cid \

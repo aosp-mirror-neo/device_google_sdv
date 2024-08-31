@@ -30,14 +30,6 @@ service sdv_sd_agent /system_ext/bin/sdv_sd_agent
 on property:dev.bootcomplete=1
     start sdv_sd_agent
 
-service sdv_mesh_agent /system_ext/bin/sdv_mesh_agent
-    class core
-    disabled
-    user system
-    group system
-on property:dev.bootcomplete=1
-    start sdv_mesh_agent
-
 # Declare and start SDV Data Tunnel agent
 # TODO: b/307953753 - Don't use the filesystem to generate notifications
 # We launch the agent as shell for compatibility with PDK8 where this tool
