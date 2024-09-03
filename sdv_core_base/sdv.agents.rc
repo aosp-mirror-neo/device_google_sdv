@@ -16,7 +16,7 @@ service sdv_service_bundles_registry_agent /system_ext/bin/sdv_service_bundles_r
     disabled
     user system
     group system
-on property:dev.bootcomplete=1
+on property:apex.all.ready=true
     start sdv_service_bundles_registry_agent
 
 # Declare and start the SDV service discovery service.
