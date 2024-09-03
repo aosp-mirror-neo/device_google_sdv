@@ -71,6 +71,8 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     libhealthmonitor_messages_catalog-config.binpb \
     com.android.sdv.samples.tracing \
     sdv_server_rust_tracing_sample \
+    rochambeau_player_rs \
+    rochambeau_judge_rs \
 
 # TODO: b/361610453 - include in com.android.sdv.samples.logging
 SDV_CORE_SERVICES_SAMPLES_PACKAGES += structured_logging_sdv_rust_sample

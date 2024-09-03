@@ -22,7 +22,6 @@ SDV_BASE_SERVICES_SAMPLES_PACKAGES = \
     sdv_tpms_grpc_server_cpp \
     service_authn_sample_bench \
     service_authn_sample_rs \
-    rochambeau_player_rs \
     vvmconfig.example \
 
 SDV_BASE_SERVICES_HOST_SAMPLES_PACKAGES =
