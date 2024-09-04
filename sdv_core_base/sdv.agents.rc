@@ -2,14 +2,9 @@
 #
 # SDV Core's init .rc file which is used to start SDV specific services.
 
-# Retrieve local vsock cid and store it in ro.boot.vsock_local_cid.
-service vsock_local_cid /system/bin/vsock_local_cid ro.boot.vsock_local_cid
-  class core
-  user root
-  group shell
-  oneshot
-on post-fs-data
-  start vsock_local_cid
+##############################
+##  System services agents  ##
+##############################
 
 # Declare and start the SDV Service Bundles Registry agent.
 service sdv_service_bundles_registry_agent /system_ext/bin/sdv_service_bundles_registry_agent
@@ -20,6 +15,59 @@ service sdv_service_bundles_registry_agent /system_ext/bin/sdv_service_bundles_r
 on property:apex.all.ready=true
     start sdv_service_bundles_registry_agent
 
+# Declare and start the SDV Lifecycle manager agent.
+service sdv_lifecycle_agent /system_ext/bin/sdv_lifecycle_agent
+    class core
+    disabled
+    user system
+    group system
+on property:dev.bootcomplete=1
+    start sdv_lifecycle_agent
+
+# Declare and start the SDV Orchestrator agent.
+service sdv_orchestration_agent /system_ext/bin/sdv_orchestration_agent
+    class core
+    disabled
+    user system
+    group system
+on property:dev.bootcomplete=1
+    start sdv_orchestration_agent
+
+# Declare and start the SDV Update Manager agent.
+service sdv_update_manager_agent /system_ext/bin/sdv_update_manager_agent
+    class core
+    disabled
+    user system
+    group system
+on property:dev.bootcomplete=1
+    start sdv_update_manager_agent
+
+# Declare and start the SDV Health Monitoring agent.
+# The VM restart is to be controlled by the OEM, therefore, critical property is not set. By default,
+# the process can't be restarted more frequently than 5 seconds (the minimal value, it is already set by default).
+# This means that potentially VM will be restarted by the OEM before the Health Monitor is restarted by Android in case of its crash.
+service sdv_health_monitor_stable /system_ext/bin/sdv_health_monitor_stable
+    class core
+    disabled
+    user system
+    group system
+on property:dev.bootcomplete=1
+    start sdv_health_monitor_stable
+
+##################################
+##  Communication stack agents  ##
+##################################
+
+# Retrieve local vsock cid and store it in ro.boot.vsock_local_cid.
+# Used only by dt_agent,
+service vsock_local_cid /system/bin/vsock_local_cid ro.boot.vsock_local_cid
+  class core
+  user root
+  group shell
+  oneshot
+on post-fs-data
+  start vsock_local_cid
+
 # Declare and start the SDV Service Discovery service.
 service sdv_sd_agent /system_ext/bin/sdv_sd_agent
     class core
@@ -27,7 +75,6 @@ service sdv_sd_agent /system_ext/bin/sdv_sd_agent
     user root #TODO: b/285353950 - use system
     group root
     enter_namespace net /mnt/run/sd_mesh
-
 on property:dev.bootcomplete=1
     start sdv_sd_agent
 
@@ -58,33 +105,9 @@ service rpcagent /system_ext/bin/rpcagent
 on property:dev.bootcomplete=1
     start rpcagent
 
-
-# Declare and start the SDV Lifecycle Manager agent.
-service sdv_lifecycle_agent /system_ext/bin/sdv_lifecycle_agent
-    class core
-    disabled
-    user system
-    group system
-on property:dev.bootcomplete=1
-    start sdv_lifecycle_agent
-
-# Declare and start the SDV Telemetry service agent.
-service sdv_telemetry_service_agent /vendor/bin/sdv_telemetry_service_agent
-    class core
-    disabled
-    user system
-    group system
-on property:dev.bootcomplete=1 && property:ro.build.product=sdv_core_cf
-    start sdv_telemetry_service_agent
-
-# Declare and start the SDV SOME/IP broker agent.
-service sdv_someip_broker_agent /system_ext/bin/sdv_someip_broker_agent
-    class core
-    disabled
-    user system
-    group system
-on property:dev.bootcomplete=1 && property:ro.boot.vsock_local_cid=3
-    start sdv_someip_broker_agent
+##########################
+##  Automotive agents ##
+##########################
 
 # Declare and start the SDV VPM agent.
 service sdv_vpm_agent  /system_ext/bin/sdv_vpm_agent
@@ -95,33 +118,24 @@ service sdv_vpm_agent  /system_ext/bin/sdv_vpm_agent
 on property:dev.bootcomplete=1
     start sdv_vpm_agent
 
-# Declare and start the SDV Orchestrator agent.
-service sdv_orchestration_agent /system_ext/bin/sdv_orchestration_agent
+# Declare and start the SDV SOME/IP broker agent.
+service sdv_someip_broker_agent /system_ext/bin/sdv_someip_broker_agent
     class core
     disabled
     user system
     group system
-on property:dev.bootcomplete=1
-    start sdv_orchestration_agent
+on property:dev.bootcomplete=1 && property:ro.boot.vsock_local_cid=3
+    start sdv_someip_broker_agent
 
-# Declare and start the SDV Update Manager agent.
-service sdv_update_manager_agent /system_ext/bin/sdv_update_manager_agent
+###################################
+##  Telemetry services agent(s)  ##
+###################################
+
+# Declare and start the SDV Telemetry service agent.
+service sdv_telemetry_service_agent /vendor/bin/sdv_telemetry_service_agent
     class core
     disabled
     user system
     group system
-on property:dev.bootcomplete=1
-    start sdv_update_manager_agent
-
-
-# Declare and start the SDV Health Monitoring agent.
-# The VM restart is to be controlled by the OEM, therefore, critical property is not set. By default,
-# the process can't be restarted more frequently than 5 seconds (the minimal value, it is already set by default).
-# This means that potentially VM will be restarted by the OEM before the Health Monitor is restarted by Android in case of its crash.
-service sdv_health_monitor_stable /system_ext/bin/sdv_health_monitor_stable
-    class core
-    disabled
-    user system
-    group system
-on property:dev.bootcomplete=1
-    start sdv_health_monitor_stable
+on property:dev.bootcomplete=1 && property:ro.build.product=sdv_core_cf
+    start sdv_telemetry_service_agent
