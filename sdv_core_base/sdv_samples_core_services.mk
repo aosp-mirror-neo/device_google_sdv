@@ -13,7 +13,6 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     com.sdv.google.sample.service_bundles_registry.apex_with_one_service_bundle_rust \
     com.sdv.google.sample.service_bundles_registry.apex_with_two_service_bundles_cpp_rust \
     com.sdv.google.sample.service_bundles_registry.apex_with_invalid_sdv_metadata \
-    com.sdv.google.sample.rochambeau \
     com.sdv.google.sample.rpc \
     com.sdv.google.sample.multivd.ipv4 \
     com.sdv.google.sample.multivd.vsock \
