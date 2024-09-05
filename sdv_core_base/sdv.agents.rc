@@ -11,6 +11,7 @@ service vsock_local_cid /system/bin/vsock_local_cid ro.boot.vsock_local_cid
 on post-fs-data
   start vsock_local_cid
 
+# Declare and start the SDV Service Bundles Registry agent.
 service sdv_service_bundles_registry_agent /system_ext/bin/sdv_service_bundles_registry_agent
     class core
     disabled
