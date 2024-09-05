@@ -186,6 +186,12 @@ on late-fs
     # Mount RW partitions which need run fsck
     mount_all --late
 
+    # Crucial boot-time check: Marks a successful A/B update if valid
+    # Placed here as the earliest point in init where it's feasible to run:
+    #  - HAL must be up (for IBootControl access)
+    #  - All writable partitions (data, metadata, misc) mounted (needed to read 'care_map.pb')
+    exec_start update_verifier
+
 on late-fs && property:ro.debuggable=1
     # Ensure that tracefs has the correct permissions.
     # This does not work correctly if it is called in post-fs.
