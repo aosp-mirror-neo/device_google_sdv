@@ -2,7 +2,7 @@
 #
 # SDV Core's init .rc file which is used to start SDV specific services.
 
-# Retrieve local vsock cid and store it in ro.boot.vsock_local_cid
+# Retrieve local vsock cid and store it in ro.boot.vsock_local_cid.
 service vsock_local_cid /system/bin/vsock_local_cid ro.boot.vsock_local_cid
   class core
   user root
@@ -20,7 +20,7 @@ service sdv_service_bundles_registry_agent /system_ext/bin/sdv_service_bundles_r
 on property:apex.all.ready=true
     start sdv_service_bundles_registry_agent
 
-# Declare and start the SDV service discovery service.
+# Declare and start the SDV Service Discovery service.
 service sdv_sd_agent /system_ext/bin/sdv_sd_agent
     class core
     disabled
@@ -31,7 +31,7 @@ service sdv_sd_agent /system_ext/bin/sdv_sd_agent
 on property:dev.bootcomplete=1
     start sdv_sd_agent
 
-# Declare and start SDV Data Tunnel agent
+# Declare and start SDV Data Tunnel agent.
 # TODO: b/307953753 - Don't use the filesystem to generate notifications
 # We launch the agent as shell for compatibility with PDK8 where this tool
 # was started manually via adb shell; system/system is the better
@@ -45,7 +45,7 @@ service dt_agent /system_ext/bin/dt_agent /data/dt_mesh.csv
 on property:dev.bootcomplete=1
     start dt_agent
 
-# Declare and start the SDV RPCagent.
+# Declare and start the SDV RPC agent.
 service rpcagent /system_ext/bin/rpcagent
     class core
     disabled
@@ -59,7 +59,7 @@ on property:dev.bootcomplete=1
     start rpcagent
 
 
-# Declare and start the SDV Lifecycle manager agent.
+# Declare and start the SDV Lifecycle Manager agent.
 service sdv_lifecycle_agent /system_ext/bin/sdv_lifecycle_agent
     class core
     disabled
@@ -95,7 +95,7 @@ service sdv_vpm_agent  /system_ext/bin/sdv_vpm_agent
 on property:dev.bootcomplete=1
     start sdv_vpm_agent
 
-# Declare and start the SDV orchestrator agent.
+# Declare and start the SDV Orchestrator agent.
 service sdv_orchestration_agent /system_ext/bin/sdv_orchestration_agent
     class core
     disabled
