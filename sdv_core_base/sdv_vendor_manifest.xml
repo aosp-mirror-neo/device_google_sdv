@@ -1,3 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2024 Google LLC -->
 <!-- target-level 202404 is the one used in Android V and current Cuttlefish -->
 <manifest version="1.0" type="device" target-level="202404"/>

@@ -1,3 +1,5 @@
+# Copyright 2024 Google LLC
+
 # Parameters for the creation of the vvmtrustore writable partition
 # Consumed by build/make/core/tasks/build_custom_images.mk
 CUSTOM_IMAGE_MOUNT_POINT := vvmtruststore

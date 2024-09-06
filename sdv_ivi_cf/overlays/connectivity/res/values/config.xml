@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2024 Google LLC -->
 <!--
-/*
- * Copyright (C) 2024 Google Inc. All Rights Reserved.
- *
- * This config overrides the Auto CF connectivity overlay override and is
- * identical except it doesn't specify eth1 network interface. eth<x> network
- * interfaces are configured by ethernet init scripts on sdv_ivi_cf.
- *
- */
+  This config overrides the Auto CF connectivity overlay override and is
+  identical except it doesn't specify eth1 network interface. eth<x> network
+  interfaces are configured by ethernet init scripts on sdv_ivi_cf.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Whether the internal vehicle network should remain active even when no

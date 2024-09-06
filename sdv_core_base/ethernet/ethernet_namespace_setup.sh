@@ -1,6 +1,6 @@
 #!/system/bin/sh
-
 # Copyright 2024 Google LLC
+
 # Setup network namespace and vlan for rpcagent and sd_mesh
 NETWORK_INTERFACE="$1"
 
