@@ -32,11 +32,3 @@ SDV_BASE_SERVICES_HOST_PACKAGES =
 PRODUCT_PACKAGES += $(SDV_BASE_SERVICES_PACKAGES)
 
 PRODUCT_HOST_PACKAGES += $(SDV_BASE_SERVICES_HOST_PACKAGES)
-
-# Overrideable config files.
-ifeq ($(PRODUCT_SDV_VVM_CONFIG),)
-  $(warning PRODUCT_SDV_VVM_CONFIG not set, using Google-provided default)
-  PRODUCT_SDV_VVM_CONFIG := system/software_defined_vehicle/core_services/service_discovery/sdv_sd_agent/configs/vvm_config.textproto
-endif
-
-PRODUCT_COPY_FILES += $(PRODUCT_SDV_VVM_CONFIG):system/etc/sd-mesh/vvm_config.textproto
