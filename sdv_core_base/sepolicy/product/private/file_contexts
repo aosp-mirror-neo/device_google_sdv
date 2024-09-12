@@ -1,0 +1,4 @@
+# Copyright 2024 Google LLC
+
+# SDV Diagnostics agent
+/product/bin/sdv_diagnostics_agent u:object_r:sdv_diagnostics_agent_exec:s0

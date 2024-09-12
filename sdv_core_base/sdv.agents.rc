@@ -128,6 +128,15 @@ service sdv_someip_broker_agent /system_ext/bin/sdv_someip_broker_agent
 on property:dev.bootcomplete=1 && property:ro.boot.vsock_local_cid=3
     start sdv_someip_broker_agent
 
+ # Declare and start the SDV Diagnostics agent.
+service sdv_diagnostics_agent  /product/bin/sdv_diagnostics_agent
+    class core
+    disabled
+    user system
+    group system
+on property:dev.bootcomplete=1
+    start sdv_diagnostics_agent
+
 ###################################
 ##  Telemetry services agent(s)  ##
 ###################################

@@ -5,7 +5,8 @@
 
 # Vehicle and Power mode agent and poc.
 SDV_AUTOMOTIVE_SERVICES_PACKAGES = \
-    sdv_vpm_agent
+    sdv_vpm_agent \
+    sdv_diagnostics_agent \
 
 
 SDV_AUTOMOTIVE_SERVICES_HOST_PACKAGES =
