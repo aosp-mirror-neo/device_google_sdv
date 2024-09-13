@@ -1,4 +1,4 @@
-#  Copyright 2024 Google Inc
+# Copyright 2024 Google LLC
 
 """
 A simple integration test that tests that the data partition is persistent across reboots

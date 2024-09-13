@@ -1,6 +1,6 @@
 #!/system/bin/sh
-
 # Copyright 2024 Google LLC
+
 # Set service discovery mesh ip rules in sd_mesh network namespace
 # network namespace should be entered by modifier in service in init rc
 

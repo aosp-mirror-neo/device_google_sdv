@@ -1,3 +1,5 @@
+# Copyright 2024 Google LLC
+
 uevent_socket_rcvbuf_size 16M
 
 subsystem dma_heap

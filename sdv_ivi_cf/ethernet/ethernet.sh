@@ -1,5 +1,4 @@
 #!/system/bin/sh
-
 # Copyright 2023 Google LLC
 
 # Set IP address for eth1 that corresponds to virtual ethernet in Cuttlefish.

@@ -1,3 +1,5 @@
+// Copyright 2024 Google LLC
+
 // This TEST_MAPPING must be placed in the root of the sdv repo, because it must run on all changes
 // affecting the SDV Core targets, which is potentially any change in the folder.
 {

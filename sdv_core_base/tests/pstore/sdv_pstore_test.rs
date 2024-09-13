@@ -1,3 +1,5 @@
+// Copyright 2024 Google LLC
+
 #[cfg(test)]
 use std::path::Path;
 

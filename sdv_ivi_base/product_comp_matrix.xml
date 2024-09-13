@@ -1,6 +1,4 @@
-<!--
- Copyright 2024 Google LLC
--->
+<!-- Copyright 2024 Google LLC -->
 
 <compatibility-matrix version="1.0" type="framework">
     <hal format="aidl">

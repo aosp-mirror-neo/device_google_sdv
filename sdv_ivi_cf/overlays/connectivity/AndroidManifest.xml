@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-/*
- * Copyright (C) 2024 Google Inc. All Rights Reserved.
- */
--->
+<!-- Copyright 2024 Google LLC -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.android.connectivity.resources.cuttlefish.overlay">
 

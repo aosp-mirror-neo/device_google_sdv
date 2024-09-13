@@ -1,3 +1,5 @@
+# Copyright 2024 Google LLC
+
 # Update Manager is a core SDV agent.
 core_service(sdv_update_manager_agent)
 
