@@ -45,8 +45,9 @@ PRODUCT_SYSTEM_PROPERTIES += \
 PRODUCT_COPY_FILES += \
     device/google/sdv/sdv_core_cf/init.sdv_core_cf.rc:$(TARGET_COPY_OUT_SYSTEM)/etc/init/hw/init.sdv_core_cf.rc \
 
-# Sample implementation of the SOME/IP stack
+# Sample implementations of the SOME/IP stack and Diagnostics agent
 PRODUCT_PACKAGES += \
     sdv_someip_stack_agent \
     vsomeip_config.json \
+    sdv_diagnostics_agent \
 
