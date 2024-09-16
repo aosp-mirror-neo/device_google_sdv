@@ -1,0 +1,9 @@
+# Copyright 2024 Google LLC
+
+#############################
+# Vendor files
+#
+
+# SDV SOME/IP Stack
+/vendor/bin/sdv_someip_stack_agent u:object_r:sdv_someip_stack_default_exec:s0
+/data/vendor/vsomeip(/.*)?      u:object_r:vsomeip_data_file:s0
