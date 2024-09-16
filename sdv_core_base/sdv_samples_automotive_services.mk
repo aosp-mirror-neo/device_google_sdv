@@ -8,6 +8,8 @@ SDV_AUTOMOTIVE_SERVICES_SAMPLES_PACKAGES = \
     diag_manager_sample \
     diag_provider1_sample \
     diag_provider2_sample \
+    diag_v1_provider1_sample \
+    diag_v1_provider2_sample \
     sdv_con_cal_client \
     sdv_con_cal_service \
     libdiagnostics_sample_catalog-diagnostics-config.binpb \

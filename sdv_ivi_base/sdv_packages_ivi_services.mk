@@ -16,7 +16,8 @@ SDV_IVI_SERVICES_PACKAGES = \
 
 SDV_IVI_SERVICES_HOST_PACKAGES = \
     vsidl_code_generator \
-    vsidl_rc_generator
+    vsidl_rc_generator \
+    vsidlc \
 
 # TODO: b/321998205 - Package the SDV Car Monitor Test App as part of SDV_IVI after
 # the grpc-java dependency is removed and/or the library is made apex_available to
