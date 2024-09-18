@@ -6,17 +6,17 @@
 
 SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     client_rust_tokio_sdv_sample \
-    com.android.sdv.hello.apex \
-    com.sdv.test1 \
-    com.android.sdv.samples.logging \
+    com.sdv.google.sample.hello.apex \
+    com.sdv.google.sample.test1 \
+    com.sdv.google.sample.logging \
     com.sdv.google.sample.service_bundles_registry.apex_with_one_service_bundle_cpp \
     com.sdv.google.sample.service_bundles_registry.apex_with_one_service_bundle_rust \
     com.sdv.google.sample.service_bundles_registry.apex_with_two_service_bundles_cpp_rust \
     com.sdv.google.sample.service_bundles_registry.apex_with_invalid_sdv_metadata \
-    com.android.sdv.samples.rochambeau \
-    com.android.sdv.samples.rpc \
-    com.android.sdv.samples.multivd.ipv4 \
-    com.android.sdv.samples.multivd.vsock \
+    com.sdv.google.sample.rochambeau \
+    com.sdv.google.sample.rpc \
+    com.sdv.google.sample.multivd.ipv4 \
+    com.sdv.google.sample.multivd.vsock \
     com.sdv.google.sample.lifecycle.apex \
     com.sdv.google.sample.orch.apex \
     liblifecycle_rust_service_bundle_test \
@@ -69,10 +69,10 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     libsomeip_messages_catalog-vsidl-config.binpb \
     libhealthmonitor_messages_catalog-vsidl-config.binpb \
     libhealthmonitor_messages_catalog-config.binpb \
-    com.android.sdv.samples.tracing \
+    com.sdv.google.sample.tracing \
     sdv_server_rust_tracing_sample \
 
-# TODO: b/361610453 - include in com.android.sdv.samples.logging
+# TODO: b/361610453 - include in com.sdv.google.sample.logging
 SDV_CORE_SERVICES_SAMPLES_PACKAGES += structured_logging_sdv_rust_sample
 
 SDV_CORE_SERVICES_HOST_SAMPLES_PACKAGES += \
