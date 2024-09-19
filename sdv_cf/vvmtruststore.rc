@@ -7,7 +7,9 @@
 # mount read-only when locked
 on late-fs && property:ro.boot.sdv.boot_mode=locked
     mount ext4 /dev/block/by-name/custom /vvmtruststore noatime nosuid nodev noexec ro
+    restorecon_recursive /vvmtruststore
 
 # mount writable when unlocked
 on late-fs && property:ro.boot.sdv.boot_mode=unlocked
     mount ext4 /dev/block/by-name/custom /vvmtruststore noatime nosuid nodev noexec rw
+    restorecon_recursive /vvmtruststore

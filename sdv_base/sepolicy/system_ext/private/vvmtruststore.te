@@ -1,0 +1,13 @@
+# Copyright 2024 Google LLC
+
+type vvmtruststorefs, fs_type;
+
+# Let init mount a partition in the /vvmtruststore directory
+allow init vvmtruststorefs:dir { mounton relabelto };
+allow vvmtruststorefs labeledfs:filesystem associate;
+
+# SD agent can read, create and modify files in the
+# /vvmtruststore directory.
+allow sdv_sd_default vvmtruststorefs:dir rw_dir_perms;
+allow sdv_sd_default vvmtruststorefs:file create_file_perms;
+
