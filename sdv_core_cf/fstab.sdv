@@ -14,7 +14,16 @@ system                          /system         ext4    noatime,ro,errors=panic 
 /dev/block/by-name/userdata     /data           f2fs    nodev,noatime,nosuid,inlinecrypt,reserve_root=32768     latemount,wait,check,quota,fscompress,checkpoint=fs,fileencryption=aes-256-xts:aes-256-hctr2:inlinecrypt_optimized,keydirectory=/metadata/vold/metadata_encryption
 /dev/block/by-name/metadata     /metadata       ext4    nodev,noatime,nosuid                                    wait,check,formattable,first_stage_mount
 /dev/block/by-name/misc         /misc           emmc    defaults                                                defaults
-/dev/block/by-name/custom       /oem            f2fs    nodev,noatime,ro,nosuid                                    latemount,wait,check,quota,fscompress
+
+# The sample parititon image mounted as /oem partition has to be passed to the
+# cvd command explicitly, otherwise /dev/block/by-name/custom doesn't exist.
+# Setting the `wait` option introduces a 20s boot delay as the init process
+# expects the custom block device to show up.
+#
+# To avoid that boot delay when booting on Cuttlefish in the default
+# configuration (without /oem partition), we don't set `wait` option here. This
+# makes init give up immediately rather than waiting.
+/dev/block/by-name/custom       /oem            f2fs    nodev,noatime,ro,nosuid                                    latemount,check,quota,fscompress
 
 # Add all dynamic partitions except system, after this comment
 
