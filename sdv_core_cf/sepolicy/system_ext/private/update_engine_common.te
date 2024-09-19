@@ -1,0 +1,5 @@
+# Copyright 2024 Google LLC
+
+# Allow update engine to read/execute post install script from system partition.
+type update_engine_system_partition_post_install, file_type, system_file_type;
+allow update_engine_common update_engine_system_partition_post_install:file rx_file_perms;
