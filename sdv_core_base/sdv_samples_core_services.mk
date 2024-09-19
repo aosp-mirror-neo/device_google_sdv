@@ -73,6 +73,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     sdv_server_rust_tracing_sample \
     rochambeau_player_rs \
     rochambeau_judge_rs \
+    com.sdv.google.sample.sqlite \
 
 # TODO: b/361610453 - include in com.sdv.google.sample.logging
 SDV_CORE_SERVICES_SAMPLES_PACKAGES += structured_logging_sdv_rust_sample
