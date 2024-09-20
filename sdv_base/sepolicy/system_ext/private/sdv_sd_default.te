@@ -13,3 +13,7 @@ allow sdv_sd_default proc_net:file { read open getattr };
 
 # SD agent can read the CID of the VM.
 allow sdv_sd_default vsock_device:chr_file { ioctl open read };
+
+# SD agent can talk to KeyMint to get the Secure World DICE chain
+# (via IRemotelyProvisionedComponent)
+hal_client_domain(sdv_sd_default, hal_keymint)
