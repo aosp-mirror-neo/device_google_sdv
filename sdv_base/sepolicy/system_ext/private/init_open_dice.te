@@ -1,0 +1,18 @@
+# Copyright 2024 Google LLC
+
+type init_open_dice, domain;
+typeattribute init_open_dice coredomain;
+type init_open_dice_exec, exec_type, system_file_type, file_type;
+
+init_daemon_domain(init_open_dice)
+
+# Allow init_open_dice to read and wipe the content of the /dev/open-dice0.
+allow init_open_dice open_dice_device:chr_file rw_file_perms;
+
+# init_open_dice runs before logd is started, so allow it to log to /dev/kmsg_debug instead (using
+# the stdio_to_kmsg init service option.) Limiting the rule to userdebug_or_eng, because
+# /dev/kmsg_debug is only enabled in userdebug and eng builds anyways and the absence of this
+# permission doesn't make init_open_dice fail with an error, just the logging won't work.
+userdebug_or_eng(`
+  allow init_open_dice kmsg_debug_device:chr_file { w_file_perms getattr ioctl };
+')
