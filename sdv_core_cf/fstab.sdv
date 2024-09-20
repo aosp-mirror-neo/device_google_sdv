@@ -23,7 +23,7 @@ system                          /system         ext4    noatime,ro,errors=panic 
 # To avoid that boot delay when booting on Cuttlefish in the default
 # configuration (without /oem partition), we don't set `wait` option here. This
 # makes init give up immediately rather than waiting.
-/dev/block/by-name/custom       /oem            f2fs    nodev,noatime,ro,nosuid                                    latemount,check,quota,fscompress
+/dev/block/by-name/custom       /oem            f2fs    nodev,noatime,ro,nosuid                                    latemount,check,quota,fscompress,nofail
 
 # Add all dynamic partitions except system, after this comment
 
