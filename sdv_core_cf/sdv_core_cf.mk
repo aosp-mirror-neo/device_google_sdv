@@ -50,4 +50,19 @@ PRODUCT_PACKAGES += \
     sdv_someip_stack_agent \
     vsomeip_config.json \
     sdv_diagnostics_agent \
+    update_engine_product_partition_post_install \
+    update_engine_system_partition_post_install \
 
+# A/B updates post install configuration.
+# Post install scripts can be added for other partitions in the same way.
+AB_OTA_POSTINSTALL_CONFIG += \
+    RUN_POSTINSTALL_product=true \
+    POSTINSTALL_PATH_product=bin/update_engine_product_partition_post_install \
+    FILESYSTEM_TYPE_product=ext4 \
+    POSTINSTALL_OPTIONAL_product=false
+
+AB_OTA_POSTINSTALL_CONFIG += \
+    RUN_POSTINSTALL_system=true \
+    POSTINSTALL_PATH_system=bin/update_engine_system_partition_post_install \
+    FILESYSTEM_TYPE_system=ext4 \
+    POSTINSTALL_OPTIONAL_system=false
