@@ -5,6 +5,10 @@
 #
 /dev/vsock                                              u:object_r:vsock_device:s0
 
+# The open-dice devices are exposed by the open-dice kernel driver.
+# Only /dev/open-dice0 should be actually used and present.
+/dev/open-dice.*         u:object_r:open_dice_device:s0
+
 ##########################
 # system_ext files
 #
