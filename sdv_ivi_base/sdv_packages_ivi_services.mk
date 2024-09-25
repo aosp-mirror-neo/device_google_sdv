@@ -8,7 +8,6 @@
 SDV_IVI_SERVICES_PACKAGES = \
     android.hardware.automotive.vehicle@V1-sdv-emulator-service \
     libgetbinder_jni \
-    libsdvgateway \
     libsdvgateway_jni \
     libvhal_proxy \
     libvhal_proxy_config_loader \
