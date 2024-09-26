@@ -6,7 +6,6 @@
 
 SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     client_rust_tokio_sdv_sample \
-    com.sdv.google.sample.authz \
     com.sdv.google.sample.hello.apex \
     com.sdv.google.sample.test1 \
     com.sdv.google.sample.logging \
@@ -19,6 +18,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     com.sdv.google.sample.multivd.vsock \
     com.sdv.google.sample.lifecycle.apex \
     com.sdv.google.sample.orch.apex \
+    com.sdv.google.test.authz.local_vm_acl_policy_provider \
     liblifecycle_rust_service_bundle_test \
     liblifecycle_cpp_service_bundle_test \
     middleware_someip_sample \
