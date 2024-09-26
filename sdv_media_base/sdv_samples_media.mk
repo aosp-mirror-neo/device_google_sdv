@@ -12,7 +12,8 @@ SDV_MEDIA_SAMPLES_PACKAGES = \
 
 # Sample application that renders to multiple displays.
 SDV_MEDIA_SAMPLES_PACKAGES += \
-    sdv_multi_display_sample_rust
+    sdv_multi_display_sample_rust \
+    sdv_screencap \
 
 SDV_MEDIA_HOST_SAMPLES_PACKAGES =
 
