@@ -25,3 +25,6 @@ google.sdv.rpc.IRpcAgent/default u:object_r:sdv_rpcagent_service:s0
 # SDV DT IPC service
 google.sdv.dt.IDataTunnelAgent/default u:object_r:sdv_dt_service:s0
 google.sdv.data_tunnel.IAgentService/default u:object_r:sdv_dt_service:s0
+
+# Service interface for providing DICE chains
+google.sdv.init_open_dice.IDiceChainProvider/default u:object_r:sdv_dice_chain_provider_service:s0

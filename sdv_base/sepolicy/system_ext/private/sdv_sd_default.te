@@ -17,3 +17,7 @@ allow sdv_sd_default vsock_device:chr_file { ioctl open read };
 # SD agent can talk to KeyMint to get the Secure World DICE chain
 # (via IRemotelyProvisionedComponent)
 hal_client_domain(sdv_sd_default, hal_keymint)
+
+# SD agent can talk to the DICE Chain Provider service in init_open_dice
+allow sdv_sd_default  sdv_dice_chain_provider_service:service_manager find;
+binder_call(sdv_sd_default, init_open_dice)

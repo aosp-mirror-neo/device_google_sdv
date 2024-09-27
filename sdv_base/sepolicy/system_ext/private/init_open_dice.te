@@ -21,3 +21,9 @@ userdebug_or_eng(`
 # that the boot sequence can continue.
 system_internal_prop(init_open_dice_device_wiped_prop)
 set_prop(init_open_dice, init_open_dice_device_wiped_prop)
+
+binder_use(init_open_dice)
+
+# init_open_dice provides the DICE chain it reads from /dev/open-dice0 in a
+# binder service.
+add_service(init_open_dice, sdv_dice_chain_provider_service)
