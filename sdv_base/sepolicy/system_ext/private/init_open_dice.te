@@ -16,3 +16,8 @@ allow init_open_dice open_dice_device:chr_file rw_file_perms;
 userdebug_or_eng(`
   allow init_open_dice kmsg_debug_device:chr_file { w_file_perms getattr ioctl };
 ')
+
+# init_open_dice_device_wiped_prop is used by init_open_dice to notify init
+# that the boot sequence can continue.
+system_internal_prop(init_open_dice_device_wiped_prop)
+set_prop(init_open_dice, init_open_dice_device_wiped_prop)
