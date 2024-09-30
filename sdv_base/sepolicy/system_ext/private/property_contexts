@@ -3,3 +3,7 @@
 # The vsock_local_cid property is written by the vsock_local_cid service once and then read by
 # data tunnel
 ro.boot.vsock_local_cid u:object_r:vsock_local_cid_prop:s0
+
+# Used by init_open_dice to notify init that it has finished wiping the
+# open_dice device file. init can then continue the boot process.
+ro.init_open_dice.device_wiped u:object_r:init_open_dice_device_wiped_prop:s0 exact bool
