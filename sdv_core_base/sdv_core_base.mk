@@ -219,7 +219,7 @@ PRODUCT_PACKAGES += \
 # Partition debugging utils
 PRODUCT_PACKAGES_DEBUG += \
     bootctl \
-    dmctl \ # device-mapper control
+    dmctl \
 
 # System update support
 PRODUCT_PACKAGES += \
