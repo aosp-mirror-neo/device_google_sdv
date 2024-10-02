@@ -13,3 +13,6 @@ type sdv_rpcagent_service, protected_service, service_manager_type;
 
 # Defines SDV SD IPC service.
 type sdv_dt_service, protected_service, service_manager_type;
+
+# Type representing the service interface for providing DICE chains
+type sdv_dice_chain_provider_service, protected_service, service_manager_type;
