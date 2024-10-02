@@ -7,3 +7,7 @@ ro.boot.vsock_local_cid u:object_r:vsock_local_cid_prop:s0
 # Used by init_open_dice to notify init that it has finished wiping the
 # open_dice device file. init can then continue the boot process.
 ro.init_open_dice.device_wiped u:object_r:init_open_dice_device_wiped_prop:s0 exact bool
+
+# Used by SDV's init script to notify that apexd-bootstrap has completed, so init_open_dice can
+# execute.
+ro.sdv.apex.bootstrap.ready u:object_r:sdv_apex_bootstrap_ready_prop:s0 exact bool

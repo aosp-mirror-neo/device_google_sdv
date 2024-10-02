@@ -38,9 +38,6 @@ PRODUCT_COPY_FILES += \
     device/google/sdv/sdv_core_cf/fstab.sdv:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.sdv \
     device/google/sdv/sdv_core_cf/fstab.sdv:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.sdv \
 
-PRODUCT_SYSTEM_PROPERTIES += \
-    ro.sdv.enable_seriallogging=true \
-
 # Root init.rc. File path must match LOCAL_ANDROIDBOOT_INIT_RC defined in BoardConfig.mk.
 PRODUCT_COPY_FILES += \
     device/google/sdv/sdv_core_cf/init.sdv_core_cf.rc:$(TARGET_COPY_OUT_SYSTEM)/etc/init/hw/init.sdv_core_cf.rc \

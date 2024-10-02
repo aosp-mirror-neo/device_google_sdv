@@ -3,6 +3,12 @@
 # SDV-IVI's init .rc file which is used to start SDV specific services on IVI.
 # TODO: b/318739373 - Add Telemetry IVI service.
 
+on early-init
+    # Signal that apexd-bootstrap is ready, init_open_dice can execute. IVI is a derivative of Core
+    # Android, where apexd-bootstrap is run on early-init in the primary init .rc file, which
+    # executes first, before this trigger.
+    setprop ro.sdv.apex.bootstrap.ready true
+
 # Retrieve local vsock cid and store it in ro.boot.vsock_local_cid
 service vsock_local_cid /system/bin/vsock_local_cid ro.boot.vsock_local_cid
   class core
