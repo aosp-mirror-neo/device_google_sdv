@@ -13,4 +13,13 @@ include device/google/sdv/sdv_base/sdv_packages_base_services.mk
 # TODO: b/343460855 Remove Configurable Publisher from base and move to ivi after RPC support is available
 PRODUCT_PACKAGES += sdv_product_compatibility_matrix.xml
 
-PRODUCT_COPY_FILES += device/google/sdv/sdv_base/init_open_dice.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init_open_dice.rc
+# Declare Comms Stack as stub libraries so that they can be loaded dynamically.
+PRODUCT_EXTRA_STUB_LIBRARIES += \
+  libsdv_comms_ctx_ffi \
+  libsdv_comms_dt_ffi \
+  libsdv_comms_id_ffi \
+  libsdv_comms_sd_ffi
+
+PRODUCT_COPY_FILES += \
+  device/google/sdv/sdv_base/init_open_dice.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init_open_dice.rc \
+  device/google/sdv/sdv_base/linker.config.json:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/linker.config.json

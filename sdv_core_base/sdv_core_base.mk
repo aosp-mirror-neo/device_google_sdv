@@ -229,10 +229,3 @@ PRODUCT_PACKAGES += \
 # Utilities for debugging updates
 PRODUCT_PACKAGES_DEBUG += \
   update_engine_client \
-
-# Declare Comms Stack as stub libraries so that they can be loaded dynamically.
-PRODUCT_EXTRA_STUB_LIBRARIES += \
-  libsdv_comms_ctx_ffi \
-  libsdv_comms_dt_ffi \
-  libsdv_comms_id_ffi \
-  libsdv_comms_sd_ffi \
