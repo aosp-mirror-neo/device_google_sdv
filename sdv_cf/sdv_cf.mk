@@ -12,9 +12,9 @@ PRODUCT_SYSTEM_PROPERTIES += \
     ro.sdv.enable_seriallogging=true \
 
 # umbrella init.rc for all Cuttlefish-specific parts
-PRODUCT_COPY_FILES += device/google/sdv/sdv_cf/init.sdv_cf.rc:system/etc/init/init.sdv_cf.rc
+PRODUCT_COPY_FILES += device/google/sdv/sdv_cf/init.sdv_cf.rc:$(TARGET_COPY_OUT_SYSTEM)/etc/init/init.sdv_cf.rc
 # vvmtruststore partition support
-PRODUCT_COPY_FILES += device/google/sdv/sdv_cf/vvmtruststore.rc:system/etc/init/vvmtruststore.rc
+PRODUCT_COPY_FILES += device/google/sdv/sdv_cf/vvmtruststore.rc:$(TARGET_COPY_OUT_SYSTEM)/etc/init/vvmtruststore.rc
 
 # Cuttlefish specific networking setup
 PRODUCT_COPY_FILES += device/google/sdv/sdv_cf/ethernet/ethernet.sh:$(TARGET_COPY_OUT_SYSTEM_EXT)/bin/ethernet/ethernet.sh
