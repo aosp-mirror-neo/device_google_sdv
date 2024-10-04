@@ -19,10 +19,6 @@ SDV_CORE_SERVICES_PACKAGES = \
     sdv_service_bundles_registry_agent \
     lifecycle_service_bundle_runner \
     sdv_someip_broker_agent \
-    libsdv_comms_ctx_ffi \
-    libsdv_comms_dt_ffi \
-    libsdv_comms_id_ffi \
-    libsdv_comms_sd_ffi \
     sdv_update_manager_agent \
     sdv.sample.apex.fake.update.manager \
     sdv_health_monitor_stable \
