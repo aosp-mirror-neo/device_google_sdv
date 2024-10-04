@@ -1,15 +1,14 @@
 # Copyright 2024 Google LLC
 # Mounting of the vvmtruststore partition on cuttlefish.
-# Note that on cuttlefish that partition is exposed
-# as a block device named "custom" due to the usage
-# of the custom_partition_path option.
+# Note that /dev/block/by-name/vvmtruststore is only available if the
+# --vvmtruststore_path=<path_to_vvmtruststore.img> argument is passed to cvd (Cuttlefish).
 
 # mount read-only when locked
 on late-fs && property:ro.boot.sdv.boot_mode=locked
-    mount ext4 /dev/block/by-name/custom /vvmtruststore noatime nosuid nodev noexec ro
+    mount ext4 /dev/block/by-name/vvmtruststore /vvmtruststore noatime nosuid nodev noexec ro
     restorecon_recursive /vvmtruststore
 
 # mount writable when unlocked
 on late-fs && property:ro.boot.sdv.boot_mode=unlocked
-    mount ext4 /dev/block/by-name/custom /vvmtruststore noatime nosuid nodev noexec rw
+    mount ext4 /dev/block/by-name/vvmtruststore /vvmtruststore noatime nosuid nodev noexec rw
     restorecon_recursive /vvmtruststore
