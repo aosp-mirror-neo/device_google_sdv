@@ -19,13 +19,14 @@ PRODUCT_COPY_FILES += device/google/sdv/sdv_cf/vvmtruststore.rc:system/etc/init/
 # Cuttlefish specific networking setup
 PRODUCT_COPY_FILES += device/google/sdv/sdv_cf/ethernet/ethernet.sh:$(TARGET_COPY_OUT_SYSTEM_EXT)/bin/ethernet/ethernet.sh
 PRODUCT_COPY_FILES += device/google/sdv/sdv_cf/ethernet/ethernet.rc:$(TARGET_COPY_OUT_SYSTEM)/etc/init/hw/init.ethernet.rc
+PRODUCT_COPY_FILES += device/google/sdv/sdv_cf/init_open_dice_from_file.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init_open_dice_from_file.rc
 
 # BootControl HAL for Cuttlefish
 PRODUCT_PACKAGES += com.android.hardware.boot
 
-# on arm64 architectures, init_open_dice runs on early init, consumes and wipes the open-dice
-# device. However, on x86 the open-dice device is not available, so init_open_dice reads this
-# content from a static sample DICE handover file added for testing and development.
+# On arm64 architectures, init_open_dice runs on early init, consumes and wipes the open-dice
+# device. However, on x86, the open-dice device is not available, so init_open_dice_from_file reads
+# this content from a static sample DICE handover file added for testing and development.
 PRODUCT_PACKAGES += \
     init_open_dice_from_file \
     sample_dice_handover_file \

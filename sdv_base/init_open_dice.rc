@@ -1,0 +1,14 @@
+# Copyright 2024 Google LLC
+
+# Consume and wipe the contents of /dev/open-dice0 as early as possible
+# TODO: b/345448000 - Run init_open_dice even earlier, before apexd-bootstrap.
+on property:ro.sdv.apex.bootstrap.ready=true
+    start init_open_dice
+
+    # Wait until init_open_dice has done wiping /dev/open-dice0 before
+    # continuing. Apart from SELinux policies, this is another measure to ensure
+    # the Android SDV CDI secret can't be accessed by any process further down
+    # in the boot sequence.
+    # TODO: b/370672435 - handle the case when init_open_dice fails, for some reason, and never
+    # sets init_open_dice.device_wiped.
+    wait_for_prop ro.init_open_dice.device_wiped true

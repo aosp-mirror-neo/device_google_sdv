@@ -22,6 +22,7 @@ import /system/etc/init/vold.rc
 import /system/etc/init/logd.rc
 import /system/etc/init/keystore2.rc
 import /system/etc/init/sdv.agents.rc
+import /system_ext/etc/init/init_open_dice.rc
 # TODO: b/267320398 - this file does not exist in -user builds, but init can continue despite that.
 # Remove the import once we can rely on .rc files from /system/etc/init getting loaded
 # automatically.
@@ -57,15 +58,8 @@ on early-init
     exec_start apexd-bootstrap
     perform_apex_config --bootstrap
 
-    # Consume and wipe the contents of /dev/open-dice0 as early as possible
-    # TODO: b/345448000 - Run init_open_dice even earlier, before apexd-bootstrap.
-    start init_open_dice
-
-    # Wait until init_open_dice has done wiping /dev/open-dice0 before
-    # continuing. Apart from SELinux policies, this is another measure to ensure
-    # the Android SDV CDI secret can't be accessed by any process further down
-    # in the boot sequence.
-    wait_for_prop ro.init_open_dice.device_wiped true
+    # Signal that apexd-bootstrap is ready, init_open_dice can execute.
+    setprop ro.sdv.apex.bootstrap.ready true
 
 on init
    mkdir /mnt/apk 0755 system system

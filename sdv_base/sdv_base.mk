@@ -12,3 +12,5 @@ include device/google/sdv/sdv_base/sdv_packages_base_services.mk
 
 # TODO: b/343460855 Remove Configurable Publisher from base and move to ivi after RPC support is available
 PRODUCT_PACKAGES += sdv_product_compatibility_matrix.xml
+
+PRODUCT_COPY_FILES += device/google/sdv/sdv_base/init_open_dice.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init_open_dice.rc

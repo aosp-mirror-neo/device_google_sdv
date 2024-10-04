@@ -21,7 +21,15 @@ include device/google/sdv/sdv_ivi_base/sdv_samples_ivi_telemetry.mk
 # include ethernet.rc in init.rc file to start on boot for ivi
 PRODUCT_COPY_FILES += device/google/sdv/sdv_ivi_cf/ethernet/ethernet.sh:$(TARGET_COPY_OUT_SYSTEM_EXT)/bin/ethernet/ethernet.sh
 PRODUCT_COPY_FILES += device/google/sdv/sdv_cf/ethernet/ethernet.rc:$(TARGET_COPY_OUT_SYSTEM)/etc/init/init.ethernet.rc
+PRODUCT_COPY_FILES += device/google/sdv/sdv_cf/init_open_dice_from_file.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init_open_dice_from_file.rc
 
 # Runtime Resource Overlay for Connectivity service.
 PRODUCT_PACKAGES += \
     sdv_ivi_cf_overlay_connectivity
+
+# On arm64 architectures, init_open_dice runs on early init, consumes and wipes the open-dice
+# device. However, on x86, the open-dice device is not available, so init_open_dice_from_file reads
+# this content from a static sample DICE handover file added for testing and development.
+PRODUCT_PACKAGES += \
+    init_open_dice_from_file \
+    sample_dice_handover_file \

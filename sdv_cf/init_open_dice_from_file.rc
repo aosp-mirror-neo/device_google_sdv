@@ -1,0 +1,12 @@
+# Copyright 2024 Google LLC
+
+service init_open_dice /system_ext/bin/init_open_dice_from_file
+    class core
+    disabled
+    # logd is not available when init_open_dice is run, so it logs to stdio which is redirected to
+    # kmesg
+    stdio_to_kmsg
+    # TODO: b/340489679 - probably, it should run as system
+    user root
+    group system
+    oneshot
