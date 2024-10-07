@@ -2,3 +2,10 @@
 
 # Diagnostics SDV agent.
 core_service(sdv_diagnostics_agent)
+
+typeattribute sdv_diagnostics_agent sdv_rpcagent_client;
+
+typeattribute sdv_diagnostics_agent sdv_sd_client;
+allow sdv_diagnostics_agent sdv_transport_support_service:service_manager find;
+
+typeattribute sdv_diagnostics_agent sdv_dt_client;
