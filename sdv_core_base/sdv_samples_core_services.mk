@@ -20,6 +20,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     com.sdv.google.sample.orch.apex \
     com.sdv.google.sample.updatable_flags.apex.test \
     com.sdv.google.test.authz.local_vm_acl_policy_provider \
+    com.sdv.tm \
     liblifecycle_rust_service_bundle_test \
     liblifecycle_cpp_service_bundle_test \
     middleware_someip_sample \
