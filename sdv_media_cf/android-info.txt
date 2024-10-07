@@ -1,2 +1,3 @@
 config=sdv_media
 vhost_user_vsock=true
+prefer_drm_virgl_when_supported=true
