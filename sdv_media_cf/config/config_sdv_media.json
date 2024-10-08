@@ -6,10 +6,9 @@
   "enable_host_bluetooth": false,
   "netsim_bt": false,
   "enable_modem_simulator": false,
-  "gpu_mode" : "drm_virgl",
   "display0": "width=1920,height=1080",
-  "memory_mb" : 2048,
+  "memory_mb": 2048,
   "start_gnss_proxy": false,
   "start_webrtc": true,
-  "use_sdcard" : false
+  "use_sdcard": false
 }
