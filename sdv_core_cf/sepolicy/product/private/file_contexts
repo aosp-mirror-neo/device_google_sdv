@@ -1,6 +1,4 @@
 # Copyright 2024 Google LLC
 
 # SDV Diagnostics agent
-# TODO(369573086): move back to /product
-#/product/bin/sdv_diagnostics_agent u:object_r:sdv_diagnostics_agent_exec:s0
-/(system_ext|system/system_ext)/bin/sdv_diagnostics_agent u:object_r:sdv_diagnostics_agent_exec:s0
+/product/bin/sdv_diagnostics_agent u:object_r:sdv_diagnostics_agent_exec:s0
