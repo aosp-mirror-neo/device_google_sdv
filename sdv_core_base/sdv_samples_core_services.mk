@@ -22,6 +22,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     com.sdv.google.sample.updatable_flags.apex.test \
     com.sdv.google.sample.bar \
     com.sdv.google.sample.foo \
+    com.sdv.google.sample.vsidl_provider \
     cujs_orchestration_configurations \
     com.sdv.google.test.authz.local_vm_acl_policy_provider \
     com.sdv.tm \
