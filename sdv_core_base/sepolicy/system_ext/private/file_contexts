@@ -9,6 +9,9 @@
 # SDV Service Bundles Registry agent
 /(system_ext|system/system_ext)/bin/sdv_service_bundles_registry_agent u:object_r:sdv_sbr_exec:s0
 
+# SDV Data Tunnel Agent
+/(system_ext|system/system_ext)/bin/dt_agent        u:object_r:sdv_dt_agent_exec:s0
+
 # SDV Orchestrator agent
 /(system_ext|system/system_ext)/bin/sdv_orchestration_agent u:object_r:sdv_orch_exec:s0
 

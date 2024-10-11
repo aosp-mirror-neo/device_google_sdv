@@ -26,8 +26,5 @@
 # SDV service rpc agent
 /(system_ext|system/system_ext)/bin/rpcagent            u:object_r:sdv_rpcagent_default_exec:s0
 
-# SDV Data Tunnel Agent
-/(system_ext|system/system_ext)/bin/dt_agent        u:object_r:sdv_dt_agent_exec:s0
-
 # Files in the vvmtruststore partition
 /vvmtruststore(/.*)?    u:object_r:vvmtruststorefs:s0

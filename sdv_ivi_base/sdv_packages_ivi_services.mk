@@ -7,8 +7,8 @@
 # Components in core_services/ specific to SDV_IVI target
 SDV_IVI_SERVICES_PACKAGES = \
     android.hardware.automotive.vehicle@V1-sdv-emulator-service \
-    libgetbinder_jni \
-    libsdvgateway_jni \
+    libsdvgatewayclient_jni \
+    libsdvgatewayservice \
     libvhal_proxy \
     libvhal_proxy_config_loader \
     libvhal_proxy_config_loader_v2 \
@@ -38,7 +38,7 @@ PRODUCT_HOST_PACKAGES += $(SDV_IVI_SERVICES_HOST_PACKAGES)
 
 
 PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
-    vendor/lib64/libsdvgateway_jni
+    vendor/lib64/libsdvgatewayclient_jni
 
 # Include the packagemanagerproxyd service
 include packages/services/Car/cpp/packagemanagerproxy/service/products/packagemanagerproxy.mk
