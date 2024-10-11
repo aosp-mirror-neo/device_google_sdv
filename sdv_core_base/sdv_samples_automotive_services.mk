@@ -21,6 +21,7 @@ SDV_AUTOMOTIVE_SERVICES_SAMPLES_PACKAGES = \
     sdv_hvac_service \
     sdv_car_seats_service \
     sdv_hmi_service \
+    sdv_user_preferences_service_stable \
 
 
 SDV_AUTOMOTIVE_SERVICES_HOST_SAMPLES_PACKAGES =
