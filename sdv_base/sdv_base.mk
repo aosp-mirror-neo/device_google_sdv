@@ -5,6 +5,9 @@
 # sdv_base defines all the SDV Core elements. It's intended to be included
 # by OEM targets that needs to use the SDV communication stack.
 
+# Soong configuration for SDV-devices
+include device/google/sdv/sdv_base/soong_config.mk
+
 # SDV-devices release configuration maps
 include device/google/sdv/sdv_base/sdv_release_config.mk
 
