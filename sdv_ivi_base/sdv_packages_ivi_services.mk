@@ -13,7 +13,9 @@ SDV_IVI_SERVICES_PACKAGES = \
     libvhal_proxy_config_loader \
     libvhal_proxy_config_loader_v2 \
     libvhal_proxy_proto_cpp \
-    sdv_gateway
+    sdv_gateway \
+    init_open_dice_from_file \
+    sample_dice_handover_file
 
 SDV_IVI_SERVICES_HOST_PACKAGES = \
     vsidl_code_generator \
