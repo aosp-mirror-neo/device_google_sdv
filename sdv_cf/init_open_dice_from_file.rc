@@ -1,6 +1,8 @@
 # Copyright 2024 Google LLC
 
-service init_open_dice /system_ext/bin/init_open_dice_from_file
+# init_open_dice_from_file loads an SDV DICE chain from /product/etc/<filename> where <filename>
+# is specified as a command line argument
+service init_open_dice /system_ext/bin/init_open_dice_from_file ${ro.boot.sdv.init_open_dice.sample_dice_handover_file_name:-sample_dice_handover_file}
     class core
     disabled
     # logd is not available when init_open_dice is run, so it logs to stdio which is redirected to
