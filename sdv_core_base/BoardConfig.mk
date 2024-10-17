@@ -122,12 +122,18 @@ BOARD_MKBOOTIMG_INIT_ARGS += --header_version $(BOARD_INIT_BOOT_HEADER_VERSION)
 BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_PARTITION_LIST := system vendor system_ext product vendor_dlkm
 # reserve 512MiB for dynamic partition metadata
 BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_SIZE := 536870912
+# coverage builds use more space, add 256MiB more
+ifeq ($(CLANG_COVERAGE),true)
+  BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_SIZE := \
+    $(shell expr $(BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_SIZE) + 268435456)
+endif
 
 # The super partition is sized to 2*dynamic partition size + overhead.
 # Double dynamic parititon accounts for A/B slots for updates.
 # Overhead is 4 MiB as recommended in
 # https://source.android.com/docs/core/ota/dynamic_partitions/implement#dyanimic-partitions-sizing
-BOARD_SUPER_PARTITION_SIZE := 1077936128
+BOARD_SUPER_PARTITION_SIZE := \
+  $(shell expr 2 \* $(BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_SIZE) + 4 \* 1024 \* 1024)
 
 BOARD_SUPER_PARTITION_GROUPS := google_system_dynamic_partitions
 BOARD_BUILD_SUPER_IMAGE_BY_DEFAULT := true
