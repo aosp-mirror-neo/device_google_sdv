@@ -81,6 +81,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     rochambeau_judge_rs \
     com.sdv.google.sample.sqlite \
     com.sdv.google.sample.health.monitor.monitored.apex \
+    com.sdv.google.sample.vm.health.monitoring.apex \
 
 # TODO: b/361610453 - include in com.sdv.google.sample.logging
 SDV_CORE_SERVICES_SAMPLES_PACKAGES += structured_logging_sdv_rust_sample
