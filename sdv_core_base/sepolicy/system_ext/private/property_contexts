@@ -13,3 +13,8 @@ sdv.health_monitor.config_path u:object_r:health_monitor_config_path_prop:s0
 # TODO: b/349450954 - Temporarily, we assign this property to graphics_config_prop and may want to
 #                     move it to more proper context such as vendor_graphics_config_prop later.
 drm.gpu.vendor_name u:object_r:graphics_config_prop:s0
+
+
+# System property for disabling authz enforcement. Only used in engineering builds (userdebug/eng).
+# Production builds ignore this system property.
+sdv.authz.enable u:object_r:sdv_authz_enable_prop:s0 exact bool
