@@ -19,3 +19,8 @@ set_prop(init, orchestrator_config_path_prop)
 
 # Orchestrator is a power state client
 typeattribute sdv_orch sdv_vpm_agent_notification_client;
+
+typeattribute sdv_orch sdv_sd_client;
+
+# Check why we need this
+typeattribute sdv_orch sdv_rpcagent_client;

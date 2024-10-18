@@ -64,8 +64,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     server_rust_tokio_sdv_sample \
     someip_rpc_someip_server \
     someip_rpc_sdv_server \
-    orch_custom_mode_sample_charging \
-    orch_custom_mode_sample_tire_pressure \
+    orch_custom_mode_sample \
     sdv_health_monitor \
     sdv_sample_health_monitored_service \
     sdv_sample_second_health_monitored_service \
