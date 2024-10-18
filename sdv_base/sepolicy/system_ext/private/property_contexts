@@ -1,13 +1,19 @@
 # Copyright 2024 Google LLC
 
-# The vsock_local_cid property is written by the vsock_local_cid service once and then read by
-# data tunnel
+# ro.boot. properties used for SDV Authentication, set based on kernel commandline arguments.
+ro.boot.sdv.instance_name u:object_r:bootloader_prop:s0 exact string
+# The Possible values for the SDV Boot Mode are `locked` and `unlocked`.
+ro.boot.sdv.boot_mode u:object_r:bootloader_prop:s0 exact enum locked unlocked
+ro.boot.sdv.vvmfactorytrust u:object_r:bootloader_prop:s0 exact string
+
+# The vsock_local_cid property is written by the vsock_local_cid service once, and then read by
+# data tunnel.
 ro.boot.vsock_local_cid u:object_r:vsock_local_cid_prop:s0
 
-# Used by init_open_dice to notify init that it has finished wiping the
-# open_dice device file. init can then continue the boot process.
+# Used by init_open_dice to notify init that it has finished wiping the open_dice device. init can
+# then continue the boot process.
 ro.init_open_dice.device_wiped u:object_r:init_open_dice_device_wiped_prop:s0 exact bool
 
 # Used by SDV's init script to notify that apexd-bootstrap has completed, so init_open_dice can
-# execute.
+# be executed.
 ro.sdv.apex.bootstrap.ready u:object_r:sdv_apex_bootstrap_ready_prop:s0 exact bool
