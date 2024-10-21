@@ -9,4 +9,4 @@
 /data/vendor/vsomeip(/.*)?      u:object_r:vsomeip_data_file:s0
 
 # KeyMint
-/vendor/bin/hw/android\.hardware\.security\.keymint-service\.nonsecure  u:object_r:hal_keymint_rust_exec:s0
+/vendor/bin/hw/android\.sdv\.hardware\.security\.keymint-service\.nonsecure  u:object_r:hal_keymint_rust_exec:s0
