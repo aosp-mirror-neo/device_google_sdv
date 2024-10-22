@@ -30,3 +30,9 @@ PRODUCT_PACKAGES += com.android.hardware.boot
 PRODUCT_PACKAGES += \
     init_open_dice_from_file \
     sample_dice_handover_file \
+
+# Enable manual testing of the mesh described in vvmconfig.example
+PRODUCT_PACKAGES += \
+    dice_handover_instance1 \
+    dice_handover_instance2 \
+    dice_handover_instance3 \
