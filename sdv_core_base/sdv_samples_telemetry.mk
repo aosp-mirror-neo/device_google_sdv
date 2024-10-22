@@ -13,6 +13,7 @@ SDV_CORE_TELEMETRY_SAMPLES_PACKAGES = \
     telemetry_sample_data_tunnel_publisher_speed \
     telemetry_sample_data_tunnel_publisher_tire_pressure \
     telemetry_sample_data_tunnel_publisher_error_report \
+    telemetry_sample_data_tunnel_publisher_middleware \
     telemetry_sample_rpc_publisher \
     dt_telemetry_sample_publisher \
     telemetry_sample_publisher \
