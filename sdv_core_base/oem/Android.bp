@@ -1,0 +1,41 @@
+// Copyright 2024 Google LLC
+
+package {
+    default_applicable_licenses: [
+        "sdv_license",
+    ],
+}
+
+rust_library {
+    name: "libsdv_oem_updater",
+    crate_name: "sdv_oem_updater",
+    srcs: [
+        "oem_updater.rs",
+    ],
+    rustlibs: [
+        "libsdv_oem_updater_impl",
+    ],
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    vendor_available: true,
+    product_available: true,
+}
+
+rust_library {
+    name: "libsdv_oem_updater_impl",
+    crate_name: "sdv_oem_updater_impl",
+    srcs: [
+        "oem_updater_impl.rs",
+    ],
+    rustlibs: [
+        "librustutils",
+    ],
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    vendor_available: true,
+    product_available: true,
+}
