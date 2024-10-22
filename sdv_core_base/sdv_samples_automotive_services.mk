@@ -23,6 +23,7 @@ SDV_AUTOMOTIVE_SERVICES_SAMPLES_PACKAGES = \
     sdv_car_seats_service \
     sdv_hmi_service \
     sdv_user_preferences_service_stable \
+    sdv_concal_sample_client \
 
 
 SDV_AUTOMOTIVE_SERVICES_HOST_SAMPLES_PACKAGES =
