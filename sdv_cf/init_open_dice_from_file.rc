@@ -1,13 +1,12 @@
 # Copyright 2024 Google LLC
 
 # init_open_dice_from_file loads an SDV DICE chain from /product/etc/<filename> where <filename>
-# is specified as a command line argument. This definition passes the value in
-# the ro.boot.sdv.init_open_dice.sample_dice_handover_file_name property, which makes
-# init_open_dice_from_file load
-# /product/etc/${ro.boot.sdv.init_open_dice.sample_dice_handover_file_name}, or, if the property is
-# unset, it passes the `sample_dice_handover_file` string which makes init_open_dice_from_file load
+# is specified as a command line argument. This definition passes the value in the
+# ro.boot.sdv.init_open_dice.sample_file property, which makes init_open_dice_from_file load
+# /product/etc/${ro.boot.sdv.init_open_dice.sample_file}, or, if the property is unset, it passes
+# the `sample_dice_handover_file` string which makes init_open_dice_from_file load
 # /product/etc/sample_dice_handover_file.
-service init_open_dice /system_ext/bin/init_open_dice_from_file ${ro.boot.sdv.init_open_dice.sample_dice_handover_file_name:-sample_dice_handover_file}
+service init_open_dice /system_ext/bin/init_open_dice_from_file ${ro.boot.sdv.init_open_dice.sample_file:-sample_dice_handover_file}
     class core
     disabled
     # logd is not available when init_open_dice is run, so it logs to stdio which is redirected to
