@@ -50,6 +50,11 @@ PRODUCT_PACKAGES += \
     update_engine_product_partition_post_install \
     update_engine_system_partition_post_install \
 
+# Add the sdv_provisioning_tool to enable easy testing of the mesh provisioning
+# flows.
+PRODUCT_PACKAGES += \
+    sdv_provisioning_tool \
+
 # A/B updates post install configuration.
 # Post install scripts can be added for other partitions in the same way.
 AB_OTA_POSTINSTALL_CONFIG += \
