@@ -13,7 +13,10 @@ google.sdv.identity.IIdentityAgent/default u:object_r:sdv_id_service:s0
 google.sdv.service_discovery.discovery.IServiceRegistrationAgent/default u:object_r:sdv_sd_service:s0
 # SDV Service Discovery Agent service.
 google.sdv.service_discovery.discovery.IServiceDiscoveryAgent/default u:object_r:sdv_sd_service:s0
+# SDV AuthZ Agent service.
+google.sdv.authz.IAuthzService/default u:object_r:sdv_sd_service:s0
 # SDV Transport Support Agent service.
+# TODO(amarchini): tailor the access to the clients.
 google.sdv.service_discovery.discovery.ITransportSupportAgent/default u:object_r:sdv_transport_support_service:s0
 
 # SDV Mesh IPC service
