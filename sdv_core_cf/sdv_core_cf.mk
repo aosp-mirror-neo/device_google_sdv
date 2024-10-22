@@ -42,6 +42,15 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/google/sdv/sdv_core_cf/init.sdv_core_cf.rc:$(TARGET_COPY_OUT_SYSTEM)/etc/init/hw/init.sdv_core_cf.rc \
 
+# The Rust implementation of the non-secure, pure software KeyMint vendor HAL. Among others, the
+# KeyMint HAL provides the android.hardware.security.keymint.IRemotelyProvisionedComponent Binder
+# AIDL service required by Service Discovery, and other interfaces for encryption key management
+# which are used by the Keystore system service.
+# This KeyMint implementation of the HAL is only intended to allow testing and policy compliance.
+# A real implementation **must implement the TA in a secure environment**, as per CDD 9.11 [C-1-1]:
+# "MUST back up the keystore implementation with an isolated execution environment."
+PRODUCT_PACKAGES += android.hardware.security.keymint-service.nonsecure
+
 # Sample implementations of the SOME/IP stack and Diagnostics agent
 PRODUCT_PACKAGES += \
     sdv_someip_stack_agent \

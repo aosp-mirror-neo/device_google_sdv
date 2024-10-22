@@ -6,6 +6,7 @@ import /system/etc/init/init.sdv_core_base.rc
 import /system/etc/init/init.sdv_cf.rc
 import /system_ext/etc/init/init_open_dice_from_file.rc
 import /system/etc/init/vvmtruststore.rc
+import /vendor/etc/init/android.hardware.security.keymint-service.nonsecure.rc
 
 # Declare and start the sample SDV SOME/IP stack agent.
 service sdv_someip_stack_agent /vendor/bin/sdv_someip_stack_agent
