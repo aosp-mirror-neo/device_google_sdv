@@ -14,6 +14,7 @@ rust_library {
     ],
     rustlibs: [
         "libsdv_oem_updater_impl",
+        "libonce_cell",
     ],
     apex_available: [
         "//apex_available:platform",

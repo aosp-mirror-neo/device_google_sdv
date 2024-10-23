@@ -1,6 +1,6 @@
 // Copyright 2024 Google LLC
 
-//! Defines the oem update implementation.
+//! Defines the oem updater implementation.
 
 use std::fmt;
 

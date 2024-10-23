@@ -50,6 +50,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     sdv_mirror_manager_service \
     sdv_mirror_sdv_mirror_modern_service \
     sdv_mirror_status_printer_service \
+    sdv_oem_partition_update_client \
     sdv_sample_property_service \
     sdv_tire_alert_service \
     sdv_tire_monitor_service \
