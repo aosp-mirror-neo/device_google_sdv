@@ -18,10 +18,11 @@ SDV_CORE_SERVICES_PACKAGES = \
     sdv_orchestration_agent \
     sdv_service_bundles_registry_agent \
     lifecycle_service_bundle_runner \
-    sdv_someip_broker_agent \
+    sdv_someip_broker_agent_comms \
     sdv_update_manager_agent \
     sdv.sample.apex.fake.update.manager \
     sdv_health_monitor_stable \
+    broker_config_v0.json \
     $(SDV_SOMEIP_BROKER_CONFIG) \
 
 SDV_CORE_SERVICES_HOST_PACKAGES += \

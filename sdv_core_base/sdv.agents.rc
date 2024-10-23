@@ -120,7 +120,7 @@ on property:dev.bootcomplete=1
     start sdv_vpm_agent
 
 # Declare and start the SDV SOME/IP broker agent.
-service sdv_someip_broker_agent /system_ext/bin/sdv_someip_broker_agent
+service sdv_someip_broker_agent /system_ext/bin/sdv_someip_broker_agent_comms
     class core
     disabled
     user system
