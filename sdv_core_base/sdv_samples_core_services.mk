@@ -85,6 +85,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     com.sdv.google.sample.sqlite \
     com.sdv.sample_oem.health.monitored \
     com.sdv.sample_oem.health.monitoring \
+    com.sdv.someip \
 
 # TODO: b/361610453 - include in com.sdv.google.sample.logging
 SDV_CORE_SERVICES_SAMPLES_PACKAGES += structured_logging_sdv_rust_sample
