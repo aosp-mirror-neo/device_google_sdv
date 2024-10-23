@@ -11,22 +11,24 @@ SDV_BASE_SERVICES_SAMPLES_PACKAGES = \
     dt_sample_subscriber_rust \
     sdv_cluster_grpc_client_cpp \
     sdv_cluster_grpc_server_cpp \
+    sdv_cluster_grpc_server_v2_cpp \
+    sdv_cluster_grpc_client_v2_cpp \
     sdv_comms_sample_dt_rs \
     sdv_comms_sample_rpc_rs \
     sdv_dt_publisher_cpp \
     sdv_dt_subscriber_cpp \
+    sdv_dt_publisher_v2_cpp \
+    sdv_dt_subscriber_v2_cpp \
     sdv_sample_rpc_client \
     sdv_sample_rpc_server \
     sdv_sunroof_grpc_client_cpp \
     sdv_tpms_grpc_client_cpp \
     sdv_tpms_grpc_server_cpp \
+    sdv_tpms_grpc_server_v2_cpp \
+    sdv_tpms_grpc_client_v2_cpp \
     service_authn_sample_bench \
     service_authn_sample_rs \
     vvmconfig.example \
-    sdv_cluster_grpc_server_v2_cpp \
-    sdv_cluster_grpc_client_v2_cpp \
-    sdv_tpms_grpc_server_v2_cpp \
-    sdv_tpms_grpc_client_v2_cpp \
 
 SDV_BASE_SERVICES_HOST_SAMPLES_PACKAGES =
 
