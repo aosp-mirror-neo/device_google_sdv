@@ -5,7 +5,7 @@
 # These are not included in sdv_core_base.mk. Targets need to include them explicitly.
 
 SDV_AUTOMOTIVE_SERVICES_SAMPLES_PACKAGES = \
-    com.sdv.google.sample.concal \
+    com.sdv.oem.sample.concal \
     diag_manager_sample \
     diag_provider1_sample \
     diag_provider2_sample \
