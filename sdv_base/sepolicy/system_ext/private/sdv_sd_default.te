@@ -21,3 +21,15 @@ hal_client_domain(sdv_sd_default, hal_keymint)
 # SD agent can talk to the DICE Chain Provider service in init_open_dice
 allow sdv_sd_default  sdv_dice_chain_provider_service:service_manager find;
 binder_call(sdv_sd_default, init_open_dice)
+
+typeattribute sdv_sd_default sdv_mesh_provisioning_server;
+
+# SDV Mesh Provisioning client and server can call each other using Binder IPC.
+binder_call(sdv_mesh_provisioning_client, sdv_mesh_provisioning_server)
+binder_call(sdv_mesh_provisioning_server, sdv_mesh_provisioning_client)
+
+# SDV Mesh Provisioning client can find the IPC service.
+allow sdv_mesh_provisioning_client sdv_mesh_provisioning_service:service_manager find;
+
+# SDV Mesh Provisioning server can register the IPC service.
+add_service(sdv_mesh_provisioning_server, sdv_mesh_provisioning_service)

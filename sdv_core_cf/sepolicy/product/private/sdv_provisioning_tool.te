@@ -1,0 +1,23 @@
+# Copyright 2024 Google LLC
+
+type sdv_provisioning_tool, domain, coredomain;
+# typeattribute sdv_provisioning_tool mlstrustedsubject;
+type sdv_provisioning_tool_exec, exec_type, system_file_type, file_type;
+
+# To enable testing it by running it from the shell during development
+# WARNING: make sure NOT to use root (run `adb unroot` to be sure), because otherwise this policy
+#          file won't be used, and the root shell has all the SELinux permissions anyways.
+userdebug_or_eng(`
+  domain_auto_trans(shell, sdv_provisioning_tool_exec, sdv_provisioning_tool)
+
+  # These rules are to make standard output work when running from the shell
+  allow sdv_provisioning_tool adbd:fd use;
+  allow sdv_provisioning_tool shell:fd use;
+  allow sdv_provisioning_tool adbd:unix_stream_socket { read write };
+')
+
+# The sdv_provisioning_tool uses Binder to call the SDV mesh provisioning service
+binder_use(sdv_provisioning_tool)
+
+# Assign all the policies requires to use the SDV mesh provisioning service
+typeattribute sdv_provisioning_tool sdv_mesh_provisioning_client;

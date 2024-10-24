@@ -33,6 +33,12 @@ expandattribute sdv_sd_client true;
 # https://android.googlesource.com/platform/external/selinux/+/1089665e31a647a5f0ba2eabe8ac6232b384bed9
 expandattribute sdv_sd_server false;
 
+# Attributes for SDV Mesh Provisioning
+attribute sdv_mesh_provisioning_client;
+attribute sdv_mesh_provisioning_server;
+expandattribute sdv_mesh_provisioning_client true;
+expandattribute sdv_mesh_provisioning_server false;
+
 # Attributes for RPCagent
 attribute sdv_rpcagent_client;
 attribute sdv_rpcagent_server;

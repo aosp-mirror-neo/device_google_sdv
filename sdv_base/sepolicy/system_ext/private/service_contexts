@@ -27,9 +27,8 @@ google.sdv.privileged.service_discovery.IPrivilegedServiceRegistrationAgent/defa
 # SDV Mesh IPC service
 android.sdv.mesh.IMessageManager u:object_r:sdv_mesh_service:s0
 
-# uds_pubs provisioning service.
-# TODO: b/361269391 - Separate it from the other sdv_sd_service interfaces.
-google.sdv.mesh.provisioning.IUdsPubsProvisioner/default u:object_r:sdv_sd_service:s0
+# SDV Mesh uds_pubs provisioning IPC service.
+google.sdv.mesh.provisioning.IUdsPubsProvisioner/default u:object_r:sdv_mesh_provisioning_service:s0
 
 # RPCagent service
 google.sdv.rpc.IRpcAgent/default u:object_r:sdv_rpcagent_service:s0
