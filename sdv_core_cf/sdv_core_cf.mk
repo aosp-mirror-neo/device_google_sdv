@@ -52,6 +52,11 @@ PRODUCT_COPY_FILES += \
 # "MUST back up the keystore implementation with an isolated execution environment."
 PRODUCT_PACKAGES += android.sdv.hardware.security.keymint-service.nonsecure
 
+# The SDV KeyMint must be added to the PDK, because the PDK is tested without the sources in
+# system/software_defined_vehicle/ (where the SDV KeyMint is located), so there would be no KeyMint
+# added to the device that tests the PDK.
+SDV_BASE_SERVICES_PACKAGES += android.sdv.hardware.security.keymint-service.nonsecure
+
 # Sample implementations of the SOME/IP stack and Diagnostics agent
 PRODUCT_PACKAGES += \
     sdv_someip_stack_agent \
