@@ -24,14 +24,27 @@ rust_library {
     product_available: true,
 }
 
+filegroup {
+    name: "oem_updater_impl_srcs",
+    srcs: [
+        "oem_updater_impl.rs",
+        "oem_updater_error.rs",
+    ],
+}
+
 rust_library {
     name: "libsdv_oem_updater_impl",
     crate_name: "sdv_oem_updater_impl",
     srcs: [
-        "oem_updater_impl.rs",
+        ":oem_updater_impl_srcs",
     ],
     rustlibs: [
         "librustutils",
+        "libanyhow",
+        "libmockall",
+        "libnix",
+        "libthiserror",
+        "liblog_rust",
     ],
     apex_available: [
         "//apex_available:platform",
