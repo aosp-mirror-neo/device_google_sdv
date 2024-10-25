@@ -6,8 +6,6 @@
 
 SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     client_rust_tokio_sdv_sample \
-    com.sdv.google.sample.apex.consumer \
-    com.sdv.google.sample.apex.provider \
     com.sdv.google.sample.hello.apex \
     com.sdv.google.sample.test1 \
     com.sdv.google.sample.logging \
