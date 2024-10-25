@@ -23,16 +23,3 @@ PRODUCT_COPY_FILES += device/google/sdv/sdv_cf/init_open_dice_from_file.rc:$(TAR
 
 # BootControl HAL for Cuttlefish
 PRODUCT_PACKAGES += com.android.hardware.boot
-
-# On arm64 architectures, init_open_dice runs on early init, consumes and wipes the open-dice
-# device. However, on x86, the open-dice device is not available, so init_open_dice_from_file reads
-# this content from a static sample DICE handover file added for testing and development.
-PRODUCT_PACKAGES += \
-    init_open_dice_from_file \
-    sample_dice_handover_file \
-
-# Enable manual testing of the mesh described in vvmconfig.example
-PRODUCT_PACKAGES += \
-    dice_handover_instance1 \
-    dice_handover_instance2 \
-    dice_handover_instance3 \
