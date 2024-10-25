@@ -31,6 +31,13 @@ SDV_BASE_SERVICES_PACKAGES = \
     sdv_sd_cli \
     vsock_local_cid \
 
+# The packages that provide the Android DICE chain for the SDV Mesh. Either init_open_dice or
+# init_open_dice_from_file and the associated files.
+ifeq ($(SDV_OPEN_DICE_PROVIDER_PACKAGES),)
+  $(error $$SDV_OPEN_DICE_PROVIDER_PACKAGES not set)
+endif
+SDV_BASE_SERVICES_PACKAGES += $(SDV_OPEN_DICE_PROVIDER_PACKAGES)
+
 SDV_BASE_SERVICES_HOST_PACKAGES =
 
 PRODUCT_PACKAGES += $(SDV_BASE_SERVICES_PACKAGES)

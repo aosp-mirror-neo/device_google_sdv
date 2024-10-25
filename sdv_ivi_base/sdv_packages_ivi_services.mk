@@ -13,9 +13,14 @@ SDV_IVI_SERVICES_PACKAGES = \
     libvhal_proxy_config_loader \
     libvhal_proxy_config_loader_v2 \
     libvhal_proxy_proto_cpp \
-    sdv_gateway \
-    init_open_dice_from_file \
-    sample_dice_handover_file
+    sdv_gateway
+
+# The packages that provide the Android DICE chain for the SDV Mesh. Either init_open_dice or
+# init_open_dice_from_file and the associated files.
+ifeq ($(SDV_OPEN_DICE_PROVIDER_PACKAGES),)
+  $(error $$SDV_OPEN_DICE_PROVIDER_PACKAGES not set)
+endif
+SDV_IVI_SERVICES_PACKAGES += $(SDV_OPEN_DICE_PROVIDER_PACKAGES)
 
 SDV_IVI_SERVICES_HOST_PACKAGES = \
     vsidl_code_generator \
