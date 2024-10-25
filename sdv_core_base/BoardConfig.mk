@@ -120,8 +120,8 @@ BOARD_INIT_BOOT_HEADER_VERSION := 4
 BOARD_MKBOOTIMG_INIT_ARGS += --header_version $(BOARD_INIT_BOOT_HEADER_VERSION)
 
 BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_PARTITION_LIST := system vendor system_ext product vendor_dlkm
-# reserve 512MiB for dynamic partition metadata
-BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_SIZE := 536870912
+# reserve 512+128MiB for dynamic partition metadata
+BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_SIZE := 671088640
 # coverage builds use more space, add 256MiB more
 ifeq ($(CLANG_COVERAGE),true)
   BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_SIZE := \
