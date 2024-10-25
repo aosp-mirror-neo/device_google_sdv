@@ -23,6 +23,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     com.sdv.google.sample.bar \
     com.sdv.google.sample.foo \
     cujs_orchestration_configurations \
+    com.sdv.google.sample.update.manager.client \
     com.sdv.google.test.authz.local_vm_acl_policy_provider \
     com.sdv.tm \
     liblifecycle_rust_service_bundle_test \
@@ -54,7 +55,6 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     sdv_tire_sensor_reader_service \
     sdv_tire_status_supplier_service \
     sdv_tire_status_consumer_service \
-    sdv_update_manager_client \
     sdv_vsomeip_conf_counter_tester_target \
     sdv_vsomeip_counter_tester \
     sdv_vsomeip_sdv_hello_tester \
