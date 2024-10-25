@@ -85,6 +85,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     com.sdv.google.sample.sqlite \
     com.sdv.sample_oem.health.monitored \
     com.sdv.sample_oem.health.monitoring \
+    sdv_dice_root_key_extraction_tool \
     com.sdv.someip \
 
 # TODO: b/361610453 - include in com.sdv.google.sample.logging
