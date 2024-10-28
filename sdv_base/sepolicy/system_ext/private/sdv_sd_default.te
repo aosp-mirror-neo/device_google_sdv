@@ -22,6 +22,9 @@ hal_client_domain(sdv_sd_default, hal_keymint)
 allow sdv_sd_default  sdv_dice_chain_provider_service:service_manager find;
 binder_call(sdv_sd_default, init_open_dice)
 
+# SDV SD server can write the value of the property.
+set_prop(sdv_sd_server, mesh_missing_vms_prop)
+
 typeattribute sdv_sd_default sdv_mesh_provisioning_server;
 
 # SDV Mesh Provisioning client and server can call each other using Binder IPC.
