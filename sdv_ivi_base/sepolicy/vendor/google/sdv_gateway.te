@@ -25,3 +25,26 @@ allow sdv_gateway_client sdv_gateway_service:service_manager find;
 typeattribute sdv_gateway sdv_sd_client;
 typeattribute sdv_gateway sdv_rpcagent_client;
 typeattribute sdv_gateway sdv_dt_client;
+
+# The SDV DT client is also a SDV Gateway client on IVI because DT server runs
+# in the sdv_gateway process.
+# Allow SDV Gateway to use Transport Support Service
+allow sdv_gateway sdv_transport_support_service:service_manager find;
+# SDV DT client and server can use Binder IPC (using SDV Gateway).
+binder_call(sdv_dt_client, sdv_gateway_server)
+binder_call(sdv_gateway_server, sdv_dt_client)
+# SDV DT client and server can find the IPC service (using SDV Gateway).
+allow sdv_dt_client sdv_gateway_service:service_manager find;
+
+allow sdv_dt_client sdv_gateway_service:fifo_file { read write };
+allow sdv_dt_client sdv_gateway_service:fd use;
+allow sdv_gateway_client sdv_gateway_service:fifo_file { read write };
+allow sdv_gateway_client sdv_gateway_service:fd use;
+allow sdv_dt_client sdv_gateway:fifo_file { read write };
+allow sdv_dt_client sdv_gateway:fd use;
+allow sdv_gateway_client sdv_gateway:fifo_file { read write };
+allow sdv_gateway_client sdv_gateway:fd use;
+
+# SDV Gateway Agent can use sockets
+net_domain(sdv_gateway)
+allow sdv_gateway self:vsock_socket { connect create getopt read write getattr listen accept bind shutdown };

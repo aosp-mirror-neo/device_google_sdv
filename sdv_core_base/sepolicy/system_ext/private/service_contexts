@@ -19,3 +19,7 @@ google.sdv.lifecycle.test.IServiceCallbackVerifier/default u:object_r:sdv_lc_tes
 
 # SDV VPM binder power callback service interface.
 google.sdv.vpm.IPowerStateClientApi u:object_r:sdv_vpm_agent_notification_service:s0
+
+# SDV DT IPC service
+google.sdv.dt.IDataTunnelAgent/default u:object_r:sdv_dt_service:s0
+google.sdv.data_tunnel.IAgentService/default u:object_r:sdv_dt_service:s0
