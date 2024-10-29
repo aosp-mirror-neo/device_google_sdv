@@ -5,7 +5,6 @@
 # These are not included in sdv_core_base.mk. Targets need to include them explicitly.
 
 SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
-    client_rust_tokio_sdv_sample \
     com.sdv.google.sample.apex.consumer \
     com.sdv.google.sample.apex.provider \
     com.sdv.google.sample.hello.apex \
@@ -66,7 +65,6 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     sdv_vsomeip_hey_tester \
     sdv_vsomeip_group_tester \
     sdv_vsomeip_side_mirror_tester \
-    server_rust_tokio_sdv_sample \
     someip_rpc_someip_server \
     someip_rpc_sdv_server \
     orch_custom_mode_sample \
