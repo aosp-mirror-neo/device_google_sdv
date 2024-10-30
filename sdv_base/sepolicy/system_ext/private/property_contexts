@@ -8,7 +8,7 @@ ro.boot.sdv.vvmfactorytrust u:object_r:bootloader_prop:s0 exact string
 
 # The vsock_local_cid property is written by the vsock_local_cid service once, and then read by
 # data tunnel.
-ro.boot.vsock_local_cid u:object_r:vsock_local_cid_prop:s0
+ro.sdv.vsock_local_cid u:object_r:vsock_local_cid_prop:s0
 
 # Used by init_open_dice to notify init that it has finished wiping the open_dice device. init can
 # then continue the boot process.
