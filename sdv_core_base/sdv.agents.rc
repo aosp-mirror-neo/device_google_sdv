@@ -59,9 +59,9 @@ on property:dev.bootcomplete=1
 ##  Communication stack agents  ##
 ##################################
 
-# Retrieve local vsock cid and store it in ro.boot.vsock_local_cid.
-# Used only by dt_agent,
-service vsock_local_cid /system/bin/vsock_local_cid ro.boot.vsock_local_cid
+# Retrieve the local vsock CID and store it in ro.boot.vsock_local_cid.
+# Used only by the dt_agent
+service vsock_local_cid /system_ext/bin/vsock_local_cid ro.boot.vsock_local_cid
   class core
   user root
   group shell

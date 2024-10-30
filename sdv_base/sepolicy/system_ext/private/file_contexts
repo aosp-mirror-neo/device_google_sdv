@@ -17,7 +17,7 @@
 /(system_ext|system/system_ext)/bin/ethernet/ethernet(.*)\.sh        u:object_r:sdv_ethernet_setup_exec:s0
 
 # vsock local CID system propery setup
-/system/bin/vsock_local_cid u:object_r:vsock_local_cid_exec:s0
+/(system_ext|system/system_ext)/bin/vsock_local_cid u:object_r:vsock_local_cid_exec:s0
 
 # SDV service discovery agent
 /(system_ext|system/system_ext)/bin/sdv_sd_agent        u:object_r:sdv_sd_default_exec:s0
