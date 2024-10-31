@@ -29,7 +29,6 @@ DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
     device/google/sdv/sdv_base/device_system_compatibility_matrix.xml
 
 PRODUCT_PACKAGES += vendor_compatibility_matrix.xml
-PRODUCT_PACKAGES += system_ext_manifest.xml
 
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
@@ -74,6 +73,19 @@ PRODUCT_PACKAGES += \
     public.libraries.android.txt \
     logcat \
     logd \
+
+
+# Base modules and settings for the system_ext partition.
+PRODUCT_PACKAGES += \
+    fs_config_dirs \
+    fs_config_files \
+    group_system_ext \
+    passwd_system_ext \
+    group_product \
+    passwd_product \
+    system_ext_manifest.xml \
+
+TARGET_FS_CONFIG_GEN += device/google/sdv/sdv_core_base/config.fs
 
 # Packages included only for eng or userdebug builds
 # su needed for logpersist.* commands

@@ -10,7 +10,7 @@
 service sdv_service_bundles_registry_agent /system_ext/bin/sdv_service_bundles_registry_agent
     class core
     disabled
-    user system
+    user system_ext_sdv_sbr
     group system
 # Start SDV Service Bundles Registry agent only when all apexes are mounted.
 on property:apex.all.ready=true
@@ -20,7 +20,7 @@ on property:apex.all.ready=true
 service sdv_lifecycle_agent /system_ext/bin/sdv_lifecycle_agent
     class core
     disabled
-    user system
+    user system_ext_sdv_lcm
     group system
 on property:dev.bootcomplete=1
     start sdv_lifecycle_agent
@@ -29,7 +29,7 @@ on property:dev.bootcomplete=1
 service sdv_orchestration_agent /system_ext/bin/sdv_orchestration_agent
     class core
     disabled
-    user system
+    user system_ext_sdv_orch
     group system
 on property:dev.bootcomplete=1
     start sdv_orchestration_agent
@@ -38,7 +38,7 @@ on property:dev.bootcomplete=1
 service sdv_update_manager_agent /system_ext/bin/sdv_update_manager_agent
     class core
     disabled
-    user system
+    user system_ext_sdv_um
     group system
 on property:dev.bootcomplete=1
     start sdv_update_manager_agent
@@ -50,7 +50,7 @@ on property:dev.bootcomplete=1
 service sdv_health_monitor_stable /system_ext/bin/sdv_health_monitor_stable
     class core
     disabled
-    user system
+    user system_ext_sdv_hm
     group system
 on property:dev.bootcomplete=1
     start sdv_health_monitor_stable
@@ -72,8 +72,8 @@ on post-fs-data
 service sdv_sd_agent /system_ext/bin/sdv_sd_agent
     class core
     disabled
-    user root #TODO: b/285353950 - use system
-    group root
+    user system_ext_sdv_sd
+    group system
     enter_namespace net /mnt/run/sd_mesh
 on property:dev.bootcomplete=1
     start sdv_sd_agent
@@ -87,8 +87,8 @@ on property:dev.bootcomplete=1
 service dt_agent /system_ext/bin/dt_agent /data/dt_mesh.csv
     class core
     disabled
-    user shell
-    group shell
+    user system_ext_sdv_dt
+    group system
 on property:dev.bootcomplete=1
     start dt_agent
 
@@ -96,7 +96,7 @@ on property:dev.bootcomplete=1
 service rpcagent /system_ext/bin/rpcagent
     class core
     disabled
-    user system
+    user system_ext_sdv_rpc
     group system
 # TODO: b/326115833 - comment out for now, to allow grpc-java to create socket directly in the mean
 # time
@@ -113,7 +113,7 @@ on property:dev.bootcomplete=1
 service sdv_vpm_agent  /system_ext/bin/sdv_vpm_agent
     class core
     disabled
-    user system
+    user system_ext_sdv_vpm
     group system
 on property:dev.bootcomplete=1
     start sdv_vpm_agent
@@ -122,7 +122,7 @@ on property:dev.bootcomplete=1
 service sdv_someip_broker_agent /system_ext/bin/sdv_someip_broker_agent_comms
     class core
     disabled
-    user system
+    user system_ext_sdv_someip
     group system
 on property:dev.bootcomplete=1 && property:ro.sdv.vsock_local_cid=3
     start sdv_someip_broker_agent
@@ -135,7 +135,7 @@ on property:dev.bootcomplete=1 && property:ro.sdv.vsock_local_cid=3
 service sdv_telemetry_service_agent /vendor/bin/sdv_telemetry_service_agent
     class core
     disabled
-    user system
+    user system_ext_sdv_telemetry
     group system
 on property:dev.bootcomplete=1 && property:ro.build.product=sdv_core_cf
     start sdv_telemetry_service_agent
