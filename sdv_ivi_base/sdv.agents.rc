@@ -9,8 +9,8 @@ on early-init
     # executes first, before this trigger.
     setprop ro.sdv.apex.bootstrap.ready true
 
-# Retrieve local vsock cid and store it in ro.boot.vsock_local_cid
-service vsock_local_cid /system_ext/bin/vsock_local_cid ro.boot.vsock_local_cid
+# Retrieve local vsock CID and store it in ro.sdv.vsock_local_cid.
+service vsock_local_cid /system_ext/bin/vsock_local_cid ro.sdv.vsock_local_cid
   class core
   user root
   group shell
