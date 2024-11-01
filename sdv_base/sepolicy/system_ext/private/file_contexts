@@ -13,9 +13,6 @@
 # system_ext files
 #
 
-# The ethernet setup script for SDV.
-/(system_ext|system/system_ext)/bin/ethernet/ethernet(.*)\.sh        u:object_r:sdv_ethernet_setup_exec:s0
-
 # vsock local CID system propery setup
 /(system_ext|system/system_ext)/bin/vsock_local_cid u:object_r:vsock_local_cid_exec:s0
 
