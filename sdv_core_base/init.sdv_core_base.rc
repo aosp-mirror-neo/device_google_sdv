@@ -27,7 +27,6 @@ import /system_ext/etc/init/init_open_dice.rc
 # Remove the import once we can rely on .rc files from /system/etc/init getting loaded
 # automatically.
 import /system/etc/init/logcatd.rc
-import /system/etc/init/hw/init.ethernet.rc
 import /system/etc/init/dumpstate.rc
 import /system/etc/init/tombstoned.rc
 import /system/etc/init/update_engine_nostats.rc
