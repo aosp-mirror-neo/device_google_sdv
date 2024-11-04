@@ -23,12 +23,6 @@ PRODUCT_VENDOR_PROPERTIES += \
 
 # Android V SDK level, matches target-level 202404 in the device manifest.
 PRODUCT_SHIPPING_API_LEVEL := 35
-DEVICE_MANIFEST_FILE := device/google/sdv/sdv_core_base/sdv_vendor_manifest.xml
-
-DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
-    device/google/sdv/sdv_base/device_system_compatibility_matrix.xml
-
-PRODUCT_PACKAGES += vendor_compatibility_matrix.xml
 
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
@@ -74,16 +68,47 @@ PRODUCT_PACKAGES += \
     logcat \
     logd \
 
+# Adds the system (Android) framework manifest file (/system/etc/vintf/manifest.xml) which is
+# required by keystore2, because keystore2 is on /system, and it contains a vintf_fragment.
+# TODO: b/296978905 - SDV should not use Android's system manifest, because it contains HALs that
+#       SDV doesn't provide.
+PRODUCT_PACKAGES += system_manifest.xml
+PRODUCT_PACKAGES += \
+    system_ext_manifest.xml \
+    product_manifest.xml
 
-# Base modules and settings for the system_ext partition.
+DEVICE_MANIFEST_FILE := device/google/sdv/sdv_core_base/sdv_vendor_manifest.xml
+
+# TODO: b/353711829 - Move this to a system_ext compatibility matrix not a system one, because
+#       it only contains the requirements for the ISomeIpStack which is a dependency of the
+#       system_ext installed SOME/IP broker
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
+    device/google/sdv/sdv_base/device_system_compatibility_matrix.xml
+
+# Adds the system (Android) framework compatibility matrices
+# (/system/etc/vintf/compatibility_matrix.*.xml) which are required by keystore2.
+# TODO: b/296978905 - SDV should not use Android's system framework compatibility matrices, because
+#       it lists HALs that SDV doesn't require from the device (probably, it doesn't cause an
+#       issue, though, because these HALs are listed as optional).
+PRODUCT_PACKAGES += system_compatibility_matrix.xml
+PRODUCT_PACKAGES += \
+    system_ext_compatibility_matrix.xml \
+    product_compatibility_matrix.xml \
+    vendor_compatibility_matrix.xml
+
+# Generates the <p>/etc/fs_config_dirs and the <p>/etc/fs_config_files binary files for each
+# partition.
 PRODUCT_PACKAGES += \
     fs_config_dirs \
-    fs_config_files \
+    fs_config_files
+
+PRODUCT_PACKAGES += \
     group_system_ext \
-    passwd_system_ext \
     group_product \
+    group_vendor \
+    passwd_system_ext \
     passwd_product \
-    system_ext_manifest.xml \
+    passwd_vendor
 
 TARGET_FS_CONFIG_GEN += device/google/sdv/sdv_core_base/config.fs
 
@@ -177,17 +202,6 @@ PRODUCT_PACKAGES += com.android.i18n
 # instances for security key management. Keystore2 is also required for file encryption, because
 # it's used by the vold daemon.
 PRODUCT_PACKAGES += keystore2
-# Adds the system (Android) framework manifest file (/system/etc/vintf/manifest.xml) which is
-# required by keystore2, because keystore2 is on /system, and it contains a vintf_fragment.
-# TODO: b/296978905 - SDV should not use Android's system manifest, because it contains HALs that
-# SDV doesn't provide.
-PRODUCT_PACKAGES += system_manifest.xml
-# Adds the system (Android) framework compatibility matrices
-# (/system/etc/vintf/compatibility_matrix.*.xml) which are required by keystore2.
-# TODO: b/296978905 - SDV should not use Android's system framework compatibility matrices, because
-# it lists HALs that SDV doesn't require from the device (probably, it doesn't cause an issue,
-# though, because these HALs are listed as optional).
-PRODUCT_PACKAGES += system_compatibility_matrix.xml
 
 # vold (VOLume Daemon) and vdc (Volume Daemon Client, vold's command line client) are required for
 # file encryption, and User Data Checkpoint
