@@ -17,7 +17,6 @@ python_test_host {
         unit_test: false,
     },
     test_suites: [
-        "general-tests",
         "automotive-sdv-tests",
     ],
 }
