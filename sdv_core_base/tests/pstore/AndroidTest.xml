@@ -6,6 +6,12 @@
     <option name="test-suite-tag" value="apct" />
     <option name="test-suite-tag" value="apct-native" />
 
+    <!--
+      Run prepare steps as root. Needed for remounting the pstore.
+      TODO: b/359442427 - remove this once log spam issue is addressed.
+    -->
+    <target_preparer class="com.android.tradefed.targetprep.RootTargetPreparer" />
+
     <!-- Make sure there is some data in the pstore then reboot -->
     <target_preparer class="com.android.tradefed.targetprep.RunCommandTargetPreparer">
         <!--
@@ -13,6 +19,14 @@
           enough logs between the write and reboot may make us miss the message.
         -->
         <option name="run-command" value="setprop log.tag SILENT" />
+        <!--
+          Services seem to ignore the log.tag value, and pstore *still* ends up
+          flooded with logs sometimes. Increase the buffer size to 128K
+          (from default 10K) so that it's less likely we'll miss the log.
+          See: https://www.kernel.org/doc/Documentation/ABI/testing/pstore
+          TODO: b/359442427 - remove this once log spam issue is addressed.
+        -->
+        <option name="run-command" value="mount -t pstore -o remount,kmsg_bytes=131072 /sys/fs/pstore" />
         <!-- Wipe existing pstore contents, if any -->
         <option name="run-command" value="rm -rf /sys/fs/pstore/*" />
         <option name="run-command" value="echo HelloPstore > /dev/pmsg0" />
