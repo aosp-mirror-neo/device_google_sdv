@@ -9,6 +9,7 @@ use android_hardware_security_rkp::aidl::android::hardware::security::keymint::{
     MacedPublicKey::MacedPublicKey,
 };
 
+use anyhow::{anyhow, Context};
 use binder::Status;
 use log::{info, warn};
 use sdv_log::init_logger;
@@ -22,19 +23,21 @@ use android_hardware_security_keymint::aidl::android::hardware::security::keymin
 };
 
 fn get_default_remotely_provisioned_component_service(
-) -> binder::Strong<dyn IRemotelyProvisionedComponent> {
+) -> anyhow::Result<binder::Strong<dyn IRemotelyProvisionedComponent>> {
     let remotely_provisioned_component_descriptor: &str =
         <BpRemotelyProvisionedComponent as IRemotelyProvisionedComponent>::get_descriptor();
     let default_remotely_provisioned_component_service_name =
         format!("{remotely_provisioned_component_descriptor}/default");
 
-    binder::get_interface(&default_remotely_provisioned_component_service_name).unwrap()
+    binder::get_interface(&default_remotely_provisioned_component_service_name)
+        .context("Failed to get IRemotelyProvisionedComponent service")
 }
 
-fn get_default_keymint_device_service() -> binder::Strong<dyn IKeyMintDevice> {
+fn get_default_keymint_device_service() -> anyhow::Result<binder::Strong<dyn IKeyMintDevice>> {
     let keymint_descriptor: &str = <BpKeyMintDevice as IKeyMintDevice>::get_descriptor();
     let default_keymint_service_name = format!("{keymint_descriptor}/default");
-    binder::get_interface(&default_keymint_service_name).unwrap()
+    binder::get_interface(&default_keymint_service_name)
+        .context("Failed to get IKeyMintDevice service")
 }
 
 fn create_attestation_key(attestation_key_blob: Vec<u8>) -> AttestationKey {
@@ -159,66 +162,66 @@ fn begin_keymint_sign_operation(
 }
 
 #[test]
-fn default_remotely_provisioned_component_get_hardware_info_test() {
-    let remotely_provisioned_component = get_default_remotely_provisioned_component_service();
+fn default_remotely_provisioned_component_get_hardware_info_test() -> anyhow::Result<()> {
+    let remotely_provisioned_component = get_default_remotely_provisioned_component_service()?;
 
-    let result = remotely_provisioned_component.getHardwareInfo();
-    assert!(result.is_ok());
-    let hardware_info = result.unwrap();
+    let hardware_info =
+        remotely_provisioned_component.getHardwareInfo().context("Failed to get HardwareInfo")?;
     assert_eq!(hardware_info.rpcAuthorName, "Google");
+    Ok(())
 }
 
 #[test]
-fn default_remotely_provisioned_component_generate_certificate_request_v2_test() {
-    let remotely_provisioned_component = get_default_remotely_provisioned_component_service();
+fn default_remotely_provisioned_component_generate_certificate_request_v2_test(
+) -> anyhow::Result<()> {
+    let remotely_provisioned_component = get_default_remotely_provisioned_component_service()?;
 
     // Generate an attestation key using the IRemotelyProvisionedComponent (shortened to IRPC from
     // now on in this test).
     let mut maced_public_key = MacedPublicKey { macedKey: vec![] };
-    let irpc_key_blob =
-        remotely_provisioned_component.generateEcdsaP256KeyPair(false, &mut maced_public_key);
-    assert!(irpc_key_blob.is_ok());
-    let irpc_key_blob = irpc_key_blob.unwrap();
-    assert_ne!(irpc_key_blob, vec![]);
-    assert_ne!(maced_public_key.macedKey, vec![]);
+    let is_for_testing = false;
+    let irpc_key_blob = remotely_provisioned_component
+        .generateEcdsaP256KeyPair(is_for_testing, &mut maced_public_key)
+        .context("generateEcdsaP256KeyPair() failed")?;
+    assert!(!irpc_key_blob.is_empty());
+    assert!(!maced_public_key.macedKey.is_empty());
     // The macedKey doesn't only contain zeros.
     assert_ne!(maced_public_key.macedKey, vec![0; maced_public_key.macedKey.len()]);
 
     // Sign the attestation key by the KeyMint (SecureWorld) DICE Chain using the IRPC.
     const CHALLENGE: [u8; 3] = [1, 2, 3];
     let certificate_request = remotely_provisioned_component
-        .generateCertificateRequestV2(&[maced_public_key], &CHALLENGE);
-    assert!(certificate_request.is_ok());
-    let certificate_request = certificate_request.unwrap();
-    assert_ne!(certificate_request, vec![]);
+        .generateCertificateRequestV2(&[maced_public_key], &CHALLENGE)
+        .context("generateCertificateRequestV2() failed")?;
+    assert!(!certificate_request.is_empty());
+    Ok(())
 }
 
 #[test]
-fn sdv_attestation_keymint_primitives_with_rsa_test() {
-    init_logger("sdv_keymint_test").unwrap();
-    let remotely_provisioned_component = get_default_remotely_provisioned_component_service();
+fn sdv_attestation_keymint_primitives_with_rsa_test() -> anyhow::Result<()> {
+    init_logger("sdv_keymint_test").context("init_logger() failed")?;
+    let remotely_provisioned_component = get_default_remotely_provisioned_component_service()?;
 
     // Generate an attestation key using the IRemotelyProvisionedComponent (shortened to IRPC from
     // now on in this test).
     let mut maced_public_key = MacedPublicKey { macedKey: vec![] };
-    let irpc_key_blob =
-        remotely_provisioned_component.generateEcdsaP256KeyPair(false, &mut maced_public_key);
-    assert!(irpc_key_blob.is_ok());
-    let irpc_key_blob = irpc_key_blob.unwrap();
-    assert_ne!(irpc_key_blob, vec![]);
-    assert_ne!(maced_public_key.macedKey, vec![]);
+    let is_for_testing = false;
+    let irpc_key_blob = remotely_provisioned_component
+        .generateEcdsaP256KeyPair(is_for_testing, &mut maced_public_key)
+        .context("generateEcdsaP256KeyPair() failed")?;
+    assert!(!irpc_key_blob.is_empty());
+    assert!(!maced_public_key.macedKey.is_empty());
     // The macedKey doesn't only contain zeros.
     assert_ne!(maced_public_key.macedKey, vec![0; maced_public_key.macedKey.len()]);
 
-    let keymint_device = get_default_keymint_device_service();
+    let keymint_device = get_default_keymint_device_service()?;
 
     // Generate a new key that can be used for regular KeyMint operations, such as signing
     // arbitrary data. The irpc_key_blob will be set as the attestation key, this way, the
     // key is bound to the KeyMint DICE Chain.
     let attested_key_creation_result =
-        generate_keymint_rsa_key(&keymint_device, vec![], Some(irpc_key_blob));
-    assert!(attested_key_creation_result.is_ok(), "{:?}", attested_key_creation_result);
-    let attested_key_creation_result = attested_key_creation_result.unwrap();
+        generate_keymint_rsa_key(&keymint_device, vec![], Some(irpc_key_blob))
+            .context("generate_keymint_rsa_key() failed")?;
 
     info!(
         "KeyMint key - keyCharacteristics: {:?}",
@@ -231,49 +234,43 @@ fn sdv_attestation_keymint_primitives_with_rsa_test() {
         &keymint_device,
         &attested_key_creation_result.keyBlob,
         Digest::NONE,
-    );
-    assert!(begin_result.is_ok(), "{:?}", begin_result);
-    let begin_result = begin_result.unwrap();
-    assert!(begin_result.operation.is_some());
-    let signature = begin_result.operation.unwrap().finish(
-        Some(b"Some arbitrary input to be signed."),
-        None,
-        None,
-        None,
-        None,
-    );
-    assert!(signature.is_ok(), "{:?}", signature);
-    let signature = signature.unwrap();
-    assert_ne!(signature, vec![]);
-    info!("Signature is: {:x?}", signature)
+    )
+    .context("Failed to begin sign operation")?;
+    let signature = begin_result
+        .operation
+        .ok_or_else(|| anyhow!("Operation is missing"))?
+        .finish(Some(b"Some arbitrary input to be signed."), None, None, None, None)
+        .context("Failed to finish sign operation")?;
+    assert!(!signature.is_empty());
+    info!("Signature is: {:x?}", signature);
+    Ok(())
 }
 
 #[test]
-fn sdv_attestation_keymint_primitives_with_ecdsa_test() {
-    init_logger("sdv_keymint_test").unwrap();
-    let remotely_provisioned_component = get_default_remotely_provisioned_component_service();
+fn sdv_attestation_keymint_primitives_with_ecdsa_test() -> anyhow::Result<()> {
+    init_logger("sdv_keymint_test").context("init_logger() failed")?;
+    let remotely_provisioned_component = get_default_remotely_provisioned_component_service()?;
 
     // Generate an attestation key using the IRemotelyProvisionedComponent (shortened to IRPC from
     // now on in this test).
     let mut maced_public_key = MacedPublicKey { macedKey: vec![] };
-    let irpc_key_blob =
-        remotely_provisioned_component.generateEcdsaP256KeyPair(false, &mut maced_public_key);
-    assert!(irpc_key_blob.is_ok());
-    let irpc_key_blob = irpc_key_blob.unwrap();
-    assert_ne!(irpc_key_blob, vec![]);
-    assert_ne!(maced_public_key.macedKey, vec![]);
+    let is_for_testing = false;
+    let irpc_key_blob = remotely_provisioned_component
+        .generateEcdsaP256KeyPair(is_for_testing, &mut maced_public_key)
+        .context("generateEcdsaP256KeyPair() failed")?;
+    assert!(!irpc_key_blob.is_empty());
+    assert!(!maced_public_key.macedKey.is_empty());
     // The macedKey doesn't only contain zeros.
     assert_ne!(maced_public_key.macedKey, vec![0; maced_public_key.macedKey.len()]);
 
-    let keymint_device = get_default_keymint_device_service();
+    let keymint_device = get_default_keymint_device_service()?;
 
     // Generate a new key that can be used for regular KeyMint operations, such as signing
     // arbitrary data. The irpc_key_blob will be set as the attestation key, this way, the
     // key is bound to the KeyMint DICE Chain.
     let attested_key_creation_result =
-        generate_keymint_ecdsa_key(&keymint_device, vec![], Some(irpc_key_blob));
-    assert!(attested_key_creation_result.is_ok(), "{:?}", attested_key_creation_result);
-    let attested_key_creation_result = attested_key_creation_result.unwrap();
+        generate_keymint_ecdsa_key(&keymint_device, vec![], Some(irpc_key_blob))
+            .context("generate_keymint_ecdsa_key() failed")?;
 
     info!(
         "KeyMint key - keyCharacteristics: {:?}",
@@ -286,46 +283,40 @@ fn sdv_attestation_keymint_primitives_with_ecdsa_test() {
         &keymint_device,
         &attested_key_creation_result.keyBlob,
         Digest::NONE,
-    );
-    assert!(begin_result.is_ok(), "{:?}", begin_result);
-    let begin_result = begin_result.unwrap();
-    assert!(begin_result.operation.is_some());
-    let signature = begin_result.operation.unwrap().finish(
-        Some(b"Some arbitrary input to be signed."),
-        None,
-        None,
-        None,
-        None,
-    );
-    assert!(signature.is_ok(), "{:?}", signature);
-    let signature = signature.unwrap();
-    assert_ne!(signature, vec![]);
-    info!("Signature is: {:x?}", signature)
+    )
+    .context("Failed to begin sign operation")?;
+    let signature = begin_result
+        .operation
+        .ok_or_else(|| anyhow!("Operation is missing"))?
+        .finish(Some(b"Some arbitrary input to be signed."), None, None, None, None)
+        .context("Failed to finish sign operation")?;
+    assert!(!signature.is_empty());
+    info!("Signature is: {:x?}", signature);
+    Ok(())
 }
 
 #[test]
-fn iremotely_provisioned_key_is_only_an_attest_key_test() {
-    let remotely_provisioned_component = get_default_remotely_provisioned_component_service();
+fn iremotely_provisioned_key_is_only_an_attest_key_test() -> anyhow::Result<()> {
+    let remotely_provisioned_component = get_default_remotely_provisioned_component_service()?;
 
     let mut maced_public_key = MacedPublicKey { macedKey: vec![] };
-    let irpc_key_blob =
-        remotely_provisioned_component.generateEcdsaP256KeyPair(false, &mut maced_public_key);
-    assert!(irpc_key_blob.is_ok());
-    let irpc_key_blob = irpc_key_blob.unwrap();
-    assert_ne!(irpc_key_blob, vec![]);
-    assert_ne!(maced_public_key.macedKey, vec![]);
+    let is_for_testing = false;
+    let irpc_key_blob = remotely_provisioned_component
+        .generateEcdsaP256KeyPair(is_for_testing, &mut maced_public_key)
+        .context("generateEcdsaP256KeyPair() failed")?;
+    assert!(!irpc_key_blob.is_empty());
+    assert!(!maced_public_key.macedKey.is_empty());
     // The macedKey doesn't only contain zeros.
     assert_ne!(maced_public_key.macedKey, vec![0; maced_public_key.macedKey.len()]);
 
     // Sign the attestation key by the KeyMint (SecureWorld) DICE Chain using the IRPC.
     const CHALLENGE: [u8; 3] = [1, 2, 3];
     let certificate_request = remotely_provisioned_component
-        .generateCertificateRequestV2(&[maced_public_key], &CHALLENGE);
-    assert!(certificate_request.is_ok());
-    let certificate_request = certificate_request.unwrap();
-    assert_ne!(certificate_request, vec![]);
+        .generateCertificateRequestV2(&[maced_public_key], &CHALLENGE)
+        .context("generateCertificateRequestV2() failed")?;
+    assert!(!certificate_request.is_empty());
 
-    let keymint_device = get_default_keymint_device_service();
+    let keymint_device = get_default_keymint_device_service()?;
 
     // Cannot use the irpc_key_blob, the key generated by generateEcdsaP256KeyPair(),
     // directly for sign operations, because it only has KeyPurpose::ATTEST_KEY. See:
@@ -341,13 +332,14 @@ fn iremotely_provisioned_key_is_only_an_attest_key_test() {
         result.unwrap_err(),
         Status::new_service_specific_error(ErrorCode::INCOMPATIBLE_PURPOSE.0, None)
     );
+    Ok(())
 }
 
 #[test]
-fn sdv_keymint_delete_key_test() {
-    init_logger("sdv_keymint_test").unwrap();
+fn sdv_keymint_delete_key_test() -> anyhow::Result<()> {
+    init_logger("sdv_keymint_test").context("init_logger() failed")?;
 
-    let keymint_device = get_default_keymint_device_service();
+    let keymint_device = get_default_keymint_device_service()?;
 
     let key_creation_result = generate_keymint_rsa_key(
         &keymint_device,
@@ -365,13 +357,12 @@ fn sdv_keymint_delete_key_test() {
         );
         // The pure soft KeyMint doesn't support rollback resistance
         warn!("deleteKey() is not supported: rollback resistance unavailable: ");
-        return;
+        return Ok(());
     }
 
     let key_creation_result = key_creation_result.unwrap();
 
-    let delete_key_result = keymint_device.deleteKey(&key_creation_result.keyBlob);
-    assert!(delete_key_result.is_ok());
+    keymint_device.deleteKey(&key_creation_result.keyBlob).context("deleteKey() failed")?;
 
     let result =
         begin_keymint_sign_operation(&keymint_device, &key_creation_result.keyBlob, Digest::NONE);
@@ -380,34 +371,34 @@ fn sdv_keymint_delete_key_test() {
         result.unwrap_err(),
         Status::new_service_specific_error(ErrorCode::INVALID_KEY_BLOB.0, None)
     );
+    Ok(())
 }
 
 #[test]
-fn iremotely_provisioned_key_cannot_be_deleted_test() {
-    let remotely_provisioned_component = get_default_remotely_provisioned_component_service();
+fn iremotely_provisioned_key_cannot_be_deleted_test() -> anyhow::Result<()> {
+    let remotely_provisioned_component = get_default_remotely_provisioned_component_service()?;
 
     let mut maced_public_key = MacedPublicKey { macedKey: vec![] };
-    let irpc_key_blob =
-        remotely_provisioned_component.generateEcdsaP256KeyPair(false, &mut maced_public_key);
-    assert!(irpc_key_blob.is_ok());
-    let irpc_key_blob = irpc_key_blob.unwrap();
-    assert_ne!(irpc_key_blob, vec![]);
-    assert_ne!(maced_public_key.macedKey, vec![]);
+    let is_for_testing = false;
+    let irpc_key_blob = remotely_provisioned_component
+        .generateEcdsaP256KeyPair(is_for_testing, &mut maced_public_key)
+        .context("generateEcdsaP256KeyPair() failed")?;
+    assert!(!irpc_key_blob.is_empty());
+    assert!(!maced_public_key.macedKey.is_empty());
     // The macedKey doesn't only contain zeros.
     assert_ne!(maced_public_key.macedKey, vec![0; maced_public_key.macedKey.len()]);
 
-    let keymint_device = get_default_keymint_device_service();
+    let keymint_device = get_default_keymint_device_service()?;
 
     // Trying to delete the key generated using the IRemotelyProvisionedComponent, but it will
     // actually be a no-op: deleteKey() is only supported if the KeyMint implementation supports
     // rollback resistance, and only for keys that have Tag::ROLLBACK_RESISTANCE, which is not
     // necesseraly true for the key returned by generateEcdsaP256KeyPair()
     // TODO: maybe this can be checked using the getKeyCharacteristics()?
-    let delete_key_result = keymint_device.deleteKey(&irpc_key_blob);
-    assert!(delete_key_result.is_ok());
+    keymint_device.deleteKey(&irpc_key_blob).context("deleteKey() failed")?;
 
     // The deleteKey() call was a no-op: the IRPC key can still be used as an attest key
-    let attested_key_creation_result =
-        generate_keymint_rsa_key(&keymint_device, vec![], Some(irpc_key_blob));
-    assert!(attested_key_creation_result.is_ok(), "{:?}", attested_key_creation_result);
+    generate_keymint_rsa_key(&keymint_device, vec![], Some(irpc_key_blob))
+        .context("generate_keymint_rsa_key() failed")?;
+    Ok(())
 }
