@@ -3,7 +3,10 @@
 # Update Manager is a core SDV agent.
 core_service(sdv_update_manager_agent)
 
-# Update manager can call the DataTunnel SDV agent.
+# Update Manager can access platform update services
+typeattribute sdv_update_manager_agent update_provider;
+
+# Update Manager can call the DataTunnel SDV agent.
 typeattribute sdv_update_manager_agent sdv_dt_client;
 
 # Update Manager can call the ServiceDiscovery agent.
@@ -17,6 +20,30 @@ allow sdv_update_manager_agent update_engine_service:service_manager find;
 binder_call(sdv_update_manager_agent, update_engine)
 binder_call(update_engine, sdv_update_manager_agent)
 
+# Update Manager can call IApexService
+allow sdv_update_manager_agent apex_service:service_manager find;
+binder_call(sdv_update_manager_agent, apexd)
+
+# Read APEXes in the /data directory
+allow sdv_update_manager_agent system_data_file:file { getattr open read };
+
+# Create and write files (APEXes) in the /data/app-staging directory
+allow sdv_update_manager_agent staging_data_file:file { create getattr open setattr write };
+
+# Create, read, and write directories in the /data/app-staging directory
+allow sdv_update_manager_agent staging_data_file:dir { add_name create getattr open read search write };
+
 # Read OTA zip file at /data/ota_package/. This matches update_engine's permissions.
 allow sdv_update_manager_agent ota_package_file:file r_file_perms;
 allow sdv_update_manager_agent ota_package_file:dir r_dir_perms;
+
+# Update Manager can call vdc
+domain_auto_trans(sdv_update_manager_agent, vdc_exec, vdc)
+
+# Allow stdin/out back to update_provider
+allow vdc sdv_update_manager_agent:fd use;
+allow vdc sdv_update_manager_agent:fifo_file write;
+
+# devpts is needed to redirect output from vdc
+allow sdv_update_manager_agent devpts:chr_file rw_file_perms;
+
