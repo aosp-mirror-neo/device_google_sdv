@@ -12,6 +12,9 @@ typeattribute untrusted_service_bundle sdv_lc_server;
 
 type lifecycle_service_bundle_runner_exec, exec_type, system_file_type, file_type;
 
+# Allows service bundle to change deadline scheduling parameters.
+allow untrusted_service_bundle self:capability sys_nice;
+
 # Set untrusted_service_bundle as a client for Comms Stack Agents.
 typeattribute untrusted_service_bundle sdv_rpcagent_client;
 typeattribute untrusted_service_bundle sdv_dt_client;
