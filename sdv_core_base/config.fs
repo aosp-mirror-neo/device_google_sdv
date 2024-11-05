@@ -36,24 +36,19 @@ group: AID_SYSTEM
 value: 7506
 group: AID_SYSTEM
 
-# User for Update Manager agent.
-[AID_SYSTEM_EXT_SDV_UM]
-value: 7507
-group: AID_SYSTEM
-
 # User for RPC agent.
 [AID_SYSTEM_EXT_SDV_RPC]
-value: 7508
+value: 7507
 group: AID_SYSTEM
 
 # User for Service Discovery agent.
 [AID_SYSTEM_EXT_SDV_SD]
-value: 7509
+value: 7508
 group: AID_SYSTEM
 
 # User for Data tunnel agent.
 [AID_SYSTEM_EXT_SDV_DT]
-value: 7510
+value: 7509
 group: AID_SYSTEM
 
 [system_ext/bin/sdv_lifecycle_agent]
