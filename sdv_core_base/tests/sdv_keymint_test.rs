@@ -171,32 +171,6 @@ fn default_remotely_provisioned_component_get_hardware_info_test() -> anyhow::Re
     Ok(())
 }
 
-#[test]
-fn default_remotely_provisioned_component_generate_certificate_request_v2_test(
-) -> anyhow::Result<()> {
-    let remotely_provisioned_component = get_default_remotely_provisioned_component_service()?;
-
-    // Generate an attestation key using the IRemotelyProvisionedComponent (shortened to IRPC from
-    // now on in this test).
-    let mut maced_public_key = MacedPublicKey { macedKey: vec![] };
-    let is_for_testing = false;
-    let irpc_key_blob = remotely_provisioned_component
-        .generateEcdsaP256KeyPair(is_for_testing, &mut maced_public_key)
-        .context("generateEcdsaP256KeyPair() failed")?;
-    assert!(!irpc_key_blob.is_empty());
-    assert!(!maced_public_key.macedKey.is_empty());
-    // The macedKey doesn't only contain zeros.
-    assert_ne!(maced_public_key.macedKey, vec![0; maced_public_key.macedKey.len()]);
-
-    // Sign the attestation key by the KeyMint (SecureWorld) DICE Chain using the IRPC.
-    const CHALLENGE: [u8; 3] = [1, 2, 3];
-    let certificate_request = remotely_provisioned_component
-        .generateCertificateRequestV2(&[maced_public_key], &CHALLENGE)
-        .context("generateCertificateRequestV2() failed")?;
-    assert!(!certificate_request.is_empty());
-    Ok(())
-}
-
 fn android15_hwtrust_session() -> hwtrust::session::Session {
     use hwtrust::dice::ProfileVersion;
     use hwtrust::session::DiceProfileRange;
@@ -219,12 +193,7 @@ fn android15_hwtrust_session() -> hwtrust::session::Session {
     session
 }
 
-// TODO: b/375569096 - This test is only ignored, because it would fail on IVI CF. Update the
-//       KeyMint on IVI CF and enable this test. Until then, use this command to run ignored tests:
-//       atest sdv_keymint_test -- --test-arg \
-//         com.android.tradefed.testtype.rust.RustBinaryTest:native-test-flag:--include-ignored
 #[test]
-#[ignore]
 fn generate_certificate_request_v2_returns_android15_dice_chain() -> anyhow::Result<()> {
     let remotely_provisioned_component = get_default_remotely_provisioned_component_service()?;
 
