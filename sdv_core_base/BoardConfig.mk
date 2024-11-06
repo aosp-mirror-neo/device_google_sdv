@@ -166,7 +166,8 @@ TARGET_COPY_OUT_PRODUCT := product
 BOARD_AVB_PRODUCT_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
 
 # 100 MiB is the minimum free space in userdata partition for checkpoint creation.
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 268435456 # 256 MiB
+# ~175MiB of free space is required in userdata partition to upload system updates.
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 367001600 # 350 MiB
 BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
 TARGET_USERIMAGES_USE_F2FS := true
 
