@@ -42,6 +42,7 @@ PRODUCT_PACKAGES += \
     system_dlkm-build.prop \
     system_ext-build.prop \
     vendor-build.prop \
+    vendor_manifest.xml
 
 # Stolen from microdroid/Android.bp
 PRODUCT_PACKAGES += \
