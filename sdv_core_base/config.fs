@@ -51,8 +51,19 @@ group: AID_SYSTEM
 value: 7509
 group: AID_SYSTEM
 
+# User for Lifecycle service bundle runner.
+[AID_SYSTEM_EXT_SDV_LCM_RUNNER]
+value: 7511
+group: AID_SYSTEM
+
 [system_ext/bin/sdv_lifecycle_agent]
 mode: 0555
 user: AID_SYSTEM_EXT_SDV_LCM
 group: AID_SYSTEM
 caps: SYS_ADMIN SYS_NICE KILL
+
+[system_ext/bin/lifecycle_service_bundle_runner]
+mode: 0555
+user: AID_SYSTEM_EXT_SDV_LCM_RUNNER
+group: AID_SYSTEM
+caps: SYS_NICE
