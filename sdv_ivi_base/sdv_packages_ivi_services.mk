@@ -6,7 +6,6 @@
 
 # Components in core_services/ specific to SDV_IVI target
 SDV_IVI_SERVICES_PACKAGES = \
-    android.hardware.automotive.vehicle@V1-sdv-emulator-service \
     libsdvgatewayclient_jni \
     libsdvgatewayservice \
     libvhal_proxy \
@@ -14,6 +13,13 @@ SDV_IVI_SERVICES_PACKAGES = \
     libvhal_proxy_config_loader_v2 \
     libvhal_proxy_proto_cpp \
     sdv_gateway
+
+# Vehicle HAL is already included in PRODUCT_PACKAGES, but it must also be part of
+# SDV_IVI_SERVICES_PACKAGES for inclusion in the PDK binary as well.
+ifeq ($(LOCAL_VHAL_PRODUCT_PACKAGE),)
+  $(error $$LOCAL_VHAL_PRODUCT_PACKAGE not set)
+endif
+SDV_IVI_SERVICES_PACKAGES += $(LOCAL_VHAL_PRODUCT_PACKAGE)
 
 # The packages that provide the Android DICE chain for the SDV Mesh. Either init_open_dice or
 # init_open_dice_from_file and the associated files.
