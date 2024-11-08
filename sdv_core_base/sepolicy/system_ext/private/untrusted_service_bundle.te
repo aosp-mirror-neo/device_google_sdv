@@ -9,8 +9,6 @@ binder_use(untrusted_service_bundle)
 # sdv_lc_process_client, thus, allowing the untrusted_service_bundle and the sdv_lc_server to
 # communicate via Binder calls, and the sdv_lc_server to manage the untrusted_service_bundle.
 typeattribute untrusted_service_bundle sdv_lc_process_client;
-# lifecycle_service_test provides a binder implementation.
-typeattribute untrusted_service_bundle sdv_lc_server;
 
 type lifecycle_service_bundle_runner_exec, exec_type, system_file_type, file_type;
 
