@@ -3,47 +3,50 @@
 //! Defines the oem updater interface.
 
 use once_cell::sync::OnceCell;
+use sdv_oem_updater_impl::oem_updater_error::OemUpdaterError;
+use sdv_oem_updater_impl::{OemUpdaterImpl, Slot};
+use std::path::PathBuf;
 
 static INSTANCE: OnceCell<OemUpdater> = OnceCell::new();
 
-/// TODO: Remove this once the implementation is concrete.
-#[allow(dead_code)]
-#[derive(Default)]
-pub struct OemUpdater {}
+/// OemUpdater
+pub struct OemUpdater {
+    oem_updater_impl: OemUpdaterImpl,
+}
 
 impl OemUpdater {
     /// OemUpdater constructor
     pub fn get_instance() -> &'static Self {
-        INSTANCE.get_or_init(|| OemUpdater {})
+        INSTANCE.get_or_init(|| OemUpdater { oem_updater_impl: OemUpdaterImpl::new(None, None) })
     }
 
     /// Prepare for an /oem partition update.
-    pub fn prepare(&self) {
-        sdv_oem_updater_impl::OemUpdaterImpl::prepare();
+    pub fn prepare(&self) -> Result<PathBuf, OemUpdaterError> {
+        self.oem_updater_impl.prepare()
     }
 
     /// Activate an /oem partition update.
-    pub fn activate(&self) {
-        sdv_oem_updater_impl::OemUpdaterImpl::activate();
+    pub fn activate(&self) -> Result<(), OemUpdaterError> {
+        self.oem_updater_impl.activate()
     }
 
     /// Commit an /oem partition update after verification.
-    pub fn commit(&self) {
-        sdv_oem_updater_impl::OemUpdaterImpl::commit();
+    pub fn commit(&self) -> Result<(), OemUpdaterError> {
+        self.oem_updater_impl.commit()
     }
 
     /// Rollback the previous /oem partition update.
-    pub fn rollback(&self) {
-        sdv_oem_updater_impl::OemUpdaterImpl::rollback();
+    pub fn rollback(&self) -> Result<(), OemUpdaterError> {
+        self.oem_updater_impl.rollback()
     }
 
-    /// Return the active /oem partition slot. The slots available are A or B.
-    pub fn get_active_slot(&self) -> String {
-        sdv_oem_updater_impl::OemUpdaterImpl::get_active_slot()
+    /// Return the active /oem partition slot.
+    pub fn get_active_slot(&self) -> Result<Slot, OemUpdaterError> {
+        self.oem_updater_impl.get_active_slot()
     }
 
-    /// Return the current /oem partition slot. The slots available are A or B.
-    pub fn get_current_slot(&self) -> String {
-        sdv_oem_updater_impl::OemUpdaterImpl::get_current_slot()
+    /// Return the current /oem partition slot.
+    pub fn get_current_slot(&self) -> Result<Slot, OemUpdaterError> {
+        self.oem_updater_impl.get_current_slot()
     }
 }

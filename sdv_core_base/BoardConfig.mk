@@ -209,3 +209,9 @@ BOARD_ROOT_EXTRA_FOLDERS := vvmtruststore
 # "m custom_images" must be called for that image to be created.
 PRODUCT_CUSTOM_IMAGE_MAKEFILES += \
   device/google/sdv/sdv_base/vvmtruststore.mk
+
+# Sample /oem partition
+# Build with: m custom_images
+# Run with: cvd start --custom_partition_path=$OUT/oem.img
+PRODUCT_CUSTOM_IMAGE_MAKEFILES += device/google/sdv/sdv_core_cf/oem/oem.mk
+BOARD_ROOT_EXTRA_FOLDERS += oem oem_updates

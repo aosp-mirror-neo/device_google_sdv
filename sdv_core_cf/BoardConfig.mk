@@ -21,9 +21,3 @@ include device/google/sdv/sdv_cf/BoardConfig.mk
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_core_cf/sepolicy/system_ext/private
 PRODUCT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_core_cf/sepolicy/product/private
 BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_core_cf/sepolicy/vendor
-
-# Sample /oem partition
-# Build with: m custom_images
-# Run with: cvd start --custom_partition_path=$OUT/oem.img
-PRODUCT_CUSTOM_IMAGE_MAKEFILES += device/google/sdv/sdv_core_cf/oem/oem.mk
-BOARD_ROOT_EXTRA_FOLDERS += oem
