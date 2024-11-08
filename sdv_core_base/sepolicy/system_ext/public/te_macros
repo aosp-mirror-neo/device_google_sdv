@@ -1,0 +1,12 @@
+# Copyright 2024 Google LLC
+
+#####################################
+# service_bundle_domain(domain)
+# Allow a base set of permissions required for service bundles.
+define(`service_bundle_domain', `
+typeattribute $1 servicebundledomain;
+# All service bundles can be a client for SDV Comm Stack Agents.
+typeattribute $1 sdv_rpcagent_client;
+typeattribute $1 sdv_dt_client;
+typeattribute $1 sdv_sd_client;
+')
