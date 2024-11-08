@@ -3,31 +3,17 @@
 type untrusted_service_bundle, domain;
 typeattribute untrusted_service_bundle coredomain;
 
-binder_use(untrusted_service_bundle)
-
-# Setting the sdv_lc_process_client attribute on the domain to inherit the SEpolicies defined for
-# sdv_lc_process_client, thus, allowing the untrusted_service_bundle and the sdv_lc_server to
-# communicate via Binder calls, and the sdv_lc_server to manage the untrusted_service_bundle.
-typeattribute untrusted_service_bundle sdv_lc_process_client;
-
-type lifecycle_service_bundle_runner_exec, exec_type, system_file_type, file_type;
+typeattribute untrusted_service_bundle servicebundledomain;
 
 # Allows service bundle to change deadline scheduling parameters.
 # TODO: b/377862446 - create a separate domain (e.g. priority_service_bundle) and only assign this
 #       policy to that domain.
 allow untrusted_service_bundle self:capability sys_nice;
 
-# Set untrusted_service_bundle as a client for Comms Stack Agents.
+# Set untrusted_service_bundle as a client for SDV Comm Stack Agents.
 typeattribute untrusted_service_bundle sdv_rpcagent_client;
 typeattribute untrusted_service_bundle sdv_dt_client;
 typeattribute untrusted_service_bundle sdv_sd_client;
-
-# Required by the launchService() IPC on the IServiceManager Binder service to be able to execute
-# the lifecycle_service_bundle_runner_exec in the untrusted_service_bundle domain.
-# TODO: b/272343536 - Currently, this rule has to be among the private policies that prevents
-# moving this policy, thus, the lifecycle_service_test to the vendor/product/oem partitions where it
-# eventually should be.
-domain_trans(sdv_lc_server, lifecycle_service_bundle_runner_exec, untrusted_service_bundle)
 
 # Defines the Lifecycle Manager Callback Binder IPC service (IServiceCallbackVerifier) that is used in
 # the LM integration tests to check if certain calls from LM where called.
@@ -35,9 +21,3 @@ type sdv_lc_test_service_manager_service, protected_service, service_manager_typ
 
 # Lifecycle Service Test Service can register its Binder IPC service.
 add_service(untrusted_service_bundle, sdv_lc_test_service_manager_service)
-
-# File used by service bundles to persist data
-type service_bundle_data, file_type, data_file_type, core_data_file_type;
-
-allow untrusted_service_bundle service_bundle_data:dir create_dir_perms;
-allow untrusted_service_bundle service_bundle_data:file create_file_perms;

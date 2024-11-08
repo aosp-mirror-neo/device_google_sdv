@@ -1,0 +1,20 @@
+# Copyright 2024 Google LLC
+
+type lifecycle_service_bundle_runner_exec, exec_type, system_file_type, file_type;
+
+# All Service bundles use Binder to call the lifecycle manager and the SDV comm stack.
+binder_use(servicebundledomain)
+
+# Required by the launchService() IPC on the IServiceManager Binder service to be able to execute
+# the lifecycle_service_bundle_runner_exec in the in of the domains that has the
+# servicebundledomain attribute.
+# TODO: b/272343536 - Currently, this rule has to be among the private policies that prevents
+# moving this policy, thus, the lifecycle_service_test to the vendor/product/oem partitions where it
+# eventually should be.
+domain_trans(sdv_lc_default, lifecycle_service_bundle_runner_exec, servicebundledomain)
+
+# File used by service bundles to persist data
+type service_bundle_data, file_type, data_file_type, core_data_file_type;
+
+allow servicebundledomain service_bundle_data:dir create_dir_perms;
+allow servicebundledomain service_bundle_data:file create_file_perms;

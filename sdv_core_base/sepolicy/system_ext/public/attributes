@@ -6,6 +6,9 @@ attribute sdv_lc_server;
 expandattribute sdv_lc_client true;
 expandattribute sdv_lc_server false;
 
+# All domains used for Service Bundles.
+attribute servicebundledomain;
+
 attribute sdv_someip_stack_client;
 attribute sdv_someip_stack_server;
 expandattribute sdv_someip_stack_client true;
