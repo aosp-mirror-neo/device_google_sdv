@@ -1,0 +1,4 @@
+# Copyright 2024 Google LLC
+
+# The domain for service bundles that are allowed to change deadline scheduling parameters.
+type priority_service_bundle, domain;
