@@ -1,0 +1,7 @@
+# Copyright 2024 Google LLC
+
+# The process clients spawned by the sdv_lc_default use this attribute to inherit the necessary
+# permissions that allows them to have Binder communication with the sdv_lc_default, and the
+# sdv_lc_default to manage the process clients.
+attribute sdv_lc_process_client;
+expandattribute sdv_lc_process_client true;
