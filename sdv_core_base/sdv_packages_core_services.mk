@@ -24,6 +24,8 @@ SDV_CORE_SERVICES_PACKAGES = \
     sdv_health_monitor_stable \
     broker_config_v0.json \
     $(SDV_SOMEIP_BROKER_CONFIG) \
+    com.sdv.google.health \
+    com.sdv.google.orchestrator \
 
 SDV_CORE_SERVICES_HOST_PACKAGES += \
     vsidl_code_generator \

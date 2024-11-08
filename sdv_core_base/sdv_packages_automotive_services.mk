@@ -3,10 +3,11 @@
 # All the packages from automotive_services/ required to be installed into the target
 # or made available to the host are placed here.
 
-# Vehicle and Power mode agent and poc.
 SDV_AUTOMOTIVE_SERVICES_PACKAGES = \
     sdv_vpm_agent \
-
+    com.sdv.google.diagnostics \
+    com.sdv.google.vpm \
+    com.sdv.google.concal \
 
 SDV_AUTOMOTIVE_SERVICES_HOST_PACKAGES =
 
