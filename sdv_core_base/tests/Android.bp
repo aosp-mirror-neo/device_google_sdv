@@ -13,7 +13,6 @@ rust_test {
         "keymint_use_latest_hal_aidl_rust",
     ],
     test_suites: [
-        "general-tests",
         "automotive-sdv-tests",
     ],
     auto_gen_config: true,
@@ -37,7 +36,6 @@ rust_test {
         "sdv@rust_defaults",
     ],
     test_suites: [
-        "general-tests",
         "automotive-sdv-tests",
     ],
     test_config: "pstore/AndroidTest.xml",
