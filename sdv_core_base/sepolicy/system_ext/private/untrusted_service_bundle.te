@@ -9,10 +9,3 @@ service_bundle_domain(untrusted_service_bundle)
 # TODO: b/377862446 - create a separate domain (e.g. priority_service_bundle) and only assign this
 #       policy to that domain.
 allow untrusted_service_bundle self:capability sys_nice;
-
-# Defines the Lifecycle Manager Callback Binder IPC service (IServiceCallbackVerifier) that is used in
-# the LM integration tests to check if certain calls from LM where called.
-type sdv_lc_test_service_manager_service, protected_service, service_manager_type;
-
-# Lifecycle Service Test Service can register its Binder IPC service.
-add_service(untrusted_service_bundle, sdv_lc_test_service_manager_service)

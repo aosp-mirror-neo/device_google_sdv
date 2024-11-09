@@ -1,0 +1,10 @@
+# Copyright 2024 Google LLC
+
+# TODO: b/378201625 - remove these policies along this file
+
+# Defines the Lifecycle Manager Callback Binder IPC service (IServiceCallbackVerifier) that is used
+# in the LM integration tests to check if certain calls from LM where called.
+type sdv_lc_test_service_manager_service, protected_service, service_manager_type;
+
+# Lifecycle Service Test Service can register its Binder IPC service.
+add_service(untrusted_service_bundle, sdv_lc_test_service_manager_service)
