@@ -98,9 +98,6 @@ service rpcagent /system_ext/bin/rpcagent
     disabled
     user system_ext_sdv_rpc
     group system
-# TODO: b/326115833 - comment out for now, to allow grpc-java to create socket directly in the mean
-# time
-#    enter_namespace net /mnt/run/rpcagent
 
 on property:dev.bootcomplete=1
     start rpcagent

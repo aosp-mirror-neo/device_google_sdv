@@ -39,9 +39,6 @@ service rpcagent /system_ext/bin/rpcagent
     disabled
     user system
     group system
-# TODO: b/326115833 - comment out for now, to allow grpc-java to create socket directly in the mean
-# time
-#    enter_namespace net /mnt/run/rpcagent
 
 # Start the SDV Gateway process before the rpcagent because it starts the Data Tunnel agent service
 # as well. SDV Gateway AIDL service will only be ready once the rpcagent is also started.

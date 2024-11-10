@@ -1,7 +1,7 @@
 #!/system/bin/sh
 # Copyright 2024 Google LLC
 
-# Setup network namespace and vlan for rpcagent and sd_mesh
+# Setup network namespace and vlan for sd_mesh
 NETWORK_INTERFACE="$1"
 
 ################################################################################
@@ -28,11 +28,4 @@ ip link set sd_mesh netns sd_mesh
 # We would do it in a separated script and by using enter_namespace in
 # init rc service modifiers, which init would remount sysfs and enter the network namespace for us
 #
-# Instead of using "ip netns exec" here, see ethernet_rpcagent.sh and ethernet_sd_mesh.sh files
-
-###################################################################
-# create a vlan for rpcagent and move to network namespace rpcagent
-###################################################################
-ip link add link "${NETWORK_INTERFACE}" name rpcagent type vlan id 2
-ip netns add rpcagent
-ip link set rpcagent netns rpcagent
+# Instead of using "ip netns exec" here, see ethernet_sd_mesh.sh

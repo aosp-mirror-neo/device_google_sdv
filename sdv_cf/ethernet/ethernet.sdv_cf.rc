@@ -7,7 +7,6 @@ on post-fs-data
     exec_start sdv-ethernet-setup
     exec_start sdv-ethernet-namespace-setup
     exec_start sdv-ethernet-sd-mesh-setup
-    exec_start sdv-ethernet-rpcagent-setup
 
 # This would setup the main ethernet ip address and routing
 # Setup for routing for different network namespace need to be done in separated service
@@ -17,7 +16,7 @@ service sdv-ethernet-setup /system_ext/bin/ethernet/ethernet.sdv_cf.sh
     group shell
     oneshot
 
-# Create network namespace for rpcagent, sd_mesh etc.
+# Create network namespace for sd_mesh
 service sdv-ethernet-namespace-setup /system_ext/bin/ethernet/ethernet_namespace_setup.sh eth1
     class core
     user root
@@ -27,14 +26,6 @@ service sdv-ethernet-namespace-setup /system_ext/bin/ethernet/ethernet_namespace
 # Setup routing rule for network namespace sd_mesh
 service sdv-ethernet-sd-mesh-setup /system_ext/bin/ethernet/ethernet_sd_mesh.sh
     enter_namespace net /mnt/run/sd_mesh
-    class core
-    user root
-    group shell
-    oneshot
-
-# Setup routing rule for network namespace rpcagent
-service sdv-ethernet-rpcagent-setup /system_ext/bin/ethernet/ethernet_rpcagent.sh
-    enter_namespace net /mnt/run/rpcagent
     class core
     user root
     group shell
