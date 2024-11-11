@@ -18,6 +18,8 @@ LOCAL_ANDROIDBOOT_INIT_RC ?= /system/etc/init/hw/init.sdv_core_cf.rc
 include device/google/sdv/sdv_core_base/BoardConfig.mk
 include device/google/sdv/sdv_cf/BoardConfig.mk
 
+SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/samples/system_ext/private
+SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_core_base/sepolicy/samples/system_ext/private
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_core_cf/sepolicy/system_ext/private
 PRODUCT_PRIVATE_SEPOLICY_DIRS += \
     device/google/sdv/sdv_core_cf/sepolicy/product/private \

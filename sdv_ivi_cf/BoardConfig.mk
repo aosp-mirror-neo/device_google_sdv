@@ -14,3 +14,5 @@ BOARD_ROOT_EXTRA_FOLDERS := vvmtruststore
 # "m custom_images" must be called for that image to be created.
 PRODUCT_CUSTOM_IMAGE_MAKEFILES += \
   device/google/sdv/sdv_base/vvmtruststore.mk
+
+SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/samples/system_ext/private
