@@ -4,14 +4,17 @@
 
 pub mod oem_updater_error;
 
+use crate::oem_update_state::{UpdateState, UpdateStatus};
 use crate::oem_updater_error::OemUpdaterError;
 use log::error;
+mod oem_update_state;
+
+use mockall::automock;
 use nix::mount::{mount, MsFlags};
 use rustutils::system_properties;
 use std::fmt;
 use std::path::{Path, PathBuf};
-
-use mockall::automock;
+use std::sync::Mutex;
 
 const OEM_UPDATE_PATH: &str = "/oem_updates";
 const ACTIVE_OEM_SLOT_PROPERTY: &str = "persist.sdv.active_oem_slot";
@@ -21,6 +24,7 @@ const CURRENT_OEM_SLOT_PROPERTY: &str = "ro.boot.sdv.current_oem_slot";
 pub struct OemUpdaterImpl {
     system_properties: Box<dyn SystemProperties>,
     mounter: Box<dyn LibcMounter>,
+    update_status: Mutex<UpdateStatus>,
 }
 
 impl OemUpdaterImpl {
@@ -32,12 +36,17 @@ impl OemUpdaterImpl {
         Self {
             system_properties: system_properties.unwrap_or_else(|| Box::new(OemSystemProperties)),
             mounter: mounter.unwrap_or_else(|| Box::new(LibcMounterImpl)),
+            // TODO: Load the UpdateState from disk after reboot.
+            update_status: UpdateStatus::new(UpdateState::Ready).into(),
         }
     }
 
     /// Prepare for an oem partition update.
     /// Return a writable path that can be updated.
     pub fn prepare(&self) -> Result<PathBuf, OemUpdaterError> {
+        let mut update_status = self.update_status.lock().unwrap();
+        update_status.update(UpdateState::Prepare)?;
+
         let writable_slot = self.get_current_slot()?.get_other_slot();
         let source_path_str = self.get_block_device_path(writable_slot)?;
         let source_path = Path::new(&source_path_str);
@@ -62,6 +71,9 @@ impl OemUpdaterImpl {
 
     /// Activate an oem partition update.
     pub fn activate(&self) -> Result<(), OemUpdaterError> {
+        let mut update_status = self.update_status.lock().unwrap();
+        update_status.update(UpdateState::Active)?;
+
         match self.get_current_slot() {
             Ok(current_slot) => self
                 .system_properties
@@ -75,13 +87,23 @@ impl OemUpdaterImpl {
 
     /// Commit an oem partition update after verification.
     pub fn commit(&self) -> Result<(), OemUpdaterError> {
+        let mut update_status = self.update_status.lock().unwrap();
+        update_status.update(UpdateState::Commit)?;
+
         // TODO: implement commit functionality
+        update_status.update(UpdateState::Ready)?;
+
         Ok(())
     }
 
     /// Rollback the previous oem partition update.
     pub fn rollback(&self) -> Result<(), OemUpdaterError> {
+        let mut update_status = self.update_status.lock().unwrap();
+        update_status.update(UpdateState::Rollback)?;
+
         // TODO: implement rollback functionality
+        update_status.update(UpdateState::Ready)?;
+
         Ok(())
     }
 
