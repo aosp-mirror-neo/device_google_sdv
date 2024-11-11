@@ -1,4 +1,4 @@
-# Copyright 2023 Google LLC
+# Copyright 2024 Google LLC
 # SDV Core specific board config shall go into this file.
 
 # Must set these variables before including sdv_core_base/BoardConfig.mk.
@@ -19,5 +19,7 @@ include device/google/sdv/sdv_core_base/BoardConfig.mk
 include device/google/sdv/sdv_cf/BoardConfig.mk
 
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_core_cf/sepolicy/system_ext/private
-PRODUCT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_core_cf/sepolicy/product/private
+PRODUCT_PRIVATE_SEPOLICY_DIRS += \
+    device/google/sdv/sdv_core_cf/sepolicy/product/private \
+    device/google/sdv/sdv_core_base/sepolicy/samples/product/private
 BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_core_cf/sepolicy/vendor
