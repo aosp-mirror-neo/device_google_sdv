@@ -50,6 +50,13 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/google/sdv/sdv_core_cf/init.sdv_core_cf.rc:$(TARGET_COPY_OUT_SYSTEM)/etc/init/hw/init.sdv_core_cf.rc \
 
+# An example test service_bundle_contexts file that sets custom SELiunx domains to specific service
+# bundles.
+# The service_bundle_contexts is not (yet) part of the standard Android SELinux configuration
+# files, so it's kept separately and placed among other policy files.
+PRODUCT_COPY_FILES += \
+    device/google/sdv/sdv_core_cf/sepolicy/service_bundle_contexts:$(TARGET_COPY_OUT_PRODUCT)/etc/service_bundle_contexts
+
 # The Rust implementation of the non-secure, pure software KeyMint vendor HAL extended with test
 # functionalities for SDV. Among others, the KeyMint HAL provides the
 # android.hardware.security.keymint.IRemotelyProvisionedComponent Binder AIDL service required by
