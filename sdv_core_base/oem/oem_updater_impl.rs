@@ -2,13 +2,13 @@
 
 //! Defines the oem updater implementation.
 
+pub mod oem_update_state;
 pub mod oem_updater_error;
 
 use crate::oem_update_state::{UpdateState, UpdateStatus};
 use crate::oem_updater_error::OemUpdaterError;
-use log::error;
-mod oem_update_state;
 
+use log::error;
 use mockall::automock;
 use nix::mount::{mount, MsFlags};
 use rustutils::system_properties;

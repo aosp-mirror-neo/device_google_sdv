@@ -10,17 +10,26 @@ use crate::oem_updater_error::OemUpdaterError;
 #[allow(dead_code)]
 #[derive(Debug, PartialEq, Clone)]
 pub enum UpdateState {
+    /// OemUpdater is ready for an update request.
     Ready,
+    /// OemUpdater is switching the active slot.
     Active,
+    /// OemUpdater has prepared a writable slot for updates.
     Prepare,
+    /// OemUpdater has switched the active slot and is awaiting a reboot.
     ActivePreReboot,
+    /// OemUpdater has rebooted and is awaiting a commit or rollback signal.
     ActivePostReboot,
+    /// OemUpdater has received a commit signal.
     Commit,
+    /// OemUpdater has received a rollback signal.
     RollbackReboot,
+    /// OemUpdater has received a rollback signal.
     Rollback,
 }
 
 impl UpdateState {
+    /// Validates that the next update state is permitted.
     pub fn validate_transition(&self, next_state: UpdateState) -> Result<(), OemUpdaterError> {
         if matches!(
             (self, next_state.clone()),
@@ -46,15 +55,18 @@ impl UpdateState {
     }
 }
 
+/// Manages the current update state.
 pub struct UpdateStatus {
-    pub current_state: Mutex<UpdateState>,
+    current_state: Mutex<UpdateState>,
 }
 
 impl UpdateStatus {
+    /// UpdateStatus constructor
     pub fn new(initial_state: UpdateState) -> Self {
         UpdateStatus { current_state: initial_state.into() }
     }
 
+    /// Updates the current update state.
     pub fn update(&mut self, new_state: UpdateState) -> Result<(), OemUpdaterError> {
         let mut current_state = self.current_state.lock().unwrap();
         current_state.validate_transition(new_state.clone())?;
