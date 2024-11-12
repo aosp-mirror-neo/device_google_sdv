@@ -11,13 +11,13 @@ on property:ro.persistent_properties.ready=true
 # If the active slot is not selected, set it to A at first.
 on sdv_mount_oem_slot && property:persist.sdv.active_oem_slot=""
   setprop persist.sdv.active_oem_slot a
-  setprop ro.boot.sdv.current_oem_slot a
+  setprop persist.sdv.current_oem_slot a
   mount f2fs ${persist.sdv.oem_slot_a_device} /oem nodev noatime nosuid errors=panic
 
 on sdv_mount_oem_slot && property:persist.sdv.active_oem_slot=a
-  setprop ro.boot.sdv.current_oem_slot a
+  setprop persist.sdv.current_oem_slot a
   mount f2fs ${persist.sdv.oem_slot_a_device} /oem nodev noatime nosuid errors=panic
 
 on sdv_mount_oem_slot && property:persist.sdv.active_oem_slot=b
-  setprop ro.boot.sdv.current_oem_slot b
+  setprop persist.sdv.current_oem_slot b
   mount f2fs ${persist.sdv.oem_slot_b_device} /oem nodev noatime nosuid errors=panic
