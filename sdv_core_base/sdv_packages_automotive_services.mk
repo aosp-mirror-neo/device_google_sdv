@@ -8,6 +8,7 @@ SDV_AUTOMOTIVE_SERVICES_PACKAGES = \
     com.sdv.google.diagnostics \
     com.sdv.google.vpm \
     com.sdv.google.concal \
+    com.sdv.google.user_preferences \
 
 SDV_AUTOMOTIVE_SERVICES_HOST_PACKAGES =
 
