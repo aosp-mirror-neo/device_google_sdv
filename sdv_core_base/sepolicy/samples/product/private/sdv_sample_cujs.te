@@ -1,0 +1,7 @@
+# Copyright 2024 Google LLC
+
+# `sdv_sample_cuj_prop` can only be accessed on the product and system partitions.
+product_internal_prop(sdv_sample_cuj_prop)
+
+# Only service bundles executed by service_bundle_runner can read the `sdv_sample_cuj_prop`.
+get_prop(untrusted_service_bundle, sdv_sample_cuj_prop)
