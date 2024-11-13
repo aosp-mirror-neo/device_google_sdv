@@ -26,3 +26,10 @@ include device/google/sdv/sdv_media_base/BoardConfig.mk
 # The build system doesn't allow this, so we put the dependency in the
 # Cuttlefish-specific BoardConfig.mk instead.
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(KERNEL_MODULES_PATH)/virtio_dma_buf.ko
+
+# Until Cuttlefish supports multiple virtualized audio devices via virtio-snd,
+# we capture audio from 6 loopback devices, downmix it and forward to a single
+# 2-channel virtio-snd backend device.
+BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(KERNEL_MODULES_PATH)/snd-aloop.ko
+# Create 6 loopback devices
+BOARD_KERNEL_CMDLINE += snd_aloop.enable=1,1,1,1,1,1
