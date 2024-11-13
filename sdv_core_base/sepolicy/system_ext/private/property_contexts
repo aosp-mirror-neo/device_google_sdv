@@ -14,7 +14,14 @@ sdv.health_monitor.config_path u:object_r:health_monitor_config_path_prop:s0
 #                     move it to more proper context such as vendor_graphics_config_prop later.
 drm.gpu.vendor_name u:object_r:graphics_config_prop:s0
 
-
 # System property for disabling authz enforcement. Only used in engineering builds (userdebug/eng).
 # Production builds ignore this system property.
 sdv.authz.enable u:object_r:sdv_authz_enable_prop:s0 exact bool
+
+# The timeout for platform execution of power management suspend to RAM/DISK and power-off defined
+# in milliseconds including retries.
+sdv.vpm.platform.timeout_ms u:object_r:vpm_platform_timeout_prop:s0 exact int
+
+# The amount of time in ms that the platform execution will wait before it retries the suspend
+# RAM/DISK operation.
+sdv.vpm.platform.retry_interval_ms u:object_r:vpm_platform_retry_interval_prop:s0 exact int

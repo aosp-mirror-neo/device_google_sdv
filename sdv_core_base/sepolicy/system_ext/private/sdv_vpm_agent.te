@@ -20,3 +20,13 @@ allow sdv_vpm_agent sysfs_power:file rw_file_perms;
 
 # Required to shutdown the VM.
 set_prop(sdv_vpm_agent, powerctl_prop)
+
+# Required to set the timeout for the execution of platform suspend/power-off API.
+# cannot be accessed outside the of system(_ext) and product partitions.
+system_internal_prop(vpm_platform_timeout_prop)
+get_prop(sdv_vpm_agent, vpm_platform_timeout_prop)
+
+# Required to set the retry interval for the execution of platform suspend API.
+# cannot be accessed outside the of system(_ext) and product partitions.
+system_internal_prop(vpm_platform_retry_interval_prop)
+get_prop(sdv_vpm_agent, vpm_platform_retry_interval_prop)
