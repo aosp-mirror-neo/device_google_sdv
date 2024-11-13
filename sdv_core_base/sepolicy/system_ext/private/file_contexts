@@ -34,6 +34,9 @@
 # SDV Health Monitor
 /(system_ext|system/system_ext)/bin/sdv_health_monitor_stable u:object_r:sdv_health_monitor_stable_exec:s0
 
+# SDV Vsidl provider agent
+/(system_ext|system/system_ext)/bin/sdv_vsidl_provider_agent u:object_r:sdv_vsidl_provider_agent_exec:s0
+
 #############################
 # data files
 /data/service_bundle_data(/.*)? u:object_r:service_bundle_data:s0

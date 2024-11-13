@@ -43,6 +43,15 @@ service sdv_update_manager_agent /system_ext/bin/sdv_update_manager_agent
 on property:dev.bootcomplete=1
     start sdv_update_manager_agent
 
+ # Declare and start the SDV Diagnostics agent.
+service sdv_vsidl_provider_agent  /system_ext/bin/sdv_vsidl_provider_agent
+    class core
+    disabled
+    user system
+    group system
+on property:dev.bootcomplete=1
+    start sdv_vsidl_provider_agent
+
 # Declare and start the SDV Health Monitoring agent.
 # The VM restart is to be controlled by the OEM, therefore, critical property is not set. By default,
 # the process can't be restarted more frequently than 5 seconds (the minimal value, it is already set by default).

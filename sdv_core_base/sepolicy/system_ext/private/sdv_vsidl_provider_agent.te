@@ -1,0 +1,4 @@
+# Copyright 2024 Google LLC
+
+# Vsidl provider SDV agent.
+core_service(sdv_vsidl_provider_agent)

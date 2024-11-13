@@ -26,6 +26,7 @@ SDV_CORE_SERVICES_PACKAGES = \
     $(SDV_SOMEIP_BROKER_CONFIG) \
     com.sdv.google.health \
     com.sdv.google.orchestrator \
+    sdv_vsidl_provider_agent \
 
 SDV_CORE_SERVICES_HOST_PACKAGES += \
     vsidl_code_generator \
