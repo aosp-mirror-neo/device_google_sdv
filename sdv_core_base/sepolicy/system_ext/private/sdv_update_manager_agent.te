@@ -49,3 +49,8 @@ allow sdv_update_manager_agent devpts:chr_file rw_file_perms;
 
 # Update Manager can call IBootControl
 hal_client_domain(sdv_update_manager_agent, hal_bootctl);
+
+# Update Manager stores its state on the /metadata partition
+type sdv_um_metadata_file, file_type;
+allow sdv_update_manager_agent sdv_um_metadata_file:dir create_dir_perms;
+allow sdv_update_manager_agent sdv_um_metadata_file:file create_file_perms;

@@ -179,6 +179,9 @@ on post-fs
     # no-op.
     restorecon_recursive /metadata/apex
 
+    # Create SDV Update Manager state directory
+    mkdir /metadata/sdv_update_manager_agent 0770 root system
+
 on late-fs
     class_start early_hal
 
