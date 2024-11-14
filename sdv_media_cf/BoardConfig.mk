@@ -31,5 +31,7 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(KERNEL_MODULES_PATH)/virtio_dma_buf.ko
 # we capture audio from 6 loopback devices, downmix it and forward to a single
 # 2-channel virtio-snd backend device.
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(KERNEL_MODULES_PATH)/snd-aloop.ko
-# Create 6 loopback devices
-BOARD_KERNEL_CMDLINE += snd_aloop.enable=1,1,1,1,1,1
+# Create 6 loopback devices. Each entry creates a pair of them, so we only need 3.
+BOARD_KERNEL_CMDLINE += snd_aloop.enable=1,1,1
+
+SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_media_cf/sepolicy/system_ext/private

@@ -32,3 +32,6 @@ PRODUCT_COPY_FILES += \
 # Cuttlefish v4l2 camera support
 PRODUCT_PACKAGES += cuttlefish_v4l2_streamer
 PRODUCT_PACKAGES += sdv_draw_camera_rust
+
+# Cuttlefish loopback device based audio mixer
+PRODUCT_PACKAGES += sdv_audio_mixer

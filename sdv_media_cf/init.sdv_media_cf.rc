@@ -4,3 +4,4 @@
 
 import /system/etc/init/hw/init.sdv_core_cf.rc
 import /system/etc/init/init.sdv_media_base.rc
+import /system_ext/etc/init/sdv_audio_mixer.rc

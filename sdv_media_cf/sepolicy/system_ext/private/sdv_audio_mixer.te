@@ -1,0 +1,15 @@
+# Copyright 2024 Google LLC
+
+# Allow SDV Media ALSA mixer to be started as an init service.
+type sdv_audio_mixer, domain;
+typeattribute sdv_audio_mixer coredomain;
+typeattribute sdv_audio_mixer mlstrustedsubject;
+
+type sdv_audio_mixer_exec, exec_type, system_file_type, file_type;
+
+init_daemon_domain(sdv_audio_mixer)
+
+# Allow listing available audio devices under /dev/snd.
+allow sdv_audio_mixer audio_device:dir search;
+# Allow accessing audio devices under /dev/snd.
+allow sdv_audio_mixer audio_device:chr_file { ioctl map open read write };
