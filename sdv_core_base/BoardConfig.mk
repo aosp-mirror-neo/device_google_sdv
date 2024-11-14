@@ -216,3 +216,6 @@ PRODUCT_CUSTOM_IMAGE_MAKEFILES += \
 # Run with: cvd start --custom_partition_path=$OUT/oem.img
 PRODUCT_CUSTOM_IMAGE_MAKEFILES += device/google/sdv/sdv_core_cf/oem/oem.mk
 BOARD_ROOT_EXTRA_FOLDERS += oem oem_updates
+
+# Have SD Agent on SDV read ACL file mappings from Service Bundle Registry
+$(call soong_config_set,sd_agent,acl_provider_type,sdv_acl_provider)
