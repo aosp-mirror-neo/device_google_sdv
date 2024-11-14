@@ -4,20 +4,16 @@
 // affecting the SDV Core targets, which is potentially any change in the folder.
 {
   "sdv_device_configuration_tests_presubmit": [
-    // Empty test suites get auto-suspended on go/atp. When adding the first
-    // test here:
-    // 1. Activate this test on go/atp
-    // 2. Remove this comment
-  ],
-  "sdv_device_configuration_tests_postsubmit": [
-    {
-      "name": "data_partition_persistence_test"
-    },
     {
       "name": "sdv_bugreport_test"
     },
     {
       "name": "sdv_pstore_test"
+    }
+  ],
+  "sdv_device_configuration_tests_postsubmit": [
+    {
+      "name": "data_partition_persistence_test"
     }
   ],
   "sdv_device_configuration_integration_tests_presubmit": [
