@@ -32,33 +32,8 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     liblifecycle_rust_service_bundle_test \
     liblifecycle_cpp_service_bundle_test \
     middleware_someip_sample \
-    sdv_compatibility_sample_publisher_old_service \
-    sdv_compatibility_sample_publisher_new_service \
-    sdv_compatibility_sample_subscriber_new_service \
-    sdv_compatibility_sample_subscriber_old_service \
-    sdv_cuj_core_001_pub \
-    sdv_cuj_core_001_sub \
-    sdv_same_unit_type_sample_publisher_service \
-    sdv_same_unit_type_sample_subscriber_service \
-    sdv_same_unit_type_sample_server_service \
-    sdv_same_unit_type_sample_client_service \
-    sdv_same_unit_type_sample_subscriber_service_cc \
-    sdv_same_unit_type_sample_server_service_cc \
-    sdv_same_unit_type_sample_publisher_service_cc \
-    sdv_same_unit_type_sample_client_service_cc \
-    sdv_mw_metadata_sample_publisher_service \
-    sdv_mw_metadata_sample_subscriber_service \
-    sdv_mirror_controller_service \
-    sdv_mirror_manager_service \
-    sdv_mirror_sdv_mirror_modern_service \
-    sdv_mirror_status_printer_service \
     sdv_oem_partition_update_client \
     sdv_sample_property_service \
-    sdv_tire_alert_service \
-    sdv_tire_monitor_service \
-    sdv_tire_sensor_reader_service \
-    sdv_tire_status_supplier_service \
-    sdv_tire_status_consumer_service \
     sdv_vsomeip_conf_counter_tester_target \
     sdv_vsomeip_counter_tester \
     sdv_vsomeip_sdv_hello_tester \
