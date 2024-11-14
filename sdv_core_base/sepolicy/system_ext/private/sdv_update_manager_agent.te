@@ -47,3 +47,5 @@ allow vdc sdv_update_manager_agent:fifo_file write;
 # devpts is needed to redirect output from vdc
 allow sdv_update_manager_agent devpts:chr_file rw_file_perms;
 
+# Update Manager can call IBootControl
+hal_client_domain(sdv_update_manager_agent, hal_bootctl);
