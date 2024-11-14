@@ -6,15 +6,10 @@
 
 SDV_AUTOMOTIVE_SERVICES_SAMPLES_PACKAGES = \
     com.sdv.oem.sample.concal \
-    diag_manager_sample \
-    diag_provider1_sample \
-    diag_provider2_sample \
     diag_v1_provider1_sample \
     diag_v1_provider2_sample \
     sdv_con_cal_client \
     sdv_con_cal_service \
-    libdiagnostics_sample_catalog-diagnostics-config.binpb \
-    libdiagnostics_sample_catalog-vsidl-config.binpb \
     vepsm \
     vpm_power_state_client \
     vpm_vehicle_state_client \
