@@ -18,3 +18,17 @@ type service_bundle_data, file_type, data_file_type, core_data_file_type;
 
 allow servicebundledomain service_bundle_data:dir create_dir_perms;
 allow servicebundledomain service_bundle_data:file create_file_perms;
+
+#####
+##### Neverallow
+#####
+
+# only the Lifecycle manager can transition to a service bundle domain
+neverallow { domain -sdv_lc_default } servicebundledomain:process transition;
+neverallow domain servicebundledomain:process dyntransition;
+
+# The service bundles cannot transition to other domains
+# No setcon() transitions
+neverallow servicebundledomain domain:process dyntransition;
+# No exec() based transitions, except for crash_dump.
+neverallow servicebundledomain { domain -crash_dump }:process transition;

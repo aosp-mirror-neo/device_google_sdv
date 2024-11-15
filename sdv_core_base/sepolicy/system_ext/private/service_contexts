@@ -14,9 +14,6 @@ google.sdv.lifecycle.internal.IServiceManager/default u:object_r:sdv_lc_service_
 # IRegistry is an interface that services use to read SDV service metadata.
 google.sdv.service_bundles_registry.IRegistry/default u:object_r:sdv_sbr_service:s0
 
-# SDV Lifecycle Manager binder service used in integration tests.
-google.sdv.lifecycle.test.IServiceCallbackVerifier/default u:object_r:sdv_lc_test_service_manager_service:s0
-
 # SDV VPM binder power callback service interface.
 google.sdv.vpm.IPowerStateClientApi u:object_r:sdv_vpm_agent_notification_service:s0
 

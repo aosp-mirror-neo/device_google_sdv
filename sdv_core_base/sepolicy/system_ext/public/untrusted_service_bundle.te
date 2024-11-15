@@ -1,0 +1,4 @@
+# Copyright 2024 Google LLC
+
+# The default service bundle domain.
+type untrusted_service_bundle, domain;
