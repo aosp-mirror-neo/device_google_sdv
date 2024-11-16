@@ -40,9 +40,18 @@ service rpcagent /system_ext/bin/rpcagent
     user system
     group system
 
-# Start the SDV Gateway process before the rpcagent because it starts the Data Tunnel agent service
+# Start agents that are not in the root network namespace before early HALs such as
+# VHAL (late-fs).
+on post-fs
+    start sdv_sd_agent
+
+# Start agents that are in the root network namespace on bootcomplete, because this
+# allows them to be started after the Connectivity Service has configured the ethernet
+# interfaces in the root network namespace.
+# TODO (b/377317735): Once DTAgent drops its dependency on RpcAgent and is moved to its
+# own network namespace, SDV Gateway can be started earlier on post-fs.
+# Start the SDV Gateway process before the rpcagent because it starts the DTAgent service
 # as well. SDV Gateway AIDL service will only be ready once the rpcagent is also started.
 on property:dev.bootcomplete=1
-    start sdv_sd_agent
     start sdv_gateway
     start rpcagent
