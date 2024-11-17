@@ -85,6 +85,8 @@ PRODUCT_PACKAGES += \
     sdv_diagnostics_agent \
     update_engine_product_partition_post_install \
     update_engine_system_partition_post_install \
+    sample_product_ota_postinstall_data \
+    sample_system_ota_postinstall_data \
 
 # Add the sdv_provisioning_tool to enable easy testing of the mesh provisioning
 # flows.
@@ -101,6 +103,6 @@ AB_OTA_POSTINSTALL_CONFIG += \
 
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
-    POSTINSTALL_PATH_system=bin/update_engine_system_partition_post_install \
+    POSTINSTALL_PATH_system=system/bin/update_engine_system_partition_post_install \
     FILESYSTEM_TYPE_system=ext4 \
     POSTINSTALL_OPTIONAL_system=false
