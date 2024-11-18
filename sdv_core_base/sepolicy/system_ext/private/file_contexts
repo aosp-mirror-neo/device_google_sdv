@@ -42,3 +42,5 @@
 /data/service_bundle_data(/.*)? u:object_r:service_bundle_data:s0
 
 /oem_updates(/.*)? u:object_r:system_file:s0
+
+/metadata/sdv_update_manager_agent(/.*)? u:object_r:sdv_um_metadata_file:s0
