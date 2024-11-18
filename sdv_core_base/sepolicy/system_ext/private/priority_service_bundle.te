@@ -1,0 +1,8 @@
+# Copyright 2024 Google LLC
+
+typeattribute priority_service_bundle coredomain;
+
+service_bundle_domain(priority_service_bundle)
+
+# Allows the service bundle to change deadline scheduling parameters.
+allow priority_service_bundle self:capability sys_nice;

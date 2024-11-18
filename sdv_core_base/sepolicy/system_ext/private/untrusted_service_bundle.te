@@ -5,6 +5,5 @@ typeattribute untrusted_service_bundle coredomain;
 service_bundle_domain(untrusted_service_bundle)
 
 # Allows service bundle to change deadline scheduling parameters.
-# TODO: b/377862446 - create a separate domain (e.g. priority_service_bundle) and only assign this
-#       policy to that domain.
+# TODO: b/377862446 - remove this allow rule and use the priority_service_bundle domain instead.
 allow untrusted_service_bundle self:capability sys_nice;
