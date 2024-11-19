@@ -1,7 +1,6 @@
 # Copyright 2024 Google LLC
 #
 # SDV-IVI's init .rc file which is used to start SDV specific services on IVI.
-# TODO: b/318739373 - Add Telemetry IVI service.
 
 on early-init
     # Signal that apexd-bootstrap is ready, init_open_dice can execute. IVI is a derivative of Core
@@ -22,22 +21,22 @@ on post-fs-data
 service sdv_sd_agent /system_ext/bin/sdv_sd_agent
     class core
     disabled
-    user root
-    group root
+    user system_ext_sdv_sd_agent
+    group system
     enter_namespace net /mnt/run/sd_mesh_ns
 
 # Declare the SDV Gateway service. Runs the SDV Data Tunnel agent as well.
 service sdv_gateway /vendor/bin/sdv_gateway
     class core
     disabled
-    user shell
-    group shell
+    user vendor_sdv_ivi_gateway
+    group system
 
 # Declare the SDV RPCagent.
 service rpcagent /system_ext/bin/rpcagent
     class core
     disabled
-    user system
+    user system_ext_sdv_rpc_agent
     group system
 
 # Start agents that are not in the root network namespace before early HALs such as
