@@ -9,6 +9,7 @@ LOCAL_ANDROIDBOOT_HARDWARE := sdv
 TARGET_KERNEL_USE ?= 6.6
 TARGET_KERNEL_ARCH ?= $(TARGET_ARCH)
 TARGET_KERNEL_PATH ?= kernel/prebuilts/$(TARGET_KERNEL_USE)/$(TARGET_KERNEL_ARCH)/kernel-$(TARGET_KERNEL_USE)
+SYSTEM_DLKM_SRC ?= kernel/prebuilts/$(TARGET_KERNEL_USE)/$(TARGET_KERNEL_ARCH)
 KERNEL_MODULES_PATH ?= \
     kernel/prebuilts/common-modules/virtual-device/$(TARGET_KERNEL_USE)/$(subst _,-,$(TARGET_KERNEL_ARCH))
 PRODUCT_COPY_FILES += $(TARGET_KERNEL_PATH):kernel
@@ -19,23 +20,27 @@ PRODUCT_COPY_FILES += $(TARGET_KERNEL_PATH):kernel
 RAMDISK_KERNEL_MODULES := \
     failover.ko \
     net_failover.ko \
+    virtio-rng.ko \
     virtio_blk.ko \
     virtio_console.ko \
     virtio_net.ko \
     virtio_pci.ko \
     virtio_pci_modern_dev.ko \
-    virtio-rng.ko \
     vmw_vsock_virtio_transport.ko \
 
+# Depending on the kernel version, the modules may exist either under
+# common-modules/ or directly in kernel prebuilts directory (but not both). Use
+# $(wildcard) to ignore the paths that don't exist.
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES := \
-    $(patsubst %,$(KERNEL_MODULES_PATH)/%,$(RAMDISK_KERNEL_MODULES))
+    $(wildcard $(patsubst %,$(KERNEL_MODULES_PATH)/%,$(RAMDISK_KERNEL_MODULES))) \
+    $(wildcard $(patsubst %,$(SYSTEM_DLKM_SRC)/%,$(RAMDISK_KERNEL_MODULES))) \
 
 # GKI >5.15 will have and require virtio_pci_legacy_dev.ko
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(wildcard $(KERNEL_MODULES_PATH)/virtio_pci_legacy_dev.ko)
 # GKI >6.4 will have an required vmw_vsock_virtio_transport_common.ko and vsock.ko
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
-	$(wildcard $(KERNEL_MODULES_PATH)/vmw_vsock_virtio_transport_common.ko) \
-	$(wildcard $(KERNEL_MODULES_PATH)/vsock.ko)
+    $(wildcard $(KERNEL_MODULES_PATH)/vmw_vsock_virtio_transport_common.ko) \
+    $(wildcard $(KERNEL_MODULES_PATH)/vsock.ko)
 
 TARGET_NO_RECOVERY := true
 
