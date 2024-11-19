@@ -6,6 +6,7 @@
 
 SDV_AUTOMOTIVE_SERVICES_SAMPLES_PACKAGES = \
     com.sdv.oem.sample.concal \
+    com.sdv.oem.sample.diagnostics \
     diag_v1_provider1_sample \
     diag_v1_provider2_sample \
     sdv_con_cal_client \
