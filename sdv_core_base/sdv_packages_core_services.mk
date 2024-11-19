@@ -32,6 +32,7 @@ SDV_CORE_SERVICES_HOST_PACKAGES += \
     vsidl_code_generator \
     vsidl_rc_generator \
     vsidlc \
+    vvmconfig_generator \
 
 PRODUCT_PACKAGES += $(SDV_CORE_SERVICES_PACKAGES)
 
