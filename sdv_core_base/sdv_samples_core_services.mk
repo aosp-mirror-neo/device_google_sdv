@@ -36,7 +36,6 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     sdv_mw_cluster_server \
     sdv_mw_cluster_client \
     sdv_oem_partition_update_client \
-    sdv_sample_property_service \
     sdv_vsomeip_conf_counter_tester_target \
     sdv_vsomeip_counter_tester \
     sdv_vsomeip_sdv_hello_tester \
@@ -47,6 +46,8 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     someip_rpc_sdv_server \
     orch_custom_mode_sample \
     sdv_service_bundle \
+    sdv_tire_pressure \
+    sdv_range_remaining_subscriber \
     libsomeip_messages_catalog-vsidl-config.binpb \
     com.sdv.google.sample.tracing \
     sdv_server_rust_tracing_sample \

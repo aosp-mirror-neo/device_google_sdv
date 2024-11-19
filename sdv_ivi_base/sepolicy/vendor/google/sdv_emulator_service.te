@@ -1,6 +1,8 @@
 # Copyright 2024 Google LLC
 # The sepolicy defines additional rules for the default Vehicle HAL on Automotive devices
 
-# Allow the Vehicle HAL to use the SDV Data Tunnel
-# TODO: b/343720094 - VHAL should not use Data Tunnel directly.
+# Allow the Vehicle HAL to use the SDV Binder Agents
+# TODO: b/343720094 - VHAL Proxy should use ISdvGateway AIDL for all SDV comms
+typeattribute hal_vehicle_default sdv_sd_client;
 typeattribute hal_vehicle_default sdv_dt_client;
+typeattribute hal_vehicle_default sdv_rpcagent_client;

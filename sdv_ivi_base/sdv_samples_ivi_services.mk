@@ -7,9 +7,9 @@
 # Samples in core_services/ specific to SDV_IVI target
 SDV_IVI_SERVICES_SAMPLES_PACKAGES = \
     native_sdv_gateway_test_app \
-    sdv_vhal_proxy_subscriber \
     sdv_vhal_proxy_publisher_v2 \
     sdv_vhal_proxy_subscriber_v2 \
+    android.hardware.automotive.vehicle@V1-sdv-emulator-service-v2 \
     ivi_acl_provider_vendor_acl_textproto \
     ivi_acl_provider_product_acl_textproto \
     ivi_acl_provider_system_acl_textproto \
