@@ -9,3 +9,6 @@ typeattribute sdv_diagnostics_agent sdv_sd_client;
 allow sdv_diagnostics_agent sdv_transport_support_service:service_manager find;
 
 typeattribute sdv_diagnostics_agent sdv_dt_client;
+
+binder_call(sdv_diagnostics_agent, sdv_sbr)
+allow sdv_diagnostics_agent sdv_sbr_service:service_manager find;
