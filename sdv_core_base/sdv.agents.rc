@@ -68,15 +68,6 @@ on property:dev.bootcomplete=1
 ##  Communication stack agents  ##
 ##################################
 
-# Retrieve the local vsock CID and store it in ro.sdv.vsock_local_cid.
-service vsock_local_cid /system_ext/bin/vsock_local_cid ro.sdv.vsock_local_cid
-  class core
-  user root
-  group shell
-  oneshot
-on post-fs-data
-  start vsock_local_cid
-
 # Declare and start the SDV Service Discovery service.
 service sdv_sd_agent /system_ext/bin/sdv_sd_agent
     class core
@@ -93,7 +84,7 @@ on property:dev.bootcomplete=1
 # was started manually via adb shell; system/system is the better
 # credential here, but we need to change how we obtain file descriptors for
 # notifications before we can stop relying on shell permissions
-service dt_agent /system_ext/bin/dt_agent /data/dt_mesh.csv
+service dt_agent /system_ext/bin/dt_agent
     class core
     disabled
     user system_ext_sdv_dt
