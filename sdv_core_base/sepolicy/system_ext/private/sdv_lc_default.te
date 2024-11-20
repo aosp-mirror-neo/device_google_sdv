@@ -14,6 +14,13 @@ allow servicebundledomain sdv_lc_default:fifo_file read;
 allow sdv_lc_default servicebundledomain:process sigkill;
 allow sdv_lc_default self:process { setexec };
 
+# Allow to manipulate /data/service_bundle_data/ dirs
+allow sdv_lc_default service_bundle_data:dir create_dir_perms;
+allow sdv_lc_default service_bundle_data:file create_file_perms;
+
+# Allow setting uid for service bundle processes
+allow sdv_lc_default self:capability { setuid chown };
+
 allow sdv_lc_default self:capability { kill };
 
 # The Lifecycle agent and the service bundles spawned by it can call each other via Binder IPC.
