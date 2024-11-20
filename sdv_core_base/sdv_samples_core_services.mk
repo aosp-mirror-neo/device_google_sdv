@@ -33,6 +33,8 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     liblifecycle_rust_service_bundle_test \
     liblifecycle_cpp_service_bundle_test \
     middleware_someip_sample \
+    sdv_mw_cluster_server \
+    sdv_mw_cluster_client \
     sdv_oem_partition_update_client \
     sdv_sample_property_service \
     sdv_vsomeip_conf_counter_tester_target \
