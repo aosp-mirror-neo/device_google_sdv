@@ -60,6 +60,8 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     com.sdv.sample_oem.health.monitoring \
     sdv_dice_root_key_extraction_tool \
     com.sdv.someip \
+    sdv_health_monitor_stable_integration_tests \
+    sdv_integration_test_health_monitored_service \
 
 # TODO: b/361610453 - include in com.sdv.google.sample.logging
 SDV_CORE_SERVICES_SAMPLES_PACKAGES += structured_logging_sdv_rust_sample
