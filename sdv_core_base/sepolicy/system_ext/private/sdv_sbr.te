@@ -22,5 +22,8 @@ allow sdv_orch sdv_sbr_service:service_manager find;
 binder_call(sdv_someip_broker_default, sdv_sbr)
 allow sdv_someip_broker_default sdv_sbr_service:service_manager find;
 
+binder_call(sdv_vsidl_provider_agent, sdv_sbr)
+allow sdv_vsidl_provider_agent sdv_sbr_service:service_manager find;
+
 # SDV Service Bundles Registry agent can register its Binder IPC services.
 add_service(sdv_sbr, sdv_sbr_service)
