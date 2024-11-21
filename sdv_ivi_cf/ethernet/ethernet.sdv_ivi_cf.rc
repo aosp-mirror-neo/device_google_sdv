@@ -18,16 +18,16 @@ service sdv-ethernet-setup /product/bin/ethernet/ethernet.sdv_ivi_cf.sh
     group shell
     oneshot
 
-# Create network namespaces
+# Create the sd_mesh_ns network namespace for the sd_mesh network interface.
 service sdv-ethernet-namespace-setup /product/bin/ethernet/ethernet_namespace_setup.sh eth1
     class core
     user root
     group shell
     oneshot
 
-# Setup routing rule for network namespace sd_mesh
+# Setup routing rule for the sd_mesh_ns network namespace.
 service sdv-ethernet-sd-mesh-setup /product/bin/ethernet/ethernet_sd_mesh.sh
-    enter_namespace net /mnt/run/sd_mesh
+    enter_namespace net /mnt/run/sd_mesh_ns
     class core
     user root
     group shell
