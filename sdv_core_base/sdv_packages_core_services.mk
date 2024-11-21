@@ -22,7 +22,6 @@ SDV_CORE_SERVICES_PACKAGES = \
     sdv_update_manager_agent \
     sdv.sample.apex.fake.update.manager \
     sdv_health_monitor_stable \
-    broker_config_v0.json \
     $(SDV_SOMEIP_BROKER_CONFIG) \
     com.sdv.google.health \
     com.sdv.google.orchestrator \
