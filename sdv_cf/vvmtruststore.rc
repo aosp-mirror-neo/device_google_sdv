@@ -12,3 +12,10 @@ on late-fs && property:ro.boot.sdv.boot_mode=locked
 on late-fs && property:ro.boot.sdv.boot_mode=unlocked
     mount ext4 /dev/block/by-name/vvmtruststore /vvmtruststore noatime nosuid nodev noexec rw
     restorecon_recursive /vvmtruststore
+    # The owner must be changed to system_ext_sdv_sd in unlocked mode so service discovery can
+    # write the partition when provisioning the device. The ownership change is persisted, so when
+    # the VM is rebooted in sdv.boot_mode locked the partition stays accessible for service
+    # discovery.
+    # TODO: b/341742632 - use "system_ext_sdv_sd root" instead of "system system" once IVI has the
+    #       system_ext_sdv_sd user
+    chown system system /vvmtruststore
