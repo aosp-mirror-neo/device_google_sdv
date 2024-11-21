@@ -9,6 +9,7 @@ LOCAL_ANDROIDBOOT_HARDWARE := sdv
 TARGET_KERNEL_USE ?= 6.6
 TARGET_KERNEL_ARCH ?= $(TARGET_ARCH)
 TARGET_KERNEL_PATH ?= kernel/prebuilts/$(TARGET_KERNEL_USE)/$(TARGET_KERNEL_ARCH)/kernel-$(TARGET_KERNEL_USE)
+SYSTEM_DLKM_SRC ?= kernel/prebuilts/$(TARGET_KERNEL_USE)/$(TARGET_KERNEL_ARCH)
 KERNEL_MODULES_PATH ?= \
     kernel/prebuilts/common-modules/virtual-device/$(TARGET_KERNEL_USE)/$(subst _,-,$(TARGET_KERNEL_ARCH))
 PRODUCT_COPY_FILES += $(TARGET_KERNEL_PATH):kernel
@@ -16,26 +17,30 @@ PRODUCT_COPY_FILES += $(TARGET_KERNEL_PATH):kernel
 # The list of modules strictly/only required either to reach second stage
 # init, OR for recovery. Do not use this list to workaround second stage
 # issues.
-RAMDISK_KERNEL_MODULES := \
-    failover.ko \
-    net_failover.ko \
-    virtio_blk.ko \
-    virtio_console.ko \
-    virtio_net.ko \
-    virtio_pci.ko \
-    virtio_pci_modern_dev.ko \
-    virtio-rng.ko \
-    vmw_vsock_virtio_transport.ko \
-
+#
+# Depending on the specific module, they may exist under $(KERNEL_MODULES_PATH)
+# or $(SYSTEM_DLKM_SRC). virtio_blk.ko, virtio_console.ko, virtio_pci.ko,
+# virtio_pci_modern_dev.ko and vmw_vsock_virtio_transport.ko were added to
+# $(SYSTEM_DLKM_SRC) in May 2024, but remained in $(KERNEL_MODULES_PATH) until
+# Nov 2024, so including both with $(wildcard) just causes a build error before
+# the next prebuilts drop.
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES := \
-    $(patsubst %,$(KERNEL_MODULES_PATH)/%,$(RAMDISK_KERNEL_MODULES))
+    $(KERNEL_MODULES_PATH)/failover.ko \
+    $(KERNEL_MODULES_PATH)/net_failover.ko \
+    $(KERNEL_MODULES_PATH)/virtio-rng.ko \
+    $(KERNEL_MODULES_PATH)/virtio_net.ko \
+    $(SYSTEM_DLKM_SRC)/virtio_blk.ko \
+    $(SYSTEM_DLKM_SRC)/virtio_console.ko \
+    $(SYSTEM_DLKM_SRC)/virtio_pci.ko \
+    $(SYSTEM_DLKM_SRC)/virtio_pci_modern_dev.ko \
+    $(SYSTEM_DLKM_SRC)/vmw_vsock_virtio_transport.ko \
 
 # GKI >5.15 will have and require virtio_pci_legacy_dev.ko
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(wildcard $(KERNEL_MODULES_PATH)/virtio_pci_legacy_dev.ko)
 # GKI >6.4 will have an required vmw_vsock_virtio_transport_common.ko and vsock.ko
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
-	$(wildcard $(KERNEL_MODULES_PATH)/vmw_vsock_virtio_transport_common.ko) \
-	$(wildcard $(KERNEL_MODULES_PATH)/vsock.ko)
+    $(wildcard $(KERNEL_MODULES_PATH)/vmw_vsock_virtio_transport_common.ko) \
+    $(wildcard $(KERNEL_MODULES_PATH)/vsock.ko)
 
 TARGET_NO_RECOVERY := true
 
