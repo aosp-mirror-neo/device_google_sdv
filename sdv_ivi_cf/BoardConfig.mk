@@ -16,3 +16,4 @@ PRODUCT_CUSTOM_IMAGE_MAKEFILES += \
   device/google/sdv/sdv_base/vvmtruststore.mk
 
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/samples/system_ext/private
+PRODUCT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/samples/product/private

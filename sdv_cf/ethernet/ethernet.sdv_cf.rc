@@ -10,21 +10,21 @@ on post-fs-data
 
 # This would setup the main ethernet ip address and routing
 # Setup for routing for different network namespace need to be done in separated service
-service sdv-ethernet-setup /system_ext/bin/ethernet/ethernet.sdv_cf.sh
+service sdv-ethernet-setup /product/bin/ethernet/ethernet.sdv_cf.sh
     class core
     user root
     group shell
     oneshot
 
 # Create network namespace for sd_mesh
-service sdv-ethernet-namespace-setup /system_ext/bin/ethernet/ethernet_namespace_setup.sh eth1
+service sdv-ethernet-namespace-setup /product/bin/ethernet/ethernet_namespace_setup.sh eth1
     class core
     user root
     group shell
     oneshot
 
 # Setup routing rule for network namespace sd_mesh
-service sdv-ethernet-sd-mesh-setup /system_ext/bin/ethernet/ethernet_sd_mesh.sh
+service sdv-ethernet-sd-mesh-setup /product/bin/ethernet/ethernet_sd_mesh.sh
     enter_namespace net /mnt/run/sd_mesh
     class core
     user root

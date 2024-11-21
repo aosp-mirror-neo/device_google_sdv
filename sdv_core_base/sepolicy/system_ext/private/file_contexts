@@ -4,9 +4,6 @@
 # system_ext files
 #
 
-# The ethernet setup scripts for SDV.
-/(system_ext|system/system_ext)/bin/ethernet/ethernet(.*)\.sh u:object_r:sdv_ethernet_setup_exec:s0
-
 # SDV Lifecycle manager agent
 /(system_ext|system/system_ext)/bin/sdv_lifecycle_agent u:object_r:sdv_lc_default_exec:s0
 
