@@ -1,5 +1,4 @@
 # Copyright 2024 Google LLC
 
 # SDV Lifecycle Manager binder service used in integration tests.
-# TODO: b/378201625 - remove this labeling along this file
 google.sdv.lifecycle.test.IServiceCallbackVerifier/default u:object_r:sdv_lc_test_service_manager_service:s0
