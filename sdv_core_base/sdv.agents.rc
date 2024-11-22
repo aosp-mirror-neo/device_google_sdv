@@ -98,6 +98,9 @@ service dt_agent /system_ext/bin/dt_agent /data/dt_mesh.csv
     disabled
     user system_ext_sdv_dt
     group system
+    # TODO: b/377979514 - use the network namespace designated to DT once it opens its scokets
+    #       directly and not through the RPC agent.
+    # enter_namespace net /mnt/run/sdv_dt_ns
 on property:dev.bootcomplete=1
     start dt_agent
 

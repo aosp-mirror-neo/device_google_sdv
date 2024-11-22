@@ -1,23 +1,22 @@
 #!/system/bin/sh
 # Copyright 2024 Google LLC
 
-# Setup network namespace and VLAN for sd_mesh on top of the network interface passed as
-# the argument
+# Setup the network namespaces and VLANs for the service discovery and data tunnel agents on top of
+# the network interface passed as the argument
 NETWORK_INTERFACE="$1"
 
-########################################################################################
-# create a VLAN for service discovery mesh and move it to a sd_mesh_ns network namespace
-########################################################################################
+#########################################################################################
+# create a VLAN for service discovery agent and move it to a sd_mesh_ns network namespace
+#########################################################################################
 
 ip link add link "${NETWORK_INTERFACE}" name sd_mesh type vlan id 1
 
-# Move the service discovery mesh into a difference namespace solely for service discovery use, so
-# only service discovery can access that VLAN interface for security isolation.
+# Create a separate sd_mesh_ns namespace solely for the use of the service discovery agent, and
+# move the sd_mesh network interface to that network namespace, so only service discovery can
+# access that VLAN interface for security isolation.
+# Once the sd_mesh network interface is moved, we will no longer be able to see it from here
+# without entering sd_mesh_ns network namespace.
 ip netns add sd_mesh_ns
-
-# Move network interface sd_mesh to network namespace sd_mesh_ns.
-# Once it's moved, we will no longer be able to see the sd_mesh network interface here without
-# entering sd_mesh_ns network namespace.
 ip link set sd_mesh netns sd_mesh_ns
 
 # We cannot use "ip netns exec" here to configure IP rules in the sd_mesh_ns network namespace,
@@ -27,3 +26,17 @@ ip link set sd_mesh netns sd_mesh_ns
 # Instead, we configure the IP rules in a separate script that has an enter_namespace init .rc
 # service modifier, so init remounts sysfs and enter the network namespace for us. See
 # ethernet_sd_mesh.sh.
+
+######################################################################################
+# create a VLAN for the data tunnel agent and move it to a sdv_dt_ns network namespace
+######################################################################################
+
+ip link add link "${NETWORK_INTERFACE}" name sdv_dt type vlan id 2
+
+# Create a separate sdv_dt_ns namespace solely for the use of the data tunnel agent, and move the
+# sdv_dt network  interface to that network namespace, so only data tunnel can access that VLAN
+# interface for security isolation.
+# Once the sdv_dt network interface is moved, we will no longer be able to see it from here without
+# entering sdv_dt_ns network namespace.
+ip netns add sdv_dt_ns
+ip link set sdv_dt netns sdv_dt_ns

@@ -9,6 +9,7 @@ on post-fs
     exec_start sdv-ethernet-setup
     exec_start sdv-ethernet-namespace-setup
     exec_start sdv-ethernet-sd-mesh-setup
+    exec_start sdv-ethernet-dt-setup
 
 # This would setup the main ethernet ip address and routing
 # Setup for routing for different network namespace need to be done in separated service
@@ -25,9 +26,17 @@ service sdv-ethernet-namespace-setup /product/bin/ethernet/ethernet_namespace_se
     group shell
     oneshot
 
-# Setup routing rule for the sd_mesh_ns network namespace.
+# Setup routing rule for the sd_mesh_ns network namespace designated to service discovery traffic.
 service sdv-ethernet-sd-mesh-setup /product/bin/ethernet/ethernet_sd_mesh.sh
     enter_namespace net /mnt/run/sd_mesh_ns
+    class core
+    user root
+    group shell
+    oneshot
+
+# Setup routing rule for the sdv_dt_ns network namespace designated to data tunnel traffic.
+service sdv-ethernet-dt-setup /product/bin/ethernet/ethernet_sdv_dt.sh
+    enter_namespace net /mnt/run/sdv_dt_ns
     class core
     user root
     group shell
