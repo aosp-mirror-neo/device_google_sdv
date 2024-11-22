@@ -38,4 +38,3 @@ ENABLE_AUTO_ETHERNET := false
 include device/google/sdv/sdv_base/sdv_base.mk
 include device/google/sdv/sdv_ivi_base/sdv_packages_ivi_services.mk
 include device/google/sdv/sdv_ivi_base/sdv_packages_ivi_telemetry.mk
-include device/google/sdv/sdv_core_base/sdv_ethernet_setup.mk

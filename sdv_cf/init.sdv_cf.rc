@@ -2,7 +2,7 @@
 #
 # SDV Core's init .rc file with services specific to Cuttlefish.
 
-import /system_ext/etc/init/hw/ethernet.sdv_cf.rc
+import /product/etc/init/hw/ethernet.sdv_cf.rc
 import /vendor/etc/init/seriallogging.rc
 
 on post-fs && property:ro.sdv.enable_seriallogging=true

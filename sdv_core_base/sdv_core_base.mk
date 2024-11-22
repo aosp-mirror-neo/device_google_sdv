@@ -221,7 +221,6 @@ include device/google/sdv/sdv_core_base/sdv_packages_automotive_services.mk
 include device/google/sdv/sdv_core_base/sdv_packages_core_services.mk
 include device/google/sdv/sdv_core_base/sdv_packages_platform.mk
 include device/google/sdv/sdv_core_base/sdv_packages_telemetry.mk
-include device/google/sdv/sdv_core_base/sdv_ethernet_setup.mk
 
 # Enable tracing and test services on userdebug and eng
 ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))

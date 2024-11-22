@@ -36,6 +36,7 @@ include device/google/sdv/sdv_core_base/sdv_core_base.mk
 include device/google/sdv/sdv_cf/sdv_cf.mk
 
 include device/google/sdv/sdv_base/sdv_samples_base_services.mk
+include device/google/sdv/sdv_base/sdv_sample_ethernet_setup.mk
 include device/google/sdv/sdv_core_base/sdv_samples_automotive_services.mk
 include device/google/sdv/sdv_core_base/sdv_samples_core_services.mk
 include device/google/sdv/sdv_core_base/sdv_samples_platform.mk
