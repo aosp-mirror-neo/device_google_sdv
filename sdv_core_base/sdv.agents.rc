@@ -83,7 +83,7 @@ service sdv_sd_agent /system_ext/bin/sdv_sd_agent
     disabled
     user system_ext_sdv_sd
     group system
-    enter_namespace net /mnt/run/sd_mesh
+    enter_namespace net /mnt/run/sd_mesh_ns
 on property:dev.bootcomplete=1
     start sdv_sd_agent
 

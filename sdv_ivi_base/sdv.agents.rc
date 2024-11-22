@@ -24,7 +24,7 @@ service sdv_sd_agent /system_ext/bin/sdv_sd_agent
     disabled
     user root
     group root
-    enter_namespace net /mnt/run/sd_mesh
+    enter_namespace net /mnt/run/sd_mesh_ns
 
 # Declare the SDV Gateway service. Runs the SDV Data Tunnel agent as well.
 service sdv_gateway /vendor/bin/sdv_gateway
