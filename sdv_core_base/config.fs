@@ -53,6 +53,11 @@ group: AID_SYSTEM
 
 # User for Lifecycle service bundle runner.
 [AID_SYSTEM_EXT_SDV_LCM_RUNNER]
+value: 7510
+group: AID_SYSTEM
+
+# User for init_open_dice.
+[AID_SYSTEM_EXT_INIT_OPEN_DICE]
 value: 7511
 group: AID_SYSTEM
 

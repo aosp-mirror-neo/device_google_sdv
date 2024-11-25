@@ -30,7 +30,7 @@ subsystem dma_heap
 # Virtual console for logcat
 /dev/hvc2                 0666   system     system
 
-/dev/open-dice0           0660   root       root
+/dev/open-dice0           0660   system_ext_init_open_dice  system_ext_init_open_dice
 
 # Aside from kernel threads, only prng_seeder needs access to HW RNG
 /dev/hw_random            0400   prng_seeder prng_seeder
