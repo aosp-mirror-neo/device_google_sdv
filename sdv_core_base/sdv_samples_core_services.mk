@@ -49,8 +49,6 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     sdv_sample_health_monitoring_service \
     sdv_service_bundle \
     libsomeip_messages_catalog-vsidl-config.binpb \
-    libhealthmonitor_messages_catalog-vsidl-config.binpb \
-    libhealthmonitor_messages_catalog-config.binpb \
     com.sdv.google.sample.tracing \
     sdv_server_rust_tracing_sample \
     rochambeau_player_rs \
