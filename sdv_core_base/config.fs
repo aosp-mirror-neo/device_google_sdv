@@ -41,22 +41,20 @@ value: 7508
 [AID_SYSTEM_EXT_SDV_DT]
 value: 7509
 
-# User for Lifecycle service bundle runner.
-[AID_SYSTEM_EXT_SDV_LCM_RUNNER]
-value: 7510
-
 # User for init_open_dice.
 [AID_SYSTEM_EXT_INIT_OPEN_DICE]
-value: 7511
+value: 7510
 
-[system_ext/bin/sdv_lifecycle_agent]
-mode: 0555
-user: AID_SYSTEM_EXT_SDV_LCM
-group: AID_SYSTEM
-caps: SYS_ADMIN SYS_NICE KILL
-
+# Assigning the CAP_SYS_NICE capability to the service bundle runner executable file so service
+# bundles can change their deadline scheduling policy. Note that this capability cannot be granted
+# to the service bundle runner in the init service definition, because it's started by the
+# lifecycle manager and not by init.
+# The other attributes, mode, user and group, are required, and specify the permissions and the
+# owner for the /system_ext/bin/lifecycle_service_bundle_runner file. The service bundle runner
+# executable should only be run by the lifecycle manager, so this configuration sets the AID for
+# lifecycle manager to be the owner of the executable.
 [system_ext/bin/lifecycle_service_bundle_runner]
 mode: 0555
-user: AID_SYSTEM_EXT_SDV_LCM_RUNNER
-group: AID_SYSTEM
+user: AID_SYSTEM_EXT_SDV_LCM
+group: AID_SYSTEM_EXT_SDV_LCM
 caps: SYS_NICE
