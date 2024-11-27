@@ -142,6 +142,7 @@ PRODUCT_PACKAGES += \
     libdl_android.bootstrap \
     libm.bootstrap \
     selinux_policy \
+    sanitizer.libraries.txt \
     com.android.adbd \
     mdnsd \
 
