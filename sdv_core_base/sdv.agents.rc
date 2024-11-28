@@ -22,6 +22,7 @@ service sdv_lifecycle_agent /system_ext/bin/sdv_lifecycle_agent
     disabled
     user system_ext_sdv_lcm
     group system
+    capabilities SYS_NICE KILL SETUID CHOWN
 on property:dev.bootcomplete=1
     start sdv_lifecycle_agent
 
