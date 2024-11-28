@@ -19,7 +19,7 @@ allow sdv_lc_default service_bundle_data:dir create_dir_perms;
 allow sdv_lc_default service_bundle_data:file create_file_perms;
 
 # Allow setting uid for service bundle processes
-allow sdv_lc_default self:capability { setuid chown };
+allow sdv_lc_default self:capability { setuid setgid chown };
 
 allow sdv_lc_default self:capability { kill };
 
