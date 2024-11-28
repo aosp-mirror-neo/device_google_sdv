@@ -43,10 +43,6 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     someip_rpc_someip_server \
     someip_rpc_sdv_server \
     orch_custom_mode_sample \
-    sdv_health_monitor \
-    sdv_sample_health_monitored_service \
-    sdv_sample_second_health_monitored_service \
-    sdv_sample_health_monitoring_service \
     sdv_service_bundle \
     libsomeip_messages_catalog-vsidl-config.binpb \
     com.sdv.google.sample.tracing \
