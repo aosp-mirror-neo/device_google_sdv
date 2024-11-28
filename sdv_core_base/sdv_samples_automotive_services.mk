@@ -14,10 +14,6 @@ SDV_AUTOMOTIVE_SERVICES_SAMPLES_PACKAGES = \
     vepsm \
     vpm_power_state_client \
     vpm_vehicle_state_client \
-    sdv_user_preferences_service \
-    sdv_hvac_service \
-    sdv_car_seats_service \
-    sdv_hmi_service \
     sdv_hvac_service_stable \
     sdv_hmi_service_stable  \
     sdv_car_seats_service_stable \
