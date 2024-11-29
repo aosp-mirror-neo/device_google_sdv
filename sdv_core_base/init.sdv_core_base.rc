@@ -258,7 +258,7 @@ on post-fs-data
     # within this directory, and service bundles won't be able to directly write
     # service_bundle_data, but now, this can be used as a data directory by all service bundles
     # temporarily
-    mkdir /data/service_bundle_data 0770 system system
+    mkdir /data/service_bundle_data 0771 system system
 
     # set up misc and keystore directory structure first so that we can end early boot and start
     # apexd
