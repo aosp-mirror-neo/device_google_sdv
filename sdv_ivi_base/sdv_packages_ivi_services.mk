@@ -29,7 +29,6 @@ endif
 SDV_IVI_SERVICES_PACKAGES += $(SDV_OPEN_DICE_PROVIDER_PACKAGES)
 
 SDV_IVI_SERVICES_HOST_PACKAGES = \
-    vsidl_code_generator \
     vsidl_rc_generator \
     vsidlc \
 
