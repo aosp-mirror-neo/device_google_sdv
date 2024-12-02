@@ -28,7 +28,6 @@ SDV_CORE_SERVICES_PACKAGES = \
     sdv_vsidl_provider_agent \
 
 SDV_CORE_SERVICES_HOST_PACKAGES += \
-    vsidl_code_generator \
     vsidl_rc_generator \
     vsidlc \
     vvmconfig_generator \
