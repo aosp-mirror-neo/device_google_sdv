@@ -24,5 +24,20 @@
     {
       "name": "sdv_verified_boot_test"
     }
+  ],
+  // Presubmit should also trigger the SDV tests in another repo.
+  "imports": [
+    {
+      "path": "system/software_defined_vehicle/automotive_services"
+    },
+    {
+      "path": "system/software_defined_vehicle/core_services"
+    },
+    {
+      "path": "system/software_defined_vehicle/platform"
+    },
+    {
+      "path": "system/software_defined_vehicle/telemetry"
+    }
   ]
 }
