@@ -24,6 +24,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     com.sdv.google.sample.bar \
     com.sdv.google.sample.baz \
     com.sdv.google.sample.foo \
+    com.sdv.google.sample.qux \
     com.sdv.google.sample.vsidl_provider \
     cujs_orchestration_configurations \
     com.sdv.google.sample.update.manager.client \
