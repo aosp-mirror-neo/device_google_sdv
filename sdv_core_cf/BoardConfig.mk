@@ -15,6 +15,12 @@ TARGET_CPU_ABI := x86_64
 # Only set this if it's not set already. We need to be able to use something else for SDV Media.
 LOCAL_ANDROIDBOOT_INIT_RC ?= /system/etc/init/hw/init.sdv_core_cf.rc
 
+# Recovery mode has its own init.rc which we rename to SDV's expected naming (defined above)
+# TODO: b/297175675 - remove this once SDV doesn't set androidboot.init_rc
+PRODUCT_COPY_FILES += bootable/recovery/etc/init.rc:recovery/root/system/etc/init/hw/init.sdv_core_cf.rc
+
+TARGET_RECOVERY_FSTAB := device/google/sdv/sdv_core_cf/fstab.sdv
+
 include device/google/sdv/sdv_core_base/BoardConfig.mk
 include device/google/sdv/sdv_cf/BoardConfig.mk
 
