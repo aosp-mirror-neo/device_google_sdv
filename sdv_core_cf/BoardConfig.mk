@@ -35,3 +35,19 @@ PRODUCT_CUSTOM_IMAGE_MAKEFILES += \
     device/google/sdv/sdv_core_cf/oem/oem_metadata.mk
 
 BOARD_ROOT_EXTRA_FOLDERS += oem oem_updates oem_metadata
+
+# Configuration required for MACsec. See device/google/cuttlefish/shared/BoardConfig.mk.
+BOARD_WLAN_DEVICE           := emulator
+BOARD_HOSTAPD_PRIVATE_LIB   := lib_driver_cmd_simulated_cf_bp
+WIFI_HIDL_FEATURE_DUAL_INTERFACE := true
+WIFI_HAL_INTERFACE_COMBINATIONS := {{{STA}, 1}, {{AP}, 1}, {{P2P}, 1}}
+BOARD_HOSTAPD_DRIVER        := NL80211
+BOARD_WPA_SUPPLICANT_DRIVER := NL80211
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_simulated_cf_bp
+WPA_SUPPLICANT_VERSION      := VER_0_8_X
+WIFI_DRIVER_FW_PATH_PARAM   := "/dev/null"
+WIFI_DRIVER_FW_PATH_STA     := "/dev/null"
+WIFI_DRIVER_FW_PATH_AP      := "/dev/null"
+
+# The MACsec kernel module
+BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(SYSTEM_DLKM_SRC)/macsec.ko

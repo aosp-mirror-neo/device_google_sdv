@@ -1,0 +1,18 @@
+// Copyright 2024 Google LLC
+
+package {
+    default_applicable_licenses: ["sdv_license"],
+}
+
+prebuilt_etc {
+    name: "sdv_wpa_supplicant_macsec.conf",
+    src: "sdv_wpa_supplicant_macsec.conf",
+    vendor: true,
+}
+
+prebuilt_etc {
+    name: "sdv_wpa_supplicant_macsec.rc",
+    src: "sdv_wpa_supplicant_macsec.rc",
+    sub_dir: "init",
+    vendor: true,
+}
