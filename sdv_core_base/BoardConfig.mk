@@ -42,12 +42,7 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
     $(wildcard $(KERNEL_MODULES_PATH)/vmw_vsock_virtio_transport_common.ko) \
     $(wildcard $(KERNEL_MODULES_PATH)/vsock.ko)
 
-# Setup recovery mode
 TARGET_NO_RECOVERY := true
-BOARD_USES_RECOVERY_AS_BOOT :=
-BOARD_EXCLUDE_KERNEL_FROM_RECOVERY_IMAGE :=
-BOARD_MOVE_RECOVERY_RESOURCES_TO_VENDOR_BOOT := true
-BOARD_MOVE_GSI_AVB_KEYS_TO_VENDOR_BOOT := true
 
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES_BLOCKLIST_FILE := \
     device/google/cuttlefish/shared/modules.blocklist

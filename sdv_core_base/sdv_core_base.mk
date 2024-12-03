@@ -44,19 +44,6 @@ PRODUCT_PACKAGES += \
     vendor-build.prop \
     vendor_manifest.xml
 
-# Recovery mode resources
-PRODUCT_PACKAGES += \
-    adbd.recovery \
-    build_flag_vendor \
-    cgroups.recovery.json \
-    init_second_stage.recovery \
-    ld.config.recovery.txt \
-    linker.recovery \
-    otacerts.recovery \
-    recovery \
-    servicemanager.recovery \
-    shell_and_utilities_recovery \
-
 # Stolen from microdroid/Android.bp
 PRODUCT_PACKAGES += \
     init_second_stage \
