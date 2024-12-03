@@ -24,6 +24,7 @@ SDV_BASE_SERVICES_SAMPLES_PACKAGES = \
     sdv_sunroof_grpc_client_cpp \
     sdv_tpms_grpc_client_cpp \
     sdv_tpms_grpc_server_cpp \
+    sdv_user_preferences_client_cpp \
     service_authn_sample_bench \
     service_authn_sample_rs \
     vvmconfig.example \
