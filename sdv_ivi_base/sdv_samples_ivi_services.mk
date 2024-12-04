@@ -10,6 +10,11 @@ SDV_IVI_SERVICES_SAMPLES_PACKAGES = \
     sdv_vhal_proxy_subscriber \
     sdv_vhal_proxy_publisher_v2 \
     sdv_vhal_proxy_subscriber_v2 \
+    ivi_acl_provider_vendor_acl_textproto \
+    ivi_acl_provider_product_acl_textproto \
+    ivi_acl_provider_system_acl_textproto \
+    ivi_acl_provider_system_ext_acl_textproto
+
 
 SDV_IVI_SERVICES_HOST_SAMPLES_PACKAGES =
 
