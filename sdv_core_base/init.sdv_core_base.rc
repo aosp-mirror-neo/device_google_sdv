@@ -349,7 +349,14 @@ on boot
     domainname localdomain
     ifup eth1
 
-    exec - system system -- /system/bin/vdc checkpoint commitChanges
+    # On the first boot of the system, both boot slots may not be marked as
+    # successful. If this is true, the system will start in checkpointing mode.
+    # The checkpoint needs to be committed in this case to ensure user data isn't
+    # lost. This also marks the current slot as successful, which resolves this
+    # initial condition. This condition should not reappear as at least one slot
+    # will always be marked as successful when performing an update. After handling
+    # this case, the SDV Update Manager will handle the committing of checkpoints.
+    exec_start initial_boot_checkpoint
 
     setprop sys.boot_completed 1
     setprop dev.bootcomplete 1
@@ -398,3 +405,10 @@ on nonencrypted
 # before post-fs trigger
 on post-fs && property:ro.boot.bootreason=*
     setprop sys.boot.reason ${ro.boot.bootreason}
+
+service initial_boot_checkpoint /system_ext/bin/initial_boot_checkpoint.sh
+    class core
+    oneshot
+    user system
+    group system
+    stdio_to_kmsg
