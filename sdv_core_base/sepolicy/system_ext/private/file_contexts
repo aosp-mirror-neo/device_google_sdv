@@ -1,6 +1,10 @@
 # Copyright 2024 Google LLC
 
 #############################
+# This file is used for setting the security context for files and directories owned
+# by components in the system_ext partition.
+
+#############################
 # system_ext files
 #
 
@@ -38,7 +42,6 @@
 # data files
 /data/service_bundle_data(/.*)? u:object_r:service_bundle_data:s0
 
-# SDV OemUpdater Writable Partition
-/oem_updates(/.*)? u:object_r:system_file:s0
-
+#############################
+# SDV Update Manager Agent metadata files
 /metadata/sdv_update_manager_agent(/.*)? u:object_r:sdv_um_metadata_file:s0

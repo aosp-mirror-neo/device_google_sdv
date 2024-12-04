@@ -2,3 +2,6 @@
 
 # Post install binary for system partition
 /system/bin/update_engine_system_partition_post_install        u:object_r:update_engine_system_partition_post_install:s0
+
+# SDV OemUpdater Writable Partition
+/oem_updates(/.*)? u:object_r:system_file:s0
