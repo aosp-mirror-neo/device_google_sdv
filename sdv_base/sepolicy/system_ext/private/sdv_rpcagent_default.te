@@ -14,4 +14,4 @@ allow sdv_rpcagent_default sdv_transport_support_service:service_manager find;
 net_domain(sdv_rpcagent_default)
 
 # The clients of the rpc agent only call it to obtain sockets, hence, they always need these socket permissions
-allow sdv_rpcagent_client sdv_rpcagent_server:tcp_socket { listen read write accept getattr shutdown getopt };
+allow sdv_rpcagent_client sdv_rpcagent_server:tcp_socket { listen read write accept getattr shutdown getopt setopt };
