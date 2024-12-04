@@ -10,6 +10,7 @@ on post-fs
     exec_start sdv-ethernet-namespace-setup
     exec_start sdv-ethernet-sd-mesh-setup
     exec_start sdv-ethernet-dt-setup
+    setprop ro.sdv.ethernet.ready true
 
 # This would setup the main ethernet ip address and routing
 # Setup for routing for different network namespace need to be done in separated service

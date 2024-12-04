@@ -1,0 +1,4 @@
+# Copyright 2024 Google LLC
+
+# A property stating whether the OEM ethernet configuration is ready.
+ro.sdv.ethernet.ready  u:object_r:sdv_ethernet_ready_prop:s0 exact bool

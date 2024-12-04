@@ -1,0 +1,5 @@
+# Copyright 2024 Google LLC
+
+# A property stating wether the ethernet setup is ready as a /system-owned property which can only
+# be written by init and vendor_init.
+system_vendor_config_prop(sdv_ethernet_ready_prop)
