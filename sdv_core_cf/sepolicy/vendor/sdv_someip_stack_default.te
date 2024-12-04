@@ -18,3 +18,4 @@ typeattribute sdv_someip_stack_default sdv_someip_stack_server;
 allow sdv_someip_stack_default vsomeip_data_file:dir rw_dir_perms;
 allow sdv_someip_stack_default vsomeip_data_file:file create_file_perms;
 allow sdv_someip_stack_default vsomeip_data_file:sock_file { write create setattr unlink };
+allow sdv_someip_stack_default sdv_someip_stack_client:unix_stream_socket { read write getattr shutdown getopt listen };
