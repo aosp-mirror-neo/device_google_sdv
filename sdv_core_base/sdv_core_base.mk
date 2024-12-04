@@ -176,10 +176,6 @@ PRODUCT_SYSTEM_PROPERTIES += \
 PRODUCT_SYSTEM_EXT_PROPERTIES += \
     persist.sdv.orchestrator_config_path?=etc/orch/orch_config.textproto
 
-# TODO: b/373966583 - This property should default to false once tests are written and cleaned
-PRODUCT_SYSTEM_EXT_PROPERTIES += \
-    sdv.authz.enable?=false
-
 ## Health Monitoring config
 SDV_HEALTH_MONITOR_CONFIG := hm_config.textproto
 PRODUCT_SYSTEM_PROPERTIES += sdv.health_monitor.config_path=/system/etc/health_monitor/hm_config.textproto

@@ -18,6 +18,12 @@ ro.init_open_dice.device_wiped u:object_r:init_open_dice_device_wiped_prop:s0 ex
 # be executed.
 ro.sdv.apex.bootstrap.ready u:object_r:sdv_apex_bootstrap_ready_prop:s0 exact bool
 
+# System property for setting sdv.authz.enable property at boot time.
+ro.boot.sdv.authz.enable u:object_r:bootloader_prop:s0 exact bool
+
+# System property for disabling authz enforcement. Only used in engineering builds (userdebug/eng).
+# Production builds ignore this system property.
+sdv.authz.enable u:object_r:sdv_authz_enable_prop:s0 exact bool
+
 # sdv.mesh_missing_vms.count used to query the mesh state.
 sdv.mesh_missing_vms.count u:object_r:mesh_missing_vms_prop:s0 exact int
-

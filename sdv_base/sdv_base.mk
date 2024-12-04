@@ -25,6 +25,7 @@ PRODUCT_EXTRA_STUB_LIBRARIES += \
 
 PRODUCT_COPY_FILES += \
   device/google/sdv/sdv_base/init_open_dice.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init_open_dice.rc \
+  device/google/sdv/sdv_base/init_authz_property.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init_authz_property.rc \
 
 # Add linker config so that binaries in the /product partition can load Comms Stack libs.
 PRODUCT_PRODUCT_LINKER_CONFIG_FRAGMENTS += device/google/sdv/sdv_base/linker.config.json \
