@@ -1,0 +1,25 @@
+# Copyright 2024 Google LLC
+
+type sdv_oem_partition, domain;
+typeattribute sdv_oem_partition coredomain;
+type sdv_oem_partition_exec, system_file_type, exec_type, file_type;
+
+init_daemon_domain(sdv_oem_partition)
+
+# Required for logging to /dev/kmsg
+allow sdv_oem_partition kmsg_device:chr_file w_file_perms;
+
+# Required for mounting the oem_a and oem_b slots in oem_partition.rc.
+allow init sdv_oem_slot_file:dir mounton;
+allow init sdv_oem_slot_file:filesystem relabelto;
+allow init sdv_oem_slot_file:filesystem relabelfrom;
+allow sdv_oem_slot_file self:filesystem associate;
+allow init sdv_oem_slot_file:filesystem mount;
+allow init sdv_oem_slot_file:filesystem unmount;
+
+# Required to read the /data/misc/oem_*/metadata file
+allow sdv_oem_partition sdv_oem_slot_file:file create_file_perms;
+allow sdv_oem_partition sdv_oem_slot_file:dir rw_dir_perms;
+
+# Required for setprop and getprop
+set_prop(sdv_oem_partition, sdv_oem_updater_prop)

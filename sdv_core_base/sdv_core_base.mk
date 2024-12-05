@@ -157,6 +157,7 @@ PRODUCT_COPY_FILES += \
     device/google/sdv/sdv_core_base/ueventd.rc:vendor/etc/ueventd.rc \
     device/google/cuttlefish/shared/config/seriallogging.rc:vendor/etc/init/seriallogging.rc \
     device/google/sdv/sdv_core_base/oem_partition.rc:system/etc/init/oem_partition.rc \
+    device/google/sdv/sdv_core_base/oem_partition.sh:$(TARGET_COPY_OUT_SYSTEM_EXT)/bin/oem_partition.sh \
 
 PRODUCT_VENDOR_PROPERTIES += \
     ro.soc.manufacturer=$(PRODUCT_MANUFACTURER) \

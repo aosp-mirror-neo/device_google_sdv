@@ -1,0 +1,7 @@
+# Copyright 2024 Google LLC
+
+# SDV OemUpdater Active Slot Property
+persist.sdv.active_oem_slot          u:object_r:sdv_oem_updater_prop:s0
+
+# SDV OemUpdater Current Slot Property
+ro.boot.sdv.current_oem_slot         u:object_r:sdv_oem_updater_prop:s0
