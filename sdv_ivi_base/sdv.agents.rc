@@ -31,9 +31,7 @@ service sdv_gateway /vendor/bin/sdv_gateway
     disabled
     user vendor_sdv_gateway
     group system
-    # TODO: b/377979514 - use the network namespace designated to DT (sdv_gateway launches DT on
-    #       IVI) once it opens its sockets directly and not through the RPC agent.
-    # enter_namespace net /mnt/run/sdv_dt_ns
+    enter_namespace net /mnt/run/sdv_dt_ns
 
 # Declare the SDV RPCagent.
 service rpcagent /system_ext/bin/rpcagent
