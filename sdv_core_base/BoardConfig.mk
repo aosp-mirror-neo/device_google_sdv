@@ -32,6 +32,7 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES := \
     $(SYSTEM_DLKM_SRC)/virtio_blk.ko \
     $(SYSTEM_DLKM_SRC)/virtio_console.ko \
     $(SYSTEM_DLKM_SRC)/virtio_pci.ko \
+    $(SYSTEM_DLKM_SRC)/virtio_pci_legacy_dev.ko \
     $(SYSTEM_DLKM_SRC)/virtio_pci_modern_dev.ko \
     $(SYSTEM_DLKM_SRC)/vmw_vsock_virtio_transport.ko \
 
