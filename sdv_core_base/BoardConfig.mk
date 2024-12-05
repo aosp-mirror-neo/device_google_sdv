@@ -14,6 +14,18 @@ KERNEL_MODULES_PATH ?= \
     kernel/prebuilts/common-modules/virtual-device/$(TARGET_KERNEL_USE)/$(subst _,-,$(TARGET_KERNEL_ARCH))
 PRODUCT_COPY_FILES += $(TARGET_KERNEL_PATH):kernel
 
+# Usually, only modules installed to system_dlkm don't get stripped during
+# build. Stripping kernel modules removes their signature, and unsigned modules
+# are subject to additional restrictions on what symbols those modules can
+# expose.
+#
+# Without setting this, virtio_pci_modern_dev.ko on arm64 fails to load due to
+#
+#   virtio_pci_modern_dev: exports protected symbol vp_modern_config_vector
+#
+# Which causes the device to boot-loop.
+BOARD_DO_NOT_STRIP_VENDOR_RAMDISK_MODULES := true
+
 # The list of modules strictly/only required either to reach second stage
 # init, OR for recovery. Do not use this list to workaround second stage
 # issues.
