@@ -10,12 +10,7 @@ init_daemon_domain(sdv_oem_partition)
 allow sdv_oem_partition kmsg_device:chr_file w_file_perms;
 
 # Required for mounting the oem_a and oem_b slots in oem_partition.rc.
-allow init sdv_oem_slot_file:dir mounton;
-allow init sdv_oem_slot_file:filesystem relabelto;
-allow init sdv_oem_slot_file:filesystem relabelfrom;
 allow sdv_oem_slot_file self:filesystem associate;
-allow init sdv_oem_slot_file:filesystem mount;
-allow init sdv_oem_slot_file:filesystem unmount;
 
 # Required to read the /data/misc/oem_*/metadata file
 allow sdv_oem_partition sdv_oem_slot_file:file create_file_perms;

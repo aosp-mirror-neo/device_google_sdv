@@ -1,3 +1,15 @@
 # Copyright 2024 Google LLC
 
+# Enables init to mount with the oemfs file contexts.
 allow init oemfs:dir mounton;
+
+# Enables init to mount with the file contexts defined for /data/misc/oem_(a|b).
+allow init sdv_oem_slot_file:dir mounton;
+
+# Required for setting context=u:object_r:sdv_oem_slot_file:s0 during mount in oem_partition.rc.
+allow init sdv_oem_slot_file:filesystem relabelto;
+allow init sdv_oem_slot_file:filesystem relabelfrom;
+
+# Required for mounting and unmounting the /data/misc/oem_(a|b) slots in oem_partition.rc.
+allow init sdv_oem_slot_file:filesystem mount;
+allow init sdv_oem_slot_file:filesystem unmount;
