@@ -26,3 +26,6 @@ PRODUCT_PRIVATE_SEPOLICY_DIRS += \
     device/google/sdv/sdv_core_base/sepolicy/samples/product/private \
     device/google/sdv/sdv_core_cf/sepolicy/product/private
 BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_core_cf/sepolicy/vendor
+
+# Writable partition mount point for SDV OemUpdater.
+BOARD_ROOT_EXTRA_FOLDERS += oem_updates
