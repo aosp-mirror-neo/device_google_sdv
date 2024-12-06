@@ -10,11 +10,30 @@ on property:ro.persistent_properties.ready=true
   setprop persist.sdv.oem_slot_b_device /dev/block/by-name/custom_1
   trigger sdv_mount_oem_slot
 
-# If the active slot is not selected, set it to A at first.
+# If the active slot is not selected, check if the oem partition has the valid slot information.
+# Mount the slot A and slot B block devices to parse the metadata files.
+# The recover_partition service will set the active and current slot based on the metadata files.
 on sdv_mount_oem_slot && property:persist.sdv.active_oem_slot=""
-  setprop persist.sdv.active_oem_slot a
-  setprop ro.boot.sdv.current_oem_slot a
+  mkdir /data/misc/oem_a 0770 root shell
+  mkdir /data/misc/oem_b 0770 root shell
+  mount f2fs ${persist.sdv.oem_slot_a_device} /data/misc/oem_a wait nodev noatime nosuid errors=panic context=u:object_r:sdv_oem_slot_file:s0
+  mount f2fs ${persist.sdv.oem_slot_b_device} /data/misc/oem_b wait nodev noatime nosuid errors=panic context=u:object_r:sdv_oem_slot_file:s0
+  exec_start recover_partition
+  umount /data/misc/oem_a
+  umount /data/misc/oem_b
+  rmdir /data/misc/oem_a
+  rmdir /data/misc/oem_b
+  trigger sdv_mount_oem_slot_recovery
+
+# If recover_partition service fails to set the active slot, mount slot A by default.
+on sdv_mount_oem_slot_recovery && property:persist.sdv.active_oem_slot=""
   mount f2fs ${persist.sdv.oem_slot_a_device} /oem nodev noatime nosuid errors=panic
+
+on sdv_mount_oem_slot_recovery && property:persist.sdv.active_oem_slot=a
+  mount f2fs ${persist.sdv.oem_slot_a_device} /oem nodev noatime nosuid errors=panic
+
+on sdv_mount_oem_slot_recovery && property:persist.sdv.active_oem_slot=b
+  mount f2fs ${persist.sdv.oem_slot_b_device} /oem nodev noatime nosuid errors=panic
 
 on sdv_mount_oem_slot && property:persist.sdv.active_oem_slot=a
   setprop ro.boot.sdv.current_oem_slot a
@@ -23,3 +42,9 @@ on sdv_mount_oem_slot && property:persist.sdv.active_oem_slot=a
 on sdv_mount_oem_slot && property:persist.sdv.active_oem_slot=b
   setprop ro.boot.sdv.current_oem_slot b
   mount f2fs ${persist.sdv.oem_slot_b_device} /oem nodev noatime nosuid errors=panic
+
+service recover_partition /system_ext/bin/oem_partition.sh
+  class core
+  oneshot
+  user root
+  group shell

@@ -1,0 +1,4 @@
+# Copyright 2024 Google LLC
+
+# OemUpdater slot files stored under /data/misc/oem_*
+type sdv_oem_slot_file, file_type, data_file_type, core_data_file_type;
