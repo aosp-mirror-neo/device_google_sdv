@@ -58,7 +58,7 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
 TARGET_NO_RECOVERY := true
 
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES_BLOCKLIST_FILE := \
-    device/google/cuttlefish/shared/modules.blocklist
+    device/google/sdv/modules.blocklist
 
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES_OPTIONS_FILE := \
     device/google/cuttlefish/shared/config/first_stage_modules.options
