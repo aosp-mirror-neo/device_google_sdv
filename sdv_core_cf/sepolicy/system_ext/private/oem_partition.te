@@ -6,15 +6,22 @@ type sdv_oem_partition_exec, system_file_type, exec_type, file_type;
 
 init_daemon_domain(sdv_oem_partition)
 
-# Required for logging to /dev/kmsg
+# Required for logging to /dev/kmsg.
 allow sdv_oem_partition kmsg_device:chr_file w_file_perms;
 
 # Required for mounting the oem_a and oem_b slots in oem_partition.rc.
 allow sdv_oem_slot_file self:filesystem associate;
 
-# Required to read the /data/misc/oem_*/metadata file
+# Required to read the /data/misc/oem_*/metadata files.
 allow sdv_oem_partition sdv_oem_slot_file:file create_file_perms;
 allow sdv_oem_partition sdv_oem_slot_file:dir rw_dir_perms;
 
-# Required for setprop and getprop
+# Required for setprop and getprop.
 set_prop(sdv_oem_partition, sdv_oem_updater_prop)
+
+# Required to read sdv_oem_updater_prop properties from the shell.
+allow shell sdv_oem_updater_prop:file read;
+allow shell sdv_oem_updater_prop:property_service set;
+allow shell sdv_oem_updater_prop:file open;
+allow shell sdv_oem_updater_prop:file getattr;
+allow shell sdv_oem_updater_prop:file map;

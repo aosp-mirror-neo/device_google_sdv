@@ -5,3 +5,6 @@ persist.sdv.active_oem_slot          u:object_r:sdv_oem_updater_prop:s0
 
 # SDV OemUpdater Current Slot Property
 ro.boot.sdv.current_oem_slot         u:object_r:sdv_oem_updater_prop:s0
+
+# SDV OemUpdater Oem Update State Property
+persist.sdv.oem_update_state         u:object_r:sdv_oem_updater_prop:s0
