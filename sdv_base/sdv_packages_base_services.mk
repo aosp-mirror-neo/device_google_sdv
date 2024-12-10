@@ -20,9 +20,7 @@ SDV_BASE_SERVICES_PACKAGES = \
     libsdv_comms_rpc \
     libsdv_comms_sd \
     libsdv_comms_sd_ffi \
-    libsdv_dt \
     libsdv_dt_core \
-    libsdv_dt_rust \
     libsdv_sd \
     libsdv_sd_rs \
     libsdv_status \

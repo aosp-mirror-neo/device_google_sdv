@@ -6,9 +6,6 @@
 
 SDV_BASE_SERVICES_SAMPLES_PACKAGES = \
     dt_comms_client_cpp \
-    dt_sample_client_cpp \
-    dt_sample_publisher_rust \
-    dt_sample_subscriber_rust \
     sdv_cluster_grpc_client_cpp \
     sdv_cluster_grpc_server_cpp \
     sdv_comms_client_rs \
