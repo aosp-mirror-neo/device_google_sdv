@@ -38,6 +38,9 @@
 # SDV Vsidl provider agent
 /(system_ext|system/system_ext)/bin/sdv_vsidl_provider_agent u:object_r:sdv_vsidl_provider_agent_exec:s0
 
+# Initial boot checkpoint handler
+/(system_ext|system/system_ext)/bin/initial_boot_checkpoint.sh u:object_r:initial_boot_checkpoint_exec:s0
+
 #############################
 # data files
 /data/service_bundle_data(/.*)? u:object_r:service_bundle_data:s0
