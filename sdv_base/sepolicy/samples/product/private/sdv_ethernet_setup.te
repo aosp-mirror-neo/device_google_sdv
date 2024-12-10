@@ -9,10 +9,13 @@ init_daemon_domain(sdv_ethernet_setup)
 # Required for `#!/system/bin/sh`
 allow sdv_ethernet_setup shell_exec:file rx_file_perms;
 
+# Required for logging to `/dev/kmsg_debug` (using stdio_to_kmsg).
+allow sdv_ethernet_setup kmsg_debug_device:chr_file { w_file_perms getattr ioctl };
+
 # Required for `getprop`
 allow sdv_ethernet_setup toolbox_exec:file { execute execute_no_trans getattr map open read };
 
-# Required for logging to /dev/kmsg
+# Required for logging to `/dev/kmsg` (`echo this is the log message > /dev/kmsg`)
 allow sdv_ethernet_setup kmsg_device:chr_file w_file_perms;
 
 # Required for `ifconfig eth1 $IP`
@@ -40,5 +43,5 @@ allow sdv_ethernet_setup nsfs:file { open read };
 allow sdv_ethernet_setup proc_filesystems:file { getattr open read };
 allow sdv_ethernet_setup self:capability sys_admin;
 
-# Required for sysctl -w net.ipv4.ip_local_port_range="min max"
+# Required for `sysctl -w net.ipv4.ip_local_port_range="min max"`
 allow sdv_ethernet_setup proc_net:file { getattr open read write };

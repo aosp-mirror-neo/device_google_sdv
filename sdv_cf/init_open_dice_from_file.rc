@@ -10,7 +10,8 @@ service init_open_dice /system_ext/bin/init_open_dice_from_file ${ro.boot.sdv.in
     class core
     disabled
     # logd is not available when init_open_dice is run, so it logs to stdio which is redirected to
-    # kmesg
+    # /dev/kmsg_debug. This option only works in userdebug and eng builds, because, in user builds,
+    # /dev/kmsg_debug doesn't exist and stdio is redirected to /dev/null instead.
     stdio_to_kmsg
     user system_ext_init_open_dice
     group system

@@ -21,4 +21,5 @@ ifup sdv_dt
 
 # Setting up an arbitrary port range for automatic port selection for the services that uses
 # sdv_dt, which is only the SDV data tunnel agent.
-sysctl -w net.ipv4.ip_local_port_range="6000 7999"
+# -q instructs sysctl not to print the value to the standard output after writing it.
+sysctl -q -w net.ipv4.ip_local_port_range="6000 7999"

@@ -19,4 +19,5 @@ ifup eth1
 
 # Setting up an arbitrary port range for eth1, which is used for automatic port selection for the
 # services that uses eth1, which is only the SDV RPC agent.
-sysctl -w net.ipv4.ip_local_port_range="4000 5999"
+# -q instructs sysctl not to print the value to the standard output after writing it.
+sysctl -q -w net.ipv4.ip_local_port_range="4000 5999"
