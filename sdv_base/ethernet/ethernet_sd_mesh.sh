@@ -18,4 +18,4 @@ ip route add 224.0.0.0/4 dev sd_mesh
 # This allows loopback support
 ip link set dev lo up
 
-ifup sd_mesh
+ifconfig sd_mesh up

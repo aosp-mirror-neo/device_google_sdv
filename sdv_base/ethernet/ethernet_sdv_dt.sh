@@ -17,7 +17,7 @@ ip route add 224.0.0.0/4 dev sdv_dt
 # This allows loopback support
 ip link set dev lo up
 
-ifup sdv_dt
+ifconfig sdv_dt up
 
 # Setting up an arbitrary port range for automatic port selection for the services that uses
 # sdv_dt, which is only the SDV data tunnel agent.
