@@ -27,21 +27,21 @@ on sdv_mount_oem_slot && property:persist.sdv.active_oem_slot=""
 
 # If recover_partition service fails to set the active slot, mount slot A by default.
 on sdv_mount_oem_slot_recovery && property:persist.sdv.active_oem_slot=""
-  mount f2fs ${persist.sdv.oem_slot_a_device} /oem nodev noatime nosuid errors=panic
+  mount f2fs ${persist.sdv.oem_slot_a_device} /oem nodev noatime nosuid errors=panic ro
 
 on sdv_mount_oem_slot_recovery && property:persist.sdv.active_oem_slot=a
-  mount f2fs ${persist.sdv.oem_slot_a_device} /oem nodev noatime nosuid errors=panic
+  mount f2fs ${persist.sdv.oem_slot_a_device} /oem nodev noatime nosuid errors=panic ro
 
 on sdv_mount_oem_slot_recovery && property:persist.sdv.active_oem_slot=b
-  mount f2fs ${persist.sdv.oem_slot_b_device} /oem nodev noatime nosuid errors=panic
+  mount f2fs ${persist.sdv.oem_slot_b_device} /oem nodev noatime nosuid errors=panic ro
 
 on sdv_mount_oem_slot && property:persist.sdv.active_oem_slot=a
   setprop ro.boot.sdv.current_oem_slot a
-  mount f2fs ${persist.sdv.oem_slot_a_device} /oem nodev noatime nosuid errors=panic
+  mount f2fs ${persist.sdv.oem_slot_a_device} /oem nodev noatime nosuid errors=panic ro
 
 on sdv_mount_oem_slot && property:persist.sdv.active_oem_slot=b
   setprop ro.boot.sdv.current_oem_slot b
-  mount f2fs ${persist.sdv.oem_slot_b_device} /oem nodev noatime nosuid errors=panic
+  mount f2fs ${persist.sdv.oem_slot_b_device} /oem nodev noatime nosuid errors=panic ro
 
 service recover_partition /system_ext/bin/oem_partition.sh
   class core
