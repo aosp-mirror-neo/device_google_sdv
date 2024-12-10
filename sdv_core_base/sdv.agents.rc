@@ -57,13 +57,13 @@ on property:dev.bootcomplete=1
 # The VM restart is to be controlled by the OEM, therefore, critical property is not set. By default,
 # the process can't be restarted more frequently than 5 seconds (the minimal value, it is already set by default).
 # This means that potentially VM will be restarted by the OEM before the Health Monitor is restarted by Android in case of its crash.
-service sdv_health_monitor_stable /system_ext/bin/sdv_health_monitor_stable
+service sdv_health_monitor /system_ext/bin/sdv_health_monitor
     class core
     disabled
     user system_ext_sdv_hm
     group system
 on property:dev.bootcomplete=1
-    start sdv_health_monitor_stable
+    start sdv_health_monitor
 
 ##################################
 ##  Communication stack agents  ##
