@@ -7,3 +7,6 @@
 
 # virtio-video cameras, v4l2loopback
 /dev/video* 0660 system camera
+
+# Open-dice devices
+/dev/open-dice0 0660 system_ext_init_open_dice system_ext_init_open_dice
