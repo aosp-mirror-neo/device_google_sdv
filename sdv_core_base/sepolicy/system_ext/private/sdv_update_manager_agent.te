@@ -27,11 +27,11 @@ binder_call(sdv_update_manager_agent, apexd)
 # Read APEXes in the /data directory
 allow sdv_update_manager_agent system_data_file:file { getattr open read };
 
-# Create and write files (APEXes) in the /data/app-staging directory
-allow sdv_update_manager_agent staging_data_file:file { create getattr open setattr write };
+# Create, delete, and write files (APEXes) in the /data/app-staging directory
+allow sdv_update_manager_agent staging_data_file:file { create getattr open setattr unlink write };
 
-# Create, read, and write directories in the /data/app-staging directory
-allow sdv_update_manager_agent staging_data_file:dir { add_name create getattr open read search write };
+# Create, delete, read, and write directories in the /data/app-staging directory
+allow sdv_update_manager_agent staging_data_file:dir { add_name create getattr open read remove_name rmdir search write };
 
 # Read OTA zip file at /data/ota_package/. This matches update_engine's permissions.
 allow sdv_update_manager_agent ota_package_file:file r_file_perms;
