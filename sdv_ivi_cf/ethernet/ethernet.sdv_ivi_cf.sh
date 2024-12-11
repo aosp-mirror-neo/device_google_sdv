@@ -10,4 +10,4 @@ echo Setting IP address for eth1: $IP > /dev/kmsg
 
 ifconfig eth1 $IP
 ip route add 224.0.0.0/4 dev eth1
-ifup eth1
+ifconfig eth1 up

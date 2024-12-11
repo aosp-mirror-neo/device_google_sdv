@@ -18,6 +18,9 @@ service sdv-ethernet-setup /product/bin/ethernet/ethernet.sdv_ivi_cf.sh
     class core
     user root
     group shell
+    # Redirect stdio to /dev/kmsg_debug to have logs. Does not work in user builds, because
+    # /dev/kmsg_debug doesn't exist and stdio is redirected to /dev/null instead.
+    stdio_to_kmsg
     oneshot
 
 # Create the sd_mesh_ns network namespace for the sd_mesh network interface.
@@ -25,6 +28,9 @@ service sdv-ethernet-namespace-setup /product/bin/ethernet/ethernet_namespace_se
     class core
     user root
     group shell
+    # Redirect stdio to /dev/kmsg_debug to have logs. Does not work in user builds, because
+    # /dev/kmsg_debug doesn't exist and stdio is redirected to /dev/null instead.
+    stdio_to_kmsg
     oneshot
 
 # Setup routing rule for the sd_mesh_ns network namespace designated to service discovery traffic.
@@ -33,6 +39,9 @@ service sdv-ethernet-sd-mesh-setup /product/bin/ethernet/ethernet_sd_mesh.sh
     class core
     user root
     group shell
+    # Redirect stdio to /dev/kmsg_debug to have logs. Does not work in user builds, because
+    # /dev/kmsg_debug doesn't exist and stdio is redirected to /dev/null instead.
+    stdio_to_kmsg
     oneshot
 
 # Setup routing rule for the sdv_dt_ns network namespace designated to data tunnel traffic.
@@ -41,4 +50,7 @@ service sdv-ethernet-dt-setup /product/bin/ethernet/ethernet_sdv_dt.sh
     class core
     user root
     group shell
+    # Redirect stdio to /dev/kmsg_debug to have logs. Does not work in user builds, because
+    # /dev/kmsg_debug doesn't exist and stdio is redirected to /dev/null instead.
+    stdio_to_kmsg
     oneshot

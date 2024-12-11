@@ -6,8 +6,8 @@ type initial_boot_checkpoint_exec, system_file_type, exec_type, file_type;
 
 init_daemon_domain(initial_boot_checkpoint)
 
-# Required for logging to /dev/kmsg
-allow initial_boot_checkpoint kmsg_debug_device:chr_file {ioctl w_file_perms};
+# Required for logging to `/dev/kmsg_debug` (using stdio_to_kmsg).
+allow initial_boot_checkpoint kmsg_debug_device:chr_file { w_file_perms getattr ioctl };
 
 # Allow using binder
 binder_use(initial_boot_checkpoint)
@@ -15,7 +15,8 @@ binder_use(initial_boot_checkpoint)
 # Allow calling vdc
 domain_auto_trans(initial_boot_checkpoint, vdc_exec, vdc)
 allow vdc initial_boot_checkpoint:fd use;
-allow vdc kmsg_debug_device:chr_file write;
+# Required for logging to `/dev/kmsg_debug` (using stdio_to_kmsg).
+allow vdc kmsg_debug_device:chr_file { w_file_perms getattr ioctl };
 
 # Allow calling bootctl
 allow initial_boot_checkpoint system_file:file execute_no_trans;

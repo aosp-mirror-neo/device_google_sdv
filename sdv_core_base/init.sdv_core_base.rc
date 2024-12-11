@@ -411,4 +411,6 @@ service initial_boot_checkpoint /system_ext/bin/initial_boot_checkpoint.sh
     oneshot
     user system
     group system
+    # Redirect stdio to /dev/kmsg_debug to have logs. Does not work in user builds, because
+    # /dev/kmsg_debug doesn't exist and stdio is redirected to /dev/null instead.
     stdio_to_kmsg

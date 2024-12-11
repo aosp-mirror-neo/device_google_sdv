@@ -10,7 +10,7 @@ echo Setting IP address for eth1: $IP > /dev/kmsg
 
 ifconfig eth1 "$IP"
 ip route add 224.0.0.0/4 dev eth1
-ifup eth1
+ifconfig eth1 up
 
 # On non-IVI targets, eth1 is only used by SDV RPC, Service Discovery and Data tunnel have their
 # own network interfaces.
@@ -19,4 +19,5 @@ ifup eth1
 
 # Setting up an arbitrary port range for eth1, which is used for automatic port selection for the
 # services that uses eth1, which is only the SDV RPC agent.
-sysctl -w net.ipv4.ip_local_port_range="4000 5999"
+# -q instructs sysctl not to print the value to the standard output after writing it.
+sysctl -q -w net.ipv4.ip_local_port_range="4000 5999"
