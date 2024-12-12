@@ -25,7 +25,7 @@ SDV_BASE_SERVICES_SAMPLES_PACKAGES = \
     service_authn_sample_bench \
     service_authn_sample_rs \
     vvmconfig.example \
-    sdv_vsidl_provider_query_diagnostics \
+    sdv_vsidl_provider_query \
 
 SDV_BASE_SERVICES_HOST_SAMPLES_PACKAGES =
 
