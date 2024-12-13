@@ -17,8 +17,6 @@ SDV_BASE_SERVICES_SAMPLES_PACKAGES = \
     sdv_dt_publisher_cpp_acl_textproto \
     sdv_dt_subscriber_cpp \
     sdv_provisioning_tool \
-    sdv_sample_rpc_client \
-    sdv_sample_rpc_server \
     sdv_sunroof_grpc_client_cpp \
     sdv_tpms_grpc_client_cpp \
     sdv_tpms_grpc_server_cpp \
