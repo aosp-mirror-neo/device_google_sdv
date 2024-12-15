@@ -51,7 +51,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     sdv_service_bundle \
     sdv_tire_pressure \
     sdv_range_remaining_subscriber \
-    libsomeip_messages_catalog-vsidl-config.binpb \
+    someip_catalog_protos_with_bp_file-vsidl-config.binpb \
     com.sdv.google.sample.tracing \
     sdv_server_rust_tracing_sample \
     rochambeau_player_rs \
