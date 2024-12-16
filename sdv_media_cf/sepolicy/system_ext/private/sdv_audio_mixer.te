@@ -15,5 +15,4 @@ allow sdv_audio_mixer audio_device:dir search;
 allow sdv_audio_mixer audio_device:chr_file { ioctl map open read write };
 
 # Allow init to create /dev/socket/sdv_audio_mixer for the mixer service.
-type sdv_audio_mixer_socket, file_type;
-allow init sdv_audio_mixer_socket:sock_file { create setattr };
+type sdv_audio_mixer_socket, file_type, coredomain_socket;
