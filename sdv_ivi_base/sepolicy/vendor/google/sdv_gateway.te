@@ -33,6 +33,9 @@ typeattribute sdv_gateway sdv_sd_client;
 typeattribute sdv_gateway sdv_rpcagent_client;
 typeattribute sdv_gateway sdv_dt_client;
 
+# The SDV Gateway server is a client of the Package Manager proxy service.
+typeattribute sdv_gateway packagemanagerproxy_client;
+
 # The SDV DT client is also a SDV Gateway client on IVI because DT server runs
 # in the sdv_gateway process.
 # Allow SDV Gateway to use Transport Support Service
