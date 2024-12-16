@@ -1,0 +1,17 @@
+# Copyright 2024 Google LLC
+
+type sdv_recover_oem_partition, domain;
+typeattribute sdv_recover_oem_partition coredomain;
+type sdv_recover_oem_partition_exec, system_file_type, exec_type, file_type;
+
+init_daemon_domain(sdv_recover_oem_partition)
+
+# Required for logging to /dev/kmsg.
+allow sdv_recover_oem_partition kmsg_device:chr_file w_file_perms;
+
+# Required to read the /oem_metadata files.
+allow sdv_recover_oem_partition oem_metadata:file r_file_perms;
+allow sdv_recover_oem_partition oem_metadata:dir r_dir_perms;
+
+# Required for setprop and getprop.
+set_prop(sdv_recover_oem_partition, sdv_oem_updater_prop)

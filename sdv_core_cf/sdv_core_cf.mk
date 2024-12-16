@@ -58,6 +58,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/google/sdv/sdv_core_base/sepolicy/samples/service_bundle_contexts:$(TARGET_COPY_OUT_PRODUCT)/etc/service_bundle_contexts
 
+# OemUpdater scripts used for initialization.
+PRODUCT_COPY_FILES += \
+    device/google/sdv/sdv_core_base/oem_partition.rc:$(TARGET_COPY_OUT_SYSTEM)/etc/init/oem_partition.rc \
+    device/google/sdv/sdv_core_base/recover_oem_partition.sh:$(TARGET_COPY_OUT_SYSTEM_EXT)/bin/recover_oem_partition.sh
+
 # The Rust implementation of the non-secure, pure software KeyMint vendor HAL extended with test
 # functionalities for SDV. Among others, the KeyMint HAL provides the
 # android.hardware.security.keymint.IRemotelyProvisionedComponent Binder AIDL service required by

@@ -21,3 +21,7 @@ system_ext                      /system_ext     ext4    noatime,ro,errors=panic 
 product                         /product        ext4    noatime,ro,errors=panic                                 wait,slotselect,logical,first_stage_mount,avb=vbmeta_system
 vendor                          /vendor         ext4    noatime,ro,errors=panic                                 wait,slotselect,logical,first_stage_mount,avb=vbmeta
 vendor_dlkm                     /vendor_dlkm    ext4    noatime,ro,errors=panic                                 wait,slotselect,logical,first_stage_mount,avb=vbmeta
+
+# Oem updates metadata partition for OEM updates: marked as optional for SDV (no errors=panic flag).
+# OEMs must mark it as required for OEM updates to work reliably.
+/dev/block/by-name/custom_2     /oem_metadata   ext4    nodev,noatime,nosuid                            latemount,wait,check,quota,fscompress

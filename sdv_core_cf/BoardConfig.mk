@@ -28,4 +28,10 @@ PRODUCT_PRIVATE_SEPOLICY_DIRS += \
 BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_core_cf/sepolicy/vendor
 
 # Writable partition mount point for SDV OemUpdater.
-BOARD_ROOT_EXTRA_FOLDERS += oem_updates
+# Build with: m custom_images
+# Run with: cvd start --custom_partition_path="$OUT/oem.img;$OUT/oem.img;$OUT/oem_metadata.img"
+PRODUCT_CUSTOM_IMAGE_MAKEFILES += \
+    device/google/sdv/sdv_core_cf/oem/oem.mk \
+    device/google/sdv/sdv_core_cf/oem/oem_metadata.mk
+
+BOARD_ROOT_EXTRA_FOLDERS += oem oem_updates oem_metadata

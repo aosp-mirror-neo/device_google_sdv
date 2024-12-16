@@ -5,24 +5,17 @@
 # The use of active and current slots is the same as defined in https://source.android.com/docs/core/ota/ab#slots.
 
 # Define the block device associated with the A or B slots:
+# TODO(b/384455684): Move these properties to bootconfig properties.
 on property:ro.persistent_properties.ready=true
   setprop persist.sdv.oem_slot_a_device /dev/block/by-name/custom
   setprop persist.sdv.oem_slot_b_device /dev/block/by-name/custom_1
+  setprop persist.sdv.oem_metadata_device /dev/block/by-name/custom_2
   trigger sdv_mount_oem_slot
 
-# If the active slot is not selected, check if the oem partition has the valid slot information.
-# Mount the slot A and slot B block devices to parse the metadata files.
+# If the active slot is not selected, check if the /oem_metadata has the correct slot information.
 # The recover_partition service will set the active and current slot based on the metadata files.
 on sdv_mount_oem_slot && property:persist.sdv.active_oem_slot=""
-  mkdir /data/misc/oem_a 0770 root shell
-  mkdir /data/misc/oem_b 0770 root shell
-  mount f2fs ${persist.sdv.oem_slot_a_device} /data/misc/oem_a wait nodev noatime nosuid errors=panic context=u:object_r:sdv_oem_slot_file:s0
-  mount f2fs ${persist.sdv.oem_slot_b_device} /data/misc/oem_b wait nodev noatime nosuid errors=panic context=u:object_r:sdv_oem_slot_file:s0
   exec_start recover_partition
-  umount /data/misc/oem_a
-  umount /data/misc/oem_b
-  rmdir /data/misc/oem_a
-  rmdir /data/misc/oem_b
   trigger sdv_mount_oem_slot_recovery
 
 # If recover_partition service fails to set the active slot, mount slot A by default.
@@ -43,7 +36,39 @@ on sdv_mount_oem_slot && property:persist.sdv.active_oem_slot=b
   setprop ro.boot.sdv.current_oem_slot b
   mount f2fs ${persist.sdv.oem_slot_b_device} /oem nodev noatime nosuid errors=panic ro
 
-service recover_partition /system_ext/bin/oem_partition.sh
+# TODO(b/384455684): Look into mounting mechanism that does not require mounting via this script.
+# TODO(b/384493427): The group is set to `shell` so `sdv_oem_partition_update_client` can access
+# it which is run using the `shell` user. Run `sdv_oem_partition_update_client` from init
+# and execute it using a different user.
+# If in the Prepare state, mount the /oem_updates partition.
+on property:persist.sdv.oem_update_state="Prepare" && property:persist.sdv.active_oem_slot=b
+  mount f2fs ${persist.sdv.oem_slot_a_device} /oem_updates wait nodev noatime nosuid errors=panic
+  chown root shell /oem_updates
+  restorecon -R /oem_updates
+  chmod 0770 /oem_updates
+
+# TODO(b/384493427): Do not use shell as the group
+on property:persist.sdv.oem_update_state="Prepare" && property:persist.sdv.active_oem_slot=a
+  mount f2fs ${persist.sdv.oem_slot_b_device} /oem_updates wait nodev noatime nosuid errors=panic
+  chown root shell /oem_updates
+  restorecon -R /oem_updates
+  chmod 0770 /oem_updates
+
+# If in the Active state, unmount the /oem_updates partition.
+on property:persist.sdv.oem_update_state="ActivePreReboot"
+  umount /oem_updates
+
+# If the Rollback state is reached, unmount the /oem_updates partition.
+on property:persist.sdv.oem_update_state="Rollback"
+  umount /oem_updates
+
+# TODO(b/384493427): Do not use shell as the group
+on boot
+  chown root shell /oem_metadata
+  restorecon -R /oem_metadata
+  chmod 0770 /oem_metadata
+
+service recover_partition /system_ext/bin/recover_oem_partition.sh
   class core
   oneshot
   user root
