@@ -27,5 +27,8 @@ PRODUCT_PRIVATE_SEPOLICY_DIRS += \
     device/google/sdv/sdv_core_cf/sepolicy/product/private
 BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_core_cf/sepolicy/vendor
 
+# The network interface RPC should use to retrieve its local IP address.
+BOARD_BOOTCONFIG += androidboot.sdv.rpc.interface=eth1
+
 # Writable partition mount point for SDV OemUpdater.
 BOARD_ROOT_EXTRA_FOLDERS += oem_updates
