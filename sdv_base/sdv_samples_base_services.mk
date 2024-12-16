@@ -16,16 +16,17 @@ SDV_BASE_SERVICES_SAMPLES_PACKAGES = \
     sdv_dt_publisher_cpp \
     sdv_dt_publisher_cpp_acl_textproto \
     sdv_dt_subscriber_cpp \
+    sdv_provisioning_tool \
     sdv_sample_rpc_client \
     sdv_sample_rpc_server \
     sdv_sunroof_grpc_client_cpp \
     sdv_tpms_grpc_client_cpp \
     sdv_tpms_grpc_server_cpp \
     sdv_user_preferences_client_cpp \
+    sdv_vsidl_provider_query \
     service_authn_sample_bench \
     service_authn_sample_rs \
     vvmconfig.example \
-    sdv_vsidl_provider_query \
 
 SDV_BASE_SERVICES_HOST_SAMPLES_PACKAGES =
 

@@ -89,11 +89,6 @@ PRODUCT_PACKAGES += \
     sample_product_ota_postinstall_data \
     sample_system_ota_postinstall_data \
 
-# Add the sdv_provisioning_tool to enable easy testing of the mesh provisioning
-# flows.
-PRODUCT_PACKAGES += \
-    sdv_provisioning_tool \
-
 # A/B updates post install configuration.
 # Post install scripts can be added for other partitions in the same way.
 AB_OTA_POSTINSTALL_CONFIG += \
