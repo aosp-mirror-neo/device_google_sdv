@@ -323,7 +323,7 @@ on post-fs-data
     mkdir /data/app-staging 0751 system system encryption=DeleteIfNecessary
     mkdir /data/apex/ota_reserved 0700 root system encryption=Require
     setprop apexd.status ""
-    restart apexd
+    restart apexd-enable-brand-new-apex
 
     mkdir /data/misc/installd 0700 root root
     mkdir /data/misc/apexdata 0711 root root
@@ -375,6 +375,15 @@ service ueventd /system/bin/ueventd
     user root
     group root
     capabilities CHOWN DAC_OVERRIDE DAC_READ_SEARCH FOWNER FSETID MKNOD NET_ADMIN SETGID SETUID SYS_MODULE SYS_RAWIO SYS_ADMIN
+
+service apexd-enable-brand-new-apex /system/bin/apexd --enable-brand-new-apex
+    class core
+    user root
+    group system
+    oneshot
+    disabled
+    reboot_on_failure reboot,apexd-failed
+    capabilities CHOWN DAC_OVERRIDE DAC_READ_SEARCH FOWNER SYS_ADMIN
 
 service console /system/bin/sh
     class core
