@@ -227,11 +227,5 @@ BOARD_ROOT_EXTRA_FOLDERS := vvmtruststore
 PRODUCT_CUSTOM_IMAGE_MAKEFILES += \
   device/google/sdv/sdv_base/vvmtruststore.mk
 
-# Sample /oem partition
-# Build with: m custom_images
-# Run with: cvd start --custom_partition_path=$OUT/oem.img
-PRODUCT_CUSTOM_IMAGE_MAKEFILES += device/google/sdv/sdv_core_cf/oem/oem.mk
-BOARD_ROOT_EXTRA_FOLDERS += oem
-
 # Have SD Agent on SDV read ACL file mappings from Service Bundle Registry
 $(call soong_config_set,sdv_authz,acl_provider_type,sdv_acl_provider)

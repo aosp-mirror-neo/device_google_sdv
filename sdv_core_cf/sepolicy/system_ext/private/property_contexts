@@ -8,3 +8,6 @@ ro.boot.sdv.current_oem_slot         u:object_r:sdv_oem_updater_prop:s0
 
 # SDV OemUpdater Oem Update State Property
 persist.sdv.oem_update_state         u:object_r:sdv_oem_updater_prop:s0
+
+# SDV OemUpdater Oem Old Boot Id Property
+persist.sdv.oem_old_boot_id         u:object_r:sdv_oem_updater_prop:s0

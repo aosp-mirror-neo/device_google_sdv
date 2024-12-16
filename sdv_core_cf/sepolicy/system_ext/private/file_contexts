@@ -4,11 +4,15 @@
 /system/bin/update_engine_system_partition_post_install    u:object_r:update_engine_system_partition_post_install:s0
 
 # SDV OemUpdater Writable Partition
-/oem_updates(/.*)?                                         u:object_r:system_file:s0
-
-# SDV OemUpdater slot A and B for metadata recovery script
-/data/misc/oem_a(/.*)?                                     u:object_r:sdv_oem_slot_file:s0
-/data/misc/oem_b(/.*)?                                     u:object_r:sdv_oem_slot_file:s0
+/oem_updates(/.*)?                                         u:object_r:oem_updates:s0
 
 # SDV OemUpdater metadata recovery script
-/system_ext/bin/oem_partition.sh                           u:object_r:sdv_oem_partition_exec:s0
+# TODO(b/384499049): Move this file_contexts to sdv_core_base.
+/system_ext/bin/recover_oem_partition.sh                   u:object_r:sdv_recover_oem_partition_exec:s0
+
+# SDV OemUpdater sdv_oem_partition_update_client sample
+# TODO(b/384499049): Move this file_contexts to sdv_core_base.
+/product/bin/sdv_oem_partition_update_client               u:object_r:sdv_oem_partition_update_client_exec:s0
+
+# SDV OemUpdater metadata backup partition
+/oem_metadata(/.*)?                                        u:object_r:oem_metadata:s0

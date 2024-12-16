@@ -1,0 +1,33 @@
+# Copyright 2024 Google LLC
+
+# TODO(b/384499049): Move to relevant location in sdv_core_base.
+
+# Provide type for sdv_oem_partition_update_client process.
+type sdv_oem_partition_update_client, domain;
+typeattribute sdv_oem_partition_update_client coredomain;
+
+# Executable file under /product/bin/sdv_oem_partition_update_client
+type sdv_oem_partition_update_client_exec, system_file_type, exec_type, file_type;
+
+# To enable testing by running from the shell during development.
+# WARNING: ensure sure NOT to use root (run `adb unroot` to be sure), because this policy
+# file won't be used, and the root shell possesses all the SELinux permissions anyways.
+userdebug_or_eng(`
+  domain_auto_trans(shell, sdv_oem_partition_update_client_exec, sdv_oem_partition_update_client)
+
+  # These rules are to make standard output work when running from the shell
+  allow sdv_oem_partition_update_client adbd:fd use;
+  allow sdv_oem_partition_update_client shell:fd use;
+  allow sdv_oem_partition_update_client adbd:unix_stream_socket { read write };
+')
+
+# Enable sdv_oem_partition_update_client to set and get properties.
+set_prop(sdv_oem_partition_update_client, sdv_oem_updater_prop)
+
+# Enable read/write on the /oem_updates path.
+allow sdv_oem_partition_update_client oem_updates:dir create_dir_perms;
+allow sdv_oem_partition_update_client oem_updates:file create_file_perms;
+
+# Enable read/write on the /oem_metadata path.
+allow sdv_oem_partition_update_client oem_metadata:dir rw_dir_perms;
+allow sdv_oem_partition_update_client oem_metadata:file create_file_perms;
