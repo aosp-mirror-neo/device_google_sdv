@@ -64,8 +64,3 @@ PRODUCT_PACKAGES += \
     dice_handover_instance1 \
     dice_handover_instance2 \
     dice_handover_instance3 \
-
-# Add the sdv_provisioning_tool to enable easy testing of the mesh provisioning
-# flows.
-PRODUCT_PACKAGES += \
-    sdv_provisioning_tool \
