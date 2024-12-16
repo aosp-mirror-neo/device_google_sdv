@@ -6,3 +6,6 @@
 
 # SDV Media ALSA mixer.
 /(system_ext|system/system_ext)/bin/sdv_audio_mixer u:object_r:sdv_audio_mixer_exec:s0
+
+# SDV audio mixer socket
+/dev/socket/sdv_audio_mixer                         u:object_r:sdv_audio_mixer_socket:s0
