@@ -218,10 +218,16 @@ on post-fs-data
 
     mkdir /data/vendor 0771 root root encryption=Require
     mkdir /data/vendor/hardware 0771 root root
-    mkdir /data/vendor_ce 0771 root root encryption=None
-    mkdir /data/vendor_de 0771 root root encryption=None
-    mkdir /data/misc_ce 0551 system misc encryption=None
-    mkdir /data/misc_de 0551 system misc encryption=None
+
+    # Create the parent directories of the user CE and DE storage directories, but only the ones
+    # that are required by SDV Core to work.
+    # Because SDV Core doesn't have per-user encryption implemented, there is no encryption policy
+    # automatically applied to the subdirectories. Thus, in contrast to Core Android, these parent
+    # directories must use encryption=Require.
+    mkdir /data/vendor_ce 0771 root root encryption=Require
+    mkdir /data/vendor_de 0771 root root encryption=Require
+    mkdir /data/misc_ce 0551 system misc encryption=Require
+    mkdir /data/misc_de 0551 system misc encryption=Require
 
     # Start tombstoned early to be able to store tombstones.
     # microdroid doesn't have anr, but tombstoned requires it
@@ -259,7 +265,7 @@ on post-fs-data
     # within this directory, and service bundles won't be able to directly write
     # service_bundle_data, but now, this can be used as a data directory by all service bundles
     # temporarily
-    mkdir /data/service_bundle_data 0771 system system
+    mkdir /data/service_bundle_data 0771 system system encryption=Require
 
     # set up misc and keystore directory structure first so that we can end early boot and start
     # apexd
