@@ -4,8 +4,7 @@
 # or made available to the host are placed here.
 
 SDV_PLATFORM_PACKAGES = \
-    deployment_configuration.json \
-    libsdvrpc
+    deployment_configuration.json
 
 # SDV proxy application for forwarding the connection between different VMs
 SDV_PLATFORM_HOST_PACKAGES = \
