@@ -94,6 +94,16 @@ PRODUCT_PACKAGES += \
     sample_product_ota_postinstall_data \
     sample_system_ota_postinstall_data \
 
+# This is a mock MACsec HAL implementation with keys embedded in it. Replace it with a vendor
+# specific HAL implementation.
+PRODUCT_PACKAGES += android.hardware.macsec-service
+# wpa_supplicant build with MACsec support
+PRODUCT_PACKAGES += wpa_supplicant_macsec
+# Configuration file and init for wpa_supplicant with MACsec
+PRODUCT_PACKAGES += \
+    sdv_wpa_supplicant_macsec.conf \
+    sdv_wpa_supplicant_macsec.rc
+
 # A/B updates post install configuration.
 # Post install scripts can be added for other partitions in the same way.
 AB_OTA_POSTINSTALL_CONFIG += \
