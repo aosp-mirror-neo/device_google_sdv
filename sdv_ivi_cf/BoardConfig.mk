@@ -8,6 +8,8 @@ include device/google/sdv/sdv_cf/BoardConfig.mk
 # Add VLAN support (provided by 8021q module)
 TARGET_KERNEL_MODULES_PATH ?= kernel/prebuilts/$(TARGET_KERNEL_USE)/$(TARGET_KERNEL_ARCH)
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(TARGET_KERNEL_MODULES_PATH)/8021q.ko
+# TODO: b/325133547 - Add this missing module in the CF auto target instead
+BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(TARGET_KERNEL_MODULES_PATH)/macsec.ko
 
 BOARD_ROOT_EXTRA_FOLDERS := vvmtruststore
 
