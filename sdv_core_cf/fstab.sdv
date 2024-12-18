@@ -24,4 +24,4 @@ vendor_dlkm                     /vendor_dlkm    ext4    noatime,ro,errors=panic 
 
 # Oem updates metadata partition for OEM updates: marked as optional for SDV (no errors=panic flag).
 # OEMs must mark it as required for OEM updates to work reliably.
-/dev/block/by-name/custom_2     /oem_metadata   ext4    nodev,noatime,nosuid                            latemount,wait,check,quota,fscompress
+/dev/block/by-name/custom_2     /oem_metadata   ext4    nodev,noatime,nosuid                                    latemount,check,quota,fscompress
