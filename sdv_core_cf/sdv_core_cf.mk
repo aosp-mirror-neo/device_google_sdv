@@ -60,8 +60,8 @@ PRODUCT_COPY_FILES += \
 
 # OemUpdater scripts used for initialization.
 PRODUCT_COPY_FILES += \
-    device/google/sdv/sdv_core_base/oem_partition.rc:$(TARGET_COPY_OUT_SYSTEM)/etc/init/oem_partition.rc \
-    device/google/sdv/sdv_core_base/recover_oem_partition.sh:$(TARGET_COPY_OUT_SYSTEM_EXT)/bin/recover_oem_partition.sh
+    device/google/sdv/sdv_core_cf/oem_partition.rc:$(TARGET_COPY_OUT_SYSTEM)/etc/init/oem_partition.rc \
+    device/google/sdv/sdv_core_cf/recover_oem_partition.sh:$(TARGET_COPY_OUT_SYSTEM_EXT)/bin/recover_oem_partition.sh
 
 # The Rust implementation of the non-secure, pure software KeyMint vendor HAL extended with test
 # functionalities for SDV. Among others, the KeyMint HAL provides the
