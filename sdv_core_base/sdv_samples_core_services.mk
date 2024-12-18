@@ -71,7 +71,8 @@ SDV_CORE_SERVICES_HOST_SAMPLES_PACKAGES += \
     sdv_vsomeip_sdv_hello_client_sample \
     sdv_vsomeip_tire_pressure_sample \
     sdv_vsomeip_vehicle_health_monitor_sample \
-    sdv_vsomeip_cuj_core_026
+    sdv_vsomeip_cuj_core_026 \
+    sdv_vsomeip_cuj_core_023
 
 PRODUCT_PACKAGES += $(SDV_CORE_SERVICES_SAMPLES_PACKAGES)
 
