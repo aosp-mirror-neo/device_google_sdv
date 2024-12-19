@@ -7,7 +7,7 @@
   "netsim_bt": false,
   "enable_modem_simulator": false,
   "gpu_mode": "none",
-  "memory_mb": 384,
+  "memory_mb": 2096,
   "start_gnss_proxy": false,
   "start_webrtc": false,
   "use_sdcard": false
