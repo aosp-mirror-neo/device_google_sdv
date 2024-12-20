@@ -40,7 +40,8 @@ SDV_BASE_SERVICES_PACKAGES += $(SDV_OPEN_DICE_PROVIDER_PACKAGES)
 # Command line tools to help with development and manual testing.
 SDV_BASE_SERVICES_HOST_PACKAGES = \
     sdv-cf \
-    sdv-avb-lock
+    sdv-avb-lock \
+    sdv-provision-dev-mesh
 
 PRODUCT_PACKAGES += $(SDV_BASE_SERVICES_PACKAGES)
 
