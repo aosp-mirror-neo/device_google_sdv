@@ -203,9 +203,6 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(TARGET_KERNEL_MODULES_PATH)/8021q.ko
 
 # HOST_OUT is empty, so we cannot use it. See $(warning HOST_OUT is $(HOST_OUT)).
 host_out_dir := $(OUT_DIR)/host/linux-x86
-# Output sdv_proxy.zip to the out/dist/ directory when make dist is run. This way sdv_proxy.zip will
-# also be available as a downloadable artifact when an SDV target is built remotely.
-$(call dist-for-goals, dist_files, $(host_out_dir)/sdv_proxy.zip)
 
 # A/B update support
 AB_OTA_UPDATER := true
