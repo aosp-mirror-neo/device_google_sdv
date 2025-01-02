@@ -27,7 +27,6 @@ SDV_BASE_SERVICES_PACKAGES = \
     libsdv_status \
     rpcagent \
     sdv_sd_agent \
-    sdv_sd_cli \
     vsock_local_cid \
 
 # The packages that provide the Android DICE chain for the SDV Mesh. Either init_open_dice or
