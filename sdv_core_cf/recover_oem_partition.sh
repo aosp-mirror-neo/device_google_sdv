@@ -39,8 +39,8 @@ fi
 
 log_oem_updater_message "Setting persist.sdv.active_oem_slot to $active_slot."
 setprop persist.sdv.active_oem_slot "$active_slot"
-log_oem_updater_message "Setting ro.boot.sdv.current_oem_slot to $active_slot."
-setprop ro.boot.sdv.current_oem_slot "$active_slot"
+log_oem_updater_message "Setting ro.sdv.current_oem_slot to $active_slot."
+setprop ro.sdv.current_oem_slot "$active_slot"
 
 # Assume that if persist.sdv.active_oem_slot was null
 # that either the OemUpdater has just been initialized

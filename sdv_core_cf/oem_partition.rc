@@ -5,11 +5,7 @@
 # The use of active and current slots is the same as defined in https://source.android.com/docs/core/ota/ab#slots.
 
 # Define the block device associated with the A or B slots:
-# TODO(b/384455684): Move these properties to bootconfig properties.
 on property:ro.persistent_properties.ready=true
-  setprop persist.sdv.oem_slot_a_device /dev/block/by-name/custom
-  setprop persist.sdv.oem_slot_b_device /dev/block/by-name/custom_1
-  setprop persist.sdv.oem_metadata_device /dev/block/by-name/custom_2
   trigger sdv_mount_oem_slot
 
 # If the active slot is not selected, check if the /oem_metadata has the correct slot information.
@@ -20,21 +16,21 @@ on sdv_mount_oem_slot && property:persist.sdv.active_oem_slot=""
 
 # If recover_partition service fails to set the active slot, mount slot A by default.
 on sdv_mount_oem_slot_recovery && property:persist.sdv.active_oem_slot=""
-  mount f2fs ${persist.sdv.oem_slot_a_device} /oem nodev noatime nosuid errors=panic ro
+  mount f2fs ${ro.boot.sdv.oem_slot_a_device} /oem nodev noatime nosuid errors=panic ro
 
 on sdv_mount_oem_slot_recovery && property:persist.sdv.active_oem_slot=a
-  mount f2fs ${persist.sdv.oem_slot_a_device} /oem nodev noatime nosuid errors=panic ro
+  mount f2fs ${ro.boot.sdv.oem_slot_a_device} /oem nodev noatime nosuid errors=panic ro
 
 on sdv_mount_oem_slot_recovery && property:persist.sdv.active_oem_slot=b
-  mount f2fs ${persist.sdv.oem_slot_b_device} /oem nodev noatime nosuid errors=panic ro
+  mount f2fs ${ro.boot.sdv.oem_slot_b_device} /oem nodev noatime nosuid errors=panic ro
 
 on sdv_mount_oem_slot && property:persist.sdv.active_oem_slot=a
-  setprop ro.boot.sdv.current_oem_slot a
-  mount f2fs ${persist.sdv.oem_slot_a_device} /oem nodev noatime nosuid errors=panic ro
+  setprop ro.sdv.current_oem_slot a
+  mount f2fs ${ro.boot.sdv.oem_slot_a_device} /oem nodev noatime nosuid errors=panic ro
 
 on sdv_mount_oem_slot && property:persist.sdv.active_oem_slot=b
-  setprop ro.boot.sdv.current_oem_slot b
-  mount f2fs ${persist.sdv.oem_slot_b_device} /oem nodev noatime nosuid errors=panic ro
+  setprop ro.sdv.current_oem_slot b
+  mount f2fs ${ro.boot.sdv.oem_slot_b_device} /oem nodev noatime nosuid errors=panic ro
 
 # TODO(b/384455684): Look into mounting mechanism that does not require mounting via this script.
 # TODO(b/384493427): The group is set to `shell` so `sdv_oem_partition_update_client` can access
@@ -42,14 +38,14 @@ on sdv_mount_oem_slot && property:persist.sdv.active_oem_slot=b
 # and execute it using a different user.
 # If in the Prepare state, mount the /oem_updates partition.
 on property:persist.sdv.oem_update_state="Prepare" && property:persist.sdv.active_oem_slot=b
-  mount f2fs ${persist.sdv.oem_slot_a_device} /oem_updates wait nodev noatime nosuid errors=panic
+  mount f2fs ${ro.boot.sdv.oem_slot_a_device} /oem_updates wait nodev noatime nosuid errors=panic
   chown root shell /oem_updates
   restorecon -R /oem_updates
   chmod 0770 /oem_updates
 
 # TODO(b/384493427): Do not use shell as the group
 on property:persist.sdv.oem_update_state="Prepare" && property:persist.sdv.active_oem_slot=a
-  mount f2fs ${persist.sdv.oem_slot_b_device} /oem_updates wait nodev noatime nosuid errors=panic
+  mount f2fs ${ro.boot.sdv.oem_slot_b_device} /oem_updates wait nodev noatime nosuid errors=panic
   chown root shell /oem_updates
   restorecon -R /oem_updates
   chmod 0770 /oem_updates
