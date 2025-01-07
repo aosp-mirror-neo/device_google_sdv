@@ -32,7 +32,6 @@ import /system/etc/init/dumpstate.rc
 import /system/etc/init/tombstoned.rc
 import /system/etc/init/update_engine_nostats.rc
 import /system/etc/init/update_verifier.rc
-import /system/etc/init/oem_partition.rc
 
 # TODO: b/267320398 - Not present on -user builds, same as TODO above
 # atrace.rc is required by Perfetto as well, since it sets up tracefs permissions.
