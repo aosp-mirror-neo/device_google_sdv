@@ -1,6 +1,8 @@
 # Copyright 2024 Google LLC
 
-# Enables init to mount with the oemfs file contexts.
+# Enables init to mount with the oemfs file contexts, thus, to use /oem as a mount point.
+# TODO: b/388452786 - do not use /oem as a mount point for showcasing the custom (oem) partition
+#       updates feature.
 allow init oemfs:dir mounton;
 
 # Enable init to use /oem_updates as a mount point.

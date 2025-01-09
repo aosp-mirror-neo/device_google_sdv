@@ -68,7 +68,7 @@ on boot
   restorecon -R /oem_metadata
   chmod 0770 /oem_metadata
 
-service recover_partition /system_ext/bin/recover_oem_partition.sh
+service recover_partition /product/bin/recover_oem_partition.sh
   class core
   oneshot
   user root

@@ -1,4 +1,4 @@
 # Copyright 2024 Google LLC
 
 # Defines SDV Oem Updater properties.
-system_internal_prop(sdv_oem_updater_prop)
+product_internal_prop(sdv_oem_updater_prop)

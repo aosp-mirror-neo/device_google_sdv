@@ -6,6 +6,7 @@ import /system/etc/init/init.sdv_core_base.rc
 import /system/etc/init/init.sdv_cf.rc
 import /system_ext/etc/init/init_open_dice_from_file.rc
 import /system/etc/init/vvmtruststore.rc
+import /product/etc/init/oem_partition.rc
 import /vendor/etc/init/android.sdv.hardware.security.keymint-service.nonsecure.rc
 import /vendor/etc/init/android.hardware.macsec.rc
 import /vendor/etc/init/sdv_wpa_supplicant_macsec.rc
