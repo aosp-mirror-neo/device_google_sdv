@@ -3,14 +3,7 @@
 # All the packages from platform/ required to be installed into the target
 # or made available to the host are placed here.
 
-SDV_PLATFORM_PACKAGES = \
-    deployment_configuration.json
-
-# SDV proxy application for forwarding the connection between different VMs
-SDV_PLATFORM_HOST_PACKAGES = \
-    host_deployment_configuration.json \
-    sdv_proxy \
-    sdv_proxy.zip
+SDV_PLATFORM_PACKAGES =
 
 PRODUCT_PACKAGES += $(SDV_PLATFORM_PACKAGES)
 
