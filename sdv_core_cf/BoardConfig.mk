@@ -58,3 +58,10 @@ WIFI_DRIVER_FW_PATH_AP      := "/dev/null"
 
 # The MACsec kernel module
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(SYSTEM_DLKM_SRC)/macsec.ko
+
+# Pre-provisioned vvmstruststore images for ease of testing.
+# "m custom_images" must be called for these images to be created.
+PRODUCT_CUSTOM_IMAGE_MAKEFILES += \
+  device/google/sdv/sdv_base/vvmtruststore-preprovisioned-instance1.mk \
+  device/google/sdv/sdv_base/vvmtruststore-preprovisioned-instance2.mk \
+  device/google/sdv/sdv_base/vvmtruststore-preprovisioned-instance3.mk
