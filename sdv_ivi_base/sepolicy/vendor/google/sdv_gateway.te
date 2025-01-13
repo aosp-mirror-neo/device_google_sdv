@@ -14,20 +14,6 @@ add_service(sdv_gateway_server, sdv_gateway_service)
 # Allow the SDV Gateway domain to use Binder IPC
 binder_use(sdv_gateway_server);
 
-# The SDV Gateway client and agent can call each other via Binder IPC.
-binder_call(sdv_gateway_client, sdv_gateway_server)
-binder_call(sdv_gateway_server, sdv_gateway_client)
-# The SDV Gateway client must be able to directly call Service Discovery
-# via Binder IPC until after b/379062170 and b/379274496 are fixed.
-binder_call(sdv_gateway_client, sdv_sd_server)
-binder_call(sdv_sd_server, sdv_gateway_client)
-# The SDV Gateway client has direct access to Service Discovery
-# via Binder IPC service until after b/379062170 and b/379274496 are fixed.
-allow sdv_gateway_client sdv_sd_service:service_manager find;
-
-# The SDV Gateway client has access to the ISdvGateway Binder IPC service.
-allow sdv_gateway_client sdv_gateway_service:service_manager find;
-
 # The SDV Gateway server is a client for SDV Comms stack agents on IVI.
 typeattribute sdv_gateway sdv_sd_client;
 typeattribute sdv_gateway sdv_rpcagent_client;
@@ -51,12 +37,8 @@ allow sdv_dt_client sdv_gateway_service:service_manager find;
 
 allow sdv_dt_client sdv_gateway_service:fifo_file { read write };
 allow sdv_dt_client sdv_gateway_service:fd use;
-allow sdv_gateway_client sdv_gateway_service:fifo_file { read write };
-allow sdv_gateway_client sdv_gateway_service:fd use;
 allow sdv_dt_client sdv_gateway:fifo_file { read write };
 allow sdv_dt_client sdv_gateway:fd use;
-allow sdv_gateway_client sdv_gateway:fifo_file { read write };
-allow sdv_gateway_client sdv_gateway:fd use;
 
 # SDV Gateway Agent can use sockets
 net_domain(sdv_gateway)
@@ -64,3 +46,36 @@ starting_at_board_api(202504, `
 typeattribute sdv_gateway unconstrained_vsock_violators;
 ')
 allow sdv_gateway self:vsock_socket { connect create getopt read write getattr listen accept bind shutdown };
+# SDV Gateway Agent can access proc_net to read the somaxconn value of the process.
+allow sdv_gateway proc_net:file { getattr open read };
+
+# The SDV Gateway client
+
+# SDV Gateway client can access proc_net to read the somaxconn value of the process.
+allow sdv_gateway_client proc_net:file { getattr open read };
+# Allow the SDV Gateway client to use Binder IPC
+binder_use(sdv_gateway_client);
+# The SDV Gateway client and agent can call each other via Binder IPC.
+binder_call(sdv_gateway_client, sdv_gateway_server)
+binder_call(sdv_gateway_server, sdv_gateway_client)
+# The SDV Gateway client must be able to directly call Service Discovery
+# via Binder IPC until after b/379062170 and b/379274496 are fixed.
+binder_call(sdv_gateway_client, sdv_sd_server)
+binder_call(sdv_sd_server, sdv_gateway_client)
+# The SDV Gateway client has direct access to Service Discovery
+# via Binder IPC service until after b/379062170 and b/379274496 are fixed.
+allow sdv_gateway_client sdv_sd_service:service_manager find;
+
+# The SDV Gateway client has access to the ISdvGateway Binder IPC service.
+allow sdv_gateway_client sdv_gateway_service:service_manager find;
+
+# The SDV Gateway client can use FMQ and pipes.
+allow sdv_gateway_client sdv_gateway_service:fifo_file { read write };
+allow sdv_gateway_client sdv_gateway_service:fd use;
+allow sdv_gateway_client sdv_gateway:fifo_file { read write };
+allow sdv_gateway_client sdv_gateway:fd use;
+
+# The SDV Gateway client must NOT bypass the SDV Gateway.
+# TODO: b/391793350 - Remove the rules if they become redundant.
+neverallow sdv_gateway_client sdv_id_service:service_manager find;
+neverallow sdv_gateway_client sdv_privileged_sd_client:service_manager find;
