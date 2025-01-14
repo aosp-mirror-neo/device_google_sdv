@@ -3,6 +3,23 @@
 # Note that /dev/block/by-name/vvmtruststore is only available if the
 # --vvmtruststore_path=<path_to_vvmtruststore.img> argument is passed to cvd (Cuttlefish).
 
+# The files and root directory of a preprovisioned vvmtruststore image
+# still need to have their SELinux context and ownership set.
+# Note that actions are executed in the order they're defined.
+# So for a boot mode locked and preprovisioned VM, this action will be run
+# followed by the next one, which simply mounts vvmtruststore read-only.
+on late-fs && property:ro.boot.sdv.preprovisioned_vvmtruststore=true && property:ro.boot.sdv.boot_mode=locked
+    # TODO: b/389638158  - Look into removing the need for these steps.
+    # Mount it writtable so that we can set SELinux context and file ownership.
+    mount ext4 /dev/block/by-name/vvmtruststore /vvmtruststore noatime nosuid nodev noexec rw
+    restorecon_recursive /vvmtruststore
+    chown system system /vvmtruststore
+    # Service discovery runs using its own user but it's in the system group so write permission
+    # must be granted for the group (i.e. for system).
+    chmod 0771 /vvmtruststore
+    # Unmount, so that the action below can mount it read-only
+    umount /vvmtruststore
+
 # mount read-only when locked
 on late-fs && property:ro.boot.sdv.boot_mode=locked
     mount ext4 /dev/block/by-name/vvmtruststore /vvmtruststore noatime nosuid nodev noexec ro
@@ -11,6 +28,7 @@ on late-fs && property:ro.boot.sdv.boot_mode=locked
 # mount writable when unlocked
 on late-fs && property:ro.boot.sdv.boot_mode=unlocked
     mount ext4 /dev/block/by-name/vvmtruststore /vvmtruststore noatime nosuid nodev noexec rw
+    # TODO: b/389638158  - Look into removing the need for these steps.
     restorecon_recursive /vvmtruststore
     # Service discovery runs using its own user and in the system group, and, by default,
     # /vvmtruststore is owned by root. The owner and group must be changed in unlocked mode so
