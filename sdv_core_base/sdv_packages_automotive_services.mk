@@ -7,6 +7,7 @@ SDV_AUTOMOTIVE_SERVICES_PACKAGES = \
     sdv_vpm_agent \
     com.sdv.google.diagnostics \
     com.sdv.google.vpm \
+    com.sdv.google.vpm.client \
     com.sdv.google.concal \
     com.sdv.google.user_preferences \
 
