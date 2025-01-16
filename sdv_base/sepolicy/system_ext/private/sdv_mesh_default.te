@@ -6,9 +6,6 @@ typeattribute sdv_mesh_default sdv_mesh_server;
 
 # Mesh agent can use sockets for Binder RPC
 net_domain(sdv_mesh_default)
-starting_at_board_api(202504, `
-typeattribute sdv_mesh_default unconstrained_vsock_violators;
-')
 allow sdv_mesh_default self:vsock_socket { connect create getopt read write getattr listen accept bind shutdown };
 
 # Mesh agent can read the CID of the VM.
