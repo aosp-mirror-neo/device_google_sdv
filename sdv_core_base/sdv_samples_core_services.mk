@@ -25,8 +25,8 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     com.sdv.google.sample.foo \
     com.sdv.google.sample.qux \
     com.sdv.google.sample.vsidl_provider \
+    com.sdv.google.sample.someip \
     someip_samples_orch_config \
-    com.sdv.someip.sample \
     cujs_orchestration_configurations \
     com.sdv.google.sample.update.manager.client \
     com.sdv.google.test.authz.local_vm_acl_policy_provider \
