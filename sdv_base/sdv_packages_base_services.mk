@@ -10,7 +10,6 @@
 SDV_BASE_SERVICES_PACKAGES = \
     dt_agent \
     sdv_dt_agent_acl_textproto \
-    libsdv_authn \
     libsdv_authz_policy \
     libsdv_comms_ctx_ffi \
     libsdv_comms_ctx_impl \

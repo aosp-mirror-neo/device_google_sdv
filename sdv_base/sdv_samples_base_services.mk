@@ -26,8 +26,6 @@ SDV_BASE_SERVICES_SAMPLES_PACKAGES = \
     sdv_tpms_grpc_server_cpp \
     sdv_user_preferences_client_cpp \
     sdv_vsidl_provider_query \
-    service_authn_sample_bench \
-    service_authn_sample_rs \
     vvmconfig.example \
 
 SDV_BASE_SERVICES_HOST_SAMPLES_PACKAGES =
