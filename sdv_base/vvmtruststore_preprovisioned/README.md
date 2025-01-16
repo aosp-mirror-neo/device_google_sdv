@@ -1,39 +1,37 @@
 <!-- Copyright 2025 Google LLC -->
 
-Files for pre-provisioned vvmtruststore images of the SDV VM instances defined in
-[vvmconfig.example]. Meant for development and testing purposes.
+Files for pre-provisioned vvmtruststore images of the SDV VM instances of the
+SDV dev mesh defined in [vvmconfig.example]. Meant for development and testing
+purposes.
 
 Directory structure:
 
-* VM instance name
-    * `vvmtruststore`
+*   VM instance name
+    *   `vvmtruststore`
 
 ### Updating
 
-#### Perform the factory provisioning flow.
+#### Perform the factory provisioning flow
 
 See the [sdv_provisioning_tool documentation].
 
 Copy the output of the `sdv_provisioning_tool` to
-`sdv_base/vvmtruststore-preprovisioned/vvmfactorytrust-vm_certs` for easy
+`sdv_base/vvmtruststore_preprovisioned/vvmfactorytrust-vm_certs` for easy
 reference. Note that it will be the same for all VM instances.
 
 #### Copy the provisioned files
 
 Execute from this directory:
 
-```
-cd instance1
-rm -rf vvmtruststore
-adb -s 0.0.0.0:6520 pull /vvmtruststore
+```bash
+rm -rf instance1/vvmtruststore
+adb -s 0.0.0.0:6520 pull /vvmtruststore instance1/vvmtruststore
 
-cd ../instance2
-rm -rf vvmtruststore
-adb -s 0.0.0.0:6521 pull /vvmtruststore
+rm -rf instance2/vvmtruststore
+adb -s 0.0.0.0:6521 pull /vvmtruststore instance2/vvmtruststore
 
-cd ../instance3
-rm -rf vvmtruststore
-adb -s 0.0.0.0:6522 pull /vvmtruststore
+rm -rf instance3/vvmtruststore
+adb -s 0.0.0.0:6522 pull /vvmtruststore instance3/vvmtruststore
 ```
 
 #### Update makefiles
