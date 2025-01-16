@@ -6,6 +6,9 @@ typeattribute sdv_sd_default sdv_sd_server;
 
 # SD agent can use sockets for Binder RPC
 net_domain(sdv_sd_default)
+starting_at_board_api(202504, `
+typeattribute sdv_sd_default unconstrained_vsock_violators;
+')
 allow sdv_sd_default self:vsock_socket { connect create getopt read write getattr listen accept bind shutdown };
 
 # SD Mesh gRPC server needs access to /proc/sys/net/core/somaxconn
