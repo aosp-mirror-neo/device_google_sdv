@@ -23,6 +23,6 @@ PRODUCT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/samples/pro
 # Pre-provisioned vvmstruststore images for ease of testing.
 # "m custom_images" must be called for these images to be created.
 PRODUCT_CUSTOM_IMAGE_MAKEFILES += \
-  device/google/sdv/sdv_base/vvmtruststore-preprovisioned-instance1.mk \
-  device/google/sdv/sdv_base/vvmtruststore-preprovisioned-instance2.mk \
-  device/google/sdv/sdv_base/vvmtruststore-preprovisioned-instance3.mk
+  device/google/sdv/sdv_base/vvmtruststore_preprovisioned/vvmtruststore_preprovisioned_instance1.mk \
+  device/google/sdv/sdv_base/vvmtruststore_preprovisioned/vvmtruststore_preprovisioned_instance2.mk \
+  device/google/sdv/sdv_base/vvmtruststore_preprovisioned/vvmtruststore_preprovisioned_instance3.mk

@@ -36,10 +36,9 @@ adb -s 0.0.0.0:6522 pull /vvmtruststore instance3/vvmtruststore
 
 #### Update makefiles
 
-Edit `vvmtruststore-preprovisioned-instance1.mk`,
-`vvmtruststore-preprovisioned-instance2.mk` and
-`vvmtruststore-preprovisioned-instance3.mk` in the parent directory to reflect
-the new files, if needed.
+Edit `vvmtruststore_preprovisioned_instance1.mk`,
+`vvmtruststore_preprovisioned_instance2.mk` and
+`vvmtruststore_preprovisioned_instance3.mk`, if needed.
 
 #### Update sdv-cf script
 
