@@ -18,6 +18,8 @@ SDV_BASE_SERVICES_SAMPLES_PACKAGES = \
     sdv_dt_subscriber_cpp \
     sdv_mw_cluster_server \
     sdv_mw_cluster_client \
+    sdv_mw_tpms_server \
+    sdv_mw_tpms_client \
     sdv_provisioning_tool \
     sdv_sunroof_grpc_client_cpp \
     sdv_tpms_grpc_client_cpp \
