@@ -57,4 +57,7 @@ allow sdv_gateway_client sdv_gateway:fd use;
 
 # SDV Gateway Agent can use sockets
 net_domain(sdv_gateway)
+starting_at_board_api(202504, `
+typeattribute sdv_gateway unconstrained_vsock_violators;
+')
 allow sdv_gateway self:vsock_socket { connect create getopt read write getattr listen accept bind shutdown };
