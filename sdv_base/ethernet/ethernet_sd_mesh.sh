@@ -18,3 +18,5 @@ ip route add 224.0.0.0/4 dev sd_mesh
 ip link set dev lo up
 
 ifconfig sd_mesh up
+
+echo "sdv-ethernet-sd-mesh-setup has started successfully"

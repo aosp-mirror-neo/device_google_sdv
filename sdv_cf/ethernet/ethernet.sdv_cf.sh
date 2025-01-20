@@ -21,3 +21,5 @@ ifconfig eth1 up
 # services that uses eth1, which is only the SDV RPC agent.
 # -q instructs sysctl not to print the value to the standard output after writing it.
 sysctl -q -w net.ipv4.ip_local_port_range="4000 5999"
+
+echo "sdv-ethernet-setup has started successfully"

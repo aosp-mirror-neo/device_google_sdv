@@ -40,3 +40,5 @@ ip link add link "${NETWORK_INTERFACE}" name sdv_dt type vlan id 2
 # entering sdv_dt_ns network namespace.
 ip netns add sdv_dt_ns
 ip link set sdv_dt netns sdv_dt_ns
+
+echo "sdv-ethernet-namespace-setup has started successfully"
