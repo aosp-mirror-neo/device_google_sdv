@@ -1,6 +1,9 @@
 #!/system/bin/sh
 # Copyright 2024 Google LLC
 
+# Fail on errors
+set -e
+
 # Set up the data tunnel IP rules in the sdv_dt_ns network namespace.
 # The network namespace should be entered using a service modifier in the init .rc script.
 

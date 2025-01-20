@@ -1,6 +1,9 @@
 #!/system/bin/sh
 # Copyright 2023 Google LLC
 
+# Fail on errors
+set -e
+
 # Set IP address for eth1 that corresponds to virtual ethernet in Cuttlefish.
 # Default host environment expects IP of 192.68.98.3, so default to it.
 VMID=$(getprop ro.boot.virt.address 3)

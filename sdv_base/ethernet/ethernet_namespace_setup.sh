@@ -1,6 +1,9 @@
 #!/system/bin/sh
 # Copyright 2024 Google LLC
 
+# Fail on errors
+set -e
+
 # Setup the network namespaces and VLANs for the service discovery and data tunnel agents on top of
 # the network interface passed as the argument
 NETWORK_INTERFACE="$1"
