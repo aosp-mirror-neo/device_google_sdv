@@ -19,3 +19,5 @@ Committing the checkpoint to ensure the current slot is marked as successful and
 prevent user data loss."
   /system/bin/vdc checkpoint commitChanges
 fi
+
+echo "initial_boot_checkpoint has started successfully"
