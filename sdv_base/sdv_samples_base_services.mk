@@ -6,8 +6,6 @@
 
 SDV_BASE_SERVICES_SAMPLES_PACKAGES = \
     dt_comms_client_cpp \
-    sdv_cluster_grpc_client_cpp \
-    sdv_cluster_grpc_server_cpp \
     sdv_comms_client_rs \
     sdv_comms_dt_probe_rs \
     sdv_comms_sample_dt_rs \
@@ -22,9 +20,6 @@ SDV_BASE_SERVICES_SAMPLES_PACKAGES = \
     sdv_mw_tpms_server \
     sdv_mw_tpms_client \
     sdv_provisioning_tool \
-    sdv_sunroof_grpc_client_cpp \
-    sdv_tpms_grpc_client_cpp \
-    sdv_tpms_grpc_server_cpp \
     sdv_user_preferences_client_cpp \
     sdv_vsidl_provider_query \
     vvmconfig.example \
