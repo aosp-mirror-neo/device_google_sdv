@@ -11,7 +11,7 @@ $(call inherit-product, device/google/cuttlefish/vsoc_x86_64_only/auto/aosp_cf.m
 PRODUCT_NAME := sdv_ivi_cf
 PRODUCT_DEVICE := sdv_ivi_cf
 
-LOCAL_VHAL_PRODUCT_PACKAGE := android.hardware.automotive.vehicle@V1-sdv-emulator-service-v2
+LOCAL_VHAL_PRODUCT_PACKAGE := android.hardware.automotive.vehicle@V1-sdv-emulator-service
 
 # On arm64 architectures, init_open_dice runs on early init, consumes and wipes the open-dice
 # device. However, on x86, the open-dice device is not available, so init_open_dice_from_file reads
