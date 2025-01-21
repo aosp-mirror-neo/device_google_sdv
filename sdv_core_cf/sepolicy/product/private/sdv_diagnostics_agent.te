@@ -12,3 +12,5 @@ typeattribute sdv_diagnostics_agent sdv_dt_client;
 
 binder_call(sdv_diagnostics_agent, sdv_sbr)
 allow sdv_diagnostics_agent sdv_sbr_service:service_manager find;
+
+net_domain(sdv_diagnostics_agent)
