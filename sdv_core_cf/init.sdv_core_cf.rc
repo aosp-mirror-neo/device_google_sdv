@@ -28,5 +28,5 @@ service sdv_diagnostics_agent /product/bin/sdv_diagnostics_agent
     disabled
     user system
     group system
-on property:dev.bootcomplete=1
+on property:apex.all.ready=true
     start sdv_diagnostics_agent
