@@ -9,7 +9,4 @@ allow vvmtruststorefs labeledfs:filesystem associate;
 # init can relabel (i.e. initialize the SELinux labels) the content of the /vvmtruststore partition
 allow init vvmtruststorefs:file relabelto;
 
-# SD agent can read, create and modify files in the
-# /vvmtruststore directory.
-allow sdv_sd_default vvmtruststorefs:dir rw_dir_perms;
-allow sdv_sd_default vvmtruststorefs:file create_file_perms;
+type uds_pubs_file, file_type;

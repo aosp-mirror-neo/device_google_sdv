@@ -39,3 +39,9 @@ allow sdv_mesh_provisioning_client sdv_mesh_provisioning_service:service_manager
 
 # SDV Mesh Provisioning server can register the IPC service.
 add_service(sdv_mesh_provisioning_server, sdv_mesh_provisioning_service)
+
+# SD agent can read, create and modify files in the
+# /vvmtruststore directory.
+allow sdv_sd_default vvmtruststorefs:dir rw_dir_perms;
+allow sdv_sd_default vvmtruststorefs:file create_file_perms;
+allow sdv_sd_default uds_pubs_file:file create_file_perms;

@@ -24,4 +24,5 @@
 /(system_ext|system/system_ext)/bin/rpcagent            u:object_r:sdv_rpcagent_default_exec:s0
 
 # Files in the vvmtruststore partition
-/vvmtruststore(/.*)?    u:object_r:vvmtruststorefs:s0
+/vvmtruststore(/.*)?       u:object_r:vvmtruststorefs:s0
+/vvmtruststore/uds_pubs    u:object_r:uds_pubs_file:s0

@@ -12,9 +12,14 @@ userdebug_or_eng(`
   # instead of the shell domain).
   domain_auto_trans(su, $1_exec, $1)
 
-  # These rules make standard output work when running from the shell
+  # These rules make standard output work when running from the shell.
   allow $1 adbd:fd use;
   allow $1 shell:fd use;
   allow $1 adbd:unix_stream_socket { read write };
+
+  # These rules are required for printing to the standard output when the binary is not executed
+  # through adb shell in a single line (i.e. adb shell <binary_path>), but when adb shell is opened
+  # first, and then the binary is executed from the adb shell.
+  allow $1 devpts:chr_file { read write };
 ')
 ')
