@@ -36,6 +36,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     liblifecycle_cpp_service_bundle_test \
     middleware_someip_sample \
     sdv_oem_partition_update_client \
+    sdv_vsomeip_temperature_tester \
     sdv_vsomeip_conf_counter_tester_target \
     sdv_vsomeip_counter_tester \
     sdv_vsomeip_sdv_hello_tester \
