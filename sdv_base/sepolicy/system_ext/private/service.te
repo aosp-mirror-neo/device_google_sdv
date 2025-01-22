@@ -1,0 +1,4 @@
+# Copyright 2025 Google LLC
+
+# Defines SDV Privileged SD Binder IPC service.
+type sdv_privileged_sd_service, protected_service, service_manager_type;

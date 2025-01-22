@@ -45,3 +45,15 @@ add_service(sdv_mesh_provisioning_server, sdv_mesh_provisioning_service)
 allow sdv_sd_default vvmtruststorefs:dir rw_dir_perms;
 allow sdv_sd_default vvmtruststorefs:file create_file_perms;
 allow sdv_sd_default uds_pubs_file:file create_file_perms;
+
+# Privileged APIs. Only for SDV Gateway usage.
+
+# SDV privileged SD client and server can use Binder IPC.
+binder_call(sdv_privileged_sd_client, sdv_sd_default)
+binder_call(sdv_sd_default, sdv_privileged_sd_client)
+
+# SDV privileged SD client can find the IPC service.
+allow sdv_privileged_sd_client sdv_privileged_sd_service:service_manager find;
+
+# SDV SD server can register the privileged IPC service.
+add_service(sdv_sd_default, sdv_privileged_sd_service)
