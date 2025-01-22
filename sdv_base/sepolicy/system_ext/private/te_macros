@@ -2,10 +2,11 @@
 
 #####################################
 # core_service(service_domain)
-# Declare service_domain as system process
-# Declare (service_domain)_exec as an executable file
-# Allow service_domain to start via init
-# Allow service_domain to use Binder IPC
+# Designated for Google-owned agents on the system_ext partition.
+# Declare service_domain as system process.
+# Declare (service_domain)_exec as an executable file.
+# Allow service_domain to start via init.
+# Allow service_domain to use Binder IPC.
 define(`core_service', `
 type $1, domain;
 typeattribute $1 coredomain;
