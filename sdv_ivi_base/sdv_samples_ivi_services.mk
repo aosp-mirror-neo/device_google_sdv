@@ -12,7 +12,9 @@ SDV_IVI_SERVICES_SAMPLES_PACKAGES = \
     ivi_acl_provider_vendor_acl_textproto \
     ivi_acl_provider_product_acl_textproto \
     ivi_acl_provider_system_acl_textproto \
-    ivi_acl_provider_system_ext_acl_textproto
+    ivi_acl_provider_system_ext_acl_textproto \
+    rochambeau_player_rs \
+    rochambeau_judge_rs \
 
 
 SDV_IVI_SERVICES_HOST_SAMPLES_PACKAGES =
