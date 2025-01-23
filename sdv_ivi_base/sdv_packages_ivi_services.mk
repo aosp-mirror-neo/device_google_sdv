@@ -8,8 +8,8 @@
 SDV_IVI_SERVICES_PACKAGES = \
     libsdvgatewayclient_jni \
     libsdvgatewayservice \
-    libvhal_proxy_v2 \
-    libvhal_proxy_config_loader_v2 \
+    libvhal_proxy \
+    libvhal_proxy_config_loader \
     sdv_gateway
 
 # Vehicle HAL is already included in PRODUCT_PACKAGES, but it must also be part of
