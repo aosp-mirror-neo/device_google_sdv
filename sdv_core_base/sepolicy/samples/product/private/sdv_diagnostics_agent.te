@@ -1,7 +1,13 @@
 # Copyright 2024 Google LLC
 
 # Diagnostics SDV agent.
-core_service(sdv_diagnostics_agent)
+type sdv_diagnostics_agent, domain;
+typeattribute sdv_diagnostics_agent coredomain;
+typeattribute sdv_diagnostics_agent mlstrustedsubject;
+type sdv_diagnostics_agent_exec, exec_type, file_type, system_file_type;
+init_daemon_domain(sdv_diagnostics_agent)
+
+binder_use(sdv_diagnostics_agent)
 
 typeattribute sdv_diagnostics_agent sdv_rpcagent_client;
 

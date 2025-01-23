@@ -1,8 +1,5 @@
 # Copyright 2024 Google LLC
 
-# SDV Diagnostics agent
-/(product|system/product)/bin/sdv_diagnostics_agent            u:object_r:sdv_diagnostics_agent_exec:s0
-
 # SDV OemUpdater sdv_oem_partition_update_client sample
 # TODO(b/384499049): Move this file_contexts to sdv_core_base.
 /(product|system/product)/bin/sdv_oem_partition_update_client  u:object_r:sdv_oem_partition_update_client_exec:s0
