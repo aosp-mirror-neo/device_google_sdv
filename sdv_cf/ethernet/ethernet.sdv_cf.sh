@@ -20,9 +20,4 @@ ifconfig eth1 up
 # On IVI targets, eth1 is used by SDV RPC and it's also the default network interface for whole
 # Android. Service Discovery and Data tunnel have their own network interfaces.
 
-# Setting up an arbitrary port range for eth1, which is used for automatic port selection for the
-# services that uses eth1, which is only the SDV RPC agent.
-# -q instructs sysctl not to print the value to the standard output after writing it.
-sysctl -q -w net.ipv4.ip_local_port_range="4000 5999"
-
 echo "sdv-ethernet-setup has started successfully"
