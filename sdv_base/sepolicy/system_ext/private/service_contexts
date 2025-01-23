@@ -23,6 +23,8 @@ google.sdv.service_discovery.discovery.ITransportSupportAgent/default u:object_r
 # TODO: b/374055265 - Restrict access to the privileged AIDLs.
 # Private Identity Agent service used by SDV Gateway.
 google.sdv.privileged.identity.IPrivilegedIdentityAgent/default u:object_r:sdv_id_service:s0
+# Private Service Discovery Agent service used by SDV Gateway.
+google.sdv.privileged.service_discovery.IPrivilegedServiceDiscoveryAgent/default u:object_r:sdv_sd_service:s0
 # Private Service Registration Agent service used by SDV Gateway.
 google.sdv.privileged.service_discovery.IPrivilegedServiceRegistrationAgent/default u:object_r:sdv_sd_service:s0
 
