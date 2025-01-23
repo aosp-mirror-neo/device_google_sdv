@@ -33,6 +33,9 @@ typeattribute sdv_gateway sdv_sd_client;
 typeattribute sdv_gateway sdv_rpcagent_client;
 typeattribute sdv_gateway sdv_dt_client;
 
+# The SDV Gateway server is a privileged client for SDV Comms stack agents on IVI.
+typeattribute sdv_gateway sdv_privileged_sd_client;
+
 # The SDV Gateway server is a client of the Package Manager proxy service.
 typeattribute sdv_gateway packagemanagerproxy_client;
 
