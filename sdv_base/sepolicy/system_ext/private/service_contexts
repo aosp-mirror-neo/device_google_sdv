@@ -38,3 +38,6 @@ google.sdv.rpc.IRpcAgent/default u:object_r:sdv_rpcagent_service:s0
 
 # Service interface for providing DICE chains
 google.sdv.init_open_dice.IDiceChainProvider/default u:object_r:sdv_dice_chain_provider_service:s0
+
+# Service interface for issuing certificates signed by CDI_Leaf
+google.sdv.init_open_dice.IKeyCertifier/default u:object_r:sdv_dice_certifier_service:s0

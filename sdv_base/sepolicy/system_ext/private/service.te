@@ -2,3 +2,6 @@
 
 # Defines SDV Privileged SD Binder IPC service.
 type sdv_privileged_sd_service, protected_service, service_manager_type;
+
+# Type representing the service interface for issuing certificates signed by CDI_Leaf
+type sdv_dice_certifier_service, protected_service, service_manager_type;
