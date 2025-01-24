@@ -44,7 +44,6 @@ PRODUCT_PACKAGES += \
     vendor-build.prop \
     vendor_manifest.xml
 
-# Stolen from microdroid/Android.bp
 PRODUCT_PACKAGES += \
     init_second_stage \
     libbinder \
@@ -53,7 +52,6 @@ PRODUCT_PACKAGES += \
     secilc \
     libadbd_auth \
     libadbd_fs \
-    heapprofd_client_api \
     libartpalette-system \
     apexd \
     atrace \
