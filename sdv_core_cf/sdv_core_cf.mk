@@ -104,6 +104,11 @@ PRODUCT_PACKAGES += \
     sdv_wpa_supplicant_macsec.conf \
     sdv_wpa_supplicant_macsec.rc
 
+# Extra debugging tools
+PRODUCT_PACKAGES += \
+    heapprofd \
+    heapprofd_client \
+
 # A/B updates post install configuration.
 # Post install scripts can be added for other partitions in the same way.
 AB_OTA_POSTINSTALL_CONFIG += \
