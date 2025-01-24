@@ -8,10 +8,12 @@
 # as the ro.product.name Android property.
 PRODUCT_MAKEFILES := \
     $(LOCAL_DIR)/sdv_core_cf/sdv_core_cf.mk \
+    $(LOCAL_DIR)/sdv_core_perf_cf/sdv_core_perf_cf.mk \
     $(LOCAL_DIR)/sdv_media_cf/sdv_media_cf.mk \
     $(LOCAL_DIR)/sdv_ivi_cf/sdv_ivi_cf.mk
 
 COMMON_LUNCH_CHOICES := \
     sdv_core_cf-trunk_staging-userdebug \
+    sdv_core_perf_cf-trunk_staging-userdebug \
     sdv_media_cf-trunk_staging-userdebug \
     sdv_ivi_cf-trunk_staging-userdebug
