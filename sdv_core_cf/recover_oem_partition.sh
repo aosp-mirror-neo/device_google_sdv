@@ -57,3 +57,5 @@ fi
 
 log_oem_updater_message "Setting persist.sdv.oem_update_state to $update_state."
 setprop persist.sdv.oem_update_state "$update_state"
+
+log_oem_updater_message "recover_partition has started successfully"
