@@ -40,6 +40,8 @@ include device/google/sdv/sdv_base/sdv_sample_ethernet_setup.mk
 
 ifneq ($(SDV_CORE_PERF_IMAGE), true)
     include device/google/sdv/sdv_core_base/sdv_samples_all.mk
+else
+    include device/google/sdv/sdv_core_base/sdv_performance_modules.mk
 endif
 
 # fstab.<name> must match with the value of the androidboot.hardware property.
