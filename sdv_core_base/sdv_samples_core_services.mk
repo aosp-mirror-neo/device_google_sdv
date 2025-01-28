@@ -28,7 +28,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     com.sdv.google.sample.someip \
     someip_samples_orch_config \
     cujs_orchestration_configurations \
-    com.sdv.google.sample.update.manager.client \
+    com.sdv.google.sample.update_manager.client \
     com.sdv.google.test.authz.local_vm_acl_policy_provider \
     com.sdv.tm \
     android.sdv.samples.sdv_gateway \
