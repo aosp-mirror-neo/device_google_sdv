@@ -5,7 +5,6 @@
 # They are not included by sdv_base.mk, only by downstream targets.
 
 SDV_BASE_SERVICES_SAMPLES_PACKAGES = \
-    dt_comms_client_cpp \
     sdv_comms_client_rs \
     sdv_comms_dt_probe_rs \
     sdv_comms_sample_dt_rs \
