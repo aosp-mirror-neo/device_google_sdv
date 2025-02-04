@@ -32,7 +32,6 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     com.sdv.google.test.authz.local_vm_acl_policy_provider \
     com.sdv.tm \
     android.sdv.samples.sdv_gateway \
-    liblifecycle_rust_service_bundle_test \
     liblifecycle_cpp_service_bundle_test \
     middleware_someip_sample \
     sdv_oem_partition_update_client \
