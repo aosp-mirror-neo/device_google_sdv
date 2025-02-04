@@ -1,4 +1,4 @@
-# Copyright 2024 Google LLC
+# Copyright 2025 Google LLC
 
 type sdv_someip_stack_default, domain;
 typeattribute sdv_someip_stack_default mlstrustedsubject;
