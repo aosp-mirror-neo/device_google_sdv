@@ -5,6 +5,7 @@
 # These are not included in sdv_core_base.mk. Targets need to include them explicitly.
 
 SDV_PERF_PACKAGES = \
+    performance_custom_mode_dispatcher \
     com.sdv.google.performance.apex0 \
     com.sdv.google.performance.apex1 \
     com.sdv.google.performance.apex2 \
@@ -57,3 +58,6 @@ SDV_PERF_PACKAGES = \
     com.sdv.google.performance.apex49 \
 
 PRODUCT_PACKAGES += $(SDV_PERF_PACKAGES)
+
+PRODUCT_SYSTEM_EXT_PROPERTIES += \
+    persist.sdv.orchestrator_config_path=system_ext/etc/orch/performance/orch_vm_config.textproto
