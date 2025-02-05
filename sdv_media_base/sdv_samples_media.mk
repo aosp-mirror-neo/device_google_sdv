@@ -16,6 +16,9 @@ SDV_MEDIA_SAMPLES_PACKAGES += \
     sdv_gl_gen_texture \
     sdv_screencap \
 
+# Sample mixer control CLI
+SDV_MEDIA_SAMPLES_PACKAGES += mixerctl
+
 SDV_MEDIA_HOST_SAMPLES_PACKAGES =
 
 PRODUCT_PACKAGES += $(SDV_MEDIA_SAMPLES_PACKAGES)
