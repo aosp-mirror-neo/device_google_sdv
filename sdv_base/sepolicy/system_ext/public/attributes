@@ -44,6 +44,12 @@ attribute sdv_mesh_provisioning_server;
 expandattribute sdv_mesh_provisioning_client true;
 expandattribute sdv_mesh_provisioning_server false;
 
+# Attributes for SDV Mesh Status
+attribute sdv_mesh_status_client;
+attribute sdv_mesh_status_server;
+expandattribute sdv_mesh_status_client true;
+expandattribute sdv_mesh_status_server false;
+
 # Attributes for RPCagent
 attribute sdv_rpcagent_client;
 attribute sdv_rpcagent_server;

@@ -33,6 +33,9 @@ android.sdv.mesh.IMessageManager u:object_r:sdv_mesh_service:s0
 # SDV Mesh uds_pubs provisioning IPC service.
 google.sdv.mesh.provisioning.IUdsPubsProvisioner/default u:object_r:sdv_mesh_provisioning_service:s0
 
+# SDV Mesh status IPC service.
+google.sdv.mesh.IMeshStatus/default u:object_r:sdv_mesh_status_service:s0
+
 # RPCagent service
 google.sdv.rpc.IRpcAgent/default u:object_r:sdv_rpcagent_service:s0
 

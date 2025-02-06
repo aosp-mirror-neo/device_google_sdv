@@ -46,6 +46,18 @@ allow sdv_mesh_provisioning_client sdv_mesh_provisioning_service:service_manager
 # SDV Mesh Provisioning server can register the IPC service.
 add_service(sdv_mesh_provisioning_server, sdv_mesh_provisioning_service)
 
+typeattribute sdv_sd_default sdv_mesh_status_server;
+
+# SDV Mesh Status client and server can call each other using Binder IPC.
+binder_call(sdv_mesh_status_client, sdv_mesh_status_server)
+binder_call(sdv_mesh_status_server, sdv_mesh_status_client)
+
+# SDV Mesh Status client can find the IPC service.
+allow sdv_mesh_status_client sdv_mesh_status_service:service_manager find;
+
+# SDV Mesh Status server can register the IPC service.
+add_service(sdv_mesh_status_server, sdv_mesh_status_service)
+
 # SD agent can read, create and modify files in the
 # /vvmtruststore directory.
 allow sdv_sd_default vvmtruststorefs:dir rw_dir_perms;
