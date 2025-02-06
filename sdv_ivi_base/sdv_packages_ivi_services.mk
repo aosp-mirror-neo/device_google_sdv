@@ -6,8 +6,10 @@
 
 # Components in core_services/ specific to SDV_IVI target
 SDV_IVI_SERVICES_PACKAGES = \
+    libsdvgatewayclient \
     libsdvgatewayclient_jni \
-    libsdvgatewayservice \
+    libsdvgatewayclient_jni_vendor \
+    libsdvgatewayclient_jni_product \
     libvhal_proxy \
     libvhal_proxy_config_loader \
     sdv_gateway
