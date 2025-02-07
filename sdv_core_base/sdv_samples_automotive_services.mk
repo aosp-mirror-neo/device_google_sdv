@@ -9,7 +9,6 @@ SDV_AUTOMOTIVE_SERVICES_SAMPLES_PACKAGES = \
     com.sdv.oem.sample.diagnostics \
     diag_v1_provider1_sample \
     diag_v1_provider2_sample \
-    vepsm \
     vpm_power_state_client \
     vpm_vehicle_state_client \
     sdv_hvac_service_stable \

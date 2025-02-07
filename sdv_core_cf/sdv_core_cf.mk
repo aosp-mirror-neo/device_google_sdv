@@ -95,6 +95,7 @@ PRODUCT_PACKAGES += \
     update_engine_system_partition_post_install \
     sample_product_ota_postinstall_data \
     sample_system_ota_postinstall_data \
+    vepsm \
 
 # This is a mock MACsec HAL implementation with keys embedded in it. Replace it with a vendor
 # specific HAL implementation.
