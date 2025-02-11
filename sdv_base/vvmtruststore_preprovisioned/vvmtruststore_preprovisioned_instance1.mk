@@ -24,3 +24,7 @@ CUSTOM_IMAGE_COPY_FILES += \
   device/google/sdv/sdv_base/vvmtruststore_preprovisioned/instance1/vvmtruststore/own_vm_cert:own_vm_cert \
   device/google/sdv/sdv_base/vvmtruststore_preprovisioned/instance1/vvmtruststore/vm_certs:vm_certs \
   device/google/sdv/sdv_base/vvmtruststore_preprovisioned/instance1/vvmtruststore/vm_private:vm_private
+
+# TODO: b/391851533 - add description how to generate this file
+CUSTOM_IMAGE_COPY_FILES += \
+  device/google/sdv/sdv_base/vvmtruststore_preprovisioned/instance1/vvmtruststore/uds_certs:uds_certs
