@@ -11,7 +11,6 @@ SDV_BASE_SERVICES_SAMPLES_PACKAGES = \
     sdv_comms_sample_rpc_client_rs \
     sdv_comms_sample_rpc_server_rs \
     sdv_dt_publisher_cpp \
-    sdv_dt_publisher_cpp_acl_textproto \
     sdv_dt_subscriber_cpp \
     sdv_mw_cluster_server \
     sdv_mw_cluster_client \
