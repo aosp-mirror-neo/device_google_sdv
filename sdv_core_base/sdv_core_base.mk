@@ -233,6 +233,7 @@ PRODUCT_PACKAGES_DEBUG += \
     perfetto \
     traced \
     traced_probes \
+    traced_relay \
 
 # Support for adb bugreport
 PRODUCT_PACKAGES += \
