@@ -7,8 +7,13 @@
 # Samples in core_services/ specific to SDV_IVI target
 SDV_IVI_SERVICES_SAMPLES_PACKAGES = \
     native_sdv_gateway_test_app \
+    native_test_app_acl_policy \
+    sdv_car_monitor_test_app_acl_policy_product \
+    sdv_car_monitor_test_app_acl_policy_system \
+    sdv_car_monitor_test_app_acl_policy_vendor \
     sdv_vhal_proxy_publisher \
     sdv_vhal_proxy_subscriber \
+    sunroof_server_acl_policy \
     ivi_acl_provider_vendor_acl_textproto \
     ivi_acl_provider_product_acl_textproto \
     ivi_acl_provider_system_acl_textproto \
