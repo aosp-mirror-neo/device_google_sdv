@@ -48,6 +48,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     someip_rpc_someip_server \
     someip_rpc_sdv_server \
     orch_custom_mode_sample \
+    com.sdv.google.sample.orchestration \
     sdv_service_bundle \
     sdv_tire_pressure \
     sdv_range_remaining_subscriber \
