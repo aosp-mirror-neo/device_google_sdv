@@ -13,6 +13,9 @@
       },
       "boot": {
         "extra_bootconfig_args": "androidboot.sdv.instance_name=instance1 androidboot.virt.address=3"
+      },
+      "graphics": {
+        "gpu_mode": "none"
       }
     },
     {
@@ -25,6 +28,9 @@
       },
       "boot": {
         "extra_bootconfig_args": "androidboot.sdv.instance_name=instance2 androidboot.virt.address=4"
+      },
+      "graphics": {
+        "gpu_mode": "none"
       }
     }
   ]
