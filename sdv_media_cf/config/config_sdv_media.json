@@ -10,5 +10,6 @@
   "memory_mb": 2048,
   "start_gnss_proxy": false,
   "start_webrtc": true,
-  "use_sdcard": false
+  "use_sdcard": false,
+  "gpu_mode": "gfxstream_guest_angle_host_swiftshader"
 }
