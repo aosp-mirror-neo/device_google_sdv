@@ -9,7 +9,7 @@ use android_hardware_security_rkp::aidl::android::hardware::security::keymint::{
     MacedPublicKey::MacedPublicKey,
 };
 
-use anyhow::{anyhow, Context};
+use anyhow::{anyhow, bail, Context};
 use binder::Status;
 use log::{info, warn};
 use sdv_log::init_logger;
@@ -38,6 +38,30 @@ fn get_default_keymint_device_service() -> anyhow::Result<binder::Strong<dyn IKe
     let default_keymint_service_name = format!("{keymint_descriptor}/default");
     binder::get_interface(&default_keymint_service_name)
         .context("Failed to get IKeyMintDevice service")
+}
+
+// Parameter for generateEcdsaP256KeyPair(), deprecated since version 3 of the HAL, must always be
+// false.
+const TEST_MODE: bool = false;
+
+fn generate_certificate_request_v2() -> anyhow::Result<(Vec<u8>, Vec<u8>)> {
+    let remotely_provisioned_component = get_default_remotely_provisioned_component_service()?;
+
+    let mut maced_public_key = MacedPublicKey { macedKey: vec![] };
+    let irpc_key_blob = remotely_provisioned_component
+        .generateEcdsaP256KeyPair(TEST_MODE, &mut maced_public_key)
+        .context("generateEcdsaP256KeyPair() failed")?;
+    assert!(!irpc_key_blob.is_empty());
+    assert!(!maced_public_key.macedKey.is_empty());
+    // The macedKey doesn't only contain zeros.
+    assert_ne!(maced_public_key.macedKey, vec![0; maced_public_key.macedKey.len()]);
+
+    // Sign the attestation key by the KeyMint (SecureWorld) DICE Chain using the IRPC.
+    const CHALLENGE: [u8; 3] = [1, 2, 3];
+    let certificate_request = remotely_provisioned_component
+        .generateCertificateRequestV2(&[maced_public_key], &CHALLENGE)
+        .context("generateCertificateRequestV2() failed")?;
+    Ok((certificate_request, irpc_key_blob))
 }
 
 fn create_attestation_key(attestation_key_blob: Vec<u8>) -> AttestationKey {
@@ -195,30 +219,43 @@ fn android15_hwtrust_session() -> hwtrust::session::Session {
 
 #[test]
 fn generate_certificate_request_v2_returns_android15_dice_chain() -> anyhow::Result<()> {
-    let remotely_provisioned_component = get_default_remotely_provisioned_component_service()?;
-
-    // Generate an attestation key using the IRemotelyProvisionedComponent (shortened to IRPC from
-    // now on in this test).
-    let mut maced_public_key = MacedPublicKey { macedKey: vec![] };
-    let is_for_testing = false;
-    let irpc_key_blob = remotely_provisioned_component
-        .generateEcdsaP256KeyPair(is_for_testing, &mut maced_public_key)
-        .context("generateEcdsaP256KeyPair() failed")?;
-    assert!(!irpc_key_blob.is_empty());
-    assert!(!maced_public_key.macedKey.is_empty());
-    // The macedKey doesn't only contain zeros.
-    assert_ne!(maced_public_key.macedKey, vec![0; maced_public_key.macedKey.len()]);
-
-    // Sign the attestation key by the KeyMint (SecureWorld) DICE Chain using the IRPC.
-    const CHALLENGE: [u8; 3] = [1, 2, 3];
-    let certificate_request = remotely_provisioned_component
-        .generateCertificateRequestV2(&[maced_public_key], &CHALLENGE)
-        .context("generateCertificateRequestV2() failed")?;
+    let (certificate_request, _) = generate_certificate_request_v2()?;
 
     // from_cbor parses and verifies the DICE chain according to the options specified in the
     // Session object
     hwtrust::rkp::Csr::from_cbor(&android15_hwtrust_session(), certificate_request.as_slice())
         .context("Failed to parse the CSR from KeyMint")?;
+    Ok(())
+}
+
+// Creates a PEM file containing the KeyMint UDS public key that can be used, for example,
+// to issue a test UDS certificate for. To obtain the PEM file, after running the test, execute:
+// adb pull /data/local/tmp/keymint_uds_pub.pem
+#[test]
+fn save_keymint_uds_pub_to_file() -> anyhow::Result<()> {
+    use hwtrust::dice::ChainForm;
+    use hwtrust::rkp::Csr;
+    use std::io::Write;
+
+    let (certificate_request, _) = generate_certificate_request_v2()?;
+
+    // from_cbor parses and verifies the DICE chain according to the options specified in the
+    // Session object
+    let csr = Csr::from_cbor(&android15_hwtrust_session(), certificate_request.as_slice())
+        .context("Failed to parse the CSR from KeyMint")?;
+    let pem = match csr {
+        Csr::V3 { dice_chain, .. } => match dice_chain {
+            ChainForm::Proper(chain) => chain.root_public_key().to_pem(),
+            ChainForm::Degenerate(deg_chain) => deg_chain.public_key().to_pem(),
+        },
+        _ => bail!("CSR V2 is not supported!"),
+    };
+
+    let mut cbor_file = std::fs::File::create("/data/local/tmp/keymint_uds_pub.pem")
+        .context("Failed to save UDS pub file")?;
+
+    cbor_file.write_all(pem.as_bytes()).context("Failed to write CBOR file")?;
+
     Ok(())
 }
 
@@ -230,9 +267,10 @@ fn sdv_attestation_keymint_primitives_with_rsa_test() -> anyhow::Result<()> {
     // Generate an attestation key using the IRemotelyProvisionedComponent (shortened to IRPC from
     // now on in this test).
     let mut maced_public_key = MacedPublicKey { macedKey: vec![] };
-    let is_for_testing = false;
+    // Deprecated field since version 3 of the HAL, must always be false
+    let test_mode = false;
     let irpc_key_blob = remotely_provisioned_component
-        .generateEcdsaP256KeyPair(is_for_testing, &mut maced_public_key)
+        .generateEcdsaP256KeyPair(test_mode, &mut maced_public_key)
         .context("generateEcdsaP256KeyPair() failed")?;
     assert!(!irpc_key_blob.is_empty());
     assert!(!maced_public_key.macedKey.is_empty());
@@ -279,9 +317,8 @@ fn sdv_attestation_keymint_primitives_with_ecdsa_test() -> anyhow::Result<()> {
     // Generate an attestation key using the IRemotelyProvisionedComponent (shortened to IRPC from
     // now on in this test).
     let mut maced_public_key = MacedPublicKey { macedKey: vec![] };
-    let is_for_testing = false;
     let irpc_key_blob = remotely_provisioned_component
-        .generateEcdsaP256KeyPair(is_for_testing, &mut maced_public_key)
+        .generateEcdsaP256KeyPair(TEST_MODE, &mut maced_public_key)
         .context("generateEcdsaP256KeyPair() failed")?;
     assert!(!irpc_key_blob.is_empty());
     assert!(!maced_public_key.macedKey.is_empty());
@@ -322,23 +359,7 @@ fn sdv_attestation_keymint_primitives_with_ecdsa_test() -> anyhow::Result<()> {
 
 #[test]
 fn iremotely_provisioned_key_is_only_an_attest_key_test() -> anyhow::Result<()> {
-    let remotely_provisioned_component = get_default_remotely_provisioned_component_service()?;
-
-    let mut maced_public_key = MacedPublicKey { macedKey: vec![] };
-    let is_for_testing = false;
-    let irpc_key_blob = remotely_provisioned_component
-        .generateEcdsaP256KeyPair(is_for_testing, &mut maced_public_key)
-        .context("generateEcdsaP256KeyPair() failed")?;
-    assert!(!irpc_key_blob.is_empty());
-    assert!(!maced_public_key.macedKey.is_empty());
-    // The macedKey doesn't only contain zeros.
-    assert_ne!(maced_public_key.macedKey, vec![0; maced_public_key.macedKey.len()]);
-
-    // Sign the attestation key by the KeyMint (SecureWorld) DICE Chain using the IRPC.
-    const CHALLENGE: [u8; 3] = [1, 2, 3];
-    let certificate_request = remotely_provisioned_component
-        .generateCertificateRequestV2(&[maced_public_key], &CHALLENGE)
-        .context("generateCertificateRequestV2() failed")?;
+    let (certificate_request, irpc_key_blob) = generate_certificate_request_v2()?;
     assert!(!certificate_request.is_empty());
 
     let keymint_device = get_default_keymint_device_service()?;
@@ -404,9 +425,8 @@ fn iremotely_provisioned_key_cannot_be_deleted_test() -> anyhow::Result<()> {
     let remotely_provisioned_component = get_default_remotely_provisioned_component_service()?;
 
     let mut maced_public_key = MacedPublicKey { macedKey: vec![] };
-    let is_for_testing = false;
     let irpc_key_blob = remotely_provisioned_component
-        .generateEcdsaP256KeyPair(is_for_testing, &mut maced_public_key)
+        .generateEcdsaP256KeyPair(TEST_MODE, &mut maced_public_key)
         .context("generateEcdsaP256KeyPair() failed")?;
     assert!(!irpc_key_blob.is_empty());
     assert!(!maced_public_key.macedKey.is_empty());
