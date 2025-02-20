@@ -166,8 +166,8 @@ SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_core_base/sepolicy/sys
 SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/system_ext/public
 SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += device/google/sdv/sdv_core_base/sepolicy/system_ext/public
 PRODUCT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_core_base/sepolicy/product/private
-BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_core_base/sepolicy/vendor/
 BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/vendor
+BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_core_base/sepolicy/vendor/
 
 BOARD_USES_SYSTEM_EXTIMAGE := true
 BOARD_SYSTEM_EXTIMAGE_FILE_SYSTEM_TYPE := ext4
