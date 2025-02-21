@@ -11,6 +11,7 @@ SDV_IVI_SERVICES_SAMPLES_PACKAGES = \
     sdv_car_monitor_test_app_acl_policy_product \
     sdv_car_monitor_test_app_acl_policy_system \
     sdv_car_monitor_test_app_acl_policy_vendor \
+    sdv_dt_publisher_cpp_acl_textproto \
     sdv_vhal_proxy_publisher \
     sdv_vhal_proxy_subscriber \
     sunroof_server_acl_policy \
