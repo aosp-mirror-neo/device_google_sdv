@@ -64,7 +64,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     com.sdv.someip \
     sdv_integration_test_health_monitored_service \
     sdv_vsomeip_vehicle_health_monitor_sample_target \
-    telemetry_catalog-vsidl-config.binpb \
+    telemetry_catalog_protos_with_bp_file-vsidl-config.binpb \
     com.google.sdv.samples \
     com.google.sdv.rpcsamples \
 
