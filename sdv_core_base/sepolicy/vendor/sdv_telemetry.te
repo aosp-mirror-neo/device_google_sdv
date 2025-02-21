@@ -1,0 +1,4 @@
+# Copyright 2025 Google LLC
+
+# SDV Telemetry agent is a power state client
+typeattribute sdv_telemetry sdv_vpm_agent_notification_client;
