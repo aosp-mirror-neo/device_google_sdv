@@ -65,6 +65,8 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     sdv_integration_test_health_monitored_service \
     sdv_vsomeip_vehicle_health_monitor_sample_target \
     telemetry_catalog-vsidl-config.binpb \
+    com.google.sdv.samples \
+    com.google.sdv.rpcsamples \
 
 # TODO: b/361610453 - include in com.sdv.google.sample.logging
 SDV_CORE_SERVICES_SAMPLES_PACKAGES += structured_logging_sdv_rust_sample
