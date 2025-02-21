@@ -25,6 +25,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     com.sdv.google.sample.foo \
     com.sdv.google.sample.qux \
     com.sdv.google.sample.vsidl_provider \
+    com.sdv.google.sample.vsidl_vhal_proxy_integration \
     com.sdv.google.sample.someip \
     someip_samples_orch_config \
     cujs_orchestration_configurations \
