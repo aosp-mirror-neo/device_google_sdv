@@ -140,10 +140,16 @@ BOARD_MKBOOTIMG_INIT_ARGS += --header_version $(BOARD_INIT_BOOT_HEADER_VERSION)
 BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_PARTITION_LIST := system vendor system_ext product vendor_dlkm
 # reserve 512+256+128MiB for dynamic partition metadata
 BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_SIZE := 939524096
-# coverage builds use more space, add 256MiB more
+# coverage builds use more space, add 270MiB more
 ifeq ($(CLANG_COVERAGE),true)
   BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_SIZE := \
-    $(shell expr $(BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_SIZE) + 268435456)
+    $(shell expr $(BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_SIZE) + 283115520)
+endif
+
+# performance build requires more space for pubsub functionality, add 512MiB more
+ifeq ($(SDV_CORE_PERF_IMAGE),true)
+  BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_SIZE := \
+    $(shell expr $(BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_SIZE) + 536870912)
 endif
 
 # The super partition is sized to 2*dynamic partition size + overhead.
