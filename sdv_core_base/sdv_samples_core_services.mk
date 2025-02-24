@@ -47,6 +47,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     sdv_vsomeip_side_mirror_tester \
     sdv_vsomeip_pubsub_benchmark \
     sdv_vsomeip_road_sensor_tester \
+    sdv_vsomeip_object_sensor_tester \
     someip_rpc_someip_server \
     someip_rpc_sdv_server \
     orch_custom_mode_sample \
