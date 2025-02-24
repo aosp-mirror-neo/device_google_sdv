@@ -125,8 +125,9 @@ BOARD_KERNEL_CMDLINE += init=/init
 BOARD_BOOTCONFIG += androidboot.hardware=$(LOCAL_ANDROIDBOOT_HARDWARE)
 BOARD_BOOTCONFIG += \
     androidboot.init_rc=$(LOCAL_ANDROIDBOOT_INIT_RC)
+# TODO(b/398294139): Restore the value to 16KiB after the issue is resolved.
 BOARD_BOOTCONFIG += \
-    kernel.vmw_vsock_virtio_transport_common.virtio_transport_max_vsock_pkt_buf_size=16384
+    kernel.vmw_vsock_virtio_transport_common.virtio_transport_max_vsock_pkt_buf_size=4096
 BOARD_BOOTCONFIG += \
     androidboot.microdroid.debuggable=1 \
     androidboot.adb.enabled=1
