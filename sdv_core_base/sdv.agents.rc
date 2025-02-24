@@ -145,5 +145,5 @@ service sdv_telemetry_service_agent /vendor/bin/sdv_telemetry_service_agent
     disabled
     user system_ext_sdv_telemetry
     group system
-on property:dev.bootcomplete=1 && property:ro.build.product=sdv_core_cf
+on property:dev.bootcomplete=1 && property:ro.boot.sdv.telemetry.enabled=1
     start sdv_telemetry_service_agent
