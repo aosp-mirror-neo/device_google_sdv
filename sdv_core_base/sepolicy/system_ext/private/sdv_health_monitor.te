@@ -18,3 +18,8 @@ system_internal_prop(health_monitor_config_path_prop)
 get_prop(sdv_health_monitor, health_monitor_config_path_prop)
 # Init can set the health_monitor_config_path_prop property
 set_prop(init, health_monitor_config_path_prop)
+
+# Defines SDV HM service.
+type sdv_health_monitor_service, protected_service, service_manager_type;
+# SDV HM can register its Binder IPC services.
+add_service(sdv_health_monitor, sdv_health_monitor_service)
