@@ -131,6 +131,9 @@ BOARD_BOOTCONFIG += \
     androidboot.microdroid.debuggable=1 \
     androidboot.adb.enabled=1
 
+BOARD_BOOTCONFIG += \
+    androidboot.sdv.telemetry.enabled=1
+
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 BOARD_BOOT_HEADER_VERSION := 4
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)

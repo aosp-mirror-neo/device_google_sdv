@@ -21,3 +21,6 @@ sdv.vpm.platform.timeout_ms u:object_r:vpm_platform_timeout_prop:s0 exact int
 # The amount of time in ms that the platform execution will wait before it retries the suspend
 # RAM/DISK operation.
 sdv.vpm.platform.retry_interval_ms u:object_r:vpm_platform_retry_interval_prop:s0 exact int
+
+# Controls telemetry execution at start
+ro.boot.sdv.telemetry.enabled u:object_r:bootloader_prop:s0 exact bool
