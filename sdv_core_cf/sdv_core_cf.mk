@@ -27,10 +27,17 @@ PRODUCT_SYSTEM_PROPERTIES += ro.sdv.someip.broker_config=/system/etc/someip/brok
 # On arm64 architectures, init_open_dice runs on early init, consumes and wipes the open-dice
 # device. However, on x86, the open-dice device is not available, so init_open_dice_from_file reads
 # this content from a static sample DICE handover file added for testing and development.
+#
+# The dice_handover_instance[123] are to enable manual testing of the mesh described
+# in vvmconfig.example
+#
 # WARNING: init_open_dice_from_file must NOT be added to production targets
 SDV_OPEN_DICE_PROVIDER_PACKAGES := \
     init_open_dice_from_file \
     sample_dice_handover_file \
+    dice_handover_instance1 \
+    dice_handover_instance2 \
+    dice_handover_instance3
 
 include device/google/sdv/sdv_core_base/sdv_core_base.mk
 include device/google/sdv/sdv_cf/sdv_cf.mk
@@ -79,12 +86,6 @@ PRODUCT_PACKAGES += android.sdv.hardware.security.keymint-service.nonsecure
 # system/software_defined_vehicle/ (where the SDV KeyMint is located), so there would be no KeyMint
 # added to the device that tests the PDK.
 SDV_BASE_SERVICES_PACKAGES += android.sdv.hardware.security.keymint-service.nonsecure
-
-# Enable manual testing of the mesh described in vvmconfig.example
-PRODUCT_PACKAGES += \
-    dice_handover_instance1 \
-    dice_handover_instance2 \
-    dice_handover_instance3 \
 
 # Sample implementations of the SOME/IP stack and Diagnostics agent
 PRODUCT_PACKAGES += \

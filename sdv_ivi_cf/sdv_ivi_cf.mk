@@ -16,10 +16,17 @@ LOCAL_VHAL_PRODUCT_PACKAGE := android.hardware.automotive.vehicle@V1-sdv-emulato
 # On arm64 architectures, init_open_dice runs on early init, consumes and wipes the open-dice
 # device. However, on x86, the open-dice device is not available, so init_open_dice_from_file reads
 # this content from a static sample DICE handover file added for testing and development.
+#
+# The dice_handover_instance[123] are to enable manual testing of the mesh described
+# in vvmconfig.example
+#
 # WARNING: init_open_dice_from_file must NOT be added to production targets
 SDV_OPEN_DICE_PROVIDER_PACKAGES := \
     init_open_dice_from_file \
     sample_dice_handover_file \
+    dice_handover_instance1 \
+    dice_handover_instance2 \
+    dice_handover_instance3
 
 include device/google/sdv/sdv_ivi_base/sdv_ivi_base.mk
 include device/google/sdv/sdv_base/sdv_samples_base_services.mk
@@ -58,9 +65,3 @@ SDV_IVI_SERVICES_PACKAGES += com.android.sdv.hardware.keymint.rust_nonsecure
 # Runtime Resource Overlay for Connectivity service.
 PRODUCT_PACKAGES += \
     sdv_ivi_cf_overlay_connectivity
-
-# Enable manual testing of the mesh described in vvmconfig.example
-PRODUCT_PACKAGES += \
-    dice_handover_instance1 \
-    dice_handover_instance2 \
-    dice_handover_instance3 \
