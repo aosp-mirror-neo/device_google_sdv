@@ -8,10 +8,13 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Whether the internal vehicle network should remain active even when no
          apps requested it. -->
-    <bool name="config_vehicleInternalNetworkAlwaysRequested">true</bool>
     <string-array translatable="false" name="config_ethernet_interfaces">
         <!-- Not metered, trusted, not vpn, vehicle internal, not vcn managed, restricted (implicit) -->
         <item>macsec0;11,14,15,27,28;</item>
+        <!-- VLAN for SDV-RPC, Transport Ethernet (3), Not metered, not restricted, trusted, not vpn, not vcn managed, not bandwitdh constrained -->
+        <!-- IP address has to be specified and should be configured to what the init scripts for the IVI VM set the IP address to -->
+        <!-- VLAN for SDV-RPC only works with Transport Ethernet (3) -->
+        <item>sdv_rpc;11,13,14,15,28,37;ip=192.168.101.4/24;3</item>
     </string-array>
-    <string translatable="false" name="config_ethernet_iface_regex">(eth|macsec)\\d+</string>
+    <string translatable="false" name="config_ethernet_iface_regex">eth1|macsec|sdv_rpc</string>
 </resources>

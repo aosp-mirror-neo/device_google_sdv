@@ -44,4 +44,10 @@ ip link add link "${NETWORK_INTERFACE}" name sdv_dt type vlan id 2
 ip netns add sdv_dt_ns
 ip link set sdv_dt netns sdv_dt_ns
 
+######################################################################################
+# create a VLAN for the RPC agent and keep it in the root namespace
+######################################################################################
+
+ip link add link "${NETWORK_INTERFACE}" name sdv_rpc type vlan id 3
+
 echo "sdv-ethernet-namespace-setup has started successfully"

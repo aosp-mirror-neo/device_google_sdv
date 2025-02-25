@@ -8,6 +8,7 @@ on post-fs-data
     exec_start sdv-ethernet-namespace-setup
     exec_start sdv-ethernet-sd-mesh-setup
     exec_start sdv-ethernet-dt-setup
+    exec_start sdv-ethernet-rpc-setup
 
 # This service sets up the main ethernet IP address and routing.
 # The routing for different network namespaces must to be set up in separate services.
@@ -41,9 +42,19 @@ service sdv-ethernet-sd-mesh-setup /product/bin/ethernet/ethernet_sd_mesh.sh
     stdio_to_kmsg
     oneshot
 
-# Setup routing rule for the sdv_dt_ns network namespace designated to data tunnel traffic.
+# Setup routing rule for the sdv_dt_ns network namespace designated to SDV DT traffic.
 service sdv-ethernet-dt-setup /product/bin/ethernet/ethernet_sdv_dt.sh
     enter_namespace net /mnt/run/sdv_dt_ns
+    class core
+    user root
+    group shell
+    # Redirect stdio to /dev/kmsg_debug to have logs. Does not work in user builds, because
+    # /dev/kmsg_debug doesn't exist and stdio is redirected to /dev/null instead.
+    stdio_to_kmsg
+    oneshot
+
+# Setup routing rule for the sdv_rpc_ns network namespace designated to SDV RPC traffic.
+service sdv-ethernet-rpc-setup /product/bin/ethernet/ethernet_sdv_rpc.sh
     class core
     user root
     group shell
