@@ -5,7 +5,4 @@ on boot
     # ro.boot.sdv.authz.enable.
     #
     # Defaults to true (i.e. enabled) if ro.boot.sdv.authz.enable is not set.
-    #
-    # TODO(b/373966583): This property should default to true once tests are
-    #                    written and cleaned.
     setprop sdv.authz.enable ${ro.boot.sdv.authz.enable:-true}
