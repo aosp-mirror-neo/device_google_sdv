@@ -88,15 +88,19 @@ PRODUCT_PACKAGES += android.sdv.hardware.security.keymint-service.nonsecure
 SDV_BASE_SERVICES_PACKAGES += android.sdv.hardware.security.keymint-service.nonsecure
 
 # Sample implementations of the SOME/IP stack and Diagnostics agent
-PRODUCT_PACKAGES += \
-    sdv_someip_stack_agent \
-    vsomeip_config.json \
+SDV_CORE_SERVICES_PACKAGES += \
     sdv_diagnostics_agent \
-    update_engine_product_partition_post_install \
-    update_engine_system_partition_post_install \
+    sdv_someip_stack_agent \
+    vsomeip_config.json
+
+SDV_AUTOMOTIVE_SERVICES_SAMPLES_PACKAGES += \
+    vepsm
+
+SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     sample_product_ota_postinstall_data \
     sample_system_ota_postinstall_data \
-    vepsm \
+    update_engine_product_partition_post_install \
+    update_engine_system_partition_post_install
 
 # This is a mock MACsec HAL implementation with keys embedded in it. Replace it with a vendor
 # specific HAL implementation.
