@@ -39,18 +39,6 @@ SDV_OPEN_DICE_PROVIDER_PACKAGES := \
     dice_handover_instance2 \
     dice_handover_instance3
 
-include device/google/sdv/sdv_core_base/sdv_core_base.mk
-include device/google/sdv/sdv_cf/sdv_cf.mk
-
-include device/google/sdv/sdv_base/sdv_samples_base_services.mk
-include device/google/sdv/sdv_base/sdv_sample_ethernet_setup.mk
-
-ifneq ($(SDV_CORE_PERF_IMAGE), true)
-    include device/google/sdv/sdv_core_base/sdv_samples_all.mk
-else
-    include device/google/sdv/sdv_core_base/sdv_performance_modules.mk
-endif
-
 # fstab.<name> must match with the value of the androidboot.hardware property.
 PRODUCT_COPY_FILES += \
     device/google/sdv/sdv_core_cf/fstab.sdv:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.sdv \
@@ -126,3 +114,15 @@ AB_OTA_POSTINSTALL_CONFIG += \
     POSTINSTALL_PATH_system=system/bin/update_engine_system_partition_post_install \
     FILESYSTEM_TYPE_system=ext4 \
     POSTINSTALL_OPTIONAL_system=false
+
+include device/google/sdv/sdv_core_base/sdv_core_base.mk
+include device/google/sdv/sdv_cf/sdv_cf.mk
+
+include device/google/sdv/sdv_base/sdv_samples_base_services.mk
+include device/google/sdv/sdv_base/sdv_sample_ethernet_setup.mk
+
+ifneq ($(SDV_CORE_PERF_IMAGE), true)
+    include device/google/sdv/sdv_core_base/sdv_samples_all.mk
+else
+    include device/google/sdv/sdv_core_base/sdv_performance_modules.mk
+endif
