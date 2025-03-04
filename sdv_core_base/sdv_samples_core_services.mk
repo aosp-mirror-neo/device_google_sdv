@@ -4,7 +4,7 @@
 #
 # These are not included in sdv_core_base.mk. Targets need to include them explicitly.
 
-SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
+SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     com.sdv.google.sample.apex.consumer \
     com.sdv.google.sample.apex.provider \
     com.sdv.google.sample.hello.apex \

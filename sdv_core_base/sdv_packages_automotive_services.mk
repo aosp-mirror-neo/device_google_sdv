@@ -3,7 +3,7 @@
 # All the packages from automotive_services/ required to be installed into the target
 # or made available to the host are placed here.
 
-SDV_AUTOMOTIVE_SERVICES_PACKAGES += \
+SDV_AUTOMOTIVE_SERVICES_PACKAGES = \
     sdv_vpm_agent \
     com.sdv.google.diagnostics \
     com.sdv.google.vpm \
