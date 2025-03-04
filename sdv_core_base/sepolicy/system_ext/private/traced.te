@@ -5,3 +5,8 @@ starting_at_board_api(202504, `
 typeattribute traced unconstrained_vsock_violators;
 ')
 allow traced self:vsock_socket { create_socket_perms_no_ioctl listen accept };
+
+# Allow traced/traced_relay to listen to tcp
+allow traced node:tcp_socket node_bind;
+allow traced port:tcp_socket { name_bind name_connect };
+allow traced self:tcp_socket { create_socket_perms_no_ioctl listen accept };
