@@ -37,7 +37,8 @@ SDV_BASE_SERVICES_PACKAGES += $(SDV_OPEN_DICE_PROVIDER_PACKAGES)
 SDV_BASE_SERVICES_HOST_PACKAGES = \
     sdv-cf \
     sdv-avb-lock \
-    sdv-provision-dev-mesh
+    sdv-provision-dev-mesh \
+    vvmconfig_generator \
 
 PRODUCT_PACKAGES += $(SDV_BASE_SERVICES_PACKAGES)
 
