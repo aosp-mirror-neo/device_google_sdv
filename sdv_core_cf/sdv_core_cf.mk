@@ -39,6 +39,18 @@ SDV_OPEN_DICE_PROVIDER_PACKAGES := \
     dice_handover_instance2 \
     dice_handover_instance3
 
+include device/google/sdv/sdv_core_base/sdv_core_base.mk
+include device/google/sdv/sdv_cf/sdv_cf.mk
+
+include device/google/sdv/sdv_base/sdv_samples_base_services.mk
+include device/google/sdv/sdv_base/sdv_sample_ethernet_setup.mk
+
+ifneq ($(SDV_CORE_PERF_IMAGE), true)
+    include device/google/sdv/sdv_core_base/sdv_samples_all.mk
+else
+    include device/google/sdv/sdv_core_base/sdv_performance_modules.mk
+endif
+
 # fstab.<name> must match with the value of the androidboot.hardware property.
 PRODUCT_COPY_FILES += \
     device/google/sdv/sdv_core_cf/fstab.sdv:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.sdv \
@@ -76,19 +88,15 @@ PRODUCT_PACKAGES += android.sdv.hardware.security.keymint-service.nonsecure
 SDV_BASE_SERVICES_PACKAGES += android.sdv.hardware.security.keymint-service.nonsecure
 
 # Sample implementations of the SOME/IP stack and Diagnostics agent
-SDV_CORE_SERVICES_PACKAGES += \
-    sdv_diagnostics_agent \
+PRODUCT_PACKAGES += \
     sdv_someip_stack_agent \
-    vsomeip_config.json
-
-SDV_AUTOMOTIVE_SERVICES_SAMPLES_PACKAGES += \
-    vepsm
-
-SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
+    vsomeip_config.json \
+    sdv_diagnostics_agent \
+    update_engine_product_partition_post_install \
+    update_engine_system_partition_post_install \
     sample_product_ota_postinstall_data \
     sample_system_ota_postinstall_data \
-    update_engine_product_partition_post_install \
-    update_engine_system_partition_post_install
+    vepsm \
 
 # This is a mock MACsec HAL implementation with keys embedded in it. Replace it with a vendor
 # specific HAL implementation.
@@ -118,15 +126,3 @@ AB_OTA_POSTINSTALL_CONFIG += \
     POSTINSTALL_PATH_system=system/bin/update_engine_system_partition_post_install \
     FILESYSTEM_TYPE_system=ext4 \
     POSTINSTALL_OPTIONAL_system=false
-
-include device/google/sdv/sdv_core_base/sdv_core_base.mk
-include device/google/sdv/sdv_cf/sdv_cf.mk
-
-include device/google/sdv/sdv_base/sdv_samples_base_services.mk
-include device/google/sdv/sdv_base/sdv_sample_ethernet_setup.mk
-
-ifneq ($(SDV_CORE_PERF_IMAGE), true)
-    include device/google/sdv/sdv_core_base/sdv_samples_all.mk
-else
-    include device/google/sdv/sdv_core_base/sdv_performance_modules.mk
-endif

@@ -8,7 +8,7 @@ ifeq ($(SDV_SOMEIP_BROKER_CONFIG),)
 endif
 
 
-SDV_CORE_SERVICES_PACKAGES += \
+SDV_CORE_SERVICES_PACKAGES = \
     libsdv_lifecycle_client_rust \
     libsdv_lifecycle_client_cpp \
     libsdv_config_provider \
