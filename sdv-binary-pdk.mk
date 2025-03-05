@@ -21,7 +21,12 @@ SDV_BINARY_PDK_PACKAGES := \
 
 SDV_BINARY_PDK_SAMPLES_PACKAGES :=
 
+SDV_BINARY_PDK_OEM_VARS ?=
+SDV_BINARY_PDK_OEM_HOST_VARS ?=
+
 sdv_binary_pdk_vars := \
+  $(SDV_BINARY_PDK_OEM_VARS) \
+  $(SDV_BINARY_PDK_OEM_HOST_VARS) \
   SDV_AUTOMOTIVE_SERVICES_HOST_PACKAGES \
   SDV_AUTOMOTIVE_SERVICES_HOST_SAMPLES_PACKAGES \
   SDV_AUTOMOTIVE_SERVICES_PACKAGES \
@@ -64,9 +69,13 @@ sdv-binary-pdk: $(sdv-binary-pdk-zip)
 $(sdv-binary-pdk-zip): $(sdv_binary_pdk_collector) $(sdv-all-targets-files) $(BUILT_SYSTEMIMAGE) $(BUILT_VENDORIMAGE_TARGET) $(BUILT_PRODUCTIMAGE_TARGET) $(BUILT_SYSTEM_EXTIMAGE_TARGET) $(MODULE_INFO_JSON) $(SOONG_ZIP)
 	$(hide) rm -rf $(sdv_binary_pdk_packages_dir)
 	$(hide) mkdir -p $(sdv_binary_pdk_packages_dir)
+
+  # TODO(b/400341311): remove the .txt variant once the generator is migrated
 	$(foreach var,$(sdv_binary_pdk_vars), \
 		$(call dump-words-to-file,$($(var)),$(sdv_binary_pdk_packages_dir)/$(var).txt) \
+		$(call dump-words-to-file,$($(var)),$(sdv_binary_pdk_packages_dir)/$(var)) \
 	)
+
 	$(hide) $(sdv_binary_pdk_collector) \
 		--target-name $(TARGET_DEVICE) \
 		--target-architecture $(sdv_binary_pdk_architecture) \
