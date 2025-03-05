@@ -2,3 +2,7 @@
 
 # SDV Telemetry agent is a power state client
 typeattribute sdv_telemetry sdv_vpm_agent_notification_client;
+
+vendor_internal_prop(vendor_sdv_telemetry_prop)
+get_prop(sdv_telemetry, vendor_sdv_telemetry_prop)
+set_prop(sdv_telemetry, vendor_sdv_telemetry_prop)
