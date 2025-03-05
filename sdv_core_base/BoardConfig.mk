@@ -36,20 +36,26 @@ BOARD_DO_NOT_STRIP_VENDOR_RAMDISK_MODULES := true
 # $(SYSTEM_DLKM_SRC) in May 2024, but remained in $(KERNEL_MODULES_PATH) until
 # Nov 2024, so including both with $(wildcard) just causes a build error before
 # the next prebuilts drop.
-BOARD_VENDOR_RAMDISK_KERNEL_MODULES := \
+BOARD_VENDOR_RAMDISK_KERNEL_MODULES = \
     $(KERNEL_MODULES_PATH)/failover.ko \
     $(KERNEL_MODULES_PATH)/net_failover.ko \
     $(KERNEL_MODULES_PATH)/virtio-rng.ko \
     $(KERNEL_MODULES_PATH)/virtio_net.ko \
-    $(SYSTEM_DLKM_SRC)/virtio_blk.ko \
-    $(SYSTEM_DLKM_SRC)/virtio_console.ko \
-    $(SYSTEM_DLKM_SRC)/virtio_pci.ko \
-    $(SYSTEM_DLKM_SRC)/virtio_pci_legacy_dev.ko \
-    $(SYSTEM_DLKM_SRC)/virtio_pci_modern_dev.ko \
-    $(SYSTEM_DLKM_SRC)/vmw_vsock_virtio_transport.ko \
 
-# GKI >5.15 will have and require virtio_pci_legacy_dev.ko
-BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(wildcard $(KERNEL_MODULES_PATH)/virtio_pci_legacy_dev.ko)
+ifeq ($(TARGET_KERNEL_USE), 6.1)
+EXTRA_KERNEL_MODULES_PATH := $(KERNEL_MODULES_PATH)
+else
+EXTRA_KERNEL_MODULES_PATH := $(SYSTEM_DLKM_SRC)
+endif
+
+BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
+    $(EXTRA_KERNEL_MODULES_PATH)/virtio_blk.ko \
+    $(EXTRA_KERNEL_MODULES_PATH)/virtio_console.ko \
+    $(EXTRA_KERNEL_MODULES_PATH)/virtio_pci.ko \
+    $(EXTRA_KERNEL_MODULES_PATH)/virtio_pci_legacy_dev.ko \
+    $(EXTRA_KERNEL_MODULES_PATH)/virtio_pci_modern_dev.ko \
+    $(EXTRA_KERNEL_MODULES_PATH)/vmw_vsock_virtio_transport.ko
+
 # GKI >6.4 will have an required vmw_vsock_virtio_transport_common.ko and vsock.ko
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES += \
     $(wildcard $(KERNEL_MODULES_PATH)/vmw_vsock_virtio_transport_common.ko) \
