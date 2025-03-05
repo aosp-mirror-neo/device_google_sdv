@@ -30,3 +30,8 @@ get_prop(sdv_vpm_agent, vpm_platform_timeout_prop)
 # cannot be accessed outside the of system(_ext) and product partitions.
 system_internal_prop(vpm_platform_retry_interval_prop)
 get_prop(sdv_vpm_agent, vpm_platform_retry_interval_prop)
+
+# Property that indicates the current power state.
+system_internal_prop(vpm_power_state_prop)
+# VPM is the only one agent that can set/get the current state.
+set_prop(sdv_vpm_agent, vpm_power_state_prop)
