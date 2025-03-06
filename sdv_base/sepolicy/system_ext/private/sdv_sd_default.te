@@ -64,6 +64,16 @@ allow sdv_sd_default vvmtruststorefs:dir rw_dir_perms;
 allow sdv_sd_default vvmtruststorefs:file create_file_perms;
 allow sdv_sd_default uds_pubs_file:file create_file_perms;
 
+# The uds_pubs_file is owned by SD, and it's sensitive for SDV mesh security, because it contains
+# the list of devices whose VMs can join the mesh. These devices must be authentic, the
+# uds_pubs_file does not grant trust/authenticity.
+neverallow {
+  domain
+  -init
+  -vendor_init
+  -sdv_sd_default
+} uds_pubs_file:file no_w_file_perms;
+
 # Privileged APIs. Only for SDV Gateway usage.
 
 # SDV privileged SD client and server can use Binder IPC.
