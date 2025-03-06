@@ -30,6 +30,7 @@ SDV_CORE_SERVICES_PACKAGES = \
     sdv_vsidl_provider_agent \
 
 SDV_CORE_SERVICES_HOST_PACKAGES += \
+    someip_translation_generator \
     vsidl_rc_generator \
     vsidlc
 
