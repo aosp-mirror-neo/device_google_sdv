@@ -34,6 +34,18 @@ include device/google/sdv/sdv_base/sdv_sample_ethernet_setup.mk
 include device/google/sdv/sdv_ivi_base/sdv_samples_ivi_services.mk
 include device/google/sdv/sdv_ivi_base/sdv_samples_ivi_telemetry.mk
 
+# Preprovisioned vvmtruststore content for /etc.
+# Used in test environments where properly mounting a vvmtruststore partition is
+# not supported.
+# Note that such a scheme makes no sense and must not exist production targets.
+PRODUCT_PACKAGES += \
+    vvmtruststore_instance1_uds_certs \
+    vvmtruststore_instance1_uds_pubs \
+    vvmtruststore_instance2_uds_certs \
+    vvmtruststore_instance2_uds_pubs \
+    vvmtruststore_instance3_uds_certs \
+    vvmtruststore_instance3_uds_pubs \
+
 # include ethernet.rc in init.rc file to start on boot for ivi
 PRODUCT_COPY_FILES += device/google/sdv/sdv_ivi_cf/ethernet/ethernet.sdv_ivi_cf.sh:$(TARGET_COPY_OUT_PRODUCT)/bin/ethernet/ethernet.sdv_ivi_cf.sh
 PRODUCT_COPY_FILES += device/google/sdv/sdv_ivi_cf/ethernet/ethernet.sdv_ivi_cf.rc:$(TARGET_COPY_OUT_PRODUCT)/etc/init/ethernet.sdv_ivi_cf.rc

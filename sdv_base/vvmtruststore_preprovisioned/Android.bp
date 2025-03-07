@@ -1,0 +1,68 @@
+// Copyright 2025 Google LLC
+
+package {
+    default_applicable_licenses: ["sdv_license"],
+}
+
+// Preprovisioned vvmtruststore content for /system_ext/etc
+//
+// To be used in test environments where properly mounting a vvmtruststore
+// partition is not technically possible.
+//
+// Not putting Android.bp files in the leaf subdirectories in order to
+// make updating them simpler. See README.md
+//
+// Note that basic authentication is not supported in this mode. Hence its files
+// (vm_certs and vm_private) are not being installed. There's no intention in
+// having it covered by automated tests.
+
+// instance1
+prebuilt_etc {
+    name: "vvmtruststore_instance1_uds_certs",
+    src: "instance1/vvmtruststore/uds_certs",
+    filename: "uds_certs",
+    sub_dir: "vvmtruststore/instance1",
+    system_ext_specific: true,
+}
+
+prebuilt_etc {
+    name: "vvmtruststore_instance1_uds_pubs",
+    src: "instance1/vvmtruststore/uds_pubs",
+    filename: "uds_pubs",
+    sub_dir: "vvmtruststore/instance1",
+    system_ext_specific: true,
+}
+
+// instance2
+prebuilt_etc {
+    name: "vvmtruststore_instance2_uds_certs",
+    src: "instance2/vvmtruststore/uds_certs",
+    filename: "uds_certs",
+    sub_dir: "vvmtruststore/instance2",
+    system_ext_specific: true,
+}
+
+prebuilt_etc {
+    name: "vvmtruststore_instance2_uds_pubs",
+    src: "instance2/vvmtruststore/uds_pubs",
+    filename: "uds_pubs",
+    sub_dir: "vvmtruststore/instance2",
+    system_ext_specific: true,
+}
+
+// instance3
+prebuilt_etc {
+    name: "vvmtruststore_instance3_uds_certs",
+    src: "instance3/vvmtruststore/uds_certs",
+    filename: "uds_certs",
+    sub_dir: "vvmtruststore/instance3",
+    system_ext_specific: true,
+}
+
+prebuilt_etc {
+    name: "vvmtruststore_instance3_uds_pubs",
+    src: "instance3/vvmtruststore/uds_pubs",
+    filename: "uds_pubs",
+    sub_dir: "vvmtruststore/instance3",
+    system_ext_specific: true,
+}

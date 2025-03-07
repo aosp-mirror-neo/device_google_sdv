@@ -6,7 +6,7 @@ ro.boot.sdv.instance_name u:object_r:bootloader_prop:s0 exact string
 ro.boot.sdv.boot_mode u:object_r:bootloader_prop:s0 exact enum locked unlocked
 ro.boot.sdv.vvmfactorytrust u:object_r:bootloader_prop:s0 exact string
 ro.boot.sdv.ignore_avb_state u:object_r:bootloader_prop:s0 exact bool
-ro.boot.sdv.preprovisioned_vvmtruststore u:object_r:bootloader_prop:s0 exact bool
+ro.boot.sdv.preprovisioned_vvmtruststore u:object_r:bootloader_prop:s0 exact enum img etc
 
 # The vsock_local_cid property is written by the vsock_local_cid service once, and then read by
 # data tunnel.
