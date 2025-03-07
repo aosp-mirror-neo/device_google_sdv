@@ -23,6 +23,10 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(KERNEL_MODULES_PATH)/virtio-gpu.ko
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(KERNEL_MODULES_PATH)/virtio_input.ko
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(KERNEL_MODULES_PATH)/virtio_snd.ko
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(KERNEL_MODULES_PATH)/v4l2loopback.ko
+ifneq ($(TARGET_KERNEL_USE), 6.1)
+BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(KERNEL_MODULES_PATH)/virtio-media.ko
+endif
+
 
 # Soong build flags that remove the GLES/Vulkan libraries dependency on the
 # full Android graphics stack and enable support for setting up the rendering
