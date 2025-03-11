@@ -219,6 +219,8 @@ include device/google/sdv/sdv_core_base/sdv_packages_telemetry.mk
 
 # Enable tracing and test services on userdebug and eng
 ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
+  # This property is required for unified multi-vm Perfetto tracing.
+  PRODUCT_SYSTEM_PROPERTIES += ro.traced.hypervisor=true
   # Traced is the Perfetto system tracing service.
   PRODUCT_SYSTEM_PROPERTIES += persist.traced.enable=1
   # This property sets the tags to a default disabled state.
