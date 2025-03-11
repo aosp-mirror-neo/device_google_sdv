@@ -1,4 +1,4 @@
-# Copyright 2023 Google LLC
+# Copyright 2023-2025 Google LLC
 #
 # Software-Defined Vehicle (SDV) is a headless vehicle Android OS.
 # The 'Core' device/product/model defines the base SDV functionality to be reused/inherited by other
@@ -168,16 +168,9 @@ PRODUCT_SYSTEM_PROPERTIES += \
     ro.hardware.type=automotive \
     ro.logd.size=8M
 
-# TODO: b/313827965 - Define proper deployment strategy for orch config
-# Path to the orchestrator configuration.
-# ?= sets it only if there are no other assignments yet, so we do not overwrite the value.
-PRODUCT_SYSTEM_EXT_PROPERTIES += \
-    persist.sdv.orchestrator_config_path?=etc/orch/orch_config.textproto
-
 ## Health Monitoring config
 SDV_HEALTH_MONITOR_CONFIG := hm_config.textproto
 PRODUCT_SYSTEM_PROPERTIES += sdv.health_monitor.config_path=/system/etc/health_monitor/hm_config.textproto
-
 
 # Configure power management.
 PRODUCT_SYSTEM_EXT_PROPERTIES += \
