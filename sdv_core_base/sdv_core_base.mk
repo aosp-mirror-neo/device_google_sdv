@@ -183,6 +183,7 @@ PRODUCT_SYSTEM_PROPERTIES += sdv.health_monitor.config_path=/system/etc/health_m
 PRODUCT_SYSTEM_EXT_PROPERTIES += \
     sdv.vpm.platform.timeout_ms=1000 \
     sdv.vpm.platform.retry_interval_ms=100 \
+    sdv.vpm.power.state=POWER_OFF_EXIT \
 
 # Networking tools
 PRODUCT_PACKAGES += \
