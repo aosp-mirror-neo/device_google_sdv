@@ -7,6 +7,7 @@
 SDV_CORE_SERVICES_SAMPLES_PACKAGES = \
     com.sdv.google.sample.apex.consumer \
     com.sdv.google.sample.apex.provider \
+    sdv_apex_update_sample_catalog_files-vsidl-config.binpb \
     com.sdv.google.sample.hello.apex \
     com.sdv.google.sample.test1 \
     com.sdv.google.sample.logging \
