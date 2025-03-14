@@ -17,7 +17,10 @@ sdv_binary_pdk_architecture := $(TARGET_ARCH)_$(TARGET_ARCH_VARIANT)$(sdv_binary
 # device, but we need them to compile a code (e.g., samples) on the binary PDK.
 SDV_BINARY_PDK_HOST_PACKAGES :=
 SDV_BINARY_PDK_HOST_SAMPLES_PACKAGES :=
+# com.sdv.google.gateway.client and libsdvgatewayclient
+# are already automatically included on ivi targets.
 SDV_BINARY_PDK_PACKAGES := \
+  com.sdv.google.gateway.client \
   libsdvgatewayclient
 
 SDV_BINARY_PDK_SAMPLES_PACKAGES :=
