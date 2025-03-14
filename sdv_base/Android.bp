@@ -8,3 +8,24 @@ vintf_compatibility_matrix {
         "sdv_product_compatibility_matrix.xml",
     ],
 }
+
+android_filesystem_defaults {
+    name: "vvmtruststore_filesystem_defaults",
+    mount_point: "/vvmtruststore",
+    partition_size: 1048576, // 1 MB
+    type: "ext4",
+    dist: {
+        targets: [
+            // TODO: b/404181563 - using automotive-sdv-tests is a hack to make the vvmtruststore
+            //       built on CI. Build sdv-custom-images on CI, and remove this dist target.
+            "automotive-sdv-tests",
+            "sdv-custom-images",
+        ],
+    },
+    no_full_install: true,
+}
+
+android_filesystem {
+    name: "vvmtruststore",
+    defaults: ["vvmtruststore_filesystem_defaults"],
+}
