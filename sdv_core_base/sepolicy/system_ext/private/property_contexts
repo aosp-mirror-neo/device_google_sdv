@@ -1,9 +1,10 @@
-# Copyright 2024 Google LLC
+# Copyright 2024-2025 Google LLC
 
-# TODO: b/313827965 - Define proper deplyoment strategy for orch config
-# The orchestrator_config_path_prop is set only by init and read by orchestrator to configure the
-# path to the configuration file.
-persist.sdv.orchestrator_config_path u:object_r:orchestrator_config_path_prop:s0
+# The property to configure the path to the SDV Orchestrator agent configuration file.
+persist.sdv.orchestrator_config_path u:object_r:orchestrator_config_path_prop:s0 exact string
+# The property to provide the initial value of `persist.sdv.orchestrator_config_path`.
+# See `sdv_core_base/sdv.agents.rc` for more details.
+ro.boot.sdv.orchestrator_config_path u:object_r:bootloader_prop:s0 exact string
 
 # The health_monitor_config_path_prop is set only by init and read by Heath Monitor to configure the
 # path to the configuration file.

@@ -1,4 +1,4 @@
-# Copyright 2024 Google LLC
+# Copyright 2024-2025 Google LLC
 #
 # SDV Core's init .rc file which is used to start SDV specific services.
 
@@ -25,6 +25,26 @@ service sdv_lifecycle_agent /system_ext/bin/sdv_lifecycle_agent
     capabilities SYS_NICE KILL SETUID SETGID CHOWN
 on property:dev.bootcomplete=1
     start sdv_lifecycle_agent
+
+# SDV Orchestrator configuration has `ro.boot` and `persist` property.
+#
+# The `persist` property is directly used by SDV Orchestrator agent
+# as a path to the orchestrator configuration file.
+# The `persist` is persisted across reboots.
+# The `persist` can be replaced in runtime for some specific scenarios, like e2e tests.
+#
+# The `ro.boot` property is a boot time property that can be set,
+# for example, using the `extra_bootconfig_args` when using Cuttlefish.
+# The `ro.boot` value is propagated to the `persist` property, but ONLY when the `persist` is empty.
+#
+# For example, in the basic scenario, - during the very 1st system boot the `persist` property
+# is empty and the `ro.boot` property value is propagated to the `persist`.
+#
+# If both `ro.boot` and `persist` properties are empty, the default value
+# `/system/etc/orch/orch_config.textproto` is used.
+on property:persist.sdv.orchestrator_config_path=""
+    setprop persist.sdv.orchestrator_config_path \
+        ${ro.boot.sdv.orchestrator_config_path:-/system/etc/orch/orch_config.textproto}
 
 # Declare and start the SDV Orchestrator agent.
 service sdv_orchestration_agent /system_ext/bin/sdv_orchestration_agent

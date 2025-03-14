@@ -1,4 +1,4 @@
-# Copyright 2023-2024 Google LLC
+# Copyright 2023-2025 Google LLC
 
 # Put here the common configurations between all SDV core targets:
 # * sdv_core_arm64
@@ -170,7 +170,7 @@ ifeq ($(SDV_CORE_PERF_IMAGE),true)
 endif
 
 # The super partition is sized to 2*dynamic partition size + overhead.
-# Double dynamic parititon accounts for A/B slots for updates.
+# Double dynamic partition accounts for A/B slots for updates.
 # Overhead is 4 MiB as recommended in
 # https://source.android.com/docs/core/ota/dynamic_partitions/implement#dyanimic-partitions-sizing
 BOARD_SUPER_PARTITION_SIZE := \
