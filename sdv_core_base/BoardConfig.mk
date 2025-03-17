@@ -243,9 +243,18 @@ AB_OTA_PARTITIONS := \
 
 BOARD_ROOT_EXTRA_FOLDERS := vvmtruststore
 
-# "m custom_images" must be called for that image to be created.
-PRODUCT_CUSTOM_IMAGE_MAKEFILES += \
-  device/google/sdv/sdv_base/vvmtruststore.mk
+# Makes the vvmtruststore image installed to the $OUT directory on build and included in the
+# sdv_core_*-img-*.zip on disting.
+BOARD_CUSTOMIMAGES_PARTITION_LIST += vvmtruststore
+
+# Must tell the build system where to find the build artifact of the vvmtruststore image.
+ifeq ($(CLANG_COVERAGE),true)
+  VARIANT_DIR = android_common_cov
+else
+  VARIANT_DIR = android_common
+endif
+BOARD_VVMTRUSTSTORE_IMAGE_LIST := \
+  $(OUT_DIR)/soong/.intermediates/device/google/sdv/sdv_base/vvmtruststore/$(VARIANT_DIR)/vvmtruststore.img
 
 # Have SD Agent on SDV read ACL file mappings from Service Bundle Registry
 $(call soong_config_set,sdv_authz,acl_provider_type,sdv_acl_provider)
