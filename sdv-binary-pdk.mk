@@ -3,6 +3,7 @@
 sdv_binary_pdk_dir := $(PRODUCT_OUT)/sdv-binary-pdk
 sdv_binary_pdk_collector := $(HOST_OUT)/bin/binary_pdk_collector
 sdv-binary-pdk-zip := $(sdv_binary_pdk_dir)/sdv-binary-pdk.zip
+sdv_binary_pdk_file_report := $(sdv_binary_pdk_dir)/file_report.txt
 sdv_binary_pdk_packages_dir := $(sdv_binary_pdk_dir)/packages
 sdv_binary_pdk_archive_dir := $(sdv_binary_pdk_dir)/archive
 sdv_binary_pdk_cpu_variant_suffix := $(if $(filter generic,$(TARGET_CPU_VARIANT)),,$(addprefix _,$(TARGET_CPU_VARIANT)))
@@ -66,6 +67,8 @@ sdv-all-targets-files := $(foreach m, $(sdv-all-targets), $(sort $(ALL_MODULES.$
 sdv-binary-pdk: module-info $(sdv_binary_pdk_collector) $(sdv-all-targets) $(sdv-binary-pdk-zip)
 sdv-binary-pdk: $(sdv-binary-pdk-zip)
 
+$(sdv-binary-pdk-zip): .KATI_IMPLICIT_OUTPUTS := $(sdv_binary_pdk_file_report)
+
 $(sdv-binary-pdk-zip): $(sdv_binary_pdk_collector) $(sdv-all-targets-files) $(BUILT_SYSTEMIMAGE) $(BUILT_VENDORIMAGE_TARGET) $(BUILT_PRODUCTIMAGE_TARGET) $(BUILT_SYSTEM_EXTIMAGE_TARGET) $(MODULE_INFO_JSON) $(SOONG_ZIP)
 	$(hide) rm -rf $(sdv_binary_pdk_packages_dir)
 	$(hide) mkdir -p $(sdv_binary_pdk_packages_dir)
@@ -94,6 +97,9 @@ $(call add-clean-step, rm -rf $(sdv_binary_pdk_dir))
 
 $(call dist-for-goals, sdv-binary-pdk, \
 	$(sdv-binary-pdk-zip):sdv-binary-pdk/sdv-binary-pdk.zip \
+)
+$(call dist-for-goals, sdv-binary-pdk, \
+	$(sdv_binary_pdk_file_report):sdv-binary-pdk/file_report.txt \
 )
 
 $(call declare-1p-container,$(sdv-binary-pdk-zip),)
