@@ -16,34 +16,16 @@ BOARD_ROOT_EXTRA_FOLDERS := vvmtruststore
 # The network interface RPC should use to retrieve its local IP address.
 BOARD_BOOTCONFIG += androidboot.sdv.rpc.interface=eth1
 
-# Makes the vvmtruststore image installed to the $OUT directory on build and included in the
-# sdv_ivi_cf-img-*.zip on disting.
-BOARD_CUSTOMIMAGES_PARTITION_LIST += vvmtruststore
-
-# Must tell the build system where to find the build artifacts of the images.
-BOARD_VVMTRUSTSTORE_IMAGE_LIST := \
-  $(OUT_DIR)/soong/.intermediates/device/google/sdv/sdv_base/vvmtruststore/android_common/vvmtruststore.img
+# "m custom_images" must be called for that image to be created.
+PRODUCT_CUSTOM_IMAGE_MAKEFILES += \
+  device/google/sdv/sdv_base/vvmtruststore.mk
 
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/samples/system_ext/private
 PRODUCT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/samples/product/private
 
 # Pre-provisioned vvmstruststore images for ease of testing.
-
-# Makes the image installed to the $OUT directory on build and included in the
-# sdv_ivi_cf-img-*.zip on disting.
-BOARD_CUSTOMIMAGES_PARTITION_LIST += \
-  vvmtruststore_preprovisioned_instance1 \
-  vvmtruststore_preprovisioned_instance2 \
-  vvmtruststore_preprovisioned_instance3
-
-VVMTRUSTSTORE_PREPROVISIONED_INTERMEDIATE_DIR := \
-  $(OUT_DIR)/soong/.intermediates/device/google/sdv/sdv_base/vvmtruststore_preprovisioned
-
-BOARD_VVMTRUSTSTORE_PREPROVISIONED_INSTANCE1_IMAGE_LIST := \
-  $(VVMTRUSTSTORE_PREPROVISIONED_INTERMEDIATE_DIR)/vvmtruststore_preprovisioned_instance1/android_common/vvmtruststore_preprovisioned_instance1.img
-
-BOARD_VVMTRUSTSTORE_PREPROVISIONED_INSTANCE2_IMAGE_LIST := \
-  $(VVMTRUSTSTORE_PREPROVISIONED_INTERMEDIATE_DIR)/vvmtruststore_preprovisioned_instance2/android_common/vvmtruststore_preprovisioned_instance2.img
-
-BOARD_VVMTRUSTSTORE_PREPROVISIONED_INSTANCE3_IMAGE_LIST := \
-  $(VVMTRUSTSTORE_PREPROVISIONED_INTERMEDIATE_DIR)/vvmtruststore_preprovisioned_instance3/android_common/vvmtruststore_preprovisioned_instance3.img
+# "m custom_images" must be called for these images to be created.
+PRODUCT_CUSTOM_IMAGE_MAKEFILES += \
+  device/google/sdv/sdv_base/vvmtruststore_preprovisioned/vvmtruststore_preprovisioned_instance1.mk \
+  device/google/sdv/sdv_base/vvmtruststore_preprovisioned/vvmtruststore_preprovisioned_instance2.mk \
+  device/google/sdv/sdv_base/vvmtruststore_preprovisioned/vvmtruststore_preprovisioned_instance3.mk

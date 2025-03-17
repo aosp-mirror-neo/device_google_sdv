@@ -108,12 +108,12 @@ PRODUCT_PACKAGES += \
 # Note that such a scheme makes no sense and must not exist in production
 # targets.
 PRODUCT_PACKAGES += \
-    vvmtruststore_instance1_etc_uds_certs \
-    vvmtruststore_instance1_etc_uds_pubs \
-    vvmtruststore_instance2_etc_uds_certs \
-    vvmtruststore_instance2_etc_uds_pubs \
-    vvmtruststore_instance3_etc_uds_certs \
-    vvmtruststore_instance3_etc_uds_pubs
+    vvmtruststore_instance1_uds_certs \
+    vvmtruststore_instance1_uds_pubs \
+    vvmtruststore_instance2_uds_certs \
+    vvmtruststore_instance2_uds_pubs \
+    vvmtruststore_instance3_uds_certs \
+    vvmtruststore_instance3_uds_pubs \
 
 # This is a mock MACsec HAL implementation with keys embedded in it. Replace it with a vendor
 # specific HAL implementation.
