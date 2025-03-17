@@ -34,11 +34,9 @@ rm -rf instance3/vvmtruststore
 adb -s 0.0.0.0:6522 pull /vvmtruststore instance3/vvmtruststore
 ```
 
-#### Update makefiles
+#### Update the Soong modules
 
-Edit `vvmtruststore_preprovisioned_instance1.mk`,
-`vvmtruststore_preprovisioned_instance2.mk` and
-`vvmtruststore_preprovisioned_instance3.mk`, if needed.
+Edit the `Android.bp`, if needed.
 
 #### Update sdv-cf script
 
