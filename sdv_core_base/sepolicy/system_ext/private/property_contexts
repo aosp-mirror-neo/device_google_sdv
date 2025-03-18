@@ -6,6 +6,18 @@ persist.sdv.orchestrator_config_path u:object_r:orchestrator_config_path_prop:s0
 # See `sdv_core_base/sdv.agents.rc` for more details.
 ro.boot.sdv.orchestrator_config_path u:object_r:bootloader_prop:s0 exact string
 
+# Property set when orchestrator established the subscription to power modes successfully.
+# This indicates the first time that the subscription is complete and ready to receive requests.
+# The value of the property being true does not garantee that the connection to VPM is valid
+# (as VPM could have crashed) and messages can still be lost.
+sdv.orchestrator.bootup.power_mode.ready u:object_r:orchestrator_power_boot_complete_prop:s0 exact bool
+
+# Property set when orchestrator established the subscription to vehicle modes successfully.
+# This indicates the first time that the subscription is complete and ready to receive requests.
+# The value of the property being true does not garantee that the connection to VPM is valid
+# (as VPM could have crashed) and messages can still be lost.
+sdv.orchestrator.bootup.vehicle_mode.ready u:object_r:orchestrator_vehicle_boot_complete_prop:s0 exact bool
+
 # The health_monitor_config_path_prop is set only by init and read by Heath Monitor to configure the
 # path to the configuration file.
 sdv.health_monitor.config_path u:object_r:health_monitor_config_path_prop:s0

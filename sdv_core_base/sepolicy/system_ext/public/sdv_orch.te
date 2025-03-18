@@ -1,0 +1,7 @@
+# Copyright 2025 Google LLC
+
+# Property that indicates that power modes can be received.
+system_restricted_prop(orchestrator_power_boot_complete_prop)
+
+# Property that indicates that vehicle modes can be received.
+system_restricted_prop(orchestrator_vehicle_boot_complete_prop)

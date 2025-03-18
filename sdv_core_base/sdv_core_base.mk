@@ -168,6 +168,13 @@ PRODUCT_SYSTEM_PROPERTIES += \
     ro.hardware.type=automotive \
     ro.logd.size=8M
 
+# Properties set to true the first time orch establishes a connection to power and
+# vehicle modes (VPM)
+# Check property_context for more information about these properties
+PRODUCT_SYSTEM_EXT_PROPERTIES += \
+    sdv.orchestrator.bootup.power_mode.ready=false \
+    sdv.orchestrator.bootup.vehicle_mode.ready=false
+
 ## Health Monitoring config
 SDV_HEALTH_MONITOR_CONFIG := hm_config.textproto
 PRODUCT_SYSTEM_PROPERTIES += sdv.health_monitor.config_path=/system/etc/health_monitor/hm_config.textproto
