@@ -5,6 +5,7 @@
 # These are not included in sdv_core_base.mk. Targets need to include them explicitly.
 
 SDV_PERF_PACKAGES = \
+    com.sdv.google.performance.unit_type_owner \
     performance_custom_mode_dispatcher \
     com.sdv.google.performance.apex0 \
     com.sdv.google.performance.apex1 \
