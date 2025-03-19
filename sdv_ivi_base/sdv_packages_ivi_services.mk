@@ -8,11 +8,13 @@
 SDV_IVI_SERVICES_PACKAGES = \
     libsdvgatewayclient \
     libsdvgatewayclient_jni \
-    libsdvgatewayclient_jni_vendor \
     libsdvgatewayclient_jni_product \
+    libsdvgatewayclient_jni_vendor \
+    libsdvgatewaynetworking_jni \
     libvhal_proxy \
     libvhal_proxy_config_loader \
-    sdv_gateway
+    sdv_gateway \
+    sdv_gatewaynetworking_service
 
 # Vehicle HAL is already included in PRODUCT_PACKAGES, but it must also be part of
 # SDV_IVI_SERVICES_PACKAGES for inclusion in the PDK binary as well.

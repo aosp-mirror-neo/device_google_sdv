@@ -14,7 +14,7 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(TARGET_KERNEL_MODULES_PATH)/macsec.ko
 BOARD_ROOT_EXTRA_FOLDERS := vvmtruststore
 
 # The network interface RPC should use to retrieve its local IP address.
-BOARD_BOOTCONFIG += androidboot.sdv.rpc.interface=eth1
+BOARD_BOOTCONFIG += androidboot.sdv.rpc.interface=sdv_rpc
 
 # Makes the vvmtruststore image installed to the $OUT directory on build and included in the
 # sdv_ivi_cf-img-*.zip on disting.
