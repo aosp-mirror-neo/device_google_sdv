@@ -7,7 +7,7 @@
 # components (vsock, ipv4, etc.) SDV Comms stack components (SDV Service
 # Discovery, Data Tunnel, etc.).
 
-SDV_BASE_SERVICES_PACKAGES = \
+SDV_BASE_SERVICES_PACKAGES += \
     dt_agent \
     sdv_dt_agent_acl_textproto \
     libsdv_authz_policy \
@@ -34,7 +34,7 @@ endif
 SDV_BASE_SERVICES_PACKAGES += $(SDV_OPEN_DICE_PROVIDER_PACKAGES)
 
 # Command line tools to help with development and manual testing.
-SDV_BASE_SERVICES_HOST_PACKAGES = \
+SDV_BASE_SERVICES_HOST_PACKAGES += \
     sdv-cf \
     sdv-avb-lock \
     sdv-provision-dev-mesh \

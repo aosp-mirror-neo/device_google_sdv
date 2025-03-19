@@ -5,7 +5,7 @@
 #
 
 # Components in core_services/ specific to SDV_IVI target
-SDV_IVI_SERVICES_PACKAGES = \
+SDV_IVI_SERVICES_PACKAGES += \
     libsdvgatewayclient \
     libsdvgatewayclient_jni \
     libsdvgatewayclient_jni_vendor \
@@ -28,7 +28,7 @@ ifeq ($(SDV_OPEN_DICE_PROVIDER_PACKAGES),)
 endif
 SDV_IVI_SERVICES_PACKAGES += $(SDV_OPEN_DICE_PROVIDER_PACKAGES)
 
-SDV_IVI_SERVICES_HOST_PACKAGES = \
+SDV_IVI_SERVICES_HOST_PACKAGES += \
     vsidl_rc_generator \
     vsidlc \
 

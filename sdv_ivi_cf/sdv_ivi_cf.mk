@@ -28,6 +28,12 @@ SDV_OPEN_DICE_PROVIDER_PACKAGES := \
     dice_handover_instance2 \
     dice_handover_instance3
 
+# The SDV KeyMint must be added to the PDK, because the PDK is tested without the sources in
+# system/software_defined_vehicle/ (where the SDV KeyMint is located), so the SDV KeyMint won't be
+# added to the device that tests the PDK.
+SDV_IVI_SERVICES_PACKAGES += com.android.sdv.hardware.keymint.rust_nonsecure
+
+
 include device/google/sdv/sdv_ivi_base/sdv_ivi_base.mk
 include device/google/sdv/sdv_base/sdv_samples_base_services.mk
 include device/google/sdv/sdv_base/sdv_sample_ethernet_setup.mk
@@ -68,11 +74,6 @@ PRODUCT_PACKAGES += com.android.sdv.hardware.keymint.rust_nonsecure
 # https://source.android.com/docs/core/ota/vendor-apex#apex_selection_at_bootup
 PRODUCT_VENDOR_PROPERTIES += \
     persist.vendor.apex.com.android.hardware.keymint=com.android.sdv.hardware.keymint.rust_nonsecure
-
-# The SDV KeyMint must be added to the PDK, because the PDK is tested without the sources in
-# system/software_defined_vehicle/ (where the SDV KeyMint is located), so the SDV KeyMint won't be
-# added to the device that tests the PDK.
-SDV_IVI_SERVICES_PACKAGES += com.android.sdv.hardware.keymint.rust_nonsecure
 
 # Runtime Resource Overlay for Connectivity service.
 PRODUCT_PACKAGES += \
