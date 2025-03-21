@@ -188,12 +188,6 @@ on late-fs
     # Mount RW partitions which need run fsck
     mount_all --late
 
-    # Crucial boot-time check: Marks a successful A/B update if valid
-    # Placed here as the earliest point in init where it's feasible to run:
-    #  - HAL must be up (for IBootControl access)
-    #  - All writable partitions (data, metadata, misc) mounted (needed to read 'care_map.pb')
-    exec_start update_verifier
-
 on late-fs && property:ro.debuggable=1
     # Ensure that tracefs has the correct permissions.
     # This does not work correctly if it is called in post-fs.
@@ -334,6 +328,13 @@ on post-fs-data
     mkdir /data/misc/apexdata 0711 root root
     mkdir /data/misc/apexrollback 0700 root root
 
+    # Create the OTA package directory. It will be accessed by SDV Update Manager,
+    # update_engine and update_verifier.
+    # The "cache" group is only needed for GmsCore, which is not part of SDV Core.
+    # However, it's still used here to be in line with the Core Android
+    # configuration (see system/core/rootdir/init.rc).
+    mkdir /data/ota_package 0770 system cache encryption=Require
+
     # Wait for apexd to finish activating APEXes before starting more processes.
     wait_for_prop apexd.status activated
     perform_apex_config
@@ -347,6 +348,13 @@ on post-fs-data
 
     # Update dm-verity state and set partition.*.verified properties.
     verity_update_state
+
+    # Crucial boot-time check: Marks a successful A/B update if valid
+    # Placed here as the earliest point in init where it's feasible to run:
+    #  - HAL must be up (for IBootControl access)
+    #  - All writable partitions (data, metadata, misc) mounted and encryption
+    #    is setup (needed to read 'care_map.pb')
+    exec_start update_verifier
 
 on boot
     ifup lo
