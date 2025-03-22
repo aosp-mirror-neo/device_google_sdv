@@ -11,8 +11,13 @@ allow sdv_dt_agent sdv_transport_support_service:service_manager find;
 # Allow the Data Tunnel Agent to use the RPC Agent.
 typeattribute sdv_dt_agent sdv_rpcagent_client;
 
+# Allow DT clients to use pipes and shared mem created by DT Agent.
 allow sdv_dt_client sdv_dt_agent:fifo_file { read write };
 allow sdv_dt_client sdv_dt_agent:fd use;
+
+# Allow DT clients to use fds created by other DT clients, needed for
+# shared mem segments for topic FMQs that are created in pub process.
+allow sdv_dt_client sdv_dt_client:fd use;
 
 # Data Tunnel Agent can use sockets
 net_domain(sdv_dt_agent)
