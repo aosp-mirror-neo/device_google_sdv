@@ -259,6 +259,16 @@ on post-fs-data
     # by the 'load_persist_props' call above.
     trigger load_persist_props_action
 
+    # Set the global log level property to INFO. This is needed due to
+    # interactions between Rust logging crates' use of global state and Android
+    # linker namespaces.
+    #
+    # This can be overridden per specific tag by setting `log.tag.TAG` system
+    # property, or globally by setting persist.log.tag and rebooting.
+    # We conditionally set log.tag here rather than always setting
+    # persist.log.tag to avoid writing to userdata partition.
+    setprop log.tag ${persist.log.tag:-INFO}
+
     # A directory for storage for service bundles
     # TODO: b/367934029 - eventually, all service bundles will have their own, isolated directory
     # within this directory, and service bundles won't be able to directly write
