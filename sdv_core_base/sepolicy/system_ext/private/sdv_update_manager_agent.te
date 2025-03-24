@@ -54,3 +54,6 @@ hal_client_domain(sdv_update_manager_agent, hal_bootctl);
 type sdv_um_metadata_file, file_type;
 allow sdv_update_manager_agent sdv_um_metadata_file:dir create_dir_perms;
 allow sdv_update_manager_agent sdv_um_metadata_file:file create_file_perms;
+
+# Update Manager is a power state client
+typeattribute sdv_update_manager_agent sdv_vpm_agent_notification_client;
