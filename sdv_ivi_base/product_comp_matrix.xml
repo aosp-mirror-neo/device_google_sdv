@@ -9,4 +9,12 @@
             <instance>default</instance>
         </interface>
     </hal>
+    <hal format="aidl">
+        <name>google.sdv.privileged.gatewaynetworking</name>
+        <version>1</version>
+        <interface>
+            <name>IPrivilegedGatewayNetworking</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
 </compatibility-matrix>

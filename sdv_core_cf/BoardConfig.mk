@@ -28,7 +28,7 @@ BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_core_cf/sepolicy/vendor
 BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_core_base/sepolicy/samples/vendor
 
 # The network interface RPC should use to retrieve its local IP address.
-BOARD_BOOTCONFIG += androidboot.sdv.rpc.interface=eth1
+BOARD_BOOTCONFIG += androidboot.sdv.rpc.interface=sdv_rpc
 
 # SDV OemUpdater block device properties.
 BOARD_BOOTCONFIG += \

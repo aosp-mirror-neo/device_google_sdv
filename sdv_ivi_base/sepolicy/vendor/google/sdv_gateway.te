@@ -10,6 +10,8 @@ typeattribute sdv_gateway sdv_gateway_server;
 
 # SDV Gateway can register the ISdvGateway service.
 add_service(sdv_gateway_server, sdv_gateway_service)
+# SDV Gateway can register the IPrivilegedGatewayNetworking service.
+add_service(sdv_gateway_server, sdv_privileged_gatewaynetworking_service)
 
 # Allow the SDV Gateway domain to use Binder IPC
 binder_use(sdv_gateway_server);
