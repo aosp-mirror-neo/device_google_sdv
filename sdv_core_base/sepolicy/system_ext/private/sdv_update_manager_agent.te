@@ -33,9 +33,10 @@ allow sdv_update_manager_agent staging_data_file:file { create getattr open seta
 # Create, delete, read, and write directories in the /data/app-staging directory
 allow sdv_update_manager_agent staging_data_file:dir { add_name create getattr open read remove_name rmdir search write };
 
-# Read OTA zip file at /data/ota_package/. This matches update_engine's permissions.
-allow sdv_update_manager_agent ota_package_file:file r_file_perms;
-allow sdv_update_manager_agent ota_package_file:dir r_dir_perms;
+# Similar to how it's done in core Android by GMS Core, the SDV Update Manager
+# now writes care_map.pb to this location.
+allow sdv_update_manager_agent ota_package_file:file create_file_perms;
+allow sdv_update_manager_agent ota_package_file:dir rw_dir_perms;
 
 # Update Manager can call vdc
 domain_auto_trans(sdv_update_manager_agent, vdc_exec, vdc)
