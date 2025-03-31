@@ -4,7 +4,7 @@
 #
 # They are not included by sdv_base.mk, only by downstream targets.
 
-SDV_BASE_SERVICES_SAMPLES_PACKAGES = \
+SDV_BASE_SERVICES_SAMPLES_PACKAGES += \
     sdv_comms_client_rs \
     sdv_comms_dt_probe_rs \
     sdv_comms_sample_rpc_client_rs \
@@ -21,7 +21,7 @@ SDV_BASE_SERVICES_SAMPLES_PACKAGES = \
     sdv_vsidl_provider_query \
     vvmconfig.example \
 
-SDV_BASE_SERVICES_HOST_SAMPLES_PACKAGES =
+SDV_BASE_SERVICES_HOST_SAMPLES_PACKAGES +=
 
 PRODUCT_PACKAGES += $(SDV_BASE_SERVICES_SAMPLES_PACKAGES)
 

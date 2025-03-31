@@ -7,8 +7,12 @@ ifeq ($(SDV_SOMEIP_BROKER_CONFIG),)
   $(error $$SDV_SOMEIP_BROKER_CONFIG not set)
 endif
 
+ifeq ($(SDV_SOMEIP_AGENT_MODULES),)
+  $(warning $$SDV_SOMEIP_AGENT_MODULES is not set, so no SomeIP Agent will be installed. \
+    For a properly working system, make sure that an implementation will be installed!)
+endif
 
-SDV_CORE_SERVICES_PACKAGES = \
+SDV_CORE_SERVICES_PACKAGES += \
     libsdv_lifecycle_client_rust \
     libsdv_lifecycle_client_cpp \
     libsdv_config_provider \
@@ -21,6 +25,7 @@ SDV_CORE_SERVICES_PACKAGES = \
     sdv_update_manager_agent \
     sdv.sample.apex.fake.update.manager \
     sdv_health_monitor \
+    $(SDV_SOMEIP_AGENT_MODULES) \
     $(SDV_SOMEIP_BROKER_CONFIG) \
     com.sdv.google.health \
     com.sdv.google.orchestrator \

@@ -19,6 +19,12 @@ PRODUCT_DEVICE := sdv_core_cf
 TARGET_BOARD_INFO_FILE ?= device/google/sdv/sdv_core_cf/android-info.txt
 
 # Configuration file overrides
+# NOTE: Make sure to set all binary PDK related variables before other files are
+#       included (all variables that start with SDV_)!
+# Context: In most SDV makefiles, we are taking the content of those SDV variables
+#       and adding the current state of them to PRODUCT_PACKAGES and the like.
+#       Therefore, any updates to the SDV variables is not reflected in the
+#       PRODUCT packages variables.
 
 ## SOME/IP broker config
 SDV_SOMEIP_BROKER_CONFIG := broker_config.json
@@ -38,6 +44,24 @@ SDV_OPEN_DICE_PROVIDER_PACKAGES := \
     dice_handover_instance1 \
     dice_handover_instance2 \
     dice_handover_instance3
+
+# The SDV KeyMint must be added to the PDK, because the PDK is tested without the sources in
+# system/software_defined_vehicle/ (where the SDV KeyMint is located), so there would be no KeyMint
+# added to the device that tests the PDK.
+SDV_BASE_SERVICES_PACKAGES += android.sdv.hardware.security.keymint-service.nonsecure
+
+# Define the Soong modules we want to use for our default services
+SDV_VEHICLE_POWER_STATE_MANAGER_MODULE := vepsm
+SDV_DIAGNOSTICS_AGENT_MODULE := sdv_diagnostics_agent
+SDV_SOMEIP_AGENT_MODULES := \
+    sdv_someip_stack_agent \
+    vsomeip_config.json
+
+SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
+    sample_product_ota_postinstall_data \
+    sample_system_ota_postinstall_data \
+    update_engine_product_partition_post_install \
+    update_engine_system_partition_post_install
 
 include device/google/sdv/sdv_core_base/sdv_core_base.mk
 include device/google/sdv/sdv_cf/sdv_cf.mk
@@ -85,22 +109,6 @@ PRODUCT_COPY_FILES += \
 # A real implementation **must implement the TA in a secure environment**, as per CDD 9.11 [C-1-1]:
 # "MUST back up the keystore implementation with an isolated execution environment."
 PRODUCT_PACKAGES += android.sdv.hardware.security.keymint-service.nonsecure
-
-# The SDV KeyMint must be added to the PDK, because the PDK is tested without the sources in
-# system/software_defined_vehicle/ (where the SDV KeyMint is located), so there would be no KeyMint
-# added to the device that tests the PDK.
-SDV_BASE_SERVICES_PACKAGES += android.sdv.hardware.security.keymint-service.nonsecure
-
-# Sample implementations of the SOME/IP stack and Diagnostics agent
-PRODUCT_PACKAGES += \
-    sdv_someip_stack_agent \
-    vsomeip_config.json \
-    sdv_diagnostics_agent \
-    update_engine_product_partition_post_install \
-    update_engine_system_partition_post_install \
-    sample_product_ota_postinstall_data \
-    sample_system_ota_postinstall_data \
-    vepsm \
 
 # Preprovisioned vvmtruststore content for /etc.
 # Used in test environments where properly mounting a vvmtruststore partition is
