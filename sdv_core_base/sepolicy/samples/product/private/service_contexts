@@ -2,3 +2,6 @@
 
 # SDV Lifecycle Manager binder service used in integration tests.
 google.sdv.lifecycle.test.IServiceCallbackVerifier/default u:object_r:sdv_lc_test_service_manager_service:s0
+
+# ISdvAgent is an interface that agents use to provide dump.
+com.google.sdv.ISdvAgent/diagnostics u:object_r:sdv_diagnostics_agent_dump_service:s0

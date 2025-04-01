@@ -20,3 +20,6 @@ binder_call(sdv_diagnostics_agent, sdv_sbr)
 allow sdv_diagnostics_agent sdv_sbr_service:service_manager find;
 
 net_domain(sdv_diagnostics_agent)
+
+type sdv_diagnostics_agent_dump_service, protected_service, service_manager_type;
+add_service(sdv_diagnostics_agent, sdv_diagnostics_agent_dump_service)
