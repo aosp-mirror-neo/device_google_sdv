@@ -20,6 +20,6 @@ get_prop(sdv_health_monitor, health_monitor_config_path_prop)
 set_prop(init, health_monitor_config_path_prop)
 
 # Defines SDV HM service.
-type sdv_health_monitor_service, protected_service, service_manager_type;
+type sdv_health_monitor_dump_service, protected_service, service_manager_type;
 # SDV HM can register its Binder IPC services.
-add_service(sdv_health_monitor, sdv_health_monitor_service)
+add_service(sdv_health_monitor, sdv_health_monitor_dump_service)
