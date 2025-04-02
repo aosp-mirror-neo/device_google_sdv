@@ -11,5 +11,5 @@ allow sdv_vsidl_provider_agent sdv_transport_support_service:service_manager fin
 typeattribute sdv_vsidl_provider_agent sdv_dt_client;
 
 
-type sdv_vsidl_provider_agent_service, protected_service, service_manager_type;
-add_service(sdv_vsidl_provider_agent, sdv_vsidl_provider_agent_service)
+type sdv_vsidl_provider_agent_dump_service, protected_service, service_manager_type;
+add_service(sdv_vsidl_provider_agent, sdv_vsidl_provider_agent_dump_service)

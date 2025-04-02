@@ -23,4 +23,4 @@ google.sdv.data_tunnel.IAgentService/default u:object_r:sdv_dt_service:s0
 
 # ISdvAgent is an interface that agents use to provide dump.
 com.google.sdv.ISdvAgent/hm u:object_r:sdv_health_monitor_dump_service:s0
-com.google.sdv.ISdvAgent/vsidl_provider u:object_r:sdv_vsidl_provider_agent_service:s0
+com.google.sdv.ISdvAgent/vsidl_provider u:object_r:sdv_vsidl_provider_agent_dump_service:s0
