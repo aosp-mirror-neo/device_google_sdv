@@ -1,0 +1,17 @@
+# Copyright 2025 Google LLC
+
+type sdv_provisioning_tool_vendor, domain, coredomain;
+type sdv_provisioning_tool_vendor_exec, exec_type, vendor_file_type, file_type;
+
+# To showcase and test the policies defined in this file for using the SDV mesh provisioning, make
+# the shell transition to the sdv_provisioning_tool_vendor domain when executing its binary.
+domain_auto_trans_from_shell(sdv_provisioning_tool_vendor)
+
+# The sdv_provisioning_tool_vendor uses Binder to call the SDV mesh provisioning service
+binder_use(sdv_provisioning_tool_vendor)
+
+# Assign all the policies requires to use the SDV mesh provisioning service
+typeattribute sdv_provisioning_tool_vendor sdv_mesh_provisioning_client;
+
+# Assign all the policies requires to use the SDV mesh status service
+typeattribute sdv_provisioning_tool_vendor sdv_mesh_status_client;
