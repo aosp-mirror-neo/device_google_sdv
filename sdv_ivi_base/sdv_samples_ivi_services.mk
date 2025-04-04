@@ -6,6 +6,7 @@
 
 # Samples in core_services/ specific to SDV_IVI target
 SDV_IVI_SERVICES_SAMPLES_PACKAGES += \
+    com.sdv.google.sample.ivi.service \
     native_sdv_gateway_test_app \
     native_test_app_acl_policy \
     SdvCarMonitorTestApp_product \
