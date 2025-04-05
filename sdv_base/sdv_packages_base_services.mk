@@ -23,15 +23,9 @@ SDV_BASE_SERVICES_PACKAGES += \
     libsdv_dt_core \
     libsdv_status \
     rpcagent \
+    init_open_dice \
     sdv_sd_agent \
     vsock_local_cid \
-
-# The packages that provide the Android DICE chain for the SDV Mesh. Either init_open_dice or
-# init_open_dice_from_file and the associated files.
-ifeq ($(SDV_OPEN_DICE_PROVIDER_PACKAGES),)
-  $(error $$SDV_OPEN_DICE_PROVIDER_PACKAGES not set)
-endif
-SDV_BASE_SERVICES_PACKAGES += $(SDV_OPEN_DICE_PROVIDER_PACKAGES)
 
 # Command line tools to help with development and manual testing.
 SDV_BASE_SERVICES_HOST_PACKAGES += \
