@@ -31,19 +31,15 @@ SDV_SOMEIP_BROKER_CONFIG := broker_config.json
 PRODUCT_SYSTEM_PROPERTIES += ro.sdv.someip.broker_config=/system/etc/someip/broker_config.json
 
 # On arm64 architectures, init_open_dice runs on early init, consumes and wipes the open-dice
-# device. However, on x86, the open-dice device is not available, so init_open_dice reads this
-# content from a static sample DICE handover file added for testing and development.
-# TODO: b/409316775 - make the open-dice device available on x86 architectures.
+# device. However, on x86, the open-dice device is not available, so init_open_dice_from_file reads
+# this content from a static sample DICE handover file added for testing and development.
 #
-# The dice_handover_instance[1,2,3] are to enable manual testing of the mesh described in
-# vvmconfig.example.
-PRODUCT_PACKAGES += \
-    sample_dice_handover_file \
-    dice_handover_instance1 \
-    dice_handover_instance2 \
-    dice_handover_instance3
-# Adding the modules to the binary PDK as well.
-SDV_BASE_SERVICES_PACKAGES += \
+# The dice_handover_instance[123] are to enable manual testing of the mesh described
+# in vvmconfig.example
+#
+# WARNING: init_open_dice_from_file must NOT be added to production targets
+SDV_OPEN_DICE_PROVIDER_PACKAGES := \
+    init_open_dice_from_file \
     sample_dice_handover_file \
     dice_handover_instance1 \
     dice_handover_instance2 \
