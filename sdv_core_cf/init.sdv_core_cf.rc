@@ -4,7 +4,6 @@
 
 import /system/etc/init/init.sdv_core_base.rc
 import /system/etc/init/init.sdv_cf.rc
-import /system_ext/etc/init/init_open_dice_from_file.rc
 import /system/etc/init/vvmtruststore.rc
 
 # Memory profiler daemon. Does not starts automatically on boot, only when requested.

@@ -1,0 +1,25 @@
+# Copyright 2025 Google LLC
+
+# On arm64 architectures, init_open_dice loads an SDV DICE chain from the /dev/open-dice0 device
+# and doesn't use any of the command line arguments passed.
+#
+# On x86 architectures, init_open_dice loads an SDV DICE chain from /product/etc/<filename> where
+# <filename> is specified as a command line argument. This definition passes the value in the
+# ro.boot.sdv.init_open_dice.sample_file property, which makes init_open_dice load
+# /product/etc/${ro.boot.sdv.init_open_dice.sample_file}, or, if the property is unset, it passes
+# the `sample_dice_handover_file` string which makes init_open_dice load
+# /product/etc/sample_dice_handover_file.
+# TODO: b/409316775 - create an /dev/open-dice0 device on x86, and remove the command line
+#       arguments.
+# TODO: b/408956504 - merge this file into init_open_dice.rc.
+service init_open_dice /system_ext/bin/init_open_dice \
+        ${ro.boot.sdv.init_open_dice.sample_file:-sample_dice_handover_file}
+    class core
+    disabled
+    # logd is not available when init_open_dice is run, so it logs to stdio which is redirected to
+    # /dev/kmsg_debug. This option only works in userdebug and eng builds, because, in user builds,
+    # /dev/kmsg_debug doesn't exist and stdio is redirected to /dev/null instead.
+    stdio_to_kmsg
+    user system_ext_init_open_dice
+    group system
+    oneshot
