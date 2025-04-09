@@ -24,7 +24,6 @@ import /system/etc/init/keystore2.rc
 import /system/etc/init/sdv.agents.rc
 import /system_ext/etc/init/init_authz_property.rc
 import /system_ext/etc/init/init_open_dice.rc
-import /system_ext/etc/init/init_open_dice_service.rc
 # TODO: b/267320398 - this file does not exist in -user builds, but init can continue despite that.
 # Remove the import once we can rely on .rc files from /system/etc/init getting loaded
 # automatically.

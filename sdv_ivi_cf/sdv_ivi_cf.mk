@@ -14,27 +14,19 @@ PRODUCT_DEVICE := sdv_ivi_cf
 LOCAL_VHAL_PRODUCT_PACKAGE := android.hardware.automotive.vehicle@V1-sdv-emulator-service
 
 # On arm64 architectures, init_open_dice runs on early init, consumes and wipes the open-dice
-# device. However, on x86, the open-dice device is not available, so init_open_dice reads this
-# content from a static sample DICE handover file added for testing and development.
-# TODO: b/409316775 - make the open-dice device available on x86 architectures.
+# device. However, on x86, the open-dice device is not available, so init_open_dice_from_file reads
+# this content from a static sample DICE handover file added for testing and development.
 #
-# The dice_handover_instance[1,2,3] are to enable manual testing of the mesh described in
-# vvmconfig.example.
-PRODUCT_PACKAGES += \
+# The dice_handover_instance[123] are to enable manual testing of the mesh described
+# in vvmconfig.example
+#
+# WARNING: init_open_dice_from_file must NOT be added to production targets
+SDV_OPEN_DICE_PROVIDER_PACKAGES := \
+    init_open_dice_from_file \
     sample_dice_handover_file \
     dice_handover_instance1 \
     dice_handover_instance2 \
     dice_handover_instance3
-# Adding the modules to the binary PDK as well.
-SDV_IVI_SERVICES_PACKAGES += \
-    sample_dice_handover_file \
-    dice_handover_instance1 \
-    dice_handover_instance2 \
-    dice_handover_instance3
-
-# TODO: b/408956504 - merge init_open_dice_service.rc into init_open_dice.rc and remove this.
-PRODUCT_COPY_FILES += \
-    device/google/sdv/sdv_base/init_open_dice_service.rc:system_ext/etc/init/init_open_dice_service.rc
 
 # The SDV KeyMint must be added to the PDK, because the PDK is tested without the sources in
 # system/software_defined_vehicle/ (where the SDV KeyMint is located), so the SDV KeyMint won't be
@@ -63,6 +55,7 @@ PRODUCT_PACKAGES += \
 # include ethernet.rc in init.rc file to start on boot for ivi
 PRODUCT_COPY_FILES += device/google/sdv/sdv_ivi_cf/ethernet/ethernet.sdv_ivi_cf.sh:$(TARGET_COPY_OUT_PRODUCT)/bin/ethernet/ethernet.sdv_ivi_cf.sh
 PRODUCT_COPY_FILES += device/google/sdv/sdv_ivi_cf/ethernet/ethernet.sdv_ivi_cf.rc:$(TARGET_COPY_OUT_PRODUCT)/etc/init/ethernet.sdv_ivi_cf.rc
+PRODUCT_COPY_FILES += device/google/sdv/sdv_cf/init_open_dice_from_file.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init_open_dice_from_file.rc
 # vvmtruststore partition support
 PRODUCT_COPY_FILES += device/google/sdv/sdv_cf/vvmtruststore.rc:$(TARGET_COPY_OUT_SYSTEM)/etc/init/vvmtruststore.rc
 
