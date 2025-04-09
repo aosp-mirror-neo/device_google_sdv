@@ -16,6 +16,10 @@
 # vsock local CID system propery setup
 /(system_ext|system/system_ext)/bin/vsock_local_cid u:object_r:vsock_local_cid_exec:s0
 
+# init_open_dice that consumes the Android DICE chain from the device and provides it to service
+# discovery
+/(system_ext|system/system_ext)/bin/init_open_dice      u:object_r:init_open_dice_exec:s0
+
 # SDV service discovery agent
 /(system_ext|system/system_ext)/bin/sdv_sd_agent        u:object_r:sdv_sd_default_exec:s0
 
