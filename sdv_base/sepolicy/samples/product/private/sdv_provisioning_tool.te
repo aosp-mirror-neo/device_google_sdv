@@ -15,7 +15,3 @@ typeattribute sdv_provisioning_tool sdv_mesh_provisioning_client;
 
 # Assign all the policies requires to use the SDV mesh status service
 typeattribute sdv_provisioning_tool sdv_mesh_status_client;
-
-# Required for the inspect command.
-allow sdv_provisioning_tool vvmtruststorefs:dir search;
-allow sdv_provisioning_tool uds_pubs_file:file r_file_perms;
