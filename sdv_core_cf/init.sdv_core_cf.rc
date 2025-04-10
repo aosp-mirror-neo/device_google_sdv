@@ -34,3 +34,11 @@ service sdv_diagnostics_agent /product/bin/sdv_diagnostics_agent
     group system
 on property:apex.all.ready=true
     start sdv_diagnostics_agent
+
+# Before the lifecycle manager runs, create the service bundle data directory for the custom user id service bundle sample
+# and set its owner to a custom android user (AID) product_sdv_sample_user created in the config.fs file.
+# This way the lifecycle manager will assign the product_sdv_sample_user AID to the service bundle process when it's executed.
+on early-boot
+    # /data/service_bundle_data/ is already created in a previous, post-fs-data trigger.
+    mkdir /data/service_bundle_data/com.sdv.google.sample.lifecycle.userid.apex 0771 system_ext_sdv_lcm system
+    mkdir /data/service_bundle_data/com.sdv.google.sample.lifecycle.userid.apex/LifecycleCustomUserIdSampleServiceBundle 0700 product_sdv_sample_user system

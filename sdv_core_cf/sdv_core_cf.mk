@@ -151,3 +151,6 @@ AB_OTA_POSTINSTALL_CONFIG += \
     POSTINSTALL_PATH_system=system/bin/update_engine_system_partition_post_install \
     FILESYSTEM_TYPE_system=ext4 \
     POSTINSTALL_OPTIONAL_system=false
+
+# Sample config for new user creation to use in samples.
+TARGET_FS_CONFIG_GEN += device/google/sdv/sdv_core_cf/config.fs
