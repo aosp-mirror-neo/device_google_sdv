@@ -1,3 +1,0 @@
-# Copyright 2024 Google LLC
-
-/(system_ext|system/system_ext)/bin/init_open_dice_from_file  u:object_r:init_open_dice_exec:s0
