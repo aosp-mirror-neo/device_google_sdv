@@ -29,7 +29,6 @@ SDV_BASE_SERVICES_PACKAGES += \
 
 # Command line tools to help with development and manual testing.
 SDV_BASE_SERVICES_HOST_PACKAGES += \
-    sdv-ivi-a15 \
     sdv-cf \
     sdv-avb-lock \
     sdv-provision-dev-mesh \
