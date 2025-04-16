@@ -19,6 +19,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     com.sdv.google.sample.multivd.ipv4 \
     com.sdv.google.sample.multivd.vsock \
     com.sdv.google.sample.lifecycle.apex \
+    com.sdv.google.sample.lifecycle.userid.apex \
     com.sdv.google.sample.orch.apex \
     com.sdv.google.sample.updatable_flags.apex.test \
     com.sdv.google.sample.complex \
