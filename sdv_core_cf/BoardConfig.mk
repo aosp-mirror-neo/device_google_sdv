@@ -14,6 +14,8 @@ TARGET_CPU_ABI := x86_64
 #
 # Only set this if it's not set already. We need to be able to use something else for SDV Media.
 LOCAL_ANDROIDBOOT_INIT_RC ?= /system/etc/init/hw/init.sdv_core_cf.rc
+# Only set the RPC Network interface name if it's not set already.
+SDV_RPC_INTERFACE ?= sdv_rpc
 
 include device/google/sdv/sdv_core_base/BoardConfig.mk
 
@@ -25,9 +27,6 @@ PRODUCT_PRIVATE_SEPOLICY_DIRS += \
     device/google/sdv/sdv_core_cf/sepolicy/product/private
 BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_core_cf/sepolicy/vendor
 BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_core_base/sepolicy/samples/vendor
-
-# The network interface RPC should use to retrieve its local IP address.
-BOARD_BOOTCONFIG += androidboot.sdv.rpc.interface=sdv_rpc
 
 # SDV OemUpdater block device properties.
 BOARD_BOOTCONFIG += \
