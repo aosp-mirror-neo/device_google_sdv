@@ -13,3 +13,6 @@ allow sdv_someip_broker_default sdv_transport_support_service:service_manager fi
 allow sdv_someip_broker_default sdv_someip_stack_server:unix_stream_socket { read write getattr shutdown getopt };
 
 typeattribute sdv_someip_broker_default sdv_dt_client;
+
+type sdv_someip_broker_agent_dump_service, protected_service, service_manager_type;
+add_service(sdv_someip_broker_default, sdv_someip_broker_agent_dump_service)
