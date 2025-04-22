@@ -19,9 +19,6 @@
   // WARNING: tests from this group are not included in test coverage reports.
   "sdv_device_configuration_integration_tests_presubmit": [
     {
-      "name": "sdv_keymint_test"
-    },
-    {
       "name": "sdv_verified_boot_test"
     }
   ],
