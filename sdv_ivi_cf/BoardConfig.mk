@@ -1,6 +1,9 @@
 # Copyright 2023 Google LLC
 # SDV IVI specific board config shall go into this file.
 
+# Only set the RPC Network interface name if it's not set already.
+SDV_RPC_INTERFACE ?= sdv_rpc
+
 include device/google/cuttlefish/vsoc_x86_64_only/BoardConfig.mk
 include device/google/sdv/sdv_ivi_base/BoardConfig.mk
 
@@ -11,9 +14,6 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(TARGET_KERNEL_MODULES_PATH)/8021q.ko
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(TARGET_KERNEL_MODULES_PATH)/macsec.ko
 
 BOARD_ROOT_EXTRA_FOLDERS := vvmtruststore
-
-# The network interface RPC should use to retrieve its local IP address.
-BOARD_BOOTCONFIG += androidboot.sdv.rpc.interface=sdv_rpc
 
 # Makes the vvmtruststore image installed to the $OUT directory on build and included in the
 # sdv_ivi_cf-img-*.zip on disting.

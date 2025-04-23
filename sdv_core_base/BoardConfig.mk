@@ -141,6 +141,11 @@ BOARD_BOOTCONFIG += \
 BOARD_BOOTCONFIG += \
     androidboot.sdv.telemetry.enabled=1
 
+ifdef SDV_RPC_INTERFACE
+BOARD_BOOTCONFIG += \
+  androidboot.sdv.rpc.interface=$(SDV_RPC_INTERFACE)
+endif
+
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 BOARD_BOOT_HEADER_VERSION := 4
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
