@@ -1,0 +1,8 @@
+{
+    "allowed_native_packagename": {
+        "-1": [
+            "android.sdv.samples.gateway",
+            "com.google.sdv.*"
+        ]
+    }
+}

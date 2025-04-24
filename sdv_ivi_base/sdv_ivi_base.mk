@@ -28,7 +28,8 @@ DEVICE_PRODUCT_COMPATIBILITY_MATRIX_FILE += device/google/sdv/sdv_ivi_base/produ
 # TODO: b/341159539 - Figure out the correct init order for SDV agents on IVI wrt other
 # binaries started at init on IVI.
 PRODUCT_COPY_FILES += \
-    device/google/sdv/sdv_ivi_base/sdv.agents.rc:system/etc/init/sdv.agents.rc
+    device/google/sdv/sdv_ivi_base/sdv.agents.rc:system/etc/init/sdv.agents.rc \
+    device/google/sdv/sdv_ivi_base/sdv_gateway_config.json:vendor/etc/sdv_gateway_config.json
 
 PRODUCT_VENDOR_PROPERTIES += \
     ro.vendor.telemetry.metric_config_store_in_mb=10
