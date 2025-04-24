@@ -26,3 +26,6 @@ com.google.sdv.ISdvAgent/hm u:object_r:sdv_health_monitor_dump_service:s0
 com.google.sdv.ISdvAgent/vsidl_provider u:object_r:sdv_vsidl_provider_agent_dump_service:s0
 com.google.sdv.ISdvAgent/orch u:object_r:sdv_orch_dump_service:s0
 com.google.sdv.ISdvAgent/someip_broker u:object_r:sdv_someip_broker_agent_dump_service:s0
+
+# ISomeIpLoadIndicators is an interface that SOME/IP Broker uses to provide load information.
+google.sdv.someip_load_indicators.ISomeIpLoadIndicators/default u:object_r:sdv_someip_broker_agent_load_indicators_service:s0
