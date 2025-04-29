@@ -32,7 +32,14 @@ SDV_CORE_SERVICES_PACKAGES += \
     com.sdv.google.update_manager \
     com.sdv.google.vsidl_provider \
     google.sdv.dt \
-    sdv_vsidl_provider_agent \
+    sdv_vsidl_provider_agent
+
+# The Communication Stack Agents and init_open_dice
+SDV_CORE_SERVICES_PACKAGES += \
+    dt_agent \
+    rpcagent \
+    init_open_dice \
+    sdv_sd_agent
 
 SDV_CORE_SERVICES_HOST_PACKAGES += \
     someip_translation_generator \
