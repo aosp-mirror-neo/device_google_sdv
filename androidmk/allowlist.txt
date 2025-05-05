@@ -1,3 +1,2 @@
 device/google/sdv/Android.mk
 device/google/sdv/sdv_core_base/sdv_bugreport_folder_override/Android.mk
-tools/vendor/google_prebuilts/arc/Android.mk
