@@ -4,11 +4,13 @@
 # These include any SDV components that are required for an Android based target
 # (including SDV Core) to work with other SDV targets (eg: as VMs in a multi-VM
 # environment). Currently this comprises of the SDV specific connectivity
-# components (vsock, ipv4, etc.) SDV Comms stack components (SDV Service
-# Discovery, Data Tunnel, etc.).
+# components (vsock, ipv4, etc.). SDV Comms stack components (SDV Service
+# Discovery, Data Tunnel, etc., with the exception of agents, which are included
+# starting from sdv_core_base).
 
+# TODO: b/415334868 - Investigate/prune the list SDV_BASE_SERVICES_PACKAGES.
+# It is possible that some of these items might not be actually needed in IVI
 SDV_BASE_SERVICES_PACKAGES += \
-    dt_agent \
     sdv_dt_agent_acl_textproto \
     libsdv_authz_policy \
     libsdv_comms_ctx_ffi \
@@ -22,9 +24,6 @@ SDV_BASE_SERVICES_PACKAGES += \
     libsdv_comms_sd_ffi \
     libsdv_dt_core \
     libsdv_status \
-    rpcagent \
-    init_open_dice \
-    sdv_sd_agent \
     vsock_local_cid \
 
 # Command line tools to help with development and manual testing.

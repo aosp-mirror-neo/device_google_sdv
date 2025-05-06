@@ -17,6 +17,14 @@ SDV_IVI_SERVICES_PACKAGES += \
     sdv_gateway \
     sdv_gatewaynetworking_service
 
+# TODO: b/377688035 - Remove the inclusion of the Communication Stack agents here
+# once we have them deployed from an APEX.
+SDV_IVI_SERVICES_PACKAGES += \
+    dt_agent \
+    rpcagent \
+    init_open_dice \
+    sdv_sd_agent
+
 # Vehicle HAL is already included in PRODUCT_PACKAGES, but it must also be part of
 # SDV_IVI_SERVICES_PACKAGES for inclusion in the PDK binary as well.
 ifeq ($(LOCAL_VHAL_PRODUCT_PACKAGE),)
