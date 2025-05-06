@@ -57,7 +57,7 @@ service sdv-ethernet-dt-setup /product/bin/ethernet/ethernet_sdv_dt.sh
     oneshot
 
 # Setup routing rule for the sdv_rpc_ns network namespace designated to SDV RPC traffic.
-service sdv-ethernet-rpc-setup /product/bin/ethernet/ethernet_sdv_rpc.sh
+service sdv-ethernet-rpc-setup /product/bin/ethernet/ethernet_sdv_rpc.sh 192.168.101.118
     class core
     user root
     group shell
