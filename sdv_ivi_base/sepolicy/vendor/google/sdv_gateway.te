@@ -44,10 +44,7 @@ allow sdv_dt_client sdv_gateway:fd use;
 
 # SDV Gateway Agent can use sockets
 net_domain(sdv_gateway)
-starting_at_board_api(202504, `
-typeattribute sdv_gateway unconstrained_vsock_violators;
-')
-allow sdv_gateway self:vsock_socket { connect create getopt read write getattr listen accept bind shutdown };
+
 # SDV Gateway Agent can access proc_net to read the somaxconn value of the process.
 allow sdv_gateway proc_net:file { getattr open read };
 

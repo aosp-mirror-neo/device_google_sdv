@@ -21,9 +21,5 @@ allow sdv_dt_client sdv_dt_client:fd use;
 
 # Data Tunnel Agent can use sockets
 net_domain(sdv_dt_agent)
-starting_at_board_api(202504, `
-typeattribute sdv_dt_agent unconstrained_vsock_violators;
-')
-allow sdv_dt_agent self:vsock_socket { connect create getopt read write getattr listen accept bind shutdown };
 
 get_prop(sdv_dt_agent, vsock_local_cid_prop)
