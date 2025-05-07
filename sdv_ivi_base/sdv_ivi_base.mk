@@ -39,6 +39,15 @@ ENABLE_AUTO_ETHERNET := false
 
 TARGET_FS_CONFIG_GEN += device/google/sdv/sdv_ivi_base/config.fs
 
+DEVICE_PACKAGE_OVERLAYS += \
+    device/google/sdv/sdv_ivi_base/device_overlays \
+
+PRODUCT_PACKAGES += \
+    sdv_gatewaynetworking_service_loader_service \
+
+PRODUCT_SYSTEM_SERVER_JARS += \
+    sdv_gatewaynetworking_service_loader_service \
+
 include device/google/sdv/sdv_base/sdv_base.mk
 include device/google/sdv/sdv_ivi_base/sdv_packages_ivi_services.mk
 include device/google/sdv/sdv_ivi_base/sdv_packages_ivi_telemetry.mk

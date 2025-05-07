@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2024 Google LLC -->
+
+<resources>
+    <string-array translatable="false" name="config_deviceSpecificSystemServices">
+      <item>"com.google.sdv.gateway.networking.loader.GatewayNetworkingServiceLoaderService"</item>
+    </string-array>
+</resources>
