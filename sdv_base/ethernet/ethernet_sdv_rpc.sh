@@ -28,4 +28,4 @@ sysctl -q -w net.ipv4.ip_local_port_range="4000 5999"
 echo "ifconfig output:"
 echo "$(ifconfig)"
 
-echo "sdv-ethernet-rpc-setup has started successfully"
+log -t boot-timing -p i "sdv-ethernet-rpc-setup has started successfully"

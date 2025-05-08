@@ -20,4 +20,4 @@ ifconfig eth1 up
 # On IVI targets, eth1 is used by SDV RPC and it's also the default network interface for whole
 # Android. Service Discovery and Data tunnel have their own network interfaces.
 
-echo "sdv-ethernet-setup has started successfully"
+log -t boot-timing -p i "sdv-ethernet-setup has started successfully"

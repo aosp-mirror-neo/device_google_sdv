@@ -50,4 +50,4 @@ ip link set sdv_dt netns sdv_dt_ns
 
 ip link add link "${NETWORK_INTERFACE}" name sdv_rpc type vlan id 3
 
-echo "sdv-ethernet-namespace-setup has started successfully"
+log -t boot-timing -p i "sdv-ethernet-namespace-setup has started successfully"
