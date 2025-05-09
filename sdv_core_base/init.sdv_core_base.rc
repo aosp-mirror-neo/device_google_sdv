@@ -236,6 +236,7 @@ on post-fs-data
     # set up keystore directory structure first so that we can end early boot
     # and start apexd
     mkdir /data/misc 01771 system misc encryption=Require
+    # See aosp/1718974
     mkdir /data/misc/keystore 0700 keystore keystore
     # work around b/183668221
     restorecon /data/misc /data/misc/keystore
@@ -270,14 +271,6 @@ on post-fs-data
     # service_bundle_data, but now, this can be used as a data directory by all service bundles
     # temporarily
     mkdir /data/service_bundle_data 0771 system system encryption=Require
-
-    # set up misc and keystore directory structure first so that we can end early boot and start
-    # apexd
-    mkdir /data/misc 01771 system misc encryption=Require
-    # See aosp/1718974
-    mkdir /data/misc/keystore 0700 keystore keystore
-    # work around b/183668221
-    restorecon /data/misc /data/misc/keystore
 
     exec - system system -- /system/bin/vdc keymaster earlyBootEnded
 
