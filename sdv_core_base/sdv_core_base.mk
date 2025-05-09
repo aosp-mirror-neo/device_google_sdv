@@ -181,8 +181,6 @@ PRODUCT_SYSTEM_EXT_PROPERTIES += \
 
 ## Health Monitoring config
 SDV_HEALTH_MONITOR_CONFIG := hm_config.textproto
-PRODUCT_SYSTEM_PROPERTIES += sdv.health_monitor.config_path=/system/etc/health_monitor/hm_config.textproto
-
 # Configure power management.
 PRODUCT_SYSTEM_EXT_PROPERTIES += \
     sdv.vpm.platform.timeout_ms=1000 \

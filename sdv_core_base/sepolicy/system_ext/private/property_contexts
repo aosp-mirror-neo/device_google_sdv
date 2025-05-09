@@ -18,9 +18,13 @@ sdv.orchestrator.bootup.power_mode.ready u:object_r:orchestrator_power_boot_comp
 # (as VPM could have crashed) and messages can still be lost.
 sdv.orchestrator.bootup.vehicle_mode.ready u:object_r:orchestrator_vehicle_boot_complete_prop:s0 exact bool
 
-# The health_monitor_config_path_prop is set only by init and read by Heath Monitor to configure the
-# path to the configuration file.
-sdv.health_monitor.config_path u:object_r:health_monitor_config_path_prop:s0
+# The health_monitor_config_path_prop read by Health Monitor to configure the
+# path to the configuration file. Defaults to ro.sdv.health_monitor.config_path.
+# Can be modified at runtime
+persist.sdv.health_monitor.config_path u:object_r:health_monitor_config_path_prop:s0
+# The property to provide the default value of `sdv.health_monitor.config_path`.
+# See `sdv_core_base/sdv.agents.rc` for more details.
+ro.sdv.health_monitor.config_path u:object_r:health_monitor_config_path_prop:s0
 
 # drm.gpu.vendor_name is referred by mesa3d and therefore harry service.
 # TODO: b/349450954 - Temporarily, we assign this property to graphics_config_prop and may want to
