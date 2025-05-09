@@ -336,8 +336,6 @@ on post-fs-data
     restart apexd-enable-brand-new-apex
 
     mkdir /data/misc/installd 0700 root root
-    mkdir /data/misc/apexdata 0711 root root
-    mkdir /data/misc/apexrollback 0700 root root
 
     # Create the OTA package directory. It will be accessed by SDV Update Manager,
     # update_engine and update_verifier.
@@ -350,10 +348,12 @@ on post-fs-data
     wait_for_prop apexd.status activated
     perform_apex_config
 
-    # Allow apexd to snapshot and restore device encrypted apex data in the case
-    # of a rollback. APEXes should not access this data until this has been
-    # completed and apexd.status becomes "ready".
-    exec_start apexd-snapshotde
+    # APEXes can be accessed now that apexd.status becomes "ready".
+    setprop apexd.status ready
+    # Since apexd.status property is a system property, we expose yet another
+    # property as system_restricted_prop so that, for example, vendor can rely on
+    # the "ready" event.
+    setprop apex.all.ready true
 
     restart adbd
 
