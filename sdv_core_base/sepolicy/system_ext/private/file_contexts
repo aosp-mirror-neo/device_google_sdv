@@ -44,6 +44,7 @@
 #############################
 # data files
 /data/service_bundle_data(/.*)? u:object_r:service_bundle_data:s0
+/data/orchestrator(/.*)?      u:object_r:orch_data_file:s0
 
 #############################
 # SDV Update Manager Agent metadata files

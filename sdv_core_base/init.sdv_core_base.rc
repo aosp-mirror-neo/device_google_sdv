@@ -302,6 +302,15 @@ on post-fs-data
     # set up directory to persist metric configs for Telemetry service
     mkdir /data/vendor/telemetry 0770 system system
 
+    # Set up directory to persist orchestator configuration
+    mkdir /data/orchestrator 0770 system system
+    # The content of the json needs to be clear every time the VM starts.
+    # We do not persist values across reboots.
+    write /data/orchestrator/modes_backup.json "{}"
+    # We also clear the tmp file in case it was not successful to be renamed to avoid
+    # restoring from it.
+    write /data/orchestrator/modes_backup.json.tmp "{}"
+
     # All permissions needed for integration test process that will use this dir to launch
     # vsomeip instances
     mkdir /data/vendor/vsomeip 0777 system system
