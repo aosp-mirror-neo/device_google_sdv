@@ -343,6 +343,10 @@ on post-fs-data
 
     # APEXes can be accessed now that apexd.status becomes "ready".
     setprop apexd.status ready
+
+    # Starting Diagnostics as soon as APEXes become available.
+    class_start diagnostics
+
     # Since apexd.status property is a system property, we expose yet another
     # property as system_restricted_prop so that, for example, vendor can rely on
     # the "ready" event.
