@@ -1,0 +1,4 @@
+# Copyright 2025 Google LLC
+
+# Allow Data Tunnel Agent to subscribe to power state notifications
+typeattribute sdv_dt_agent sdv_vpm_agent_notification_client;
