@@ -19,7 +19,6 @@ SDV_BASE_SERVICES_PACKAGES += \
     libsdv_comms_dt_ffi \
     libsdv_comms_id \
     libsdv_comms_id_ffi \
-    libsdv_comms_rpc \
     libsdv_comms_sd \
     libsdv_comms_sd_ffi \
     libsdv_dt_core \
