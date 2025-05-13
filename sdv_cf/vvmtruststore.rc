@@ -35,12 +35,10 @@ on late-fs && property:ro.sdv.preprovisioned_vvmtruststore=img && property:ro.bo
     # Remount it as read-only
     umount /vvmtruststore
     mount ext4 /dev/block/by-name/vvmtruststore /vvmtruststore noatime nosuid nodev noexec ro
-    restorecon_recursive /vvmtruststore
 
 # mount read-only when locked and not preprovisioned
 on late-fs && property:ro.sdv.preprovisioned_vvmtruststore=none && property:ro.boot.sdv.boot_mode=locked
     mount ext4 /dev/block/by-name/vvmtruststore /vvmtruststore noatime nosuid nodev noexec ro
-    restorecon_recursive /vvmtruststore
 
 # mount writable when unlocked and not preprovisioned
 on late-fs && property:ro.sdv.preprovisioned_vvmtruststore=none && property:ro.boot.sdv.boot_mode=unlocked
