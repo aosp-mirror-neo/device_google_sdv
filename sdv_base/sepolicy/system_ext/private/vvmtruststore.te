@@ -7,3 +7,4 @@ allow init vvmtruststorefs:dir mounton;
 allow vvmtruststorefs labeledfs:filesystem associate;
 
 type uds_pubs_file, file_type;
+type uds_certs_file, file_type;
