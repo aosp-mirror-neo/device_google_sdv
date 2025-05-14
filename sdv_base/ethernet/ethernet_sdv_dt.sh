@@ -27,4 +27,6 @@ ifconfig sdv_dt up
 # -q instructs sysctl not to print the value to the standard output after writing it.
 sysctl -q -w net.ipv4.ip_local_port_range="6000 7999"
 
+setprop ro.sdv.oem.eth.dt.up true
+
 log -t boot-timing -p i "sdv-ethernet-dt-setup has started successfully"
