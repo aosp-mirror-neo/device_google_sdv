@@ -3,10 +3,7 @@
 type vvmtruststorefs, fs_type;
 
 # Let init mount a partition in the /vvmtruststore directory
-allow init vvmtruststorefs:dir { mounton relabelto };
+allow init vvmtruststorefs:dir mounton;
 allow vvmtruststorefs labeledfs:filesystem associate;
-
-# init can relabel (i.e. initialize the SELinux labels) the content of the /vvmtruststore partition
-allow init vvmtruststorefs:file relabelto;
 
 type uds_pubs_file, file_type;

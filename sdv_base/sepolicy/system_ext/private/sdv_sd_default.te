@@ -54,11 +54,15 @@ allow sdv_mesh_status_client sdv_mesh_status_service:service_manager find;
 # SDV Mesh Status server can register the IPC service.
 add_service(sdv_mesh_status_server, sdv_mesh_status_service)
 
-# SD agent can read, create and modify files in the
-# /vvmtruststore directory.
-allow sdv_sd_default vvmtruststorefs:dir rw_dir_perms;
-allow sdv_sd_default vvmtruststorefs:file create_file_perms;
+# SD agent can read and add files in the /vvmtruststore directory.
+allow sdv_sd_default vvmtruststorefs:dir ra_dir_perms;
+# SD agent can fully modify the uds_pubs file.
 allow sdv_sd_default uds_pubs_file:file create_file_perms;
+# When the SD agent creates a file on the /vvmtruststore partition (which is only the uds_pubs
+# file) then this file will automatically receive the uds_pubs_file type.
+type_transition sdv_sd_default vvmtruststorefs:file uds_pubs_file;
+# SD agent can read other files on the /vvmtruststore partition, like the uds_certs file.
+allow sdv_sd_default vvmtruststorefs:file r_file_perms;
 
 # The uds_pubs_file is owned by SD, and it's sensitive for SDV mesh security, because it contains
 # the list of devices whose VMs can join the mesh. These devices must be authentic, the

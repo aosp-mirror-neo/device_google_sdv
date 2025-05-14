@@ -9,14 +9,14 @@
 # Reason is that this property must already be defined when late-fs is triggered
 # and the actions gated by it are evaluated and added to the queue.
 on init
-  setprop ro.sdv.preprovisioned_vvmtruststore ${ro.boot.sdv.preprovisioned_vvmtruststore:-none}
+    setprop ro.sdv.preprovisioned_vvmtruststore ${ro.boot.sdv.preprovisioned_vvmtruststore:-none}
 
 # bind-mount a preprovisioned /vvmtruststore from a location in /etc.
 # A workaround for CI systems that do not support passing the
 # --vvmtruststore_path parameter to cvd and/or that do not support collecting
 # partition images other than the standard Android ones (system, vendor, etc)
 on late-fs && property:ro.sdv.preprovisioned_vvmtruststore=etc && property:ro.boot.sdv.boot_mode=locked
-  mount none /system_ext/etc/vvmtruststore/${ro.boot.sdv.instance_name} /vvmtruststore bind noatime nosuid nodev noexec ro
+    mount none /system_ext/etc/vvmtruststore/${ro.boot.sdv.instance_name} /vvmtruststore bind noatime nosuid nodev noexec ro
 
 # The files and root directory of a preprovisioned vvmtruststore image
 # still need to have their SELinux context and ownership set.
@@ -24,10 +24,9 @@ on late-fs && property:ro.sdv.preprovisioned_vvmtruststore=etc && property:ro.bo
 # So for a boot mode locked and preprovisioned VM, this action will be run
 # followed by the next one, which simply mounts vvmtruststore read-only.
 on late-fs && property:ro.sdv.preprovisioned_vvmtruststore=img && property:ro.boot.sdv.boot_mode=locked
-    # TODO: b/389638158  - Look into removing the need for these steps.
-    # Mount it writtable so that we can set SELinux context and file ownership.
+    # TODO: b/389638158 - Look into removing the need for setting file ownership and mode here.
+    # Mount it writtable so that we can set file ownership and mode.
     mount ext4 /dev/block/by-name/vvmtruststore /vvmtruststore noatime nosuid nodev noexec rw
-    restorecon_recursive /vvmtruststore
     chown system system /vvmtruststore
     # Service discovery runs using its own user but it's in the system group so write permission
     # must be granted for the group (i.e. for system).
@@ -43,8 +42,7 @@ on late-fs && property:ro.sdv.preprovisioned_vvmtruststore=none && property:ro.b
 # mount writable when unlocked and not preprovisioned
 on late-fs && property:ro.sdv.preprovisioned_vvmtruststore=none && property:ro.boot.sdv.boot_mode=unlocked
     mount ext4 /dev/block/by-name/vvmtruststore /vvmtruststore noatime nosuid nodev noexec rw
-    # TODO: b/389638158  - Look into removing the need for these steps.
-    restorecon_recursive /vvmtruststore
+    # TODO: b/389638158 - Look into removing the need for fixing the file ownership and mode here.
     # Service discovery runs using its own user and in the system group, and, by default,
     # /vvmtruststore is owned by root. The owner and group must be changed in unlocked mode so
     # service discovery can write the partition when provisioning the device. The ownership change

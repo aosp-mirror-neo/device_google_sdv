@@ -3,30 +3,33 @@
 ##########################
 # Devices
 #
-/dev/vsock                                              u:object_r:vsock_device:s0
+/dev/vsock        u:object_r:vsock_device:s0
 
 # The open-dice devices are exposed by the open-dice kernel driver.
 # Only /dev/open-dice0 should be actually used and present.
-/dev/open-dice.*         u:object_r:open_dice_device:s0
+/dev/open-dice.*  u:object_r:open_dice_device:s0
 
 ##########################
 # system_ext files
 #
 
 # vsock local CID system propery setup
-/(system_ext|system/system_ext)/bin/vsock_local_cid u:object_r:vsock_local_cid_exec:s0
+/(system_ext|system/system_ext)/bin/vsock_local_cid  u:object_r:vsock_local_cid_exec:s0
 
 # init_open_dice that consumes the Android DICE chain from the device and provides it to service
 # discovery
-/(system_ext|system/system_ext)/bin/init_open_dice      u:object_r:init_open_dice_exec:s0
+/(system_ext|system/system_ext)/bin/init_open_dice   u:object_r:init_open_dice_exec:s0
 
 # SDV service discovery agent
-/(system_ext|system/system_ext)/bin/sdv_sd_agent        u:object_r:sdv_sd_default_exec:s0
-
+/(system_ext|system/system_ext)/bin/sdv_sd_agent     u:object_r:sdv_sd_default_exec:s0
 
 # SDV service rpc agent
-/(system_ext|system/system_ext)/bin/rpcagent            u:object_r:sdv_rpcagent_default_exec:s0
+/(system_ext|system/system_ext)/bin/rpcagent         u:object_r:sdv_rpcagent_default_exec:s0
 
-# Files in the vvmtruststore partition
-/vvmtruststore(/.*)?       u:object_r:vvmtruststorefs:s0
-/vvmtruststore/uds_pubs    u:object_r:uds_pubs_file:s0
+##########################
+# vvmtruststore files
+#
+
+# By default, the vvmtruststore partition is empty. The types for specific files (e.g. uds_certs,
+# uds_pubs) are assigned using type transitions.
+/vvmtruststore(/.*)?                                 u:object_r:vvmtruststorefs:s0

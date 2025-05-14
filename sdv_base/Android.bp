@@ -9,6 +9,11 @@ vintf_compatibility_matrix {
     ],
 }
 
+filegroup {
+    name: "vvmtruststore_file_contexts",
+    srcs: ["vvmtruststore_file_contexts"],
+}
+
 android_filesystem_defaults {
     name: "vvmtruststore_filesystem_defaults",
     mount_point: "/vvmtruststore",
@@ -23,6 +28,10 @@ android_filesystem_defaults {
         ],
     },
     no_full_install: true,
+    // Instead of directly referring to the vvmtruststore_file_contexts source file located within
+    // this directory, doing that through a Soong module, so this default can be used in Android.bp
+    // files in different folders.
+    file_contexts: ":vvmtruststore_file_contexts",
 }
 
 android_filesystem {
