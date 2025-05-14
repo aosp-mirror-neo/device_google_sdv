@@ -27,12 +27,9 @@ on property:dev.bootcomplete=1 && property:ro.sdv.vsock_local_cid=3
 
  # Declare and start the SDV Diagnostics agent.
 service sdv_diagnostics_agent /product/bin/sdv_diagnostics_agent
-    class core
-    disabled
+    class diagnostics
     user system
     group system
-on property:apex.all.ready=true
-    start sdv_diagnostics_agent
 
 # Before the lifecycle manager runs, create the service bundle data directory for the custom user id service bundle sample
 # and set its owner to a custom android user (AID) product_sdv_sample_user created in the config.fs file.
