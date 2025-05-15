@@ -30,6 +30,10 @@ set_prop(sdv_orch, orchestrator_power_boot_complete_prop)
 # Orchestrator can set the orchestrator_vehicle_boot_complete_prop
 set_prop(sdv_orch, orchestrator_vehicle_boot_complete_prop)
 
+# Orchestrator can set the orchestrator_power_state_prop and init can read it.
+system_internal_prop(orchestrator_power_state_prop)
+set_prop(sdv_orch, orchestrator_power_state_prop)
+
 # Defines SDV orch service used for dumpsys.
 type sdv_orch_dump_service, protected_service, service_manager_type;
 add_service(sdv_orch, sdv_orch_dump_service)

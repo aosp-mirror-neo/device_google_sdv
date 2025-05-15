@@ -26,6 +26,10 @@ persist.sdv.health_monitor.config_path u:object_r:health_monitor_config_path_pro
 # See `sdv_core_base/sdv.agents.rc` for more details.
 ro.sdv.health_monitor.config_path u:object_r:health_monitor_config_path_prop:s0
 
+# Property set by Orchestrator to signal the last received power state.
+# We use this to determine the end of boot and stop performance tracing.
+sdv.orchestrator.power_state u:object_r:orchestrator_power_state_prop:s0 exact string
+
 # drm.gpu.vendor_name is referred by mesa3d and therefore harry service.
 # TODO: b/349450954 - Temporarily, we assign this property to graphics_config_prop and may want to
 #                     move it to more proper context such as vendor_graphics_config_prop later.
