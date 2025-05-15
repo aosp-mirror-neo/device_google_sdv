@@ -12,14 +12,26 @@ typeattribute sdv_health_monitor sdv_sd_client;
 # Health Monitor can call the RPC agent.
 typeattribute sdv_health_monitor sdv_rpcagent_client;
 
-# health_monitor_config_path_prop is a system internal property
+# health_monitor_config_path_prop is a system internal property.
 system_internal_prop(health_monitor_config_path_prop)
-# Health Monitor is the only one that can read the health_monitor_config_path_prop
+# Health Monitor is the only one that can read the health_monitor_config_path_prop.
 get_prop(sdv_health_monitor, health_monitor_config_path_prop)
-# Init can set the health_monitor_config_path_prop property
+# Init can set the health_monitor_config_path_prop property.
 set_prop(init, health_monitor_config_path_prop)
 
 # Defines SDV HM service.
 type sdv_health_monitor_dump_service, protected_service, service_manager_type;
 # SDV HM can register its Binder IPC services.
 add_service(sdv_health_monitor, sdv_health_monitor_dump_service)
+
+# TODO (b/406774401): revise when agent monitoring is implemented.
+# Allow sdv_health_monitor to read process state of critical services.
+allow sdv_health_monitor proc_pid_max:file { open read };
+allow sdv_health_monitor sdv_dt_agent:dir {getattr search};
+allow sdv_health_monitor sdv_dt_agent:file {read open};
+allow sdv_health_monitor sdv_sd_default:dir {getattr search};
+allow sdv_health_monitor sdv_sd_default:file {read open};
+
+# TODO (b/406774401): revise when agent monitoring is implemented.
+# Disable warnings for the processes whose information we can't read.
+dontaudit sdv_health_monitor domain:dir {getattr};
