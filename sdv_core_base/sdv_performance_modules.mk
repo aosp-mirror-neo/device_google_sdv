@@ -6,6 +6,7 @@
 
 SDV_PERF_PACKAGES = \
     com.sdv.google.performance.unit_type_owner \
+    performance.hm.config \
     performance_custom_mode_dispatcher \
     com.sdv.google.performance.apex0 \
     com.sdv.google.performance.apex1 \
