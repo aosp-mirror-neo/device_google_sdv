@@ -1,10 +1,9 @@
 # Copyright 2024 Google LLC
 
-type vvmtruststorefs, fs_type;
-
 # Let init mount a partition in the /vvmtruststore directory
 allow init vvmtruststorefs:dir mounton;
 allow vvmtruststorefs labeledfs:filesystem associate;
 
+# The type for the /vvmtruststore/uds_pubs file, which is only used by
+# service discovery.
 type uds_pubs_file, file_type;
-type uds_certs_file, file_type;
