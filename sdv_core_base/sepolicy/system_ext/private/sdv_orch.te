@@ -9,6 +9,9 @@ typeattribute sdv_orch sdv_lc_client;
 # Orchestrator can call the DataTunnel SDV agent.
 typeattribute sdv_orch sdv_dt_client;
 
+# File used by orch agent to persist data
+type orch_data_file, file_type, data_file_type, core_data_file_type;
+
 # TODO: b/313827965 - Define proper deplyoment strategy for orch config
 # orchestrator_config_path_prop is a system internal property
 system_internal_prop(orchestrator_config_path_prop)
@@ -16,6 +19,10 @@ system_internal_prop(orchestrator_config_path_prop)
 get_prop(sdv_orch, orchestrator_config_path_prop)
 # Init can set the orchestrator_config_path_prop property
 set_prop(init, orchestrator_config_path_prop)
+
+# SDV Orch agent can read and write directories and files to the /data/orchestrator/ dir
+allow sdv_orch orch_data_file:dir create_dir_perms;
+allow sdv_orch orch_data_file:file create_file_perms;
 
 # Orchestrator is a power state client
 typeattribute sdv_orch sdv_vpm_agent_notification_client;
