@@ -58,9 +58,9 @@ add_service(sdv_mesh_status_server, sdv_mesh_status_service)
 allow sdv_sd_default vvmtruststorefs:dir ra_dir_perms;
 # SD agent can fully modify the uds_pubs file.
 allow sdv_sd_default uds_pubs_file:file create_file_perms;
-# When the SD agent creates a file on the /vvmtruststore partition (which is only the uds_pubs
-# file) then this file will automatically receive the uds_pubs_file type.
-type_transition sdv_sd_default vvmtruststorefs:file uds_pubs_file;
+# When the SD agent creates the uds_pubs file on the /vvmtruststore partition then this file will
+# automatically receive the uds_pubs_file type.
+type_transition sdv_sd_default vvmtruststorefs:file uds_pubs_file "uds_pubs";
 # SD agent can read the uds_certs file.
 allow sdv_sd_default uds_certs_file:file r_file_perms;
 
