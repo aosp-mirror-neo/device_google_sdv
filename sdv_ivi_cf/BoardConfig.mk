@@ -30,6 +30,7 @@ BOARD_VVMTRUSTSTORE_IMAGE_LIST := \
 
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/samples/system_ext/private
 PRODUCT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/samples/product/private
+BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/samples/vendor
 
 # Pre-provisioned vvmstruststore images for ease of testing.
 

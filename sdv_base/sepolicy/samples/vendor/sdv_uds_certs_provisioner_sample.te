@@ -1,0 +1,33 @@
+# Copyright 2025 Google LLC
+
+# A sample policy for a sample service that provisions uds_certs. This sample policy is created as
+# a /vendor policy to surface any potential issues, because a /vendor policy is more restrictive in
+# this case than a /product policy.
+
+type sdv_uds_certs_provisioner_sample, domain;
+type sdv_uds_certs_provisioner_sample_exec, exec_type, file_type, vendor_file_type;
+
+# Can read and add files in the /vvmtruststore directory.
+allow sdv_uds_certs_provisioner_sample vvmtruststorefs:dir ra_dir_perms;
+# Can create and modify the uds_certs file.
+allow sdv_uds_certs_provisioner_sample uds_certs_file:file create_file_perms;
+# When the uds_certs_provisioner_sample creates the "uds_certs" file on the /vvmtruststore
+# partition then this file will automatically receive the uds_certs_file type.
+type_transition sdv_uds_certs_provisioner_sample vvmtruststorefs:file uds_certs_file "uds_certs";
+
+# WARNING: These rules are only for testing and validating the sample policies in this file, they
+# must be removed for a real service that is started by init or the SDV lifecycle manager. These
+# rules transition to the provisioner domain when running from shell (this includes atest).
+userdebug_or_eng(`
+  domain_auto_trans(shell, sdv_uds_certs_provisioner_sample_exec, sdv_uds_certs_provisioner_sample)
+
+  # These rules make standard output work when running from the shell.
+  allow sdv_uds_certs_provisioner_sample adbd:fd use;
+  allow sdv_uds_certs_provisioner_sample shell:fd use;
+  allow sdv_uds_certs_provisioner_sample adbd:unix_stream_socket { ioctl read write };
+
+  # These rules are required for printing to the standard output when the binary is not executed
+  # through adb shell in a single line (i.e. adb shell <binary_path>), but when adb shell is opened
+  # first, and then the binary is executed from the adb shell.
+  allow sdv_uds_certs_provisioner_sample devpts:chr_file { read write };
+')

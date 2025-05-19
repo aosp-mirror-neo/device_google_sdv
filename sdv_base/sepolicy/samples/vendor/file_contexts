@@ -1,3 +1,3 @@
 # Copyright 2025 Google LLC
 
-/vendor/bin/sdv_provisioning_tool u:object_r:sdv_provisioning_tool_vendor_exec:s0
+/vendor/bin/sdv_uds_certs_provisioner_sample u:object_r:sdv_uds_certs_provisioner_sample_exec:s0

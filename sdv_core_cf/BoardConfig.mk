@@ -26,6 +26,7 @@ PRODUCT_PRIVATE_SEPOLICY_DIRS += \
     device/google/sdv/sdv_core_base/sepolicy/samples/product/private \
     device/google/sdv/sdv_core_cf/sepolicy/product/private
 BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_core_cf/sepolicy/vendor
+BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/samples/vendor
 BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_core_base/sepolicy/samples/vendor
 
 # SDV OemUpdater block device properties.

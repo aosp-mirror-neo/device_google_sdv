@@ -20,6 +20,7 @@ SDV_BASE_SERVICES_SAMPLES_PACKAGES += \
     sdv_user_preferences_client_cpp \
     sdv_vsidl_provider_query \
     vvmconfig.example \
+    sdv_uds_certs_provisioner_sample \
 
 SDV_BASE_SERVICES_HOST_SAMPLES_PACKAGES +=
 
