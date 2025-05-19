@@ -7,13 +7,7 @@
 type sdv_uds_certs_provisioner_sample, domain;
 type sdv_uds_certs_provisioner_sample_exec, exec_type, file_type, vendor_file_type;
 
-# Can read and add files in the /vvmtruststore directory.
-allow sdv_uds_certs_provisioner_sample vvmtruststorefs:dir ra_dir_perms;
-# Can create and modify the uds_certs file.
-allow sdv_uds_certs_provisioner_sample uds_certs_file:file create_file_perms;
-# When the uds_certs_provisioner_sample creates the "uds_certs" file on the /vvmtruststore
-# partition then this file will automatically receive the uds_certs_file type.
-type_transition sdv_uds_certs_provisioner_sample vvmtruststorefs:file uds_certs_file "uds_certs";
+typeattribute sdv_uds_certs_provisioner_sample sdv_uds_certs_provisioner;
 
 # WARNING: These rules are only for testing and validating the sample policies in this file, they
 # must be removed for a real service that is started by init or the SDV lifecycle manager. These

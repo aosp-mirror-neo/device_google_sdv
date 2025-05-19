@@ -50,6 +50,11 @@ attribute sdv_mesh_status_server;
 expandattribute sdv_mesh_status_client true;
 expandattribute sdv_mesh_status_server false;
 
+# Grants the permissions to a domain required for provisioning the uds_certs file on the
+# /vvmtruststore partition.
+attribute sdv_uds_certs_provisioner;
+expandattribute sdv_mesh_status_client true;
+
 # Attributes for RPCagent
 attribute sdv_rpcagent_client;
 attribute sdv_rpcagent_server;
