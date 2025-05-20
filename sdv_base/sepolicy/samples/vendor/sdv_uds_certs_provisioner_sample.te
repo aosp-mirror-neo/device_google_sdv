@@ -7,21 +7,9 @@
 type sdv_uds_certs_provisioner_sample, domain;
 type sdv_uds_certs_provisioner_sample_exec, exec_type, file_type, vendor_file_type;
 
+# The sample binary can be triggered from init.
+init_daemon_domain(sdv_uds_certs_provisioner_sample)
+
+# Through the sdv_uds_certs_provisioner attribute, sdv_uds_certs_provisioner_sample obtains all the
+# vvmtruststore related permissions required to provision the uds_certs file.
 typeattribute sdv_uds_certs_provisioner_sample sdv_uds_certs_provisioner;
-
-# WARNING: These rules are only for testing and validating the sample policies in this file, they
-# must be removed for a real service that is started by init or the SDV lifecycle manager. These
-# rules transition to the provisioner domain when running from shell (this includes atest).
-userdebug_or_eng(`
-  domain_auto_trans(shell, sdv_uds_certs_provisioner_sample_exec, sdv_uds_certs_provisioner_sample)
-
-  # These rules make standard output work when running from the shell.
-  allow sdv_uds_certs_provisioner_sample adbd:fd use;
-  allow sdv_uds_certs_provisioner_sample shell:fd use;
-  allow sdv_uds_certs_provisioner_sample adbd:unix_stream_socket { ioctl read write };
-
-  # These rules are required for printing to the standard output when the binary is not executed
-  # through adb shell in a single line (i.e. adb shell <binary_path>), but when adb shell is opened
-  # first, and then the binary is executed from the adb shell.
-  allow sdv_uds_certs_provisioner_sample devpts:chr_file { read write };
-')
