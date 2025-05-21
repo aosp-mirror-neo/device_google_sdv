@@ -14,6 +14,7 @@ SDV_PERF_PACKAGES = \
     com.sdv.google.performance.apex3 \
     com.sdv.google.performance.apex4 \
     com.sdv.google.performance.apex5 \
+    com.sdv.someip \
 
 PRODUCT_PACKAGES += $(SDV_PERF_PACKAGES)
 
