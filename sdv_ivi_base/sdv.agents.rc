@@ -40,8 +40,6 @@ service rpcagent /system_ext/bin/rpcagent
     user system_ext_sdv_rpc_agent
     group system
 
-# Start agents that are not in the root network namespace before early HALs such as VHAL (late-fs).
-# Can only start once the network setup is complete.
 # Start the SDV Gateway process before the rpcagent because it starts the DTAgent service
 # as well. SDV Gateway AIDL service will only be ready once the rpcagent is also started.
 # Can only start once the network setup is complete, but that is done earlier in post-fs.

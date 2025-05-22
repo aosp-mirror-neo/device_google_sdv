@@ -39,14 +39,14 @@ ENABLE_AUTO_ETHERNET := false
 
 TARGET_FS_CONFIG_GEN += device/google/sdv/sdv_ivi_base/config.fs
 
-DEVICE_PACKAGE_OVERLAYS += \
-    device/google/sdv/sdv_ivi_base/device_overlays \
-
-PRODUCT_PACKAGES += \
-    sdv_gatewaynetworking_service_loader_service \
-
-PRODUCT_SYSTEM_SERVER_JARS += \
-    sdv_gatewaynetworking_service_loader_service \
+# TODO: b/419573239 investigate on how to enable the java_library inside a vendor apex,
+# or find an alternative way to have sdvgateway available earlier during boot. The following
+# commented lines cause the Java SDV Gateway networking service to start earlier: The system
+# server loads sdv_gatewaynetworking_service_loader_service and brings up
+# SDV Gateway networking service before BOOT_COMPLETED.
+# DEVICE_PACKAGE_OVERLAYS += device/google/sdv/sdv_ivi_base/device_overlays
+# PRODUCT_PACKAGES += sdv_gatewaynetworking_service_loader_service
+# PRODUCT_SYSTEM_SERVER_JARS += sdv_gatewaynetworking_service_loader_service
 
 include device/google/sdv/sdv_base/sdv_base.mk
 include device/google/sdv/sdv_ivi_base/sdv_packages_ivi_services.mk
