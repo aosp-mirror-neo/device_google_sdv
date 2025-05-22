@@ -23,7 +23,7 @@ service sdv_lifecycle_agent /system_ext/bin/sdv_lifecycle_agent
     user system_ext_sdv_lcm
     group system
     capabilities SYS_NICE KILL SETUID SETGID CHOWN
-on property:dev.bootcomplete=1
+on property:ro.sdv.sbr.state.ready=true
     start sdv_lifecycle_agent
 
 # SDV Orchestrator configuration has `ro.boot` and `persist` property.
@@ -52,7 +52,7 @@ service sdv_orchestration_agent /system_ext/bin/sdv_orchestration_agent
     disabled
     user system_ext_sdv_orch
     group system
-on property:dev.bootcomplete=1
+on property:ro.sdv.sbr.state.ready=true
     start sdv_orchestration_agent
 
 # Declare and start the SDV Update Manager agent.
@@ -61,7 +61,7 @@ service sdv_update_manager_agent /system_ext/bin/sdv_update_manager_agent
     disabled
     user system
     group system
-on property:dev.bootcomplete=1
+on property:ro.sdv.orchestrator.state.ready=true
     start sdv_update_manager_agent
 
  # Declare and start the SDV Diagnostics agent.
@@ -70,7 +70,7 @@ service sdv_vsidl_provider_agent  /system_ext/bin/sdv_vsidl_provider_agent
     disabled
     user system
     group system
-on property:dev.bootcomplete=1
+on property:ro.sdv.orchestrator.state.ready=true
     start sdv_vsidl_provider_agent
 
 # persist.* property used directly by agent. If not set (default),
@@ -91,7 +91,7 @@ service sdv_health_monitor /system_ext/bin/sdv_health_monitor
     group system readproc
     # HM is not restarted once it completes, due to a failure, to allow OEMs to control VM restart.
     oneshot
-on property:dev.bootcomplete=1
+on property:ro.sdv.orchestrator.state.ready=true
     start sdv_health_monitor
 
 ##################################
@@ -118,7 +118,7 @@ service sdv_sd_agent /system_ext/bin/sdv_sd_agent
     # SD is not restarted once it completes, due to a failure, to allow OEMs to control VM restart.
     oneshot
     enter_namespace net /mnt/run/sd_mesh_ns
-on property:dev.bootcomplete=1
+on property:ro.sdv.orchestrator.state.ready=true
     start sdv_sd_agent
 
 # Declare and start SDV Data Tunnel agent.
@@ -137,7 +137,7 @@ service dt_agent /system_ext/bin/dt_agent
     # DT is not restarted once it completes, due to a failure, to allow OEMs to control VM restart.
     oneshot
     enter_namespace net /mnt/run/sdv_dt_ns
-on property:dev.bootcomplete=1
+on property:ro.sdv.orchestrator.state.ready=true
     start dt_agent
 
 # Declare and start the SDV RPC agent.
@@ -147,7 +147,7 @@ service rpcagent /system_ext/bin/rpcagent
     user system_ext_sdv_rpc
     group system
 
-on property:dev.bootcomplete=1
+on property:ro.sdv.orchestrator.state.ready=true
     start rpcagent
 
 ##########################
@@ -160,7 +160,7 @@ service sdv_vpm_agent  /system_ext/bin/sdv_vpm_agent
     disabled
     user system_ext_sdv_vpm
     group system
-on property:dev.bootcomplete=1
+on property:ro.sdv.orchestrator.state.ready=true
     start sdv_vpm_agent
 
 # Declare and start the SDV SOME/IP broker agent.
@@ -169,7 +169,7 @@ service sdv_someip_broker_agent /system_ext/bin/sdv_someip_broker_agent_comms
     disabled
     user system_ext_sdv_someip
     group system
-on property:dev.bootcomplete=1 && property:ro.sdv.vsock_local_cid=3
+on property:ro.sdv.orchestrator.state.ready=true && property:ro.sdv.vsock_local_cid=3
     start sdv_someip_broker_agent
 
 ###################################
@@ -182,5 +182,5 @@ service sdv_telemetry_service_agent /vendor/bin/sdv_telemetry_service_agent
     disabled
     user system_ext_sdv_telemetry
     group system
-on property:dev.bootcomplete=1 && property:ro.boot.sdv.telemetry.enabled=1
+on property:ro.sdv.orchestrator.state.ready=true && property:ro.boot.sdv.telemetry.enabled=1
     start sdv_telemetry_service_agent

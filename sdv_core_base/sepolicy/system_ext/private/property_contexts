@@ -6,6 +6,17 @@ persist.sdv.orchestrator_config_path u:object_r:orchestrator_config_path_prop:s0
 # See `sdv_core_base/sdv.agents.rc` for more details.
 ro.boot.sdv.orchestrator_config_path u:object_r:bootloader_prop:s0 exact string
 
+# Set to True by Service bundle registry when all the service bundles
+# metadata is loaded and IRegistry is available for clients.
+ro.sdv.sbr.state.ready u:object_r:sbr_state_ready_prop:s0 exact bool
+
+# Set to True by Lifecycle agent when it's ready for execution
+# and ILifecycleManager is available for clients.
+ro.sdv.lc.state.ready u:object_r:lc_state_ready_prop:s0 exact bool
+
+# Set to True by Orchestrator agent when it's ready to start service bundles
+ro.sdv.orchestrator.state.ready u:object_r:orchestrator_state_ready_prop:s0 exact bool
+
 # Property set when orchestrator established the subscription to power modes successfully.
 # This indicates the first time that the subscription is complete and ready to receive requests.
 # The value of the property being true does not garantee that the connection to VPM is valid
