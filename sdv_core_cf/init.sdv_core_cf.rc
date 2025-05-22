@@ -14,6 +14,8 @@ import /vendor/etc/init/android.sdv.hardware.security.keymint-service.nonsecure.
 import /vendor/etc/init/android.hardware.macsec.rc
 import /vendor/etc/init/sdv_wpa_supplicant_macsec.rc
 
+import /vendor/etc/init/sdv_uds_certs_provisioner_sample.rc
+
 # Declare and start the sample SDV SOME/IP stack agent.
 service sdv_someip_stack_agent /vendor/bin/sdv_someip_stack_agent
     class core
@@ -39,15 +41,3 @@ on early-boot
     # /data/service_bundle_data/ is already created in a previous, post-fs-data trigger.
     mkdir /data/service_bundle_data/com.sdv.google.sample.lifecycle.userid.apex 0771 system_ext_sdv_lcm system
     mkdir /data/service_bundle_data/com.sdv.google.sample.lifecycle.userid.apex/LifecycleCustomUserIdSampleServiceBundle 0700 product_sdv_sample_user system
-
-# A realistic test setup for the sdv_uds_certs_provisioner_sample so it can be launched through
-# init using the start command in root:
-# adb shell start sdv_uds_certs_provisioner_sample
-# Alternatively, it could be executed from the shell, but then it doesn't have the right SELinux
-# domain and AID.
-service sdv_uds_certs_provisioner_sample /vendor/bin/sdv_uds_certs_provisioner_sample
-    class core
-    disabled
-    user system
-    group system
-    oneshot
