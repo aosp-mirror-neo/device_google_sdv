@@ -258,9 +258,10 @@ PRODUCT_PACKAGES += \
     dumpsys \
 
 # Partition debugging utils
-PRODUCT_PACKAGES_DEBUG += \
-    bootctl \
-    dmctl \
+PRODUCT_PACKAGES_DEBUG += dmctl
+# TODO: b/419776968 - stop using bootctl in initial_boot_checkpoint.sh and only include it in
+#       DEBUG builds.
+PRODUCT_PACKAGES += bootctl
 
 # System update support
 PRODUCT_PACKAGES += \
