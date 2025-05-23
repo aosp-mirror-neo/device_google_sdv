@@ -25,6 +25,8 @@ ifconfig sdv_rpc up
 # TODO(hnandagopal): Figure out if this should be different from DT
 sysctl -q -w net.ipv4.ip_local_port_range="4000 5999"
 
+setprop ro.sdv.oem.eth.rpc.up true
+
 echo "ifconfig output:"
 echo "$(ifconfig)"
 

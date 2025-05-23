@@ -1,0 +1,10 @@
+# Copyright 2025 Google LLC
+
+# Network setup is done
+ro.sdv.oem.eth.setup.ready u:object_r:sdv_oem_eth_prop:s0 exact bool
+ro.sdv.oem.eth.namespaces.ready u:object_r:sdv_oem_eth_prop:s0 exact bool
+
+# Agents network interfaces are ready
+ro.sdv.oem.eth.sd_mesh.up u:object_r:sdv_oem_eth_prop:s0 exact bool
+ro.sdv.oem.eth.dt.up u:object_r:sdv_oem_eth_prop:s0 exact bool
+ro.sdv.oem.eth.rpc.up u:object_r:sdv_oem_eth_prop:s0 exact bool

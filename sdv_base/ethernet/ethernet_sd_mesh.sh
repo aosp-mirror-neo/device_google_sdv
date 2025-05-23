@@ -22,4 +22,6 @@ ip link set dev lo up
 
 ifconfig sd_mesh up
 
+setprop ro.sdv.oem.eth.sd_mesh.up true
+
 log -t boot-timing -p i "sdv-ethernet-sd-mesh-setup has started successfully"
