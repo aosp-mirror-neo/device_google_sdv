@@ -80,6 +80,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     com.google.sdv.rpcsamples \
     sdv_dt_mw_publisher_rs \
     sdv_dt_mw_subscriber_rs \
+    libhealth_vsidl_with_bp_file-vsidl-config.binpb \
 
 # TODO: b/361610453 - include in com.sdv.google.sample.logging
 SDV_CORE_SERVICES_SAMPLES_PACKAGES += structured_logging_sdv_rust_sample
