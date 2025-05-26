@@ -11,6 +11,7 @@ SDV_AUTOMOTIVE_SERVICES_SAMPLES_PACKAGES += \
     diag_v1_provider1_sample \
     diag_v1_provider2_sample \
     libdiagnostics_update_sample_catalog_files-vsidl-config.binpb \
+    libdiagnostics_update_sample_catalog_files-vsidl-config.binpb-V2 \
     libdiagnostics_v1_sample_catalog_files-vsidl-config.binpb \
     vpm_power_state_client \
     vpm_vehicle_state_client \
