@@ -81,14 +81,16 @@ on property:persist.sdv.health_monitor.config_path=""
         ${ro.sdv.health_monitor.config_path:-/system/etc/health_monitor/hm_config.textproto}
 
 # Declare and start the SDV Health Monitoring agent.
-# The VM restart is to be controlled by the OEM, therefore, critical property is not set. By default,
-# the process can't be restarted more frequently than 5 seconds (the minimal value, it is already set by default).
-# This means that potentially VM will be restarted by the OEM before the Health Monitor is restarted by Android in case of its crash.
+# The VM restart is to be controlled by the OEM, therefore, critical option is not set.
+# As OEMs control VM restart if HM crashes, OEMs would miss a VM health report and restart VM.
 service sdv_health_monitor /system_ext/bin/sdv_health_monitor
     class core
     disabled
     user system_ext_sdv_hm
-    group system
+    # HM reads process information.
+    group system readproc
+    # HM is not restarted once it completes, due to a failure, to allow OEMs to control VM restart.
+    oneshot
 on property:dev.bootcomplete=1
     start sdv_health_monitor
 
@@ -106,11 +108,15 @@ on post-fs-data
   start vsock_local_cid
 
 # Declare and start the SDV Service Discovery service.
+# The VM restart is to be controlled by the OEM, therefore, critical property is not set.
+# As OEMs control VM restart if SD crashes, OEMs would miss a VM health report and restart VM.
 service sdv_sd_agent /system_ext/bin/sdv_sd_agent
     class core
     disabled
     user system_ext_sdv_sd
     group system
+    # SD is not restarted once it completes, due to a failure, to allow OEMs to control VM restart.
+    oneshot
     enter_namespace net /mnt/run/sd_mesh_ns
 on property:dev.bootcomplete=1
     start sdv_sd_agent
@@ -120,12 +126,16 @@ on property:dev.bootcomplete=1
 # We launch the agent as shell for compatibility with PDK8 where this tool
 # was started manually via adb shell; system/system is the better
 # credential here, but we need to change how we obtain file descriptors for
-# notifications before we can stop relying on shell permissions
+# notifications before we can stop relying on shell permissions.
+# The VM restart is to be controlled by the OEM, therefore, critical property is not set.
+# As OEMs control VM restart if DT crashes, OEMs would miss a VM health report and restart VM.
 service dt_agent /system_ext/bin/dt_agent
     class core
     disabled
     user system_ext_sdv_dt
     group system
+    # DT is not restarted once it completes, due to a failure, to allow OEMs to control VM restart.
+    oneshot
     enter_namespace net /mnt/run/sdv_dt_ns
 on property:dev.bootcomplete=1
     start dt_agent
