@@ -15,6 +15,8 @@ SDV_PERF_PACKAGES = \
     com.sdv.google.performance.apex4 \
     com.sdv.google.performance.apex5 \
     com.sdv.someip \
+    libhealth_vsidl_with_bp_file-vsidl-config.binpb \
+    sdv_vsomeip_vehicle_health_monitor_sample_target \
     test_vm_health_subscriber \
 
 PRODUCT_PACKAGES += $(SDV_PERF_PACKAGES)
