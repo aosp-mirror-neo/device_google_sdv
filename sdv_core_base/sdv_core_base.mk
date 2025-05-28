@@ -14,6 +14,7 @@ PRODUCT_MODEL := Software-Defined Vehicle Core
 $(call inherit-product, $(SRC_TARGET_DIR)/product/generic_ramdisk.mk)
 
 PRODUCT_COMPRESSED_APEX := false
+PRODUCT_SYSTEM_PROPERTIES += apexd.config.brand_new_apex=true
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 
 VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
