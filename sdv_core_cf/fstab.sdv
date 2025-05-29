@@ -5,7 +5,7 @@
 /dev/block/by-name/init_boot    /init_boot      emmc    defaults                                                recoveryonly,slotselect,first_stage_mount,avb=init_boot
 /dev/block/by-name/vendor_boot  /vendor_boot    emmc    defaults                                                recoveryonly,slotselect
 
-system                          /system         erofs    noatime,ro                                             wait,slotselect,logical,first_stage_mount,avb=vbmeta_system
+system                          /system         ext4    noatime,ro,errors=panic                                 wait,slotselect,logical,first_stage_mount,avb=vbmeta_system
 
 # Add all non-dynamic partitions except system, after this comment
 
@@ -17,10 +17,10 @@ system                          /system         erofs    noatime,ro             
 
 # Add all dynamic partitions except system, after this comment
 
-system_ext                      /system_ext     erofs    noatime,ro                                             wait,slotselect,logical,first_stage_mount,avb=vbmeta_system
-product                         /product        erofs    noatime,ro                                             wait,slotselect,logical,first_stage_mount,avb=vbmeta_system
-vendor                          /vendor         erofs    noatime,ro                                             wait,slotselect,logical,first_stage_mount,avb=vbmeta
-vendor_dlkm                     /vendor_dlkm    erofs    noatime,ro                                             wait,slotselect,logical,first_stage_mount,avb=vbmeta
+system_ext                      /system_ext     ext4    noatime,ro,errors=panic                                 wait,slotselect,logical,first_stage_mount,avb=vbmeta_system
+product                         /product        ext4    noatime,ro,errors=panic                                 wait,slotselect,logical,first_stage_mount,avb=vbmeta_system
+vendor                          /vendor         ext4    noatime,ro,errors=panic                                 wait,slotselect,logical,first_stage_mount,avb=vbmeta
+vendor_dlkm                     /vendor_dlkm    ext4    noatime,ro,errors=panic                                 wait,slotselect,logical,first_stage_mount,avb=vbmeta
 
 # Oem updates metadata partition for OEM updates: marked as optional for SDV (no errors=panic flag).
 # OEMs must mark it as required for OEM updates to work reliably.

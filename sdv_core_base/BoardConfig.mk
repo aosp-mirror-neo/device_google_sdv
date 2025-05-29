@@ -71,13 +71,8 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES_OPTIONS_FILE := \
 
 TARGET_BOOTLOADER_BOARD_NAME := cutf
 
-# FILE_SYSTEM_TYPE must be in sync with fstab.sdv
-BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := erofs
-BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := erofs
-
-# EROFS compression optimizations
-# https://source.android.com/docs/core/architecture/kernel/erofs
-BOARD_EROFS_PCLUSTER_SIZE := 262144
+BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 
 # Disable sparse on all filesystem images
 # This will prevent sparsing of super.img
@@ -203,13 +198,13 @@ BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/vendor
 BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_core_base/sepolicy/vendor/
 
 BOARD_USES_SYSTEM_EXTIMAGE := true
-BOARD_SYSTEM_EXTIMAGE_FILE_SYSTEM_TYPE := erofs
+BOARD_SYSTEM_EXTIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_COPY_OUT_SYSTEM_EXT := system_ext
 
 BOARD_AVB_SYSTEM_EXT_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
 
 BOARD_USES_PRODUCTIMAGE := true
-BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE := erofs
+BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_COPY_OUT_PRODUCT := product
 
 BOARD_AVB_PRODUCT_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
@@ -227,7 +222,7 @@ BOARD_USES_METADATA_PARTITION := true
 # Vendor DLKM partition
 # https://source.android.com/docs/core/architecture/partitions/vendor-odm-dlkm-partition
 BOARD_USES_VENDOR_DLKMIMAGE := true
-BOARD_VENDOR_DLKMIMAGE_FILE_SYSTEM_TYPE := erofs
+BOARD_VENDOR_DLKMIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_COPY_OUT_VENDOR_DLKM := vendor_dlkm
 
 # Add VLAN support (provided by 8021q module)
