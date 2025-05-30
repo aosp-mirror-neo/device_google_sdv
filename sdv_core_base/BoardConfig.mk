@@ -158,8 +158,8 @@ BOARD_INIT_BOOT_HEADER_VERSION := 4
 BOARD_MKBOOTIMG_INIT_ARGS += --header_version $(BOARD_INIT_BOOT_HEADER_VERSION)
 
 BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_PARTITION_LIST := system vendor system_ext product vendor_dlkm
-# reserve 512+256+128MiB for dynamic partition metadata
-BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_SIZE := 939524096
+# reserve 512+256+256MiB for dynamic partition metadata
+BOARD_GOOGLE_SYSTEM_DYNAMIC_PARTITIONS_SIZE := 1073741824
 
 # rust incremental builds can use more space, add 30MiB more
 ifeq ($(SOONG_RUSTC_INCREMENTAL),true)
