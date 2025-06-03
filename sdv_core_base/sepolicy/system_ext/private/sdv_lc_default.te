@@ -30,3 +30,8 @@ binder_call(sdv_lc_default, servicebundledomain)
 # The service bundles spawned by the Lifecycle agent has access to the internal IServiceManager
 # Binder service.
 allow servicebundledomain sdv_lc_service_manager_service:service_manager find;
+
+# Property that indicates the current state of lifecycle agent.
+system_internal_prop(lc_state_ready_prop)
+# Lifecycle agent is the only agent that can set its current state.
+set_prop(sdv_lc_default, lc_state_ready_prop)

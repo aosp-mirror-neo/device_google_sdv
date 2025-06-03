@@ -41,6 +41,11 @@ set_prop(sdv_orch, orchestrator_vehicle_boot_complete_prop)
 system_internal_prop(orchestrator_power_state_prop)
 set_prop(sdv_orch, orchestrator_power_state_prop)
 
+# Property that indicates the current state of Orchestrator.
+system_internal_prop(orchestrator_state_ready_prop)
+# Orchestrator is the only agent that can set its current state.
+set_prop(sdv_orch, orchestrator_state_ready_prop)
+
 # Defines SDV orch service used for dumpsys.
 type sdv_orch_dump_service, protected_service, service_manager_type;
 add_service(sdv_orch, sdv_orch_dump_service)
