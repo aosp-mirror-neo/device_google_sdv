@@ -46,6 +46,9 @@ allow sdv_ethernet_setup self:capability sys_admin;
 # Required for `sysctl -w net.ipv4.ip_local_port_range="min max"`
 allow sdv_ethernet_setup proc_net:file { getattr open read write };
 
+# Required by `echo "$(ifconfig)"` in ethernet_sdv_rpc.sh
+allow sdv_ethernet_setup sysfs_net:dir search;
+
 # Required for script to set flags
 set_prop(sdv_ethernet_setup, sdv_oem_eth_prop);
 
