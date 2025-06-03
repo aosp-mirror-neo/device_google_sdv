@@ -21,6 +21,7 @@ init_daemon_domain(sdv_telemetry)
 
 # Allow the sdv_telemetry domain to use Binder IPC
 binder_use(sdv_telemetry);
+binder_use(sdv_telemetry_client);
 
 # SDV Telemetry Service agent can register telemetry service and configurable
 # publisher registry service
