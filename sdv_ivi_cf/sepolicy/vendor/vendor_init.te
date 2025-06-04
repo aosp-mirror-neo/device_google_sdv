@@ -1,0 +1,4 @@
+# Copyright 2025 Google LLC
+
+# Required for setting persist.vendor.apex.com.android.hardware.keymint in /vendor/build.prop.
+set_prop(vendor_init, apexd_select_prop)
