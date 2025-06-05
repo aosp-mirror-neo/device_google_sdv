@@ -5,3 +5,6 @@ product_internal_prop(sdv_sample_cuj_prop)
 
 # Only service bundles executed by service_bundle_runner can read the `sdv_sample_cuj_prop`.
 get_prop(untrusted_service_bundle, sdv_sample_cuj_prop)
+
+# Allows e2e tests to set properties, only used in samples code.
+set_prop(shell, sdv_sample_cuj_prop)
