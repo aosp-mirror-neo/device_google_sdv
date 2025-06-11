@@ -8,6 +8,10 @@
 
 $(call inherit-product, device/google/cuttlefish/vsoc_x86_64_only/auto/aosp_cf.mk)
 
+$(call soong_config_append,cvd,launch_configs,cvd_config_sdv_ivi_instance1.json)
+$(call soong_config_append,cvd,launch_configs,cvd_config_sdv_ivi_instance2.json)
+$(call soong_config_append,cvd,launch_configs,cvd_config_sdv_ivi_instance3.json)
+
 PRODUCT_NAME := sdv_ivi_cf
 PRODUCT_DEVICE := sdv_ivi_cf
 

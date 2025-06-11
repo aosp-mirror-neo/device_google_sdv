@@ -5,9 +5,115 @@ package {
 }
 
 // The configuration containing the default flag values when running SDV with Cuttlefish
-// (`cvd start`). For a current list of available flags run `cvd start --help`.
+// (`cvd create`). For a current list of available flags run `cvd create --help`.
 prebuilt_etc_host {
     name: "cvd_config_sdv.json",
     src: "config_sdv.json",
     sub_dir: "cvd_config",
+}
+
+// Preset configurations that pass all the required bootconfigs for booting a Cuttlefish VM as one
+// of the 3 instances of the SDV development mesh, a mesh that is configured with all the secret
+// and configuration values to boot in SDV boot mode locked for development, testing and debugging
+// with Cuttlefish.
+//
+// Example usage:
+// cvd create --config=sdv_core_instance1
+//
+// If required, bootconfig parameters from the cvd_config can be overridden by using the
+// --extra_kernel_cmdline cvd argument:
+//
+// cvd create --config=sdv_core_instance1 \
+//   --extra_kernel_cmdline=androidboot.sdv.vvmfactorytrust=1234
+//
+// Which overwrites the androidboot.sdv.vvmfactorytrust value set in the config, but causes this
+// benign error to be logged, which can be ignored:
+// Init cannot set 'ro.boot.sdv.vvmfactorytrust' to ...: Read-only property was already set
+
+prebuilt_etc_host {
+    name: "cvd_config_sdv_core_instance1.json",
+    src: ":cvd_config_sdv_core_instance1_gen",
+    sub_dir: "cvd_config",
+}
+
+genrule {
+    name: "cvd_config_sdv_core_instance1_gen",
+    defaults: ["merge_with_sdv_dev_mesh_instance1_default"],
+    srcs: ["config_sdv.json"],
+    out: ["cvd_config_sdv_core_instance1_gen"],
+}
+
+prebuilt_etc_host {
+    name: "cvd_config_sdv_core_instance2.json",
+    src: ":cvd_config_sdv_core_instance2_gen",
+    sub_dir: "cvd_config",
+}
+
+genrule {
+    name: "cvd_config_sdv_core_instance2_gen",
+    defaults: ["merge_with_sdv_dev_mesh_instance2_default"],
+    srcs: ["config_sdv.json"],
+    out: ["cvd_config_sdv_core_instance2_gen"],
+}
+
+prebuilt_etc_host {
+    name: "cvd_config_sdv_core_instance3.json",
+    src: ":cvd_config_sdv_core_instance3_gen",
+    sub_dir: "cvd_config",
+}
+
+genrule {
+    name: "cvd_config_sdv_core_instance3_gen",
+    defaults: ["merge_with_sdv_dev_mesh_instance3_default"],
+    srcs: ["config_sdv.json"],
+    out: ["cvd_config_sdv_core_instance3_gen"],
+}
+
+// Use merge_json to merge config_sdv_dev_mesh_instance1.json with any additional srcs files that
+// are specified in the gnerule module using this default.
+genrule_defaults {
+    name: "merge_with_sdv_dev_mesh_instance1_default",
+    defaults: ["sdv_merge_json_default"],
+    srcs: [":config_sdv_dev_mesh_instance1.json"],
+}
+
+// Use merge_json to merge config_sdv_dev_mesh_instance2.json with any additional srcs files that
+// are specified in the gnerule module using this default.
+genrule_defaults {
+    name: "merge_with_sdv_dev_mesh_instance2_default",
+    defaults: ["sdv_merge_json_default"],
+    srcs: [":config_sdv_dev_mesh_instance2.json"],
+}
+
+// Use merge_json to merge config_sdv_dev_mesh_instance3.json with any additional srcs files that
+// are specified in the gnerule module using this default.
+genrule_defaults {
+    name: "merge_with_sdv_dev_mesh_instance3_default",
+    defaults: ["sdv_merge_json_default"],
+    srcs: [":config_sdv_dev_mesh_instance3.json"],
+}
+
+genrule_defaults {
+    name: "sdv_merge_json_default",
+    tools: ["merge_json"],
+    // Merge the JSON object containing the cvd_config for SDV with the one that configures this
+    // instance of the SDV Development mesh.
+    cmd: "$(location merge_json) $(out) $(in)",
+}
+
+// Making the config_sdv_dev_mesh_instance JSON source files available from other Android.bp files.
+
+filegroup {
+    name: "config_sdv_dev_mesh_instance1.json",
+    srcs: ["config_sdv_dev_mesh_instance1.json"],
+}
+
+filegroup {
+    name: "config_sdv_dev_mesh_instance2.json",
+    srcs: ["config_sdv_dev_mesh_instance2.json"],
+}
+
+filegroup {
+    name: "config_sdv_dev_mesh_instance3.json",
+    srcs: ["config_sdv_dev_mesh_instance3.json"],
 }

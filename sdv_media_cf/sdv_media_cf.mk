@@ -17,6 +17,9 @@ $(call inherit-product, device/google/sdv/sdv_media_base/sdv_media_base.mk)
 $(call inherit-product, device/google/sdv/sdv_core_cf/sdv_core_cf.mk)
 
 $(call soong_config_append,cvd,launch_configs,cvd_config_sdv_media.json)
+$(call soong_config_append,cvd,launch_configs,cvd_config_sdv_media_instance1.json)
+$(call soong_config_append,cvd,launch_configs,cvd_config_sdv_media_instance2.json)
+$(call soong_config_append,cvd,launch_configs,cvd_config_sdv_media_instance3.json)
 TARGET_BOARD_INFO_FILE ?= device/google/sdv/sdv_media_cf/android-info.txt
 
 include device/google/sdv/sdv_base/sdv_samples_base_services.mk

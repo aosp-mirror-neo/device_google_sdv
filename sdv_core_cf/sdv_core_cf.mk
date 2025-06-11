@@ -12,6 +12,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit_only.mk)
 $(call inherit-product, device/google/cuttlefish/vsoc_x86_64/bootloader.mk)
 
 $(call soong_config_append,cvd,launch_configs,cvd_config_sdv.json)
+$(call soong_config_append,cvd,launch_configs,cvd_config_sdv_core_instance1.json)
+$(call soong_config_append,cvd,launch_configs,cvd_config_sdv_core_instance2.json)
+$(call soong_config_append,cvd,launch_configs,cvd_config_sdv_core_instance3.json)
 
 PRODUCT_NAME := sdv_core_cf
 PRODUCT_DEVICE := sdv_core_cf
