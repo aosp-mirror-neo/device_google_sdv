@@ -1,2 +1,2 @@
-config=sdv
+config=sdv_core_instance1
 vhost_user_vsock=true
