@@ -1,0 +1,15 @@
+# Copyright 2025 Google LLC
+
+# vvmtruststore files
+
+/vvmtruststore(/.*)?     u:object_r:vvmtruststorefs:s0
+
+# Even though the types for specific files are assigned correctly using type transitions, their
+# labels must still be specified in a file_contexts files, because
+#
+# 1. restorecon could be called on the content of /vvmtruststore which would apply the labels
+#    specified here which otherwise would be the default vvmtruststorefs type,
+# 2. the files built into the pre-provisioned images (which are only used for testing) receive
+#    their labels from this file in build time.
+/vvmtruststore/uds_pubs  u:object_r:uds_pubs_file:s0
+/vvmtruststore/uds_certs u:object_r:uds_certs_file:s0

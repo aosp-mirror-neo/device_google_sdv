@@ -25,11 +25,3 @@
 
 # SDV service rpc agent
 /(system_ext|system/system_ext)/bin/rpcagent         u:object_r:sdv_rpcagent_default_exec:s0
-
-##########################
-# vvmtruststore files
-#
-
-# By default, the vvmtruststore partition is empty. The types for specific files (e.g. uds_certs,
-# uds_pubs) are assigned using type transitions.
-/vvmtruststore(/.*)?                                 u:object_r:vvmtruststorefs:s0

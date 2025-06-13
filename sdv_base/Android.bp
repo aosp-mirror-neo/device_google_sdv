@@ -11,11 +11,13 @@ vintf_compatibility_matrix {
 
 filegroup {
     name: "vvmtruststore_file_contexts",
-    srcs: ["vvmtruststore_file_contexts"],
+    srcs: ["sepolicy/vvmtruststore/private/file_contexts"],
 }
 
 android_filesystem_defaults {
     name: "vvmtruststore_filesystem_defaults",
+    // The SELinux labels in the file_contexts take this directory into account, i.e. all the paths
+    // there labeling files on this partition must start with this mount_point directory.
     mount_point: "/vvmtruststore",
     partition_size: 1048576, // 1 MB
     type: "ext4",
@@ -28,9 +30,12 @@ android_filesystem_defaults {
         ],
     },
     no_full_install: true,
-    // Instead of directly referring to the vvmtruststore_file_contexts source file located within
+    // The file_contexts file that contains the SELinux labels which are applied to the files built
+    // into this image.
+    // The labels in the file_contexts must contain the mount_point as the root directory.
+    // Instead of directly referring to the file_contexts source file located in a subdirectory of
     // this directory, doing that through a Soong module, so this default can be used in Android.bp
-    // files in different folders.
+    // files in different directories.
     file_contexts: ":vvmtruststore_file_contexts",
 }
 

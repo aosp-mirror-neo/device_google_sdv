@@ -1,5 +1,0 @@
-# Copyright 2025 Google LLC
-
-(/.*)?                   u:object_r:vvmtruststorefs:s0
-/vvmtruststore/uds_pubs  u:object_r:uds_pubs_file:s0
-/vvmtruststore/uds_certs u:object_r:uds_certs_file:s0
