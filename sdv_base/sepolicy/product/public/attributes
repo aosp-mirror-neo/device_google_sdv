@@ -1,0 +1,8 @@
+# Copyright 2025 Google LLC
+
+# Attributes for SDV Telemetry Client
+# This attribute provides all rules required
+# for a client to interact with the telemetry service
+# and is accessible on both the product and vendor partitions
+attribute sdv_telemetry_client;
+expandattribute sdv_telemetry_client true;
