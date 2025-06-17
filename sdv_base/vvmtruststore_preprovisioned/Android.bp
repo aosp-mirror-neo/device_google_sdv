@@ -11,10 +11,6 @@ package {
 //
 // Not putting Android.bp files in the leaf subdirectories in order to
 // make updating them simpler. See README.md
-//
-// Note that basic authentication is not supported in this mode. Hence its files
-// (vm_certs and vm_private) are not being installed. There's no intention in
-// having it covered by automated tests.
 
 // instance1
 prebuilt_etc {
@@ -67,9 +63,6 @@ prebuilt_etc {
     system_ext_specific: true,
 }
 
-// Preprovisioned vvmtruststore images
-// TODO: b/379662565 - remove own_vm_cert, vm_certs and vm_private
-
 // instance1
 android_filesystem {
     name: "vvmtruststore_preprovisioned_instance1",
@@ -77,9 +70,6 @@ android_filesystem {
     deps: [
         "vvmtruststore_instance1_uds_certs",
         "vvmtruststore_instance1_uds_pubs",
-        "vvmtruststore_instance1_own_vm_cert",
-        "vvmtruststore_instance1_vm_certs",
-        "vvmtruststore_instance1_vm_private",
     ],
 }
 
@@ -108,27 +98,6 @@ prebuilt_root {
     no_full_install: true,
 }
 
-prebuilt_root {
-    name: "vvmtruststore_instance1_own_vm_cert",
-    src: "instance1/vvmtruststore/own_vm_cert",
-    filename: "own_vm_cert",
-    no_full_install: true,
-}
-
-prebuilt_root {
-    name: "vvmtruststore_instance1_vm_certs",
-    src: "instance1/vvmtruststore/vm_certs",
-    filename: "vm_certs",
-    no_full_install: true,
-}
-
-prebuilt_root {
-    name: "vvmtruststore_instance1_vm_private",
-    src: "instance1/vvmtruststore/vm_private",
-    filename: "vm_private",
-    no_full_install: true,
-}
-
 // instance2
 android_filesystem {
     name: "vvmtruststore_preprovisioned_instance2",
@@ -136,9 +105,6 @@ android_filesystem {
     deps: [
         "vvmtruststore_instance2_uds_certs",
         "vvmtruststore_instance2_uds_pubs",
-        "vvmtruststore_instance2_own_vm_cert",
-        "vvmtruststore_instance2_vm_certs",
-        "vvmtruststore_instance2_vm_private",
     ],
 }
 
@@ -167,27 +133,6 @@ prebuilt_root {
     no_full_install: true,
 }
 
-prebuilt_root {
-    name: "vvmtruststore_instance2_own_vm_cert",
-    src: "instance2/vvmtruststore/own_vm_cert",
-    filename: "own_vm_cert",
-    no_full_install: true,
-}
-
-prebuilt_root {
-    name: "vvmtruststore_instance2_vm_certs",
-    src: "instance2/vvmtruststore/vm_certs",
-    filename: "vm_certs",
-    no_full_install: true,
-}
-
-prebuilt_root {
-    name: "vvmtruststore_instance2_vm_private",
-    src: "instance2/vvmtruststore/vm_private",
-    filename: "vm_private",
-    no_full_install: true,
-}
-
 // instance3
 android_filesystem {
     name: "vvmtruststore_preprovisioned_instance3",
@@ -195,9 +140,6 @@ android_filesystem {
     deps: [
         "vvmtruststore_instance3_uds_certs",
         "vvmtruststore_instance3_uds_pubs",
-        "vvmtruststore_instance3_own_vm_cert",
-        "vvmtruststore_instance3_vm_certs",
-        "vvmtruststore_instance3_vm_private",
     ],
 }
 
@@ -223,26 +165,5 @@ prebuilt_root {
     name: "vvmtruststore_instance3_uds_pubs",
     src: "instance3/vvmtruststore/uds_pubs",
     filename: "uds_pubs",
-    no_full_install: true,
-}
-
-prebuilt_root {
-    name: "vvmtruststore_instance3_own_vm_cert",
-    src: "instance3/vvmtruststore/own_vm_cert",
-    filename: "own_vm_cert",
-    no_full_install: true,
-}
-
-prebuilt_root {
-    name: "vvmtruststore_instance3_vm_certs",
-    src: "instance3/vvmtruststore/vm_certs",
-    filename: "vm_certs",
-    no_full_install: true,
-}
-
-prebuilt_root {
-    name: "vvmtruststore_instance3_vm_private",
-    src: "instance3/vvmtruststore/vm_private",
-    filename: "vm_private",
     no_full_install: true,
 }
