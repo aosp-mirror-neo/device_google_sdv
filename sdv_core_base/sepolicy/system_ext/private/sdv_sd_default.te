@@ -1,0 +1,4 @@
+# Copyright 2025 Google LLC
+
+# Service Discovery (SD) agent is a power state client
+typeattribute sdv_sd_default sdv_vpm_agent_notification_client;
