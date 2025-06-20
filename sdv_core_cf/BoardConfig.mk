@@ -34,6 +34,10 @@ BOARD_BOOTCONFIG += \
     androidboot.sdv.oem_slot_a_device=/dev/block/by-name/custom \
     androidboot.sdv.oem_slot_b_device=/dev/block/by-name/custom_1
 
+# Orch->LM binder max parallel calls property
+BOARD_BOOTCONFIG += \
+    androidboot.sdv.max_bundles_management_threads=12
+
 # Writable partition mount point for SDV OemUpdater.
 # Build with: m custom_images
 # Run with: cvd start --custom_partition_path="$OUT/oem.img;$OUT/oem.img;$OUT/oem_metadata.img"
