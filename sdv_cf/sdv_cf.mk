@@ -13,12 +13,13 @@ PRODUCT_SYSTEM_PROPERTIES += \
 
 # umbrella init.rc for all Cuttlefish-specific parts
 PRODUCT_COPY_FILES += device/google/sdv/sdv_cf/init.sdv_cf.rc:$(TARGET_COPY_OUT_SYSTEM)/etc/init/init.sdv_cf.rc
-# vvmtruststore partition support
-PRODUCT_COPY_FILES += device/google/sdv/sdv_cf/vvmtruststore.rc:$(TARGET_COPY_OUT_SYSTEM)/etc/init/vvmtruststore.rc
 
 # Cuttlefish specific networking setup
 PRODUCT_COPY_FILES += device/google/sdv/sdv_cf/ethernet/ethernet.sdv_cf.sh:$(TARGET_COPY_OUT_PRODUCT)/bin/ethernet/ethernet.sdv_cf.sh
 PRODUCT_COPY_FILES += device/google/sdv/sdv_cf/ethernet/ethernet.sdv_cf.rc:$(TARGET_COPY_OUT_PRODUCT)/etc/init/hw/ethernet.sdv_cf.rc
+
+# vvmtruststore mounting logic
+PRODUCT_COPY_FILES += device/google/sdv/sdv_base/vvmtruststore/vvmtruststore.rc:$(TARGET_COPY_OUT_SYSTEM)/etc/init/vvmtruststore.rc
 
 # BootControl HAL for Cuttlefish
 PRODUCT_PACKAGES += com.android.hardware.boot

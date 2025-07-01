@@ -16,21 +16,6 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(TARGET_KERNEL_MODULES_PATH)/8021q.ko
 # TODO: b/325133547 - Add this missing module in the CF auto target instead
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(TARGET_KERNEL_MODULES_PATH)/macsec.ko
 
-BOARD_ROOT_EXTRA_FOLDERS := vvmtruststore
-
-# Makes the vvmtruststore image installed to the $OUT directory on build and included in the
-# sdv_ivi_cf-img-*.zip on disting.
-BOARD_CUSTOMIMAGES_PARTITION_LIST += vvmtruststore
-
-# Must tell the build system where to find the build artifacts of the images.
-ifeq ($(CLANG_COVERAGE),true)
-  VARIANT_DIR = android_common_cov
-else
-  VARIANT_DIR = android_common
-endif
-BOARD_VVMTRUSTSTORE_IMAGE_LIST := \
-  $(OUT_DIR)/soong/.intermediates/device/google/sdv/sdv_base/vvmtruststore/$(VARIANT_DIR)/vvmtruststore.img
-
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/samples/system_ext/private
 PRODUCT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/samples/product/private
 BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/samples/vendor
@@ -46,7 +31,7 @@ BOARD_CUSTOMIMAGES_PARTITION_LIST += \
   vvmtruststore_preprovisioned_instance3
 
 VVMTRUSTSTORE_PREPROVISIONED_INTERMEDIATE_DIR := \
-  $(OUT_DIR)/soong/.intermediates/device/google/sdv/sdv_base/vvmtruststore_preprovisioned
+  $(OUT_DIR)/soong/.intermediates/device/google/sdv/sdv_base/vvmtruststore/vvmtruststore_preprovisioned
 
 BOARD_VVMTRUSTSTORE_PREPROVISIONED_INSTANCE1_IMAGE_LIST := \
   $(VVMTRUSTSTORE_PREPROVISIONED_INTERMEDIATE_DIR)/vvmtruststore_preprovisioned_instance1/$(VARIANT_DIR)/vvmtruststore_preprovisioned_instance1.img

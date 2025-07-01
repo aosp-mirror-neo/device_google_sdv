@@ -195,8 +195,6 @@ BOARD_VENDOR_SEPOLICY_DIRS += device/google/cuttlefish/shared/sepolicy/vendor/se
 # Defining the SEPolicies of the SDV packages located on the system_ext partition by amending the
 # private and public policies of the partition. See system/sepolicy/README.md for more details.
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/system_ext/private
-# The vvmtruststore partition is owned by the framework i.e. system(_ext).
-SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/vvmtruststore/private
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_core_base/sepolicy/system_ext/private
 SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/system_ext/public
 SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += device/google/sdv/sdv_core_base/sepolicy/system_ext/public
@@ -253,21 +251,6 @@ AB_OTA_PARTITIONS := \
   vendor \
   vbmeta \
   vendor_dlkm \
-
-BOARD_ROOT_EXTRA_FOLDERS := vvmtruststore
-
-# Makes the vvmtruststore image installed to the $OUT directory on build and included in the
-# sdv_core_*-img-*.zip on disting.
-BOARD_CUSTOMIMAGES_PARTITION_LIST += vvmtruststore
-
-# Must tell the build system where to find the build artifact of the vvmtruststore image.
-ifeq ($(CLANG_COVERAGE),true)
-  VARIANT_DIR = android_common_cov
-else
-  VARIANT_DIR = android_common
-endif
-BOARD_VVMTRUSTSTORE_IMAGE_LIST := \
-  $(OUT_DIR)/soong/.intermediates/device/google/sdv/sdv_base/vvmtruststore/$(VARIANT_DIR)/vvmtruststore.img
 
 # Have SD Agent on SDV read ACL file mappings from Service Bundle Registry
 $(call soong_config_set,sdv_authz,acl_provider_type,sdv_acl_provider)

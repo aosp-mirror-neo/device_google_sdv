@@ -74,7 +74,7 @@ BOARD_CUSTOMIMAGES_PARTITION_LIST += \
 
 # Must tell the build system where to find the build artifacts of the images.
 VVMTRUSTSTORE_PREPROVISIONED_INTERMEDIATE_DIR := \
-  $(OUT_DIR)/soong/.intermediates/device/google/sdv/sdv_base/vvmtruststore_preprovisioned
+  $(OUT_DIR)/soong/.intermediates/device/google/sdv/sdv_base/vvmtruststore/vvmtruststore_preprovisioned
 ifeq ($(CLANG_COVERAGE),true)
   VARIANT_DIR = android_common_cov
 else
