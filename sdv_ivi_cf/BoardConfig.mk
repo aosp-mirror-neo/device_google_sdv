@@ -21,24 +21,3 @@ PRODUCT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/samples/pro
 BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/samples/vendor
 BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_ivi_cf/sepolicy/vendor
 BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_ivi_base/sepolicy/samples/vendor
-
-# Pre-provisioned vvmstruststore images for ease of testing.
-
-# Makes the image installed to the $OUT directory on build and included in the
-# sdv_ivi_cf-img-*.zip on disting.
-BOARD_CUSTOMIMAGES_PARTITION_LIST += \
-  vvmtruststore_preprovisioned_instance1 \
-  vvmtruststore_preprovisioned_instance2 \
-  vvmtruststore_preprovisioned_instance3
-
-VVMTRUSTSTORE_PREPROVISIONED_INTERMEDIATE_DIR := \
-  $(OUT_DIR)/soong/.intermediates/device/google/sdv/sdv_base/vvmtruststore/vvmtruststore_preprovisioned
-
-BOARD_VVMTRUSTSTORE_PREPROVISIONED_INSTANCE1_IMAGE_LIST := \
-  $(VVMTRUSTSTORE_PREPROVISIONED_INTERMEDIATE_DIR)/vvmtruststore_preprovisioned_instance1/$(VARIANT_DIR)/vvmtruststore_preprovisioned_instance1.img
-
-BOARD_VVMTRUSTSTORE_PREPROVISIONED_INSTANCE2_IMAGE_LIST := \
-  $(VVMTRUSTSTORE_PREPROVISIONED_INTERMEDIATE_DIR)/vvmtruststore_preprovisioned_instance2/$(VARIANT_DIR)/vvmtruststore_preprovisioned_instance2.img
-
-BOARD_VVMTRUSTSTORE_PREPROVISIONED_INSTANCE3_IMAGE_LIST := \
-  $(VVMTRUSTSTORE_PREPROVISIONED_INTERMEDIATE_DIR)/vvmtruststore_preprovisioned_instance3/$(VARIANT_DIR)/vvmtruststore_preprovisioned_instance3.img

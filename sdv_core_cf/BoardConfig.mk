@@ -62,30 +62,3 @@ WIFI_DRIVER_FW_PATH_AP      := "/dev/null"
 
 # The MACsec kernel module
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(SYSTEM_DLKM_SRC)/macsec.ko
-
-# Pre-provisioned vvmstruststore images for ease of testing.
-
-# Makes the image installed to the $OUT directory on build and included in the
-# sdv_core_cf-img-*.zip on disting.
-BOARD_CUSTOMIMAGES_PARTITION_LIST += \
-  vvmtruststore_preprovisioned_instance1 \
-  vvmtruststore_preprovisioned_instance2 \
-  vvmtruststore_preprovisioned_instance3
-
-# Must tell the build system where to find the build artifacts of the images.
-VVMTRUSTSTORE_PREPROVISIONED_INTERMEDIATE_DIR := \
-  $(OUT_DIR)/soong/.intermediates/device/google/sdv/sdv_base/vvmtruststore/vvmtruststore_preprovisioned
-ifeq ($(CLANG_COVERAGE),true)
-  VARIANT_DIR = android_common_cov
-else
-  VARIANT_DIR = android_common
-endif
-
-BOARD_VVMTRUSTSTORE_PREPROVISIONED_INSTANCE1_IMAGE_LIST := \
-  $(VVMTRUSTSTORE_PREPROVISIONED_INTERMEDIATE_DIR)/vvmtruststore_preprovisioned_instance1/$(VARIANT_DIR)/vvmtruststore_preprovisioned_instance1.img
-
-BOARD_VVMTRUSTSTORE_PREPROVISIONED_INSTANCE2_IMAGE_LIST := \
-  $(VVMTRUSTSTORE_PREPROVISIONED_INTERMEDIATE_DIR)/vvmtruststore_preprovisioned_instance2/$(VARIANT_DIR)/vvmtruststore_preprovisioned_instance2.img
-
-BOARD_VVMTRUSTSTORE_PREPROVISIONED_INSTANCE3_IMAGE_LIST := \
-  $(VVMTRUSTSTORE_PREPROVISIONED_INTERMEDIATE_DIR)/vvmtruststore_preprovisioned_instance3/$(VARIANT_DIR)/vvmtruststore_preprovisioned_instance3.img

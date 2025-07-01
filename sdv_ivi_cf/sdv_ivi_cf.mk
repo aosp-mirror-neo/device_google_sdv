@@ -52,6 +52,7 @@ include device/google/sdv/sdv_base/sdv_samples_base_services.mk
 include device/google/sdv/sdv_base/sdv_sample_ethernet_setup.mk
 include device/google/sdv/sdv_ivi_base/sdv_samples_ivi_services.mk
 include device/google/sdv/sdv_ivi_base/sdv_samples_ivi_telemetry.mk
+include device/google/sdv/vvmtruststore_preprovisioned/vvmtruststore_preprovisioned.mk
 
 # Preprovisioned vvmtruststore content for /etc.
 # Used in test environments where properly mounting a vvmtruststore partition is
