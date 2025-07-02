@@ -197,6 +197,19 @@ on late-fs && property:ro.debuggable=1
     chmod 0755 /sys/kernel/tracing
     chmod 0755 /sys/kernel/debug/tracing
 
+on late-fs && property:ro.debuggable=1 && property:ro.boot.fastboot.boottrace=enabled
+    # Added after observing discarded trace according to
+    # https://source.android.com/docs/core/tests/debug/ftrace#enabling_events.
+    write /sys/kernel/tracing/buffer_size_kb 96000
+    # These two properties enable AtraceTag::App trace events to be captured
+    # before userspace tracing is set up.
+    # To determine which "apps" (which includes SDV agents and services) should be traced, ATrace
+    # checks the command name from /proc/cmdline. Tracing is only enabled if the name
+    # matches a wildcard from any of debug.atrace.app_N system properties, with N
+    # ranging from 0 up to (but excluding) debug.atrace.app_number.
+    setprop debug.atrace.app_number 1
+    setprop debug.atrace.app_0 *
+
 on post-fs-data
     mark_post_data
 

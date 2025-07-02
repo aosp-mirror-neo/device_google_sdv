@@ -228,15 +228,6 @@ ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
   # This property sets the tags to a default disabled state.
   # ATrace instrumentation in apps expects the property to always be defined.
   PRODUCT_SYSTEM_PROPERTIES += debug.atrace.tags.enableflags=0
-  # These two properties enable AtraceTag::App trace events to be captured
-  # before userspace tracing is set up.
-  # To determine which "apps" (which includes SDV agents and services) should be traced, ATrace
-  # checks the command name from /proc/cmdline. Tracing is only enabled if the name
-  # matches a wildcard from any of debug.atrace.app_N system properties, with N
-  # ranging from 0 up to (but excluding) debug.atrace.app_number.
-  PRODUCT_SYSTEM_PROPERTIES += \
-      debug.atrace.app_number=1 \
-      debug.atrace.app_0=*
   # Include SDV Test Packages
   -include vendor/google_testing/software_defined_vehicle/build/sdv_packages_test.mk
 endif
