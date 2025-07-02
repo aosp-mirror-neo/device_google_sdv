@@ -196,7 +196,6 @@ on late-fs && property:ro.debuggable=1
     # This does not work correctly if it is called in post-fs.
     chmod 0755 /sys/kernel/tracing
     chmod 0755 /sys/kernel/debug/tracing
-    write /sys/kernel/tracing/buffer_size_kb 96000
 
 on post-fs-data
     mark_post_data
@@ -390,6 +389,10 @@ on boot
     # this case, the SDV Update Manager will handle the committing of checkpoints.
     exec_start initial_boot_checkpoint
 
+    setprop sys.boot_completed 1
+    setprop dev.bootcomplete 1
+    write /dev/kmsg "VIRTUAL_DEVICE_BOOT_COMPLETED"
+
 service tombstone_transmit /system/bin/tombstone_transmit.microdroid -cid 2 -port 2000 -remove_tombstones_after_transmitting
     user system
     group system
@@ -442,19 +445,3 @@ service initial_boot_checkpoint /system_ext/bin/initial_boot_checkpoint.sh
     # Redirect stdio to /dev/kmsg_debug to have logs. Does not work in user builds, because
     # /dev/kmsg_debug doesn't exist and stdio is redirected to /dev/null instead.
     stdio_to_kmsg
-
-# Sets sys.boot_completed to 1 only after perfetto_trace_on_boot is started
-# in case of boot tracing because otherwise Perfetto would disable ftrace.
-# TODO: b/428955467 - remove the dependency on the status of `perfetto_trace_on_boot`
-# after the bug is fixed on Perfetto side
-on property:init.svc.initial_boot_checkpoint=stopped && property:persist.debug.sdv.boottrace=1 && property:init.svc.perfetto_trace_on_boot=running
-    setprop sys.boot_completed 1
-    setprop dev.bootcomplete 1
-    write /dev/kmsg "VIRTUAL_DEVICE_BOOT_COMPLETED"
-
-# In Core Android, the `sys.boot_completed` and `dev.bootcomplete` properties are
-# set in `frameworks/base/services/core/java/com/android/server/am/ActivityManagerService.java`.
-on property:init.svc.initial_boot_checkpoint=stopped && property:persist.debug.sdv.boottrace=
-    setprop sys.boot_completed 1
-    setprop dev.bootcomplete 1
-    write /dev/kmsg "VIRTUAL_DEVICE_BOOT_COMPLETED"
