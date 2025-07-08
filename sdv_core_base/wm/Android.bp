@@ -1,0 +1,17 @@
+// Copyright 2025 Google LLC
+
+// No operational (NoOp) implementation of WM (Window Manager).
+// Enables the CTS SDV test plan testing on SDV Core images.
+// Mitigates the ANDROID_SYSTEM_SETTING_DISMISS_KEYGUARD_ERROR:
+//   "/system/bin/sh: wm: inaccessible or not found"
+sh_binary {
+    name: "sdv_noop_wm",
+    // Noop script with always successful (0 code) exit.
+    src: "wm.sh",
+    // The filename of the binary on the system image.
+    filename: "wm",
+    // Prevented the real `wm` to be installed when the sdv one is installed.
+    overrides: ["wm"],
+    // To avoid conflict with the real wm in system, move the noop implementation in ext.
+    system_ext_specific: true,
+}
