@@ -18,8 +18,10 @@ SDV_PERF_PACKAGES = \
     libhealth_vsidl_with_bp_file-vsidl-config.binpb \
     sdv_vsomeip_vehicle_health_monitor_sample_target \
     test_vm_health_subscriber \
+    com.sdv.google.sample.bar \
+    com.sdv.google.sample.baz \
+    com.sdv.google.sample.foo \
+    com.sdv.google.sample.qux \
+    cujs_orchestration_configurations \
 
 PRODUCT_PACKAGES += $(SDV_PERF_PACKAGES)
-
-PRODUCT_SYSTEM_EXT_PROPERTIES += \
-    persist.sdv.orchestrator_config_path=system_ext/etc/orch/performance/orch_vm_config.textproto
