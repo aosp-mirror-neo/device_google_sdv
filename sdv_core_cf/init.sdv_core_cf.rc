@@ -41,3 +41,16 @@ on early-boot
     # /data/service_bundle_data/ is already created in a previous, post-fs-data trigger.
     mkdir /data/service_bundle_data/com.sdv.google.sample.lifecycle.userid.apex 0771 system_ext_sdv_lcm system
     mkdir /data/service_bundle_data/com.sdv.google.sample.lifecycle.userid.apex/LifecycleCustomUserIdSampleServiceBundle 0700 product_sdv_sample_user system
+
+# SDV sample adbd authenticator that enables adb usage in user builds.
+# This implementation does not provide proper key management yet, which leads to it accepting all
+# incoming adb connections. While a user cannot become root, it does not prevent user connecting
+# and executing commands.
+# TODO(b/430823209): Until this service provides an appropriate way of key verification, it must not
+# be used in production systems.
+service adbd_auth_service /system_ext/bin/adbd_auth_service
+    user system
+    group system
+
+on property:dev.bootcomplete=1
+    start adbd_auth_service

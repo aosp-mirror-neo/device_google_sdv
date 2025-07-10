@@ -70,20 +70,6 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     update_engine_product_partition_post_install \
     update_engine_system_partition_post_install
 
-# Disable ADB security checks in user builds, which is not needed in development builds as they
-# SELinux policies and other configurations in place to accept incoming connectons. With this
-# configuration, we reconfigure adb to accept all clients in user builds if the bootloader is
-# unlocked.
-# Fixing SELinux policies and preinstalling keys is not sufficient, because key validation requires
-# AdbDebuggingManager, which is a Java service that is not available for SDV, and we do not have a
-# replacement yet.
-# Warning: This flag should never be set in production - and therefore not set in base targets.
-#          It is only enabled here to enable testing in CI/CD.
-# See b/383592250 for details.
-$(warning Disabling ADB security - not for production use!)
-PRODUCT_PRODUCT_PROPERTIES += \
-  ro.adb.secure=0
-
 include device/google/sdv/sdv_core_base/sdv_core_base.mk
 include device/google/sdv/sdv_cf/sdv_cf.mk
 

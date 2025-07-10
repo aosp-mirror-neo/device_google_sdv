@@ -7,6 +7,10 @@
 SDV_PLATFORM_SAMPLES_PACKAGES += \
     sdv.brand_new_apex.config
 
+# Warning: This service is not suitable for production targets and should not be used in production
+SDV_PLATFORM_SAMPLES_PACKAGES += \
+    adbd_auth_service \
+
 SDV_PLATFORM_HOST_SAMPLES_PACKAGES +=
 
 PRODUCT_PACKAGES += $(SDV_PLATFORM_SAMPLES_PACKAGES)
