@@ -18,7 +18,7 @@ BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/vendor
 PRODUCT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_ivi_base/sepolicy/product/private
 PRODUCT_PUBLIC_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/product/public
 
-PRODUCT_BRAND := Google
+PRODUCT_BRAND := google
 PRODUCT_MANUFACTURER := Google
 PRODUCT_MODEL := IVI and Software-Defined Vehicle Core
 
