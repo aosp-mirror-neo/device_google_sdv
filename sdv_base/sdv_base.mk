@@ -13,6 +13,8 @@ include device/google/sdv/sdv_base/sdv_release_config.mk
 
 include device/google/sdv/sdv_base/sdv_packages_base_services.mk
 
+include device/google/sdv/sdv_base/vvmtruststore/vvmtruststore.mk
+
 # TODO: b/343460855 Remove Configurable Publisher from base and move to ivi after RPC support is available
 PRODUCT_PACKAGES += sdv_product_compatibility_matrix.xml
 
