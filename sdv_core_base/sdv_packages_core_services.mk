@@ -41,6 +41,10 @@ SDV_CORE_SERVICES_PACKAGES += \
     init_open_dice \
     sdv_sd_agent
 
+# The testing utilities.
+SDV_CORE_SERVICES_PACKAGES += \
+    sdv_noop_wm
+
 SDV_CORE_SERVICES_HOST_PACKAGES += \
     someip_translation_generator \
     vsidl_rc_generator \
