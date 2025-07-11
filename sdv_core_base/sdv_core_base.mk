@@ -171,6 +171,18 @@ PRODUCT_SYSTEM_PROPERTIES += \
     ro.hardware.type=automotive \
     ro.logd.size=8M
 
+
+
+# The `dalvik.vm.native.bridge` is a Core Android property, which is required
+# for CTS SDV native tests. See build/make/target/product/runtime_libart.mk
+#
+# Native Bridge is a software layer that allows a device with one type of CPU
+# architecture (e.g., x86) to run native code (like C/C++ libraries) that was compiled
+# for a different CPU architecture (typically ARM).
+#
+# '0' value indicates that SDV platform does not support a native bridge.
+PRODUCT_SYSTEM_PROPERTIES += ro.dalvik.vm.native.bridge?=0
+
 # Properties set to true the first time orch establishes a connection to power and
 # vehicle modes (VPM)
 # Check property_context for more information about these properties
