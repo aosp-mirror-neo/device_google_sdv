@@ -1,0 +1,12 @@
+# Copyright 2025 Google LLC
+
+type adbd_auth, domain, coredomain;
+type adbd_auth_exec, exec_type, file_type, system_file_type;
+
+init_daemon_domain(adbd_auth)
+
+# Allow communication with adbd
+allow adbd_auth adbd_socket:sock_file rw_file_perms;
+allow adbd_auth adbd_common:unix_stream_socket connectto;
+allow adbd_auth adbd_common:fd use;
+allow adbd_auth adbd_common:unix_stream_socket { getattr getopt ioctl read write shutdown };
