@@ -4,6 +4,7 @@ sdv_binary_pdk_dir := $(PRODUCT_OUT)/sdv-binary-pdk
 sdv_binary_pdk_collector := $(HOST_OUT)/bin/binary_pdk_collector
 sdv-binary-pdk-zip := $(sdv_binary_pdk_dir)/sdv-binary-pdk.zip
 sdv_binary_pdk_file_report := $(sdv_binary_pdk_dir)/file_report.txt
+sdv_binary_pdk_files_to_archive := $(sdv_binary_pdk_dir)/files_to_archive.txt
 sdv_binary_pdk_packages_dir := $(sdv_binary_pdk_dir)/packages
 sdv_binary_pdk_archive_dir := $(sdv_binary_pdk_dir)/archive
 sdv_binary_pdk_cpu_variant_suffix := $(if $(filter generic,$(TARGET_CPU_VARIANT)),,$(addprefix _,$(TARGET_CPU_VARIANT)))
@@ -91,9 +92,11 @@ $(sdv-binary-pdk-zip): $(sdv_binary_pdk_collector) $(sdv-all-targets-files) $(BU
 		--out-dir $(OUT_DIR) \
 		--binary-dir $(sdv_binary_pdk_archive_dir)
 
+	$(hide) find $(sdv_binary_pdk_archive_dir) > $(sdv_binary_pdk_files_to_archive)
+
 	$(hide) $(SOONG_ZIP) \
 		-C $(sdv_binary_pdk_archive_dir) \
-		-D $(sdv_binary_pdk_archive_dir) \
+		-l $(sdv_binary_pdk_files_to_archive) \
 		-d \
 		-o $(sdv-binary-pdk-zip)
 
