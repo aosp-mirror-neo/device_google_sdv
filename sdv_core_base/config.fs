@@ -45,6 +45,10 @@ value: 7509
 [AID_SYSTEM_EXT_INIT_OPEN_DICE]
 value: 7510
 
+# User for sdv_update_manager_agent.
+[AID_SYSTEM_EXT_SDV_VSIDL_PROVIDER]
+value: 7511
+
 # Assigning the CAP_SYS_NICE capability to the service bundle runner executable file so service
 # bundles can change their deadline scheduling policy. Note that this capability cannot be granted
 # to the service bundle runner in the init service definition, because it's started by the
