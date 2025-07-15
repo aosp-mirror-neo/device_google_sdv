@@ -27,10 +27,10 @@ service sdv_someip_stack_agent /vendor/bin/sdv_someip_stack_agent
 on property:dev.bootcomplete=1 && property:ro.sdv.vsock_local_cid=3
     start sdv_someip_stack_agent
 
- # Declare and start the SDV Diagnostics agent.
+# Declare and start the SDV Diagnostics agent.
 service sdv_diagnostics_agent /product/bin/sdv_diagnostics_agent
     class diagnostics
-    user system
+    user product_sdv_diagnostics_agent
     group system
 
 # Before the lifecycle manager runs, create the service bundle data directory for the custom user

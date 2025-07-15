@@ -4,3 +4,7 @@
 # system/software_defined_vehicle/core_services/samples/lifecycle/custom_user_id/README.md for details
 [AID_PRODUCT_SDV_SAMPLE_USER]
 value: 7050
+
+# User for the sample sdv_diagnostics_agent.
+[AID_PRODUCT_SDV_DIAGNOSTICS_AGENT]
+value: 7051
