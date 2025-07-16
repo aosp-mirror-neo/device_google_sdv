@@ -1,0 +1,14 @@
+# Copyright 2025 Google LLC
+
+# A sample policy for a sample service using SDV Gateway Client. This sample policy is created as
+# a /vendor policy to surface any potential issues, because a /vendor policy is more restrictive in
+# this case than a /product policy.
+
+type native_sdv_gateway_test_app, domain;
+type native_sdv_gateway_test_app_exec, exec_type, file_type, vendor_file_type;
+
+# The sample binary can be triggered from init.
+init_daemon_domain(native_sdv_gateway_test_app)
+net_domain(native_sdv_gateway_test_app)
+
+typeattribute native_sdv_gateway_test_app sdv_gateway_client;
