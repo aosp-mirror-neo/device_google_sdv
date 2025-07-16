@@ -68,7 +68,7 @@ on property:ro.sdv.orchestrator.state.ready=true
 service sdv_vsidl_provider_agent  /system_ext/bin/sdv_vsidl_provider_agent
     class core
     disabled
-    user system
+    user system_ext_sdv_vsidl_provider
     group system
 on property:ro.sdv.orchestrator.state.ready=true
     start sdv_vsidl_provider_agent
