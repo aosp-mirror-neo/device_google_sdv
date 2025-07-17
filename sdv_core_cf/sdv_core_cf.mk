@@ -145,6 +145,10 @@ PRODUCT_PACKAGES += \
     heapprofd \
     heapprofd_client \
 
+# Add Compliance testing packages if they are available in the checkout.
+PRODUCT_PACKAGES += \
+    com.sdv.google.compliance.diagnostics \
+
 # A/B updates post install configuration.
 # Post install scripts can be added for other partitions in the same way.
 AB_OTA_POSTINSTALL_CONFIG += \
