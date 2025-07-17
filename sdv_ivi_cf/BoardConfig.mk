@@ -20,6 +20,7 @@ SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/samples/
 PRODUCT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/samples/product/private
 BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/samples/vendor
 BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_ivi_cf/sepolicy/vendor
+BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_ivi_base/sepolicy/samples/vendor
 
 # Pre-provisioned vvmstruststore images for ease of testing.
 

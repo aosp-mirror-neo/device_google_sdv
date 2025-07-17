@@ -45,6 +45,7 @@ PRODUCT_COPY_FILES += \
 # added to the device that tests the PDK.
 SDV_IVI_SERVICES_PACKAGES += com.android.sdv.hardware.keymint.rust_nonsecure
 
+TARGET_FS_CONFIG_GEN += device/google/sdv/sdv_ivi_cf/config.fs
 
 include device/google/sdv/sdv_ivi_base/sdv_ivi_base.mk
 include device/google/sdv/sdv_base/sdv_samples_base_services.mk
