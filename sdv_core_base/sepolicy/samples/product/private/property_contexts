@@ -11,3 +11,4 @@ persist.com.sdv.google.sample.bar.load_size        u:object_r:sdv_sample_cuj_pro
 # Baz service bundle properties
 persist.com.sdv.google.sample.baz.rpc_interval_ms  u:object_r:sdv_sample_cuj_prop:s0 exact uint
 persist.com.sdv.google.sample.baz.load_size        u:object_r:sdv_sample_cuj_prop:s0 exact uint
+persist.com.sdv.google.sample.baz.sub_interval_ms  u:object_r:sdv_sample_cuj_prop:s0 exact uint
