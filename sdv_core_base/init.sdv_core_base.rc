@@ -61,6 +61,9 @@ on early-init
     # Signal that apexd-bootstrap is ready, init_open_dice can execute.
     setprop ro.sdv.apex.bootstrap.ready true
 
+    # Disable IPv6
+    write /proc/sys/net/ipv6/conf/all/disable_ipv6 1
+
 on init
    mkdir /mnt/apk 0755 system system
    mkdir /mnt/extra-apk 0755 root root
