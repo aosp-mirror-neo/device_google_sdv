@@ -375,8 +375,6 @@ on post-fs-data
     # the "ready" event.
     setprop apex.all.ready true
 
-    restart adbd
-
     # Update dm-verity state and set partition.*.verified properties.
     verity_update_state
 
@@ -386,6 +384,12 @@ on post-fs-data
     #  - All writable partitions (data, metadata, misc) mounted and encryption
     #    is setup (needed to read 'care_map.pb')
     exec_start update_verifier
+
+on early-boot
+    # Network setup happens on post-fs-data. Restart adbd after that happens to
+    # avoid 3s delay due to initial mdnsd failure when we attempt to start
+    # before network is up.
+    restart adbd
 
 on boot
     ifup lo
