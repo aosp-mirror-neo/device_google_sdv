@@ -60,6 +60,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     someip_rpc_someip_server \
     someip_rpc_sdv_server \
     orch_custom_mode_sample \
+    persistent_binder_test_service \
     com.sdv.google.sample.orchestration \
     sdv_service_bundle \
     sdv_tire_pressure \
