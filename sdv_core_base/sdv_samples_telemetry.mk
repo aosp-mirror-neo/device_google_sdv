@@ -19,6 +19,8 @@ SDV_CORE_TELEMETRY_SAMPLES_PACKAGES += \
     telemetry_sample_publisher \
     telemetry_sample_getter_publisher \
     sdv_telemetry_simulator \
+    sdv_telemetry_cross_partition_client \
+    telemetry_test_config.textproto \
 
 
 SDV_CORE_TELEMETRY_HOST_SAMPLES_PACKAGES +=

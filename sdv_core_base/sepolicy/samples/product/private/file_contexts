@@ -2,3 +2,6 @@
 
 # SDV Diagnostics agent
 /(product|system/product)/bin/sdv_diagnostics_agent            u:object_r:sdv_diagnostics_agent_exec:s0
+
+# Giving telemetry client on product permissions to interact with telemetry service
+/(product|system/product)/bin/sdv_telemetry_cross_partition_client u:object_r:sdv_telemetry_product_client_exec:s0
