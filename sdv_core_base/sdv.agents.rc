@@ -163,15 +163,6 @@ service sdv_vpm_agent  /system_ext/bin/sdv_vpm_agent
 on property:ro.sdv.orchestrator.state.ready=true
     start sdv_vpm_agent
 
-# Declare and start the SDV SOME/IP broker agent.
-service sdv_someip_broker_agent /system_ext/bin/sdv_someip_broker_agent_comms
-    class core
-    disabled
-    user system_ext_sdv_someip
-    group system
-on property:ro.sdv.orchestrator.state.ready=true && property:ro.sdv.vsock_local_cid=3
-    start sdv_someip_broker_agent
-
 ###################################
 ##  Telemetry services agent(s)  ##
 ###################################
