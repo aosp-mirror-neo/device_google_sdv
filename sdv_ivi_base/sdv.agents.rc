@@ -20,8 +20,10 @@ service vsock_local_cid /system_ext/bin/vsock_local_cid ro.sdv.vsock_local_cid
 on post-fs-data
   start vsock_local_cid
 
-# Declare the SDV service discovery service.
-service sdv_sd_agent /system_ext/bin/sdv_sd_agent
+# Declare the SDV service discovery (SD) service.
+# Since IVI does not have a VPM service, we use a build of the SD service that
+# does not rely on VPM.
+service sdv_sd_agent /system_ext/bin/sdv_sd_agent_no_vpm
     class core
     disabled
     user system_ext_sdv_sd_agent
