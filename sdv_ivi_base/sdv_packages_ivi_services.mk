@@ -24,7 +24,7 @@ SDV_IVI_SERVICES_PACKAGES += \
     dt_agent \
     rpcagent \
     init_open_dice \
-    sdv_sd_agent
+    sdv_sd_agent_no_vpm
 
 # Vehicle HAL is already included in PRODUCT_PACKAGES, but it must also be part of
 # SDV_IVI_SERVICES_PACKAGES for inclusion in the PDK binary as well.
