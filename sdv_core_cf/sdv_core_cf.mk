@@ -147,7 +147,7 @@ PRODUCT_PACKAGES += \
 
 # Add Compliance testing packages if they are available in the checkout.
 PRODUCT_PACKAGES += \
-    com.sdv.google.compliance.diagnostics \
+    sdv_compliance_packages \
 
 # A/B updates post install configuration.
 # Post install scripts can be added for other partitions in the same way.
