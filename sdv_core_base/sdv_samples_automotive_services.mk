@@ -19,6 +19,7 @@ SDV_AUTOMOTIVE_SERVICES_SAMPLES_PACKAGES += \
     sdv_hmi_service_stable  \
     sdv_car_seats_service_stable \
     sdv_concal_sample_client \
+    test_vm_health_subscriber \
     com.sdv.oem.user_preferences \
 
 SDV_AUTOMOTIVE_SERVICES_HOST_SAMPLES_PACKAGES +=
