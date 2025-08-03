@@ -49,6 +49,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     sdv_vsomeip_temperature_tester \
     sdv_vsomeip_conf_counter_tester_target \
     sdv_vsomeip_counter_tester \
+    sdv_vsomeip_cuj_core_026 \
     sdv_vsomeip_sdv_hello_tester \
     sdv_vsomeip_hey_tester \
     sdv_vsomeip_group_tester \
