@@ -12,14 +12,21 @@ android_filesystem_defaults {
     mount_point: "/vvmtruststore",
     partition_size: 1048576, // 1 MB
     type: "ext4",
-    dist: {
-        targets: [
-            // TODO: b/404181563 - using automotive-sdv-tests is a hack to make the vvmtruststore
-            //       built on CI. Build sdv-custom-images on CI, and remove this dist target.
-            "automotive-sdv-tests",
-            "sdv-custom-images",
-        ],
-    },
+    dists: [
+        {
+            targets: [
+                // TODO: b/404181563 - using automotive-sdv-tests is a hack to make the vvmtruststore
+                //       built on CI. Build sdv-custom-images on CI, and remove this dist target.
+                "automotive-sdv-tests",
+                "sdv-custom-images",
+            ],
+        },
+        {
+            // export the vvmtruststore images when we build the sdv-comms-for-ivi zip file
+            targets: ["sdv-comms-for-ivi"],
+            dir: "sdv-comms-for-ivi",
+        },
+    ],
     no_full_install: true,
     // The file_contexts file that contains the SELinux labels which are applied to the files built
     // into this image.
