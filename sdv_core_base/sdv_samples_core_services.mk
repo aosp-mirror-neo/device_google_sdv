@@ -45,6 +45,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     android.sdv.samples.gateway \
     liblifecycle_cpp_service_bundle_test \
     middleware_someip_sample \
+    sdv_flag_example \
     sdv_oem_partition_update_client \
     sdv_vsomeip_temperature_tester \
     sdv_vsomeip_conf_counter_tester_target \
