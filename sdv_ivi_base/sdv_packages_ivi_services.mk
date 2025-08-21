@@ -9,9 +9,6 @@ SDV_IVI_SERVICES_PACKAGES += \
     com.sdv.google.gateway.client \
     init_open_dice \
     libsdvgatewayclient \
-    libsdvgatewayclient_jni \
-    libsdvgatewayclient_jni_product \
-    libsdvgatewayclient_jni_vendor \
     libsdvgatewaynetworking_jni \
     libvhal_proxy \
     libvhal_proxy_config_loader \
