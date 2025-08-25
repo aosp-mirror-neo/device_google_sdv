@@ -38,3 +38,9 @@ allow servicebundledomain sdv_lc_service_manager_service:service_manager find;
 system_internal_prop(lc_state_ready_prop)
 # Lifecycle agent is the only agent that can set its current state.
 set_prop(sdv_lc_default, lc_state_ready_prop)
+
+# The identity verifier service is hosted by the lifecycle manager and used for verifying the FQIN
+# belonging to service bundle processes.
+type sdv_sb_identity_service, protected_service, service_manager_type;
+
+add_service(sdv_lc_default, sdv_sb_identity_service)
