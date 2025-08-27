@@ -32,6 +32,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     com.sdv.google.sample.someip \
     com.sdv.google.sample.testing.sdv_dump \
     someip_samples_orch_config \
+    hm_suspend_to_ram_test_vm_orch_config \
     cujs_orchestration_configurations \
     com.sdv.google.sample.update_manager.client \
     com.sdv.google.test.authz.bar \
