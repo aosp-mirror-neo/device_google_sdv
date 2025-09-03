@@ -12,6 +12,9 @@ typeattribute sdv_health_monitor sdv_sd_client;
 # Health Monitor can call the RPC agent.
 typeattribute sdv_health_monitor sdv_rpcagent_client;
 
+# Health Monitor is a power state client
+typeattribute sdv_health_monitor sdv_vpm_agent_notification_client;
+
 # health_monitor_config_path_prop is a system internal property.
 system_internal_prop(health_monitor_config_path_prop)
 # Health Monitor is the only one that can read the health_monitor_config_path_prop.
