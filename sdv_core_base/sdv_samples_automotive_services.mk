@@ -15,7 +15,6 @@ SDV_AUTOMOTIVE_SERVICES_SAMPLES_PACKAGES += \
     libdiagnostics_v1_sample_catalog_files-vsidl-config.binpb \
     vpm_power_state_client \
     vpm_vehicle_state_client \
-    sdv_hmi_service_stable  \
     sdv_car_seats_service_stable \
     sdv_concal_sample_client \
     test_vm_health_subscriber \
