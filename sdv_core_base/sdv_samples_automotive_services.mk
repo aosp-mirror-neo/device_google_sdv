@@ -8,7 +8,6 @@ SDV_AUTOMOTIVE_SERVICES_SAMPLES_PACKAGES += \
     com.sdv.google.sample.diagnostics_update \
     com.sdv.oem.sample.concal \
     com.sdv.oem.sample.diagnostics \
-    diag_v1_provider1_sample \
     diag_v1_provider2_sample \
     libdiagnostics_update_sample_catalog_files-vsidl-config.binpb \
     libdiagnostics_update_sample_catalog_files-vsidl-config.binpb-V2 \
@@ -19,6 +18,7 @@ SDV_AUTOMOTIVE_SERVICES_SAMPLES_PACKAGES += \
     test_vm_health_subscriber \
     com.sdv.oem.user_preferences \
     user_preferences_samples_orch_config \
+    diagnostics_provider1_sample_orch_config \
 
 SDV_AUTOMOTIVE_SERVICES_HOST_SAMPLES_PACKAGES +=
 
