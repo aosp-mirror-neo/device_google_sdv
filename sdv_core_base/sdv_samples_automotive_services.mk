@@ -14,7 +14,6 @@ SDV_AUTOMOTIVE_SERVICES_SAMPLES_PACKAGES += \
     libdiagnostics_v1_sample_catalog_files-vsidl-config.binpb \
     vpm_power_state_client \
     vpm_vehicle_state_client \
-    sdv_concal_sample_client \
     test_vm_health_subscriber \
     com.sdv.oem.user_preferences \
     user_preferences_samples_orch_config \
