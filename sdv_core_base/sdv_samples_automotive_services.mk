@@ -8,7 +8,6 @@ SDV_AUTOMOTIVE_SERVICES_SAMPLES_PACKAGES += \
     com.sdv.google.sample.diagnostics_update \
     com.sdv.oem.sample.concal \
     com.sdv.oem.sample.diagnostics \
-    diag_v1_provider2_sample \
     libdiagnostics_update_sample_catalog_files-vsidl-config.binpb \
     libdiagnostics_update_sample_catalog_files-vsidl-config.binpb-V2 \
     libdiagnostics_v1_sample_catalog_files-vsidl-config.binpb \
