@@ -167,3 +167,9 @@ AB_OTA_POSTINSTALL_CONFIG += \
 
 # Sample config for new user creation to use in samples.
 TARGET_FS_CONFIG_GEN += device/google/sdv/sdv_core_cf/config.fs
+
+# Contains all the FQINs that sample OEM agents on the product partition can register.
+# Using the PRODUCT_COPY_FILES build variable instead of a Soong module to allow different (OEM)
+# targets to define different /product/etc/sdv_native_services_names files.
+PRODUCT_COPY_FILES += \
+    device/google/sdv/sdv_core_cf/sdv_product_native_services_names:$(TARGET_COPY_OUT_PRODUCT)/etc/sdv_native_services_names

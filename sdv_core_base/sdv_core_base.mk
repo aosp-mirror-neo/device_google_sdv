@@ -112,6 +112,9 @@ PRODUCT_PACKAGES += \
 
 TARGET_FS_CONFIG_GEN += device/google/sdv/sdv_core_base/config.fs
 
+# Contains all the FQINs that SDV agents on the (system_ext) partition can register.
+PRODUCT_PACKAGES += sdv_native_services_names
+
 # Packages included only for eng or userdebug builds
 # su needed for logpersist.* commands
 PRODUCT_PACKAGES_DEBUG += \
