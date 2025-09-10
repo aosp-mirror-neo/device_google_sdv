@@ -17,6 +17,7 @@ SDV_AUTOMOTIVE_SERVICES_SAMPLES_PACKAGES += \
     com.sdv.oem.user_preferences \
     user_preferences_samples_orch_config \
     diagnostics_provider1_sample_orch_config \
+    concal_sample_orch_config \
 
 SDV_AUTOMOTIVE_SERVICES_HOST_SAMPLES_PACKAGES +=
 
