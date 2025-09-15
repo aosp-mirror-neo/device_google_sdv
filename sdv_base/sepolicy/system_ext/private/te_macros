@@ -15,3 +15,12 @@ type $1_exec, exec_type, system_file_type, file_type;
 init_daemon_domain($1)
 binder_use($1)
 ')
+
+#####################################
+# dump_sdv_agent(service_domain)
+# Ability to dump the agent debug info (for example, into a bugreport)
+define(`dump_sdv_agent', `
+binder_call(dumpstate, $1)
+allow $1 dumpstate:fd use;
+allow $1 dumpstate:fifo_file write;
+')
