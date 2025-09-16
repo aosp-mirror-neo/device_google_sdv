@@ -43,4 +43,8 @@ set_prop(sdv_lc_default, lc_state_ready_prop)
 # belonging to service bundle processes.
 type sdv_sb_identity_service, protected_service, service_manager_type;
 
+# Defines the external SDV Lifecycle Binder IPC service bundle crash notification service.
+type sdv_lc_crash_notification_service, protected_service, service_manager_type;
+
 add_service(sdv_lc_default, sdv_sb_identity_service)
+add_service(sdv_lc_default, sdv_lc_crash_notification_service)
