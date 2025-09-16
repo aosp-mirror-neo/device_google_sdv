@@ -60,6 +60,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     sdv_vsomeip_road_sensor_tester \
     sdv_vsomeip_object_sensor_tester \
     sdv_vsomeip_tire_pressure_sample \
+    sdv_vsomeip_robustness_tester \
     orch_custom_mode_sample \
     persistent_binder_test_service \
     com.sdv.google.sample.orchestration \
