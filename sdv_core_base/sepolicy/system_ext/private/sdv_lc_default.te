@@ -48,3 +48,7 @@ type sdv_lc_crash_notification_service, protected_service, service_manager_type;
 
 add_service(sdv_lc_default, sdv_sb_identity_service)
 add_service(sdv_lc_default, sdv_lc_crash_notification_service)
+
+# Information from the binder services served by the agent as well as their (custom) binder dump()
+# is allowed to be collected in bugreports.
+dump_sdv_agent(sdv_lc_default)
