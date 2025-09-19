@@ -40,6 +40,11 @@ persist.sdv.health_monitor.config_path u:object_r:health_monitor_config_path_pro
 # See `sdv_core_base/sdv.agents.rc` for more details.
 ro.sdv.health_monitor.config_path u:object_r:health_monitor_config_path_prop:s0
 
+# Property controlling Health Monitor's agent monitoring: maximum allowed time for agents to setup
+# their monitored binder interface. Timeout measured from instant that HM begins monitoring.
+# Reaching the timeout leads to the SDV Instance set to Unhealthy state
+ro.boot.sdv.health_monitor.agent_startup_timeout_sec u:object_r:bootloader_prop:s0 exact uint
+
 # Property set by Orchestrator to signal the last received power state.
 # We use this to determine the end of boot and stop performance tracing.
 sdv.orchestrator.power_state u:object_r:orchestrator_power_state_prop:s0 exact string
