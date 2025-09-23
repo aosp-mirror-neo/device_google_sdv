@@ -25,9 +25,6 @@ SDV_IVI_SERVICES_PACKAGES += \
 
 # Vehicle HAL is already included in PRODUCT_PACKAGES, but it must also be part of
 # SDV_IVI_SERVICES_PACKAGES for inclusion in the PDK binary as well.
-ifeq ($(LOCAL_VHAL_PRODUCT_PACKAGE),)
-  $(error $$LOCAL_VHAL_PRODUCT_PACKAGE not set)
-endif
 SDV_IVI_SERVICES_PACKAGES += $(LOCAL_VHAL_PRODUCT_PACKAGE)
 
 SDV_IVI_SERVICES_HOST_PACKAGES += \
