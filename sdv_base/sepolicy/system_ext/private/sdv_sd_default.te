@@ -85,3 +85,7 @@ allow sdv_privileged_sd_client sdv_privileged_sd_service:service_manager find;
 
 # SDV SD server can register the privileged IPC service.
 add_service(sdv_sd_default, sdv_privileged_sd_service)
+
+# Information from the binder services served by the agent as well as their (custom) binder dump()
+# is allowed to be collected in bugreports.
+dump_sdv_agent(sdv_sd_default)
