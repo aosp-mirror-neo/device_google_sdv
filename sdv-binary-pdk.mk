@@ -7,8 +7,18 @@ sdv_binary_pdk_file_report := $(sdv_binary_pdk_dir)/file_report.txt
 sdv_binary_pdk_files_to_archive := $(sdv_binary_pdk_dir)/files_to_archive.txt
 sdv_binary_pdk_packages_dir := $(sdv_binary_pdk_dir)/packages
 sdv_binary_pdk_archive_dir := $(sdv_binary_pdk_dir)/archive
-sdv_binary_pdk_cpu_variant_suffix := $(if $(filter generic,$(TARGET_CPU_VARIANT)),,$(addprefix _,$(TARGET_CPU_VARIANT)))
-sdv_binary_pdk_architecture := $(TARGET_ARCH)_$(TARGET_ARCH_VARIANT)$(sdv_binary_pdk_cpu_variant_suffix)
+
+sdv_binary_pdk_architecture := $(TARGET_ARCH)
+ifneq ($(TARGET_ARCH_VARIANT),x86_64)
+  ifneq ($(TARGET_ARCH_VARIANT),)
+    sdv_binary_pdk_architecture := $(sdv_binary_pdk_architecture)_$(TARGET_ARCH_VARIANT)
+  endif
+endif
+ifneq ($(TARGET_CPU_VARIANT),generic)
+  ifneq ($(TARGET_CPU_VARIANT),)
+    sdv_binary_pdk_architecture := $(sdv_binary_pdk_architecture)_$(TARGET_CPU_VARIANT)
+  endif
+endif
 
 # Set SDV_BINARY_PDK_OVERRIDE_MODULES_FILE to the module override file
 # to override which modules are collected; or to add modules which are
