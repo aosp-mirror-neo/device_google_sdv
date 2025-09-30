@@ -52,6 +52,7 @@ service sdv_orchestration_agent /system_ext/bin/sdv_orchestration_agent
     disabled
     user system_ext_sdv_orch
     group system
+    oneshot
 on property:ro.sdv.sbr.state.ready=true
     start sdv_orchestration_agent
 
