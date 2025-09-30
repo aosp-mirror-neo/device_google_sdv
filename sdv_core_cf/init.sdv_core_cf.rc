@@ -41,6 +41,7 @@ service sdv_diagnostics_agent /product/bin/sdv_diagnostics_agent
     class diagnostics
     user product_sdv_diagnostics_agent
     group system
+    oneshot
 
 # Before the lifecycle manager runs, create the service bundle data directory for the custom user
 # id service bundle sample and set its owner to a custom android user (AID) product_sdv_sample_user
