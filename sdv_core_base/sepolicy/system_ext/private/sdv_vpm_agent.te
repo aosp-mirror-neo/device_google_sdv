@@ -15,6 +15,9 @@ typeattribute sdv_vpm_agent sdv_sd_client;
 # Vehicle Mode and Power Management notification Binder server.
 typeattribute sdv_vpm_agent sdv_vpm_agent_notification_server;
 
+# VPM agent is crash monitored using its sdv_vpm_agent_notification_service binder interface
+typeattribute sdv_vpm_agent_notification_service sdv_crash_monitored_service;
+
 # Required for VM suspension to read and write to /sys/power/state
 allow sdv_vpm_agent sysfs_power:file rw_file_perms;
 

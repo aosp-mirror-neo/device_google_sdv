@@ -161,6 +161,8 @@ service sdv_vpm_agent  /system_ext/bin/sdv_vpm_agent
     disabled
     user system_ext_sdv_vpm
     group system
+    oneshot
+
 on property:ro.sdv.orchestrator.state.ready=true
     start sdv_vpm_agent
 
