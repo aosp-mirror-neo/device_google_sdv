@@ -27,5 +27,5 @@ type sdv_health_monitor_dump_service, protected_service, service_manager_type;
 # SDV HM can register its Binder IPC services.
 add_service(sdv_health_monitor, sdv_health_monitor_dump_service)
 
-# Allow discovering the service for link_to_death. binder calls are still disallowed.
-allow sdv_health_monitor sdv_dice_chain_provider_service:service_manager find;
+# Health monitor can link to death to any sdv_crash_monitored_service (binder calls disallowed):
+allow sdv_health_monitor sdv_crash_monitored_service:service_manager find;
