@@ -6,3 +6,6 @@ typeattribute sdv_dt_agent sdv_vpm_agent_notification_client;
 # Information from the binder services served by the agent as well as their (custom) binder dump()
 # is allowed to be collected in bugreports.
 dump_sdv_agent(sdv_dt_agent)
+
+# DT agent is crash monitored on its sdv_dt_service binder interface
+typeattribute sdv_dt_service sdv_crash_monitored_service;

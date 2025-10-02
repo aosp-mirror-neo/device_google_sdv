@@ -1,0 +1,4 @@
+# Copyright 2025 Google LLC
+
+# init_dice is crash monitored on its sdv_dice_chain_provider_service binder interface
+typeattribute sdv_dice_chain_provider_service sdv_crash_monitored_service;
