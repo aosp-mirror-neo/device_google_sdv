@@ -1,0 +1,5 @@
+# Copyright 2025 Google LLC
+
+# A vendor property stating wether the RPC network interface is ready.
+vendor_public_prop(vendor_sdv_rpc_ethernet_ready_prop)
+vendor_public_prop(vendor_sdv_rpc_ethernet_available_prop)
