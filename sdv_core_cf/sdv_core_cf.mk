@@ -33,6 +33,8 @@ TARGET_BOARD_INFO_FILE ?= device/google/sdv/sdv_core_cf/android-info.txt
 SDV_SOMEIP_BROKER_CONFIG := broker_config.json
 PRODUCT_SYSTEM_PROPERTIES += ro.sdv.someip.broker_config=/system/etc/someip/broker_config.json
 
+
+
 # On arm64 architectures, init_open_dice runs on early init, consumes and wipes the open-dice
 # device. However, on x86, the open-dice device is not available, so init_open_dice reads this
 # content from a static sample DICE handover file added for testing and development.
@@ -69,6 +71,11 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     sample_system_ota_postinstall_data \
     update_engine_product_partition_post_install \
     update_engine_system_partition_post_install
+
+# HM Sample configurations
+SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
+    hm_config_with_someip.textproto \
+    hm_config_without_someip.textproto
 
 include device/google/sdv/sdv_core_base/sdv_core_base.mk
 include device/google/sdv/sdv_cf/sdv_cf.mk

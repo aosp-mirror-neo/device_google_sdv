@@ -193,8 +193,6 @@ PRODUCT_SYSTEM_EXT_PROPERTIES += \
     sdv.orchestrator.bootup.power_mode.ready=false \
     sdv.orchestrator.bootup.vehicle_mode.ready=false
 
-## Health Monitoring config
-SDV_HEALTH_MONITOR_CONFIG := hm_config.textproto
 # Configure power management.
 PRODUCT_SYSTEM_EXT_PROPERTIES += \
     sdv.vpm.platform.timeout_ms=1000 \

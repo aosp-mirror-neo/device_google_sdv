@@ -81,7 +81,7 @@ on property:ro.sdv.orchestrator.state.ready=true
 # Setup allows for persisting of runtime prop modifications across device reboots
 on property:persist.sdv.health_monitor.config_path=""
     setprop persist.sdv.health_monitor.config_path \
-        ${ro.sdv.health_monitor.config_path:-/system/etc/health_monitor/hm_config.textproto}
+        ${ro.sdv.health_monitor.config_path}
 
 # Declare and start the SDV Health Monitoring agent.
 # The VM restart is to be controlled by the OEM, therefore, critical option is not set.
