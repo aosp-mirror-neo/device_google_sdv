@@ -150,6 +150,7 @@ service rpcagent /system_ext/bin/rpcagent
     disabled
     user system_ext_sdv_rpc
     group system
+    oneshot
 
 on property:ro.sdv.orchestrator.state.ready=true
     start rpcagent
