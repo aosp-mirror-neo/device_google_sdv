@@ -12,6 +12,7 @@ service sdv_service_bundles_registry_agent /system_ext/bin/sdv_service_bundles_r
     disabled
     user system_ext_sdv_sbr
     group system
+    oneshot
 # Start SDV Service Bundles Registry agent only when all apexes are mounted.
 on property:apex.all.ready=true
     start sdv_service_bundles_registry_agent
