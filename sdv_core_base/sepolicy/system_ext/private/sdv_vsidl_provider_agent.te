@@ -13,3 +13,6 @@ typeattribute sdv_vsidl_provider_agent sdv_dt_client;
 
 type sdv_vsidl_provider_agent_dump_service, protected_service, service_manager_type;
 add_service(sdv_vsidl_provider_agent, sdv_vsidl_provider_agent_dump_service)
+
+# vsidl_provider agent is crash monitored on sdv_vsidl_provider_agent_dump_service binder interface
+typeattribute sdv_vsidl_provider_agent_dump_service sdv_crash_monitored_service;
