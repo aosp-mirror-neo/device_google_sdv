@@ -67,3 +67,6 @@ type sdv_orch_service, protected_service, service_manager_type;
 
 # Allow sdv_orch to create and register the sdv_orch_service
 add_service(sdv_orch, sdv_orch_service)
+
+# Access to crash notification service from LM.
+allow sdv_orch sdv_lc_crash_notification_service:service_manager find;
