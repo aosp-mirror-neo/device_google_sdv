@@ -37,3 +37,6 @@ com.google.sdv.ISdvAgent/someip_broker u:object_r:sdv_someip_broker_agent_dump_s
 
 # ISomeIpLoadIndicators is an interface that SOME/IP Broker uses to provide load information.
 google.sdv.someip_load_indicators.ISomeIpLoadIndicators/default u:object_r:sdv_someip_broker_agent_load_indicators_service:s0
+
+# IOrchestration is an interface that allows to get notifications about bundles' state.
+google.sdv.orchestration.IOrchestration/default      u:object_r:sdv_orch_service:s0
