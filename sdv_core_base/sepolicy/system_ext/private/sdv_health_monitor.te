@@ -29,3 +29,7 @@ add_service(sdv_health_monitor, sdv_health_monitor_dump_service)
 
 # Health monitor can link to death to any sdv_crash_monitored_service (binder calls disallowed):
 allow sdv_health_monitor sdv_crash_monitored_service:service_manager find;
+
+# Information from the binder services served by the agent as well as their (custom) binder dump()
+# is allowed to be collected in bugreports.
+dump_sdv_agent(sdv_health_monitor)
