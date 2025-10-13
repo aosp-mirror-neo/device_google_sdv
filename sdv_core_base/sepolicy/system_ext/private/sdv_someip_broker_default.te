@@ -26,3 +26,6 @@ allow sdv_someip_stack_server sdv_someip_broker_agent_load_indicators_service:se
 # Information from the binder services served by the agent as well as their (custom) binder dump()
 # is allowed to be collected in bugreports.
 dump_sdv_agent(sdv_someip_broker_default)
+
+# someip_broker agent is crash monitored on its sdv_someip_broker_agent_dump_service interface
+typeattribute sdv_someip_broker_agent_dump_service sdv_crash_monitored_service;

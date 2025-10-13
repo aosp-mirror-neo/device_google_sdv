@@ -32,3 +32,6 @@ set_prop(sdv_sbr, sbr_state_ready_prop)
 
 # SDV Service Bundles Registry agent can register its Binder IPC services.
 add_service(sdv_sbr, sdv_sbr_service)
+
+# SDV Service Bundles Registry Agent is crash monitored on its sdv_sbr_service binder interface
+typeattribute sdv_sbr_service sdv_crash_monitored_service;

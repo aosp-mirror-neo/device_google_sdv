@@ -52,3 +52,6 @@ add_service(sdv_lc_default, sdv_lc_crash_notification_service)
 # Information from the binder services served by the agent as well as their (custom) binder dump()
 # is allowed to be collected in bugreports.
 dump_sdv_agent(sdv_lc_default)
+
+# Lifecycle agent is crash monitored on its sdv_lc_manager_service interface
+typeattribute sdv_lc_manager_service sdv_crash_monitored_service;

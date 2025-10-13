@@ -23,3 +23,6 @@ net_domain(sdv_diagnostics_agent)
 
 type sdv_diagnostics_agent_dump_service, protected_service, service_manager_type;
 add_service(sdv_diagnostics_agent, sdv_diagnostics_agent_dump_service)
+
+# Diag agent is crash monitored via its sdv_diagnostics_agent_dump_service binder interface
+typeattribute sdv_diagnostics_agent_dump_service sdv_crash_monitored_service;

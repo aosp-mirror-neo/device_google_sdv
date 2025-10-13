@@ -16,6 +16,22 @@ import /vendor/etc/init/sdv_wpa_supplicant_macsec.rc
 
 import /vendor/etc/init/sdv_uds_certs_provisioner_sample.rc
 
+
+# set HM config path based on whether SOME/IP agents run on the instance or not
+# Important: `import /system/etc/init/init.sdv_core_base.rc` declared before this trigger
+# Triggers on same event run in order of declaration
+on property:persist.sdv.health_monitor.config_path=""
+    setprop sdv.temp_conditional.hm_config_not_set_upstream true
+    setprop persist.sdv.health_monitor.config_path \
+        "/system/etc/health_monitor/hm_config_without_someip.textproto"
+
+on property:ro.sdv.vsock_local_cid=3 \
+    && property:sdv.temp_conditional.hm_config_not_set_upstream=true
+    setprop persist.sdv.health_monitor.config_path \
+        "/system/etc/health_monitor/hm_config_with_someip.textproto"
+    setprop sdv.temp_conditional.hm_config_not_set_upstream ""
+
+
 # Declare and start the sample SDV SOME/IP stack agent.
 service sdv_someip_stack_agent /vendor/bin/sdv_someip_stack_agent
     class core
@@ -24,6 +40,7 @@ service sdv_someip_stack_agent /vendor/bin/sdv_someip_stack_agent
     group system
     setenv VSOMEIP_CONFIGURATION /vendor/etc/someip/vsomeip_config.json
     setenv VSOMEIP_BASE_PATH /data/vendor/vsomeip/
+    oneshot
 on property:dev.bootcomplete=1 && property:ro.sdv.vsock_local_cid=3
     start sdv_someip_stack_agent
 
@@ -33,6 +50,7 @@ service sdv_someip_broker_agent /system_ext/bin/sdv_someip_broker_agent_comms
     disabled
     user system_ext_sdv_someip
     group system
+    oneshot
 on property:ro.sdv.orchestrator.state.ready=true && property:ro.sdv.vsock_local_cid=3
     start sdv_someip_broker_agent
 
@@ -41,6 +59,7 @@ service sdv_diagnostics_agent /product/bin/sdv_diagnostics_agent
     class diagnostics
     user product_sdv_diagnostics_agent
     group system
+    oneshot
 
 # Before the lifecycle manager runs, create the service bundle data directory for the custom user
 # id service bundle sample and set its owner to a custom android user (AID) product_sdv_sample_user
