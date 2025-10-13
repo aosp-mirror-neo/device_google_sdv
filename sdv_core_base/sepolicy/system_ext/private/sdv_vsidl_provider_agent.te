@@ -16,3 +16,7 @@ add_service(sdv_vsidl_provider_agent, sdv_vsidl_provider_agent_dump_service)
 
 # vsidl_provider agent is crash monitored on sdv_vsidl_provider_agent_dump_service binder interface
 typeattribute sdv_vsidl_provider_agent_dump_service sdv_crash_monitored_service;
+
+# Information from the binder services served by the agent as well as their (custom) binder dump()
+# is allowed to be collected in bugreports.
+dump_sdv_agent(sdv_vsidl_provider_agent)
