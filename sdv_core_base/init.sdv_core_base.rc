@@ -19,6 +19,7 @@ import /system/etc/init/apexd.rc
 import /system/etc/init/mdnsd.rc
 import /system/etc/init/servicemanager.rc
 import /system/etc/init/vold.rc
+import /system/etc/init/lpdumpd.rc
 import /system/etc/init/logd.rc
 import /system/etc/init/keystore2.rc
 import /system/etc/init/sdv.agents.rc
