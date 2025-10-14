@@ -46,3 +46,9 @@ typeattribute sdv_telemetry sdv_rpcagent_client;
 add_service(sdv_telemetry, sdv_telemetry_service)
 # TODO: b/343460855 Remove Configurable Publisher from base and move to ivi after RPC support is available
 add_service(sdv_telemetry, sdv_configurable_publisher_registry_service)
+
+# Information from the binder services served by the agent as well as their (custom) binder dump()
+# is allowed to be collected in bugreports.
+binder_call(dumpstate, sdv_telemetry)
+allow sdv_telemetry dumpstate:fd use;
+allow sdv_telemetry dumpstate:fifo_file write;
