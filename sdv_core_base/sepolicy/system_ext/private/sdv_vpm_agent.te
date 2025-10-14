@@ -38,3 +38,7 @@ get_prop(sdv_vpm_agent, vpm_platform_retry_interval_prop)
 system_internal_prop(vpm_power_state_prop)
 # VPM is the only one agent that can set/get the current state.
 set_prop(sdv_vpm_agent, vpm_power_state_prop)
+
+# Information from the binder services served by the agent as well as their (custom) binder dump()
+# is allowed to be collected in bugreports.
+dump_sdv_agent(sdv_vpm_agent)
