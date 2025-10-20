@@ -12,6 +12,7 @@ service sdv_service_bundles_registry_agent /system_ext/bin/sdv_service_bundles_r
     disabled
     user system_ext_sdv_sbr
     group system
+    oneshot
 # Start SDV Service Bundles Registry agent only when all apexes are mounted.
 on property:apex.all.ready=true
     start sdv_service_bundles_registry_agent
@@ -23,6 +24,7 @@ service sdv_lifecycle_agent /system_ext/bin/sdv_lifecycle_agent
     user system_ext_sdv_lcm
     group system
     capabilities SYS_NICE KILL SETUID SETGID CHOWN
+    oneshot
 on property:ro.sdv.sbr.state.ready=true
     start sdv_lifecycle_agent
 
@@ -52,6 +54,7 @@ service sdv_orchestration_agent /system_ext/bin/sdv_orchestration_agent
     disabled
     user system_ext_sdv_orch
     group system
+    oneshot
 on property:ro.sdv.sbr.state.ready=true
     start sdv_orchestration_agent
 
@@ -70,6 +73,8 @@ service sdv_vsidl_provider_agent  /system_ext/bin/sdv_vsidl_provider_agent
     disabled
     user system_ext_sdv_vsidl_provider
     group system
+    oneshot
+
 on property:ro.sdv.orchestrator.state.ready=true
     start sdv_vsidl_provider_agent
 
@@ -78,7 +83,7 @@ on property:ro.sdv.orchestrator.state.ready=true
 # Setup allows for persisting of runtime prop modifications across device reboots
 on property:persist.sdv.health_monitor.config_path=""
     setprop persist.sdv.health_monitor.config_path \
-        ${ro.sdv.health_monitor.config_path:-/system/etc/health_monitor/hm_config.textproto}
+        ${ro.sdv.health_monitor.config_path}
 
 # Declare and start the SDV Health Monitoring agent.
 # The VM restart is to be controlled by the OEM, therefore, critical option is not set.
@@ -146,6 +151,7 @@ service rpcagent /system_ext/bin/rpcagent
     disabled
     user system_ext_sdv_rpc
     group system
+    oneshot
 
 on property:ro.sdv.orchestrator.state.ready=true
     start rpcagent
@@ -160,6 +166,8 @@ service sdv_vpm_agent  /system_ext/bin/sdv_vpm_agent
     disabled
     user system_ext_sdv_vpm
     group system
+    oneshot
+
 on property:ro.sdv.orchestrator.state.ready=true
     start sdv_vpm_agent
 

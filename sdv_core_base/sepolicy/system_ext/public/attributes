@@ -19,3 +19,6 @@ attribute sdv_vpm_agent_notification_client;
 attribute sdv_vpm_agent_notification_server;
 expandattribute sdv_vpm_agent_notification_client true;
 expandattribute sdv_vpm_agent_notification_server false;
+
+# Attribute for services linked to death by Health Monitor Agent, for crash reporting purposes.
+attribute sdv_crash_monitored_service;

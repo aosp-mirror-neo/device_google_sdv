@@ -112,6 +112,9 @@ PRODUCT_PACKAGES += \
 
 TARGET_FS_CONFIG_GEN += device/google/sdv/sdv_core_base/config.fs
 
+# Contains all the FQINs that SDV agents on the (system_ext) partition can register.
+PRODUCT_PACKAGES += sdv_native_services_names
+
 # Packages included only for eng or userdebug builds
 # su needed for logpersist.* commands
 PRODUCT_PACKAGES_DEBUG += \
@@ -190,8 +193,6 @@ PRODUCT_SYSTEM_EXT_PROPERTIES += \
     sdv.orchestrator.bootup.power_mode.ready=false \
     sdv.orchestrator.bootup.vehicle_mode.ready=false
 
-## Health Monitoring config
-SDV_HEALTH_MONITOR_CONFIG := hm_config.textproto
 # Configure power management.
 PRODUCT_SYSTEM_EXT_PROPERTIES += \
     sdv.vpm.platform.timeout_ms=1000 \

@@ -15,6 +15,9 @@ typeattribute sdv_vpm_agent sdv_sd_client;
 # Vehicle Mode and Power Management notification Binder server.
 typeattribute sdv_vpm_agent sdv_vpm_agent_notification_server;
 
+# VPM agent is crash monitored using its sdv_vpm_agent_notification_service binder interface
+typeattribute sdv_vpm_agent_notification_service sdv_crash_monitored_service;
+
 # Required for VM suspension to read and write to /sys/power/state
 allow sdv_vpm_agent sysfs_power:file rw_file_perms;
 
@@ -35,3 +38,7 @@ get_prop(sdv_vpm_agent, vpm_platform_retry_interval_prop)
 system_internal_prop(vpm_power_state_prop)
 # VPM is the only one agent that can set/get the current state.
 set_prop(sdv_vpm_agent, vpm_power_state_prop)
+
+# Information from the binder services served by the agent as well as their (custom) binder dump()
+# is allowed to be collected in bugreports.
+dump_sdv_agent(sdv_vpm_agent)

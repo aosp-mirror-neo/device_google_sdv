@@ -8,5 +8,8 @@ typeattribute priv_app sdv_gateway_client;
 # Enable registration at Telemetry ConfigurablePublisherRegistry for privileged apps.
 allow priv_app sdv_configurable_publisher_registry_service:service_manager find;
 
+# Enable Telemetry Client privileged apps to find Telemetry Service.
+allow priv_app sdv_telemetry_service:service_manager find;
+
 # Enable the SDV Gateway Networking service to find IPrivilegedGatewayNetworking AIDL service.
 allow priv_app sdv_privileged_gatewaynetworking_service:service_manager find;

@@ -38,3 +38,7 @@ add_service(init_open_dice, sdv_dice_chain_provider_service)
 # TODO: b/392558367 - Add further enforcements to this restriction,
 # given the sensitive nature of this interface.
 add_service(init_open_dice, sdv_dice_certifier_service)
+
+# Silence the SELinux error when adb bugreport tries to dump init_open_dice's interfaces (no party
+# should call init_open_dice other than service discovery).
+dontaudit dumpstate init_open_dice:binder call;

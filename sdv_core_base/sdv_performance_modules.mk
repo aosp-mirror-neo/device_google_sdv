@@ -23,5 +23,7 @@ SDV_PERF_PACKAGES = \
     com.sdv.google.sample.foo \
     com.sdv.google.sample.qux \
     cujs_orchestration_configurations \
+    hm_config_with_someip.textproto \
+    hm_config_without_someip.textproto
 
 PRODUCT_PACKAGES += $(SDV_PERF_PACKAGES)

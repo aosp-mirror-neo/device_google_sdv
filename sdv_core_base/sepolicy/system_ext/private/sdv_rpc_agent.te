@@ -1,0 +1,4 @@
+# Copyright 2025 Google LLC
+
+# rpcagent is crash monitored on its sdv_rpcagent_service binder interface
+typeattribute sdv_rpcagent_service sdv_crash_monitored_service;

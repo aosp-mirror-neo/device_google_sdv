@@ -23,3 +23,16 @@ net_domain(sdv_diagnostics_agent)
 
 type sdv_diagnostics_agent_dump_service, protected_service, service_manager_type;
 add_service(sdv_diagnostics_agent, sdv_diagnostics_agent_dump_service)
+
+# Information from the binder services served by the agent as well as their (custom) binder dump()
+# is allowed to be collected in bugreports.
+# WARNING: sdv_diagnostics_agent is a sample implementation for test purposes only.
+# The contents of its "dump" implementation might be considered security sensitive (e.g. plain
+# values of diagnostics-related data that, in theory, could even contain private keys) and
+# should not be dumped in a production scenario.
+binder_call(dumpstate, sdv_diagnostics_agent)
+allow sdv_diagnostics_agent dumpstate:fd use;
+allow sdv_diagnostics_agent dumpstate:fifo_file write;
+
+# Diag agent is crash monitored via its sdv_diagnostics_agent_dump_service binder interface
+typeattribute sdv_diagnostics_agent_dump_service sdv_crash_monitored_service;

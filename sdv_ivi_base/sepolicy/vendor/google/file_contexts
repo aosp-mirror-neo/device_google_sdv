@@ -7,7 +7,7 @@
 /vendor/bin/hw/android.hardware.automotive.vehicle@V1-sdv-emulator-service u:object_r:hal_vehicle_default_exec:s0
 
 # Allow vendor privileged apps (priv_app domain) and vendor native test clients
-# to load libsdvgatewayclient_jni_vendor.so and other required .so dependencies
+# to load libsdvgatewayclient_jni and other required .so dependencies
 /vendor/lib(64)?/libsdv.*\.so       u:object_r:same_process_hal_file:s0
 /vendor/lib(64)?/google\.sdv.*\.so  u:object_r:same_process_hal_file:s0
 /vendor/lib(64)?/libfmq\.so         u:object_r:same_process_hal_file:s0

@@ -12,6 +12,9 @@ typeattribute sdv_health_monitor sdv_sd_client;
 # Health Monitor can call the RPC agent.
 typeattribute sdv_health_monitor sdv_rpcagent_client;
 
+# Health Monitor is a power state client
+typeattribute sdv_health_monitor sdv_vpm_agent_notification_client;
+
 # health_monitor_config_path_prop is a system internal property.
 system_internal_prop(health_monitor_config_path_prop)
 # Health Monitor is the only one that can read the health_monitor_config_path_prop.
@@ -24,5 +27,9 @@ type sdv_health_monitor_dump_service, protected_service, service_manager_type;
 # SDV HM can register its Binder IPC services.
 add_service(sdv_health_monitor, sdv_health_monitor_dump_service)
 
-# Allow discovering the service for link_to_death. binder calls are still disallowed.
-allow sdv_health_monitor sdv_dice_chain_provider_service:service_manager find;
+# Health monitor can link to death to any sdv_crash_monitored_service (binder calls disallowed):
+allow sdv_health_monitor sdv_crash_monitored_service:service_manager find;
+
+# Information from the binder services served by the agent as well as their (custom) binder dump()
+# is allowed to be collected in bugreports.
+dump_sdv_agent(sdv_health_monitor)

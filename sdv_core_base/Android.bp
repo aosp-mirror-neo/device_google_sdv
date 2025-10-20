@@ -1,0 +1,12 @@
+// Copyright 2025 Google LLC
+
+package {
+    default_applicable_licenses: ["sdv_license"],
+}
+
+// Contains all the FQINs that SDV agents can register.
+prebuilt_etc {
+    name: "sdv_native_services_names",
+    src: "sdv_native_services_names",
+    system_ext_specific: true,
+}

@@ -10,9 +10,11 @@ SDV_IVI_TELEMETRY_SAMPLES_PACKAGES += \
     telemetry_rust_c_client \
     telemetry_sample_publisher \
     telemetry_sample_getter_publisher \
-    sdv_telemetry_simulator \
+    sdv_ivi_telemetry_simulator \
     telemetry_java_sample_ivi_publisher \
-    telemetry_java_sample_ivi_publisher_prod
+    telemetry_java_sample_ivi_publisher_prod \
+    telemetry_java_sdk_sample_ivi_publisher \
+    TelemetryJavaClientApp
 
 SDV_IVI_TELEMETRY_HOST_SAMPLES_PACKAGES +=
 

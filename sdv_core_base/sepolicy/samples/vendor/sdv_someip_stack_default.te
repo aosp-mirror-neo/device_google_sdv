@@ -19,3 +19,16 @@ allow sdv_someip_stack_default vsomeip_data_file:dir rw_dir_perms;
 allow sdv_someip_stack_default vsomeip_data_file:file create_file_perms;
 allow sdv_someip_stack_default vsomeip_data_file:sock_file { write create setattr unlink };
 allow sdv_someip_stack_default sdv_someip_stack_client:unix_stream_socket { read write getattr shutdown getopt listen };
+
+# someip sample stack is crash monitored on its sdv_someip_stack_service interface
+typeattribute sdv_someip_stack_service sdv_crash_monitored_service;
+
+# Information from the binder services served by the agent as well as their (custom) binder dump()
+# is allowed to be collected in bugreports.
+# WARNING: sdv_someip_stack_default is a sample implementation for test purposes only.
+# The contents of its "dump" implementation might be considered security sensitive (e.g. plain
+# values of SOME/IP data that, in theory, could even contain private keys) and should not be dumped
+# in a production scenario.
+binder_call(dumpstate, sdv_someip_stack_default)
+allow sdv_someip_stack_default dumpstate:fd use;
+allow sdv_someip_stack_default dumpstate:fifo_file write;

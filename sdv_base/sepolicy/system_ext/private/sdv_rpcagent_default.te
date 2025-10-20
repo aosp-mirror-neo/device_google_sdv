@@ -15,3 +15,7 @@ net_domain(sdv_rpcagent_default)
 
 # The clients of the rpc agent only call it to obtain sockets, hence, they always need these socket permissions
 allow sdv_rpcagent_client sdv_rpcagent_server:tcp_socket { listen read write accept getattr shutdown getopt setopt };
+
+# Information from the binder services served by the agent as well as their (custom) binder dump()
+# is allowed to be collected in bugreports.
+dump_sdv_agent(sdv_rpcagent_default)

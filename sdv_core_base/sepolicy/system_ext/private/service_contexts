@@ -11,6 +11,14 @@ google.sdv.lifecycle.ILifecycleManager/default          u:object_r:sdv_lc_manage
 # use to communicate.
 google.sdv.lifecycle.internal.IServiceManager/default u:object_r:sdv_lc_service_manager_service:s0
 
+# IServiceBundleCrashNotificationService is interface that allows to subscribe/unsubscribe to
+# service bundles crash notifications.
+google.sdv.lifecycle.internal.crash_notification.IServiceBundleCrashNotificationService/default u:object_r:sdv_lc_crash_notification_service:s0
+
+# IIdentityVerifier is an internal interface that service discovery calls to verify the stated
+# FQINs of service bundle processes.
+google.sdv.service_bundles.identity.IIdentityVerifier/default u:object_r:sdv_sb_identity_service:s0
+
 # IRegistry is an interface that services use to read SDV service metadata.
 google.sdv.service_bundles_registry.IRegistry/default u:object_r:sdv_sbr_service:s0
 

@@ -38,6 +38,10 @@ BOARD_BOOTCONFIG += \
 BOARD_BOOTCONFIG += \
     androidboot.sdv.max_bundles_management_threads=12
 
+# HM agent monitoring wait for binder timeout property
+BOARD_BOOTCONFIG += \
+    androidboot.sdv.health_monitor.agent_startup_timeout_sec=3
+
 # Writable partition mount point for SDV OemUpdater.
 # Build with: m custom_images
 # Run with: cvd start --custom_partition_path="$OUT/oem.img;$OUT/oem.img;$OUT/oem_metadata.img"
