@@ -103,15 +103,6 @@ on property:ro.sdv.orchestrator.state.ready=true
 ##  Communication stack agents  ##
 ##################################
 
-# Retrieve the local vsock CID and store it in ro.sdv.vsock_local_cid.
-service vsock_local_cid /system_ext/bin/vsock_local_cid ro.sdv.vsock_local_cid
-  class core
-  user root
-  group shell
-  oneshot
-on post-fs-data
-  start vsock_local_cid
-
 # Declare and start the SDV Service Discovery service.
 # The VM restart is to be controlled by the OEM, therefore, critical property is not set.
 # As OEMs control VM restart if SD crashes, OEMs would miss a VM health report and restart VM.

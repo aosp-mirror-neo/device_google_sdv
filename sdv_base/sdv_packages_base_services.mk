@@ -23,7 +23,6 @@ SDV_BASE_SERVICES_PACKAGES += \
     libsdv_comms_sd_ffi \
     libsdv_dt_core \
     libsdv_status \
-    vsock_local_cid \
 
 # Command line tools to help with development and manual testing.
 SDV_BASE_SERVICES_HOST_PACKAGES += \

@@ -21,5 +21,3 @@ allow sdv_dt_client sdv_dt_client:fd use;
 
 # Data Tunnel Agent can use sockets
 net_domain(sdv_dt_agent)
-
-get_prop(sdv_dt_agent, vsock_local_cid_prop)
