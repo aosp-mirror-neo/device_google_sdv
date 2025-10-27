@@ -2,7 +2,7 @@
 <compatibility-matrix version="1.0" type="framework">
     <hal format="aidl">
         <name>google.sdv.someip</name>
-        <version>1</version>
+        <version>2</version>
         <interface>
             <name>ISomeIpStack</name>
             <instance>default</instance>

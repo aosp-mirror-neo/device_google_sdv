@@ -8,9 +8,6 @@ on early-init
     # executes first, before this trigger.
     setprop ro.sdv.apex.bootstrap.ready true
 
-    # Disable IPv6
-    write /proc/sys/net/ipv6/conf/all/disable_ipv6 1
-
 # Retrieve local vsock CID and store it in ro.sdv.vsock_local_cid.
 service vsock_local_cid /system_ext/bin/vsock_local_cid ro.sdv.vsock_local_cid
   class core

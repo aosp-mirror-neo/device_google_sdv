@@ -61,3 +61,9 @@ typeattribute sdv_orch_dump_service sdv_crash_monitored_service;
 # Information from the binder services served by the agent as well as their (custom) binder dump()
 # is allowed to be collected in bugreports.
 dump_sdv_agent(sdv_orch)
+
+# sdv_orchestration_agent binder service
+type sdv_orch_service, protected_service, service_manager_type;
+
+# Allow sdv_orch to create and register the sdv_orch_service
+add_service(sdv_orch, sdv_orch_service)
