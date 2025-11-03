@@ -42,10 +42,19 @@ service rpcagent /system_ext/bin/rpcagent
     user system_ext_sdv_rpc_agent
     group system
 
-# Start the SDV Gateway process before the rpcagent because it starts the DTAgent service
-# as well. SDV Gateway AIDL service will only be ready once the rpcagent is also started.
-# Can only start once the network setup is complete, but that is done earlier in post-fs.
+# The sdv_gateway does the following steps:
+# 1. Immediately starts the IPrivilegedGatewayNetworking AIDL service.
+# 2. Sets ro.vendor.sdv.rpc.network.ready=true once it receives
+#    the network handle from sdv_gatewaynetworking_service.
+# 3. Waits for ro.sdv.ethernet.ready to be set and starts the Data Tunnel
+#    and Gateway AIDL services.
+on boot
+    start sdv_gateway
+
+# The SDV Gateway process waits for ro.sdv.ethernet.ready (on A16)
+# to be set before starting. The Gateway process waits for the SD and RPC agent
+# services before fully starting, making the start order of the individual
+# processes unimportant.
 on property:ro.sdv.ethernet.ready=true
     start sdv_sd_agent
-    start sdv_gateway
     start rpcagent

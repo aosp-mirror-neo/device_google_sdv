@@ -11,10 +11,12 @@
     <string-array translatable="false" name="config_ethernet_interfaces">
         <!-- Not metered, trusted, not vpn, vehicle internal, not vcn managed, restricted (implicit) -->
         <item>macsec0;11,14,15,27,28;</item>
-        <!-- eth1, Transport Ethernet (3), Not metered, not restricted, trusted, not vpn, not vcn managed, not bandwitdh constrained -->
+        <!-- eth1, Transport Ethernet (3), Not metered, restricted (implicit), trusted, not vpn, not vcn managed, not bandwitdh constrained -->
         <!-- IP address has to be specified and should be configured to what the init scripts for the IVI VM set the IP address to -->
         <!-- eth1 only works with Transport Ethernet (3) -->
-        <item>eth1;11,12,13,14,15,28,37;ip=192.168.98.118/24 gateway=192.168.98.1 dns=4.4.4.4,8.8.8.8;3</item>
+        <!-- Android will block any WiFi connections when Ethernet is active, marking eth1 as restricted  allows WiFi connections. -->
+        <!-- Note: Settings restricted is based on the fact that eth1 is the internal LAN for SDV. -->
+        <item>eth1;11,12,13,14,28,37;ip=192.168.98.118/24 gateway=192.168.98.1 dns=4.4.4.4,8.8.8.8;3</item>
         <!-- VLAN for SDV-RPC, Transport Ethernet (3), Not metered, not restricted, trusted, not vpn, not vcn managed, not bandwitdh constrained -->
         <!-- IP address has to be specified and should be configured to what the init scripts for the IVI VM set the IP address to -->
         <!-- VLAN for SDV-RPC only works with Transport Ethernet (3) -->

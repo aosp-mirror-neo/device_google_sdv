@@ -48,6 +48,11 @@ net_domain(sdv_gateway)
 # SDV Gateway Agent can access proc_net to read the somaxconn value of the process.
 allow sdv_gateway proc_net:file { getattr open read };
 
+# SDV Gateway Agent can read and set specific system properties.
+set_prop(sdv_gateway, vendor_sdv_rpc_ethernet_ready_prop)
+set_prop(sdv_gateway, vendor_sdv_rpc_ethernet_available_prop)
+get_prop(sdv_gateway, sdv_ethernet_ready_prop)
+
 # The SDV Gateway client
 
 # SDV Gateway client can access proc_net to read the somaxconn value of the process.

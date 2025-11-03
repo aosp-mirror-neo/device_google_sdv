@@ -11,7 +11,6 @@ on post-fs
     exec_start sdv-ethernet-sd-mesh-setup
     exec_start sdv-ethernet-dt-setup
     exec_start sdv-ethernet-rpc-setup
-    setprop ro.sdv.ethernet.ready true
 
 # This would setup the main ethernet ip address and routing
 # Setup for routing for different network namespace need to be done in separated service
@@ -65,3 +64,22 @@ service sdv-ethernet-rpc-setup /product/bin/ethernet/ethernet_sdv_rpc.sh 192.168
     # /dev/kmsg_debug doesn't exist and stdio is redirected to /dev/null instead.
     stdio_to_kmsg
     oneshot
+
+# ro.vendor.sdv.rpc.network.ready is set to true by the sdv_gateway after the
+# sdv_gatewaynetworking_service signals RPC network available.
+# The Java sdv_gatewaynetworking_service cannot be started using init.rc
+# and must be started using System Server or a different Java mechanism.
+#
+# We don't have any custom logic here so we just set the
+# ro.sdv.ethernet.ready to true and allow the SDV services to start,
+# but custom logic could be executed here before setting the property.
+on property:ro.vendor.sdv.rpc.network.ready=true
+    setprop ro.sdv.ethernet.ready true
+
+# vendor.sdv.rpc.network.available is set to true/false to indicate the availability of
+# the RPC network. Only triggered after ro.vendor.sdv.rpc.network.ready is set to true.
+on property:vendor.sdv.rpc.network.available=false
+    write /dev/kmsg "vendor.sdv.rpc.network.available is false"
+
+on property:vendor.sdv.rpc.network.available=true
+    write /dev/kmsg "vendor.sdv.rpc.network.available is true"
