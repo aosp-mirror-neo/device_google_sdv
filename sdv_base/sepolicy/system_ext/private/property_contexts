@@ -9,10 +9,6 @@ ro.boot.sdv.ignore_avb_state u:object_r:bootloader_prop:s0 exact bool
 ro.boot.sdv.preprovisioned_vvmtruststore u:object_r:bootloader_prop:s0 exact enum img etc
 ro.boot.sdv.vvmconfig u:object_r:bootloader_prop:s0 exact string
 
-# The vsock_local_cid property is written by the vsock_local_cid service once, and then read by
-# data tunnel.
-ro.sdv.vsock_local_cid u:object_r:vsock_local_cid_prop:s0
-
 # Used by init_open_dice to notify init that it has finished wiping the open_dice device. init can
 # then continue the boot process.
 ro.init_open_dice.device_wiped u:object_r:init_open_dice_device_wiped_prop:s0 exact bool

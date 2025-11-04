@@ -8,15 +8,6 @@ on early-init
     # executes first, before this trigger.
     setprop ro.sdv.apex.bootstrap.ready true
 
-# Retrieve local vsock CID and store it in ro.sdv.vsock_local_cid.
-service vsock_local_cid /system_ext/bin/vsock_local_cid ro.sdv.vsock_local_cid
-  class core
-  user root
-  group shell
-  oneshot
-on post-fs-data
-  start vsock_local_cid
-
 # Declare the SDV service discovery (SD) service.
 # Since IVI does not have a VPM service, we use a build of the SD service that
 # does not rely on VPM.
