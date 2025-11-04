@@ -1,0 +1,12 @@
+# Copyright 2025 Google LLC
+
+#############################
+# This file is used for setting the security context for files and directories owned
+# by components in the system partition.
+
+#############################
+# system files
+#
+
+# Post install binary for system partition
+/system/bin/update_engine_system_partition_post_install    u:object_r:update_engine_system_partition_post_install:s0

@@ -85,6 +85,10 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     sdv_dt_mw_publisher_rs \
     sdv_dt_mw_subscriber_rs \
     libhealth_vsidl_with_bp_file-vsidl-config.binpb \
+    sample_product_ota_postinstall_data \
+    sample_system_ota_postinstall_data \
+    update_engine_product_partition_post_install \
+    update_engine_system_partition_post_install
 
 # TODO: b/361610453 - include in com.sdv.google.sample.logging
 SDV_CORE_SERVICES_SAMPLES_PACKAGES += structured_logging_sdv_rust_sample
@@ -105,3 +109,17 @@ PRODUCT_HOST_PACKAGES += $(SDV_CORE_SERVICES_HOST_SAMPLES_PACKAGES)
 
 $(call soong_config_set, sdv_config, SDV_CORE_SERVICES_SAMPLES_PACKAGES, $(SDV_CORE_SERVICES_SAMPLES_PACKAGES))
 $(call soong_config_set, sdv_config, SDV_CORE_SERVICES_HOST_SAMPLES_PACKAGES, $(SDV_CORE_SERVICES_HOST_SAMPLES_PACKAGES))
+
+# A/B updates post install configuration.
+# Post install scripts can be added for other partitions in the same way.
+AB_OTA_POSTINSTALL_CONFIG += \
+    RUN_POSTINSTALL_product=true \
+    POSTINSTALL_PATH_product=bin/update_engine_product_partition_post_install \
+    FILESYSTEM_TYPE_product=erofs \
+    POSTINSTALL_OPTIONAL_product=false
+
+AB_OTA_POSTINSTALL_CONFIG += \
+    RUN_POSTINSTALL_system=true \
+    POSTINSTALL_PATH_system=system/bin/update_engine_system_partition_post_install \
+    FILESYSTEM_TYPE_system=erofs \
+    POSTINSTALL_OPTIONAL_system=false
