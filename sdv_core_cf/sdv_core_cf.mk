@@ -77,6 +77,10 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     hm_config_with_someip.textproto \
     hm_config_without_someip.textproto
 
+# tool allowing vosck_local_cid extraction via adb, for multi-vm tracing testlib purposes
+SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
+    vsock_local_cid
+
 include device/google/sdv/sdv_core_base/sdv_core_base.mk
 include device/google/sdv/sdv_cf/sdv_cf.mk
 
