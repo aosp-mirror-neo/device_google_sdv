@@ -11,7 +11,7 @@
 #       and will take precedence by overwriting any existing mount on /vvmtruststore.
 on early-boot && property:ro.boot.sdv.preprovisioned_vvmtruststore=etc \
     && property:ro.boot.sdv.boot_mode=locked
-    mount none /system_ext/etc/vvmtruststore/${ro.boot.sdv.instance_name} /vvmtruststore bind noatime nosuid nodev noexec ro
+    mount none /product/etc/vvmtruststore/${ro.boot.sdv.instance_name} /vvmtruststore bind noatime nosuid nodev noexec ro
 
 # Before the real vvmtruststore mount logic is run on late-fs, initialize the file ownership and
 # modes for the files on the pre-provisioned vvmtruststore image.

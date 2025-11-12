@@ -4,7 +4,7 @@ package {
     default_applicable_licenses: ["sdv_license"],
 }
 
-// Preprovisioned vvmtruststore content for /system_ext/etc
+// Preprovisioned vvmtruststore content for /product/etc/
 //
 // To be used in test environments where properly mounting a vvmtruststore
 // partition is not technically possible.
@@ -18,7 +18,7 @@ prebuilt_etc {
     src: "instance1/vvmtruststore/uds_certs",
     filename: "uds_certs",
     sub_dir: "vvmtruststore/instance1",
-    system_ext_specific: true,
+    product_specific: true,
 }
 
 prebuilt_etc {
@@ -26,7 +26,7 @@ prebuilt_etc {
     src: "instance1/vvmtruststore/uds_pubs",
     filename: "uds_pubs",
     sub_dir: "vvmtruststore/instance1",
-    system_ext_specific: true,
+    product_specific: true,
 }
 
 // instance2
@@ -35,7 +35,7 @@ prebuilt_etc {
     src: "instance2/vvmtruststore/uds_certs",
     filename: "uds_certs",
     sub_dir: "vvmtruststore/instance2",
-    system_ext_specific: true,
+    product_specific: true,
 }
 
 prebuilt_etc {
@@ -43,7 +43,7 @@ prebuilt_etc {
     src: "instance2/vvmtruststore/uds_pubs",
     filename: "uds_pubs",
     sub_dir: "vvmtruststore/instance2",
-    system_ext_specific: true,
+    product_specific: true,
 }
 
 // instance3
@@ -52,7 +52,7 @@ prebuilt_etc {
     src: "instance3/vvmtruststore/uds_certs",
     filename: "uds_certs",
     sub_dir: "vvmtruststore/instance3",
-    system_ext_specific: true,
+    product_specific: true,
 }
 
 prebuilt_etc {
@@ -60,7 +60,7 @@ prebuilt_etc {
     src: "instance3/vvmtruststore/uds_pubs",
     filename: "uds_pubs",
     sub_dir: "vvmtruststore/instance3",
-    system_ext_specific: true,
+    product_specific: true,
 }
 
 // instance1
