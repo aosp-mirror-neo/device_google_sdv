@@ -70,7 +70,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += device/google/sdv/sdv_ivi_cf/ethernet/ethernet.sdv_ivi_cf.sh:$(TARGET_COPY_OUT_PRODUCT)/bin/ethernet/ethernet.sdv_ivi_cf.sh
 PRODUCT_COPY_FILES += device/google/sdv/sdv_ivi_cf/ethernet/ethernet.sdv_ivi_cf.rc:$(TARGET_COPY_OUT_PRODUCT)/etc/init/ethernet.sdv_ivi_cf.rc
 # vvmtruststore mounting logic
-PRODUCT_COPY_FILES += device/google/sdv/sdv_base/vvmtruststore/vvmtruststore.rc:$(TARGET_COPY_OUT_SYSTEM)/etc/init/vvmtruststore.rc
+PRODUCT_PACKAGES += vvmtruststore.rc
 
 # The Rust implementation of the non-secure, pure software KeyMint vendor HAL extended with test
 # functionalities for SDV. Among others, the KeyMint HAL provides the
