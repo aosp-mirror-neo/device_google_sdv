@@ -66,12 +66,6 @@ SDV_SOMEIP_AGENT_MODULES := \
     sdv_someip_stack_agent \
     vsomeip_config.json
 
-SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
-    sample_product_ota_postinstall_data \
-    sample_system_ota_postinstall_data \
-    update_engine_product_partition_post_install \
-    update_engine_system_partition_post_install
-
 # HM Sample configurations
 SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     hm_config_with_someip.textproto \
@@ -161,20 +155,6 @@ PRODUCT_PACKAGES += \
 # Add Compliance testing packages if they are available in the checkout.
 PRODUCT_PACKAGES += \
     sdv_compliance_packages \
-
-# A/B updates post install configuration.
-# Post install scripts can be added for other partitions in the same way.
-AB_OTA_POSTINSTALL_CONFIG += \
-    RUN_POSTINSTALL_product=true \
-    POSTINSTALL_PATH_product=bin/update_engine_product_partition_post_install \
-    FILESYSTEM_TYPE_product=erofs \
-    POSTINSTALL_OPTIONAL_product=false
-
-AB_OTA_POSTINSTALL_CONFIG += \
-    RUN_POSTINSTALL_system=true \
-    POSTINSTALL_PATH_system=system/bin/update_engine_system_partition_post_install \
-    FILESYSTEM_TYPE_system=erofs \
-    POSTINSTALL_OPTIONAL_system=false
 
 # Sample config for new user creation to use in samples.
 TARGET_FS_CONFIG_GEN += device/google/sdv/sdv_core_cf/config.fs

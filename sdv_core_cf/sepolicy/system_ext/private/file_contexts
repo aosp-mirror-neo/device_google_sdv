@@ -1,4 +1,0 @@
-# Copyright 2024 Google LLC
-
-# Post install binary for system partition
-/system/bin/update_engine_system_partition_post_install    u:object_r:update_engine_system_partition_post_install:s0

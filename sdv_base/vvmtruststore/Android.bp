@@ -1,5 +1,12 @@
 // Copyright 2025 Google LLC
 
+prebuilt_etc {
+    name: "vvmtruststore.rc",
+    srcs: ["vvmtruststore.rc"],
+    sub_dir: "init",
+    system_ext_specific: true,
+}
+
 filegroup {
     name: "vvmtruststore_file_contexts",
     srcs: ["sepolicy/vvmtruststore/private/file_contexts"],
