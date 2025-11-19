@@ -41,6 +41,12 @@ allow sdv_dt_client sdv_gateway_service:fifo_file { read write };
 allow sdv_dt_client sdv_gateway_service:fd use;
 allow sdv_dt_client sdv_gateway:fifo_file { read write };
 allow sdv_dt_client sdv_gateway:fd use;
+# TODO: b/462005657 - Clean-up SELinux rules for DT use of memfd.
+allow sdv_dt_client sdv_gateway_service:memfd_file { read write getattr map };
+allow sdv_dt_client sdv_gateway:memfd_file { read write getattr map };
+allow sdv_dt_client self:memfd_file { read write getattr map };
+allow sdv_dt_client su:memfd_file { read write getattr map };
+allow sdv_dt_client sdv_gateway_client:memfd_file { read write getattr map };
 
 # SDV Gateway Agent can use sockets
 net_domain(sdv_gateway)
@@ -55,6 +61,11 @@ get_prop(sdv_gateway, sdv_ethernet_ready_prop)
 
 # The SDV Gateway client
 
+# TODO: b/462005657 - Clean-up SELinux rules for DT use of memfd.
+allow sdv_gateway_client sdv_gateway_service:memfd_file { read write getattr map };
+allow sdv_gateway_client sdv_gateway:memfd_file { read write getattr map };
+allow sdv_gateway_client self:memfd_file { read write getattr map };
+allow sdv_gateway_client su:memfd_file { read write getattr map };
 # SDV Gateway client can access proc_net to read the somaxconn value of the process.
 allow sdv_gateway_client proc_net:file { getattr open read };
 # Allow the SDV Gateway client to use Binder IPC
