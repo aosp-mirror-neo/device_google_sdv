@@ -54,7 +54,9 @@ type sdvBinaryPdkDeptagType struct {
 
 var sdvBinaryPdkDeptag = sdvBinaryPdkDeptagType{}
 
-func (s sdvBinaryPdkDeptagType) IsSdvPrimaryImageVariation() {}
+func (s sdvBinaryPdkDeptagType) WantsPrimaryImageVariation() {}
+
+var _ android.WantsPrimaryImageVariationDeptag = sdvBinaryPdkDeptagType{}
 
 func (s *sdvBinaryPdkModule) DepsMutator(ctx android.BottomUpMutatorContext) {
 	// Use map[string]bool as a set for efficient lookups and to avoid duplicates.
