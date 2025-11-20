@@ -156,10 +156,9 @@ func (s *sdvBinaryPdkModule) GenerateAndroidBuildActions(ctx android.ModuleConte
 	// Get all install paths for the modules.
 	var installPaths []android.Path
 	ctx.VisitDirectDepsProxy(func(module android.ModuleProxy) {
-		if info, ok := android.OtherModuleProvider(ctx, module, android.InstallFilesProvider); ok {
-			for _, spec := range info.PackagingSpecs {
-				installPaths = append(installPaths, spec.FullInstallPath())
-			}
+		info := android.GetInstallFiles(ctx, module)
+		for _, spec := range info.PackagingSpecs {
+			installPaths = append(installPaths, spec.FullInstallPath())
 		}
 	})
 
