@@ -1,0 +1,4 @@
+# Copyright 2025 Google LLC
+
+# grouping of clients of SB Recovery service (Orchestrator agent binder interface)
+attribute sdv_orch_sb_recovery_client;

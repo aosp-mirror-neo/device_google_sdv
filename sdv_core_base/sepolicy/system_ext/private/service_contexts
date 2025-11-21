@@ -39,4 +39,4 @@ com.google.sdv.ISdvAgent/someip_broker u:object_r:sdv_someip_broker_agent_dump_s
 google.sdv.someip_load_indicators.ISomeIpLoadIndicators/default u:object_r:sdv_someip_broker_agent_load_indicators_service:s0
 
 # IOrchestrationAgent is an interface that allows to get notifications about bundles' state.
-google.sdv.orchestration.internal.IOrchestrationAgent/default      u:object_r:sdv_orch_service:s0
+google.sdv.orchestration.IOrchestrationAgent/default      u:object_r:sdv_orch_sb_recovery_service:s0
