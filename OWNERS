@@ -13,6 +13,3 @@ chanwang@google.com
 istvannador@google.com
 # AAOS SDV UTLs
 vill@google.com
-
-per-file Android.bp = file:/platform/build/soong:/OWNERS
-per-file sdv_binary_pdk.go = file:/platform/build/soong:/OWNERS
