@@ -2,6 +2,8 @@
 
 # Orchestrator is a core SDV agent.
 core_service(sdv_orch)
+attribute sdv_orch_sb_recovery_server;
+typeattribute sdv_orch sdv_orch_sb_recovery_server;
 
 # Orchestrator can call the lifecycle agent.
 typeattribute sdv_orch sdv_lc_client;
@@ -62,11 +64,16 @@ typeattribute sdv_orch_dump_service sdv_crash_monitored_service;
 # is allowed to be collected in bugreports.
 dump_sdv_agent(sdv_orch)
 
-# sdv_orchestration_agent binder service
-type sdv_orch_service, protected_service, service_manager_type;
-
-# Allow sdv_orch to create and register the sdv_orch_service
-add_service(sdv_orch, sdv_orch_service)
-
 # Access to crash notification service from LM.
 allow sdv_orch sdv_lc_crash_notification_service:service_manager find;
+
+## SB Recovery Listener service policies
+# type for SB Recovery service
+type sdv_orch_sb_recovery_service, protected_service, service_manager_type;
+# Allow sdv_orch to create and register service
+add_service(sdv_orch, sdv_orch_sb_recovery_service)
+# Allow clients to find the service:
+allow sdv_orch_sb_recovery_client sdv_orch_sb_recovery_service:service_manager find;
+# Allow binder RPC between service and clients
+binder_call(sdv_orch_sb_recovery_client, sdv_orch)
+binder_call(sdv_orch, sdv_orch_sb_recovery_client)
