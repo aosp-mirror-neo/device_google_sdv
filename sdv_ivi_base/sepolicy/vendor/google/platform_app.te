@@ -2,3 +2,6 @@
 
 # DriverUI is a client of the SDV Gateway.
 typeattribute platform_app sdv_gateway_client;
+
+# Enable the SDV Gateway Networking service to find IPrivilegedGatewayNetworking AIDL service.
+allow platform_app sdv_privileged_gatewaynetworking_service:service_manager find;
