@@ -326,9 +326,19 @@ on post-fs-data
     # The content of the json needs to be clear every time the VM starts.
     # We do not persist values across reboots.
     write /data/orchestrator/modes_backup.json "{}"
+    # Set ownership back to the orchestrator to prevent PermissionDenied
+    # errors when trying to read at boot.
+    chown system_ext_sdv_orch system_ext_sdv_orch /data/orchestrator/modes_backup.json
+    # Ensure the orch can read and write the file
+    chmod 0660 /data/orchestrator/modes_backup.json
     # We also clear the tmp file in case it was not successful to be renamed to avoid
     # restoring from it.
     write /data/orchestrator/modes_backup.json.tmp "{}"
+    # Set ownership back to the orchestrator to prevent PermissionDenied
+    # errors when trying to read at boot.
+    chown system_ext_sdv_orch system_ext_sdv_orch /data/orchestrator/modes_backup.json.tmp
+    # Ensure the orch can read and write the file
+    chmod 0660 /data/orchestrator/modes_backup.json.tmp
 
     # All permissions needed for integration test process that will use this dir to launch
     # vsomeip instances
