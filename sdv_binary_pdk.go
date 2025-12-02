@@ -41,7 +41,7 @@ type sdvBinaryPdkModule struct {
 type sdvBinaryPdkProperties struct {
 	Pdk_vars           []string
 	Additional_modules []string
-	Override_file       string
+	Override_file      string
 }
 
 func (p *sdvBinaryPdkModule) UseGenericConfig() bool {
@@ -74,7 +74,7 @@ func (s *sdvBinaryPdkModule) DepsMutator(ctx android.BottomUpMutatorContext) {
 	// Get all modules from the PDK vars and additional modules.
 	var allModules []string
 	for _, pdkVar := range s.properties.Pdk_vars {
-		 moduleListStr := config.String(pdkVar)
+		moduleListStr := config.String(pdkVar)
 		if moduleListStr != "" {
 			allModules = append(allModules, strings.Split(moduleListStr, " ")...)
 		}
@@ -164,7 +164,7 @@ func (s *sdvBinaryPdkModule) GenerateAndroidBuildActions(ctx android.ModuleConte
 	sboxFolder := sdvBaseFolder.Join(ctx, "sbox")
 	archiveFolder := sdvBaseFolder.Join(ctx, "archive")
 	sanboxTextProto := sdvBaseFolder.Join(ctx, "sdv_sbox.textproto")
-	collectorRule := android.NewRuleBuilder(pctx, ctx).Sbox(sboxFolder, sanboxTextProto)
+	collectorRule := android.NewRuleBuilder(pctx, ctx).SandboxDisabled().Sbox(sboxFolder, sanboxTextProto)
 	fileReportPath := sboxFolder.Join(ctx, "file_report.txt")
 	moduleInfoPath := android.PathForArbitraryOutput(
 		ctx,
@@ -189,7 +189,7 @@ func (s *sdvBinaryPdkModule) GenerateAndroidBuildActions(ctx android.ModuleConte
 	collectorRule.Build("binary_pdk_collector", "Running binary_pdk_collector")
 
 	filesToZip := android.PathForModuleOut(ctx, "sdv_binary_pdk_files_to_archive.txt")
-	findRule := android.NewRuleBuilder(pctx, ctx)
+	findRule := android.NewRuleBuilder(pctx, ctx).SandboxDisabled()
 	findRule.Command().
 		Text("find").
 		Text(archiveFolder.String()).
@@ -201,7 +201,7 @@ func (s *sdvBinaryPdkModule) GenerateAndroidBuildActions(ctx android.ModuleConte
 	productOutZip := android.PathForArbitraryOutput(
 		ctx,
 		fmt.Sprintf("target/product/%s/sdv-binary-pdk/sdv-binary-pdk.zip", deviceName))
-	zipRule := android.NewRuleBuilder(pctx, ctx)
+	zipRule := android.NewRuleBuilder(pctx, ctx).SandboxDisabled()
 	zipRule.Command().
 		BuiltTool("soong_zip").
 		FlagWithArg("-o ", productOutZip.String()).
