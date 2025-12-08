@@ -82,12 +82,6 @@ PRODUCT_PACKAGES += vvmtruststore.rc
 # "MUST back up the keystore implementation with an isolated execution environment."
 PRODUCT_PACKAGES += com.android.sdv.hardware.keymint.rust_nonsecure
 
-# Overriding the default KeyMint implementation in Cuttlefish with one that is extended with test
-# functionalities for SDV. There's more detail on the APEX selection developer feature at
-# https://source.android.com/docs/core/ota/vendor-apex#apex_selection_at_bootup
-PRODUCT_VENDOR_PROPERTIES += \
-    persist.vendor.apex.com.android.hardware.keymint=com.android.sdv.hardware.keymint.rust_nonsecure
-
 # Runtime Resource Overlay for Connectivity service.
 PRODUCT_PACKAGES += \
     sdv_ivi_cf_overlay_connectivity
