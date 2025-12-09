@@ -47,7 +47,13 @@ TARGET_FS_CONFIG_GEN += device/google/sdv/sdv_ivi_base/config.fs
 # brings up the SDV Gateway networking service before BOOT_COMPLETED.
 DEVICE_PACKAGE_OVERLAYS += device/google/sdv/sdv_ivi_base/device_overlays
 PRODUCT_PACKAGES += sdv_gatewaynetworking_service_loader_service
-PRODUCT_SYSTEM_SERVER_JARS += sdv_gatewaynetworking_service_loader_service
+# List services before sdv_gatewaynetworking_service_loader_service to ensure
+# that the services dependency is listed first allowing for optimal order in
+# the system server classpath. The alternative is to set
+# PRODUCT_BROKEN_SUBOPTIMAL_ORDER_OF_SYSTEM_SERVER_JARS to true.
+PRODUCT_SYSTEM_SERVER_JARS += \
+    services \
+    sdv_gatewaynetworking_service_loader_service
 
 include device/google/sdv/sdv_base/sdv_base.mk
 include device/google/sdv/sdv_ivi_base/sdv_packages_ivi_services.mk
