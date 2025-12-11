@@ -23,7 +23,6 @@ SDV_CORE_SERVICES_PACKAGES += \
     lifecycle_service_bundle_runner \
     sdv_someip_broker_agent_comms \
     sdv_update_manager_agent \
-    sdv.sample.apex.fake.update.manager \
     sdv_health_monitor \
     $(SDV_SOMEIP_AGENT_MODULES) \
     $(SDV_SOMEIP_BROKER_CONFIG) \
