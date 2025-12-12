@@ -47,8 +47,8 @@ BOARD_BOOTCONFIG += \
 # Build with: m custom_images
 # Run with: cvd start --custom_partition_path="$OUT/oem.img;$OUT/oem.img;$OUT/oem_metadata.img"
 PRODUCT_CUSTOM_IMAGE_MAKEFILES += \
-    device/google/sdv/sdv_core_cf/oem/oem.mk \
-    device/google/sdv/sdv_core_cf/oem/oem_metadata.mk
+    device/google/sdv/sdv_core_base/oem/oem.mk \
+    device/google/sdv/sdv_core_base/oem/oem_metadata.mk
 
 BOARD_ROOT_EXTRA_FOLDERS += oem oem_updates oem_metadata
 
