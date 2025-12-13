@@ -129,6 +129,10 @@ func (s *sdvBinaryPdkModule) GenerateAndroidBuildActions(ctx android.ModuleConte
 	if deviceName == "" {
 		return
 	}
+
+	// make the sdv-binary-pdk soong module a no-op until we fully remove the binary PDK
+	return
+
 	sdvBaseFolder := android.PathForModuleOut(ctx, "sdv-binary-pdk")
 
 	pkgFolder := sdvBaseFolder.Join(ctx, "packages")
