@@ -4,4 +4,5 @@
 type sdv_gateway_service, protected_service, service_manager_type;
 
 # Defines SDV Privileged Gateway service.
-type sdv_privileged_gatewaynetworking_service, protected_service, service_manager_type;
+# The following rule is in device/google/sdv/sdv_base/sepolicy/system_ext/public/service.te
+# type sdv_privileged_gatewaynetworking_service, protected_service, service_manager_type;

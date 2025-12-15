@@ -1,0 +1,5 @@
+# Copyright 2025 Google LLC
+
+# Defines the SDV Gateway Networking service.
+# Has to be in system_ext/public to be used by both sdv_sd_default and sdv_gateway.
+type sdv_privileged_gatewaynetworking_service, protected_service, service_manager_type;
