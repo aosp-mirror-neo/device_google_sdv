@@ -1,0 +1,6 @@
+# Copyright 2025 Google LLC
+
+# Extends sdv_base/sepolicy/system_ext/private/sdv_sd_default.te
+
+# SD agent can talk to the privileged gateway networking service.
+allow sdv_sd_default sdv_privileged_gatewaynetworking_service:service_manager find;
