@@ -7,7 +7,6 @@
 #
 # These are not included in sdv_core_base.mk. Targets need to include them explicitly.
 
-# TODO: b/343460855 - Remove configurable publisher from SDV after RPC support
 # TODO: b/420890689 - Remove `sdv_telemetry_dt_publisher_for_fetch_last_message_e2e_test`
 #       after the Simulator supports simulation of Data Tunnel publishers.
 SDV_CORE_TELEMETRY_SAMPLES_PACKAGES += \
