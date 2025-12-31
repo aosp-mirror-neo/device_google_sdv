@@ -16,47 +16,6 @@
 # Note that /dev/block/by-name/vvmtruststore is only available if the
 # --default_vvmtruststore_file_name=<vvmtruststore.img> argument is passed to cvd (Cuttlefish).
 
-# bind-mount a preprovisioned /vvmtruststore from a location in etc/.
-# This is a temporary workaround to help ramping up new environments on SDV which do not support a
-# real vvmtruststore partition yet.
-# NOTE: The main logic for mounting the vvmtruststore partition runs on the late-fs trigger, which
-#       executes before this early-boot trigger. This mount action will run after the late-fs one
-#       and will take precedence by overwriting any existing mount on /vvmtruststore.
-on early-boot && property:ro.boot.sdv.preprovisioned_vvmtruststore=etc \
-    && property:ro.boot.sdv.boot_mode=locked
-    mount none /product/etc/vvmtruststore/${ro.boot.sdv.instance_name} /vvmtruststore bind noatime nosuid nodev noexec ro
-
-# Before the real vvmtruststore mount logic is run on late-fs, initialize the file ownership and
-# modes for the files on the pre-provisioned vvmtruststore image.
-# TODO: b/389638158 - Look into removing the need for setting file ownership and mode.
-# TODO: b/455485705 - only do this initialization step once, and do not run it on reboots, because
-#       it undoes any changes.
-on post-fs && property:ro.boot.sdv.preprovisioned_vvmtruststore=img
-    # Mount it writable so that we can set file ownership and mode.
-    mount ext4 /dev/block/by-name/vvmtruststore /vvmtruststore noatime nosuid nodev noexec rw
-    chown system system /vvmtruststore
-    # drwxrwx--x: Service discovery runs using its own user but it's in the system group so write
-    # permission must be granted for the group (i.e. for system).
-    chmod 0771 /vvmtruststore
-
-    # As if the service discovery agent had created the uds_pubs during mesh provisioning.
-    # TODO: b/472447186 - use the AID of the service discovery agent as the user once it was
-    #       across the different SDV targets.
-    chown system system /vvmtruststore/uds_pubs
-    # -rw-rw----: grant access for the system group so the service discovery agent have access.
-    # TODO: b/472447186 - use -rw-------, because only the owner service discovery agent needs
-    #       access. Also, that's how the modes are set during the real provisioning.
-    chmod 0660 /vvmtruststore/uds_pubs
-
-    # Many configurations are valid here, but the service discovery agent must be able to read the
-    # uds_certs file.
-    chown system system /vvmtruststore/uds_certs
-    # -rw-rw----: allow the system user and the group to read/write it.
-    chmod 0660 /vvmtruststore/uds_certs
-
-    # unmount and let the regular vvmtruststore mounting logic run.
-    umount /vvmtruststore
-
 # mount read-only when locked and not preprovisioned
 on late-fs && property:ro.boot.sdv.boot_mode=locked
     mount ext4 /dev/block/by-name/vvmtruststore /vvmtruststore noatime nosuid nodev noexec ro

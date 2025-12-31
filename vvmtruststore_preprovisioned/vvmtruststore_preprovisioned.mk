@@ -12,6 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# initialization logic for the pre-provisioned vvmtruststore partition
+PRODUCT_PACKAGES += vvmtruststore.preprovisioned.rc
+
 # Makes the vvmtruststore image installed to the $OUT directory on build and included in the
 # sdv_*-img-*.zip on disting.
 BOARD_CUSTOMIMAGES_PARTITION_LIST += \

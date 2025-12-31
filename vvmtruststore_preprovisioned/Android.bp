@@ -16,6 +16,15 @@ package {
     default_applicable_licenses: ["Android-Apache-2.0"],
 }
 
+// logic for initializing the pre-provisioned vvmtruststore artifacts, both for "etc" and "image"
+// pre-provisioined vvmtruststore
+prebuilt_etc {
+    name: "vvmtruststore.preprovisioned.rc",
+    srcs: ["vvmtruststore.preprovisioned.rc"],
+    sub_dir: "init",
+    product_specific: true,
+}
+
 // Preprovisioned vvmtruststore content for /product/etc/
 //
 // To be used in test environments where properly mounting a vvmtruststore
@@ -74,6 +83,8 @@ prebuilt_etc {
     sub_dir: "vvmtruststore/instance3",
     product_specific: true,
 }
+
+// pre-provisioned vvmtruststore images, one for each instance of the development mesh
 
 // instance1
 android_filesystem {
