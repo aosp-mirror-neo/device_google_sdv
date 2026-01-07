@@ -1,4 +1,18 @@
-<!-- Copyright 2024 Google LLC -->
+<!--
+  Copyright (C) 2026 The Android Open Source Project
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
 
 # SDV lunch targets
 
@@ -16,22 +30,22 @@ OEM targets are intended to directly inherit from one SDV "base" target, and a
 
 ### SDV "base" targets
 
-* `sdv_base` is the base for lunch targets that need to communicate with the SDV
-  system using SDV communications stack.
+*   `sdv_base` is the base for lunch targets that need to communicate with the
+    SDV system using SDV communications stack.
 
-* `sdv_core_base` is the base for lunch targets that need the full set of SDV
-  Core services.
+*   `sdv_core_base` is the base for lunch targets that need the full set of SDV
+    Core services.
 
-* `sdv_media_base` is the base for lunch targets that, aside from SDV Core
-  services, also require media API support.
+*   `sdv_media_base` is the base for lunch targets that, aside from SDV Core
+    services, also require media API support.
 
-* `sdv_ivi_base` is the base for AAOS IVI lunch targets capable of communicating
-  with SDV services on other VMs.
+*   `sdv_ivi_base` is the base for AAOS IVI lunch targets capable of
+    communicating with SDV services on other VMs.
 
 ### Vendor targets
 
-* `sdv_cf` contains Cuttlefish-specific functionality specific to SDV
-  Core-derived targets. Note that it's *not* used by `sdv_ivi_cf`.
+*   `sdv_cf` contains Cuttlefish-specific functionality specific to SDV
+    Core-derived targets. Note that it's *not* used by `sdv_ivi_cf`.
 
 ## Sample targets
 
@@ -62,52 +76,53 @@ cvd start --custom_partition_path=$OUT/oem.img
 
 To create a custom partition image:
 
-* Create a Makefile that defines the custom partition properties and contents.
-  For an example, see `sdv_core_cf/oem/oem.mk`.
+*   Create a Makefile that defines the custom partition properties and contents.
+    For an example, see `sdv_core_cf/oem/oem.mk`.
 
-  A complete list of supported custom image properties is documented in
-  [`build/make/core/tasks/build_custom_images.mk`](https://cs.android.com/android/platform/superproject/main/+/main:build/make/core/tasks/build_custom_images.mk).
+    A complete list of supported custom image properties is documented in
+    [`build/make/core/tasks/build_custom_images.mk`](https://cs.android.com/android/platform/superproject/main/+/main:build/make/core/tasks/build_custom_images.mk).
 
-* In `BoardConfig.mk`, assign the custom partition Makefile path to
-  `PRODUCT_CUSTOM_IMAGE_MAKEFILES`.
+*   In `BoardConfig.mk`, assign the custom partition Makefile path to
+    `PRODUCT_CUSTOM_IMAGE_MAKEFILES`.
 
-  See `sdv_core_cf/BoardConfig.mk` for an example.
+    See `sdv_core_cf/BoardConfig.mk` for an example.
 
-* Build custom disk images with `m custom_images`. Note that this is *not*
-  included in the default `m` build.
+*   Build custom disk images with `m custom_images`. Note that this is *not*
+    included in the default `m` build.
 
 To mount the custom partition with Cuttlefish:
 
-* In `BoardConfig.mk`, add the partition mount point to
-  `BOARD_ROOT_EXTRA_FOLDERS` to ensure it exists in the root filesystem.
+*   In `BoardConfig.mk`, add the partition mount point to
+    `BOARD_ROOT_EXTRA_FOLDERS` to ensure it exists in the root filesystem.
 
-  See `sdv_core_cf/BoardConfig.mk` for an example of setting up the `/oem`
-  directory.
+    See `sdv_core_cf/BoardConfig.mk` for an example of setting up the `/oem`
+    directory.
 
-* Add an `fstab` entry for the partition. The custom partition will be visible
-  to the VM as `/dev/block/by-name/custom`.
+*   Add an `fstab` entry for the partition. The custom partition will be visible
+    to the VM as `/dev/block/by-name/custom`.
 
-  See `sdv_core_cf/fstab.sdv` for an example of mounting the partition to
-  `/oem` path on the device.
+    See `sdv_core_cf/fstab.sdv` for an example of mounting the partition to
+    `/oem` path on the device.
 
-* Set up SELinux policy rules for the new partition contents, and allow `init`
-  to mount it.
+*   Set up SELinux policy rules for the new partition contents, and allow `init`
+    to mount it.
 
-  When using `/oem` as the mount point, the `file_contexts` for all
-  its files are already configured in
-  [`system/sepolicy/private/file_contexts`](https://cs.android.com/android/platform/superproject/main/+/main:system/sepolicy/private/file_contexts;l=472;drc=dda7487085ab94b5c46edae5a6633a3440eeed19),
-  and the only thing missing is allowing `init` process to mount on the `/oem`
-  path.
+    When using `/oem` as the mount point, the `file_contexts` for all its files
+    are already configured in
+    [`system/sepolicy/private/file_contexts`](https://cs.android.com/android/platform/superproject/main/+/main:system/sepolicy/private/file_contexts;l=472;drc=dda7487085ab94b5c46edae5a6633a3440eeed19),
+    and the only thing missing is allowing `init` process to mount on the `/oem`
+    path.
 
-  See `sdv_core_cf/sepolicy/system_ext/private/init.te` for an example of
-  required rules.
+    See `sdv_core_cf/sepolicy/system_ext/private/init.te` for an example of
+    required rules.
 
-* Build `sdv_core_cf` target with `lunch sdv_core_cf-trunk_staging-userdebug && m`.
+*   Build `sdv_core_cf` target with `lunch sdv_core_cf-trunk_staging-userdebug
+    && m`.
 
-* Run Cuttlefish and pass the custom partition image when starting.
+*   Run Cuttlefish and pass the custom partition image when starting.
 
-  ```
-  cvd start --custom_partition_path=$OUT/oem.img
-  ```
+    ```
+    cvd start --custom_partition_path=$OUT/oem.img
+    ```
 
 The VM will boot and expose the OEM partition contents under `/oem` path.
