@@ -12,7 +12,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-CUSTOM_IMAGE_MOUNT_POINT := oem_metadata
-CUSTOM_IMAGE_PARTITION_SIZE := 1048576 # 1 MB
-CUSTOM_IMAGE_FILE_SYSTEM_TYPE := ext4
-CUSTOM_IMAGE_DICT_FILE := device/google/sdv/sdv_core_base/oem/oem_metadata_dict.txt
+BOARD_ROOT_EXTRA_FOLDERS += oem_metadata
+
+# Makes the oem_metadata image installed to the $OUT directory on build and included in the
+# sdv_core_*-img-*.zip on disting.
+BOARD_CUSTOMIMAGES_PARTITION_LIST += oem_metadata
+
+# Must tell the build system where to find the build artifact of the oem_metadata image.
+ifeq ($(CLANG_COVERAGE),true)
+  VARIANT_DIR = android_common_cov
+else
+  VARIANT_DIR = android_common
+endif
+BOARD_OEM_METADATA_IMAGE_LIST := \
+  $(OUT_DIR)/soong/.intermediates/device/google/sdv/sdv_core_base/oem/oem_metadata/$(VARIANT_DIR)/oem_metadata.img
+
+# The oem_metadata partition is owned by the OEM.
+PRODUCT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_core_base/oem/sepolicy/oem_metadata/private
