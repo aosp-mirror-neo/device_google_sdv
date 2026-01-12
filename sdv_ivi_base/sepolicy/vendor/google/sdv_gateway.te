@@ -106,3 +106,6 @@ allow sdv_gateway_client sdv_gateway:fd use;
 # TODO: b/391793350 - Remove the rules if they become redundant.
 neverallow sdv_gateway_client sdv_id_service:service_manager find;
 neverallow sdv_gateway_client sdv_privileged_sd_client:service_manager find;
+
+# Allow dumpstate accessing sdv_gateway, required for CTS test
+binder_call(dumpstate, sdv_gateway);
