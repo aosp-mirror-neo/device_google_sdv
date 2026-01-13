@@ -39,9 +39,6 @@ google.sdv.privileged.service_discovery.IPrivilegedServiceDiscoveryAgent/default
 # Privileged Service Registration Agent service used by SDV Gateway.
 google.sdv.privileged.service_discovery.IPrivilegedServiceRegistrationAgent/default u:object_r:sdv_privileged_sd_service:s0
 
-# SDV Mesh IPC service
-android.sdv.mesh.IMessageManager u:object_r:sdv_mesh_service:s0
-
 # SDV Mesh uds_pubs provisioning IPC service.
 google.sdv.mesh.provisioning.IUdsPubsProvisioner/default u:object_r:sdv_mesh_provisioning_service:s0
 
