@@ -12,18 +12,5 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# SDV SD client and server can use Binder IPC.
-binder_call(sdv_sd_client, sdv_sd_server)
-binder_call(sdv_sd_server, sdv_sd_client)
-
-# SDV SD client can find the IPC service.
-allow sdv_sd_client sdv_id_service:service_manager find;
-allow sdv_sd_client sdv_sd_service:service_manager find;
-
-# SDV SD server can register the IPC service.
-add_service(sdv_sd_server, sdv_id_service)
-add_service(sdv_sd_server, sdv_sd_service)
-add_service(sdv_sd_server, sdv_transport_support_service)
-
 # System property to query mesh state.
 system_restricted_prop(mesh_missing_vms_prop)
