@@ -23,6 +23,16 @@ allow sdv_dt_agent sdv_transport_support_service:service_manager find;
 # Allow the Data Tunnel Agent to use the RPC Agent.
 typeattribute sdv_dt_agent sdv_rpcagent_client;
 
+# SDV DT client and server can use Binder IPC.
+binder_call(sdv_dt_client, sdv_dt_server)
+binder_call(sdv_dt_server, sdv_dt_client)
+
+# SDV DT client and server can find the IPC service.
+allow sdv_dt_client sdv_dt_service:service_manager find;
+
+# SDV DT server can register the IPC service.
+add_service(sdv_dt_server, sdv_dt_service)
+
 # Allow DT clients to use pipes and shared mem created by DT Agent.
 allow sdv_dt_client sdv_dt_agent:fifo_file { read write };
 allow sdv_dt_client sdv_dt_agent:fd use;
