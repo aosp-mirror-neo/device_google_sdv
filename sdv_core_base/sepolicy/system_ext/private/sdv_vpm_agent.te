@@ -27,6 +27,16 @@ typeattribute sdv_vpm_agent sdv_sd_client;
 # Vehicle Mode and Power Management notification Binder server.
 typeattribute sdv_vpm_agent sdv_vpm_agent_notification_server;
 
+# The VPM agent can register the IPowerStateClientApi Binder IPC service.
+add_service(sdv_vpm_agent_notification_server, sdv_vpm_agent_notification_service)
+
+# The VPM client and agent can call each other via Binder IPC.
+binder_call(sdv_vpm_agent_notification_client, sdv_vpm_agent_notification_server)
+binder_call(sdv_vpm_agent_notification_server, sdv_vpm_agent_notification_client)
+
+# The VPM client has access to the IPowerStateClientApi Binder IPC service.
+allow sdv_vpm_agent_notification_client sdv_vpm_agent_notification_service:service_manager find;
+
 # VPM agent is crash monitored using its sdv_vpm_agent_notification_service binder interface
 typeattribute sdv_vpm_agent_notification_service sdv_crash_monitored_service;
 
