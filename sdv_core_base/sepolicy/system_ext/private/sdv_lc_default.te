@@ -34,9 +34,9 @@ allow sdv_lc_default service_bundle_data:file create_file_perms;
 allow sdv_lc_default self:capability { setuid setgid chown };
 
 allow sdv_lc_default self:capability { kill };
-# Allow the sdv lifecycle agent to send signals (e.g., SIGTERM, SIGKILL)
-# to untrusted service bundle processes.
-allow sdv_lc_default untrusted_service_bundle:process signal;
+# Allow the sdv lifecycle agent to send signals (e.g., SIGTERM, SIGKILL) to all service bundle
+# processes.
+allow sdv_lc_default servicebundledomain:process signal;
 
 # The Lifecycle agent and the service bundles spawned by it can call each other via Binder IPC.
 binder_call(servicebundledomain, sdv_lc_default)
