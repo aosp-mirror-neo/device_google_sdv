@@ -19,6 +19,9 @@ core_service(sdv_sbr)
 allow sdv_sbr apex_mnt_dir:dir { read open };
 allow sdv_sbr apex_info_file:file getattr;
 
+# Defines the service_bundles_registry binder service
+type sdv_sbr_service, protected_service, service_manager_type;
+
 # SDV Lifecycle service can call Service Bundles Registry.
 binder_call(sdv_lc_server, sdv_sbr)
 allow sdv_lc_server sdv_sbr_service:service_manager find;

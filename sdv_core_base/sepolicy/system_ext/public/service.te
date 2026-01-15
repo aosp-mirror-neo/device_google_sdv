@@ -12,9 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Defines SDV Lifecycle Manager IPC service.
-type sdv_sbr_service, protected_service, service_manager_type;
-
 # Defines SOME/IP Stack IPC service.
 type sdv_someip_stack_service, protected_service, service_manager_type;
 
