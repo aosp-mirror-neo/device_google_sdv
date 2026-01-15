@@ -12,6 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# SDV SD can call Service Bundles Registry.
+typeattribute sdv_sd_default sdv_sbr_client;
+
 # Service Discovery (SD) agent is a power state client
 typeattribute sdv_sd_default sdv_vpm_agent_notification_client;
 

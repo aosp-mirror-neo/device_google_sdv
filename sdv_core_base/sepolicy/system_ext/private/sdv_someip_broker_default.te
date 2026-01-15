@@ -26,6 +26,8 @@ allow sdv_someip_broker_default sdv_someip_stack_server:unix_stream_socket { rea
 
 typeattribute sdv_someip_broker_default sdv_dt_client;
 
+typeattribute sdv_someip_broker_default sdv_sbr_client;
+
 type sdv_someip_broker_agent_dump_service, protected_service, service_manager_type;
 add_service(sdv_someip_broker_default, sdv_someip_broker_agent_dump_service)
 
