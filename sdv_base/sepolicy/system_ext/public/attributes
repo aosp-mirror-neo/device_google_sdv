@@ -21,9 +21,6 @@
 attribute sdv_sd_client;
 attribute sdv_sd_server;
 
-attribute sdv_mesh_client;
-attribute sdv_mesh_server;
-
 # Expansion options control whether the attributes are expanded within the SELinux rules for
 # performance optimizations. For instance, let's say that there is a MyService service that uses the
 # SDV SD service, and the SELinux domain associated with the MyService process is my_service.

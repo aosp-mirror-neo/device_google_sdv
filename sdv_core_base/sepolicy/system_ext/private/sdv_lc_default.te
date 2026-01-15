@@ -51,6 +51,17 @@ system_internal_prop(lc_state_ready_prop)
 # Lifecycle agent is the only agent that can set its current state.
 set_prop(sdv_lc_default, lc_state_ready_prop)
 
+# SDV Lifecycle client and agent can call each other via Binder IPC.
+binder_call(sdv_lc_client, sdv_lc_server)
+binder_call(sdv_lc_server, sdv_lc_client)
+
+# SDV Lifecycle client has access to the ILifecycleManager Binder service.
+allow sdv_lc_client sdv_lc_manager_service:service_manager find;
+
+# SDV Lifecycle agent can register its Binder IPC services.
+add_service(sdv_lc_server, sdv_lc_manager_service)
+add_service(sdv_lc_server, sdv_lc_service_manager_service)
+
 # The identity verifier service is hosted by the lifecycle manager and used for verifying the FQIN
 # belonging to service bundle processes.
 type sdv_sb_identity_service, protected_service, service_manager_type;
