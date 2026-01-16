@@ -22,3 +22,9 @@
 
 # Post install binary for system partition
 /system/bin/update_engine_system_partition_post_install    u:object_r:update_engine_system_partition_post_install:s0
+
+#############################
+# system_ext files
+#
+
+/(system_ext|system/system_ext)/bin/adbd_auth_service      u:object_r:adbd_auth_exec:s0
