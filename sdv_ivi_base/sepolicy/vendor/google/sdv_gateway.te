@@ -57,7 +57,6 @@ allow sdv_dt_client sdv_gateway:fd use;
 allow sdv_dt_client sdv_gateway_service:memfd_file { read write getattr map };
 allow sdv_dt_client sdv_gateway:memfd_file { read write getattr map };
 allow sdv_dt_client self:memfd_file { read write getattr map };
-allow sdv_dt_client su:memfd_file { read write getattr map };
 allow sdv_dt_client sdv_gateway_client:memfd_file { read write getattr map };
 
 # SDV Gateway Agent can use sockets
@@ -77,7 +76,6 @@ get_prop(sdv_gateway, sdv_ethernet_ready_prop)
 allow sdv_gateway_client sdv_gateway_service:memfd_file { read write getattr map };
 allow sdv_gateway_client sdv_gateway:memfd_file { read write getattr map };
 allow sdv_gateway_client self:memfd_file { read write getattr map };
-allow sdv_gateway_client su:memfd_file { read write getattr map };
 # SDV Gateway client can access proc_net to read the somaxconn value of the process.
 allow sdv_gateway_client proc_net:file { getattr open read };
 # Allow the SDV Gateway client to use Binder IPC
