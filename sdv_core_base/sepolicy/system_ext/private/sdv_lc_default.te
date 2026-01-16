@@ -78,3 +78,6 @@ dump_sdv_agent(sdv_lc_default)
 
 # Lifecycle agent is crash monitored on its sdv_lc_manager_service interface
 typeattribute sdv_lc_manager_service sdv_crash_monitored_service;
+
+# SDV Lifecycle service can use the Service Bundles Registry.
+typeattribute sdv_lc_default sdv_sbr_client;

@@ -14,3 +14,8 @@
 
 # grouping of clients of SB Recovery service (Orchestrator agent binder interface)
 attribute sdv_orch_sb_recovery_client;
+expandattribute sdv_orch_sb_recovery_client true;
+
+# Provides the permissions for using the Service Bundles Registry
+attribute sdv_sbr_client;
+expandattribute sdv_sbr_client true;
