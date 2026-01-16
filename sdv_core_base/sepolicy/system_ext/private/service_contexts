@@ -38,7 +38,6 @@ google.sdv.service_bundles_registry.IRegistry/default u:object_r:sdv_sbr_service
 google.sdv.vpm.IPowerStateClientApi/default u:object_r:sdv_vpm_agent_notification_service:s0
 
 # SDV DT IPC service
-google.sdv.dt.IDataTunnelAgent/default u:object_r:sdv_dt_service:s0
 google.sdv.data_tunnel.IAgentService/default u:object_r:sdv_dt_service:s0
 
 # ISdvAgent is an interface that agents use to provide dump.
