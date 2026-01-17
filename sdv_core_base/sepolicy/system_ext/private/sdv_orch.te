@@ -14,14 +14,15 @@
 
 # Orchestrator is a core SDV agent.
 core_service(sdv_orch)
-attribute sdv_orch_sb_recovery_server;
-typeattribute sdv_orch sdv_orch_sb_recovery_server;
 
 # Orchestrator can call the lifecycle agent.
 typeattribute sdv_orch sdv_lc_client;
 
 # Orchestrator can call the DataTunnel SDV agent.
 typeattribute sdv_orch sdv_dt_client;
+
+# SDV Orchestration service can call Service Bundles Registry.
+typeattribute sdv_orch sdv_sbr_client;
 
 # File used by orch agent to persist data
 type orch_data_file, file_type, data_file_type, core_data_file_type;

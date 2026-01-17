@@ -53,7 +53,6 @@
 # Initial boot checkpoint handler
 /(system_ext|system/system_ext)/bin/initial_boot_checkpoint.sh u:object_r:initial_boot_checkpoint_exec:s0
 
-/(system_ext|system/system_ext)/bin/adbd_auth_service u:object_r:adbd_auth_exec:s0
 #############################
 # data files
 /data/service_bundle_data(/.*)? u:object_r:service_bundle_data:s0
@@ -62,5 +61,3 @@
 #############################
 # SDV Update Manager Agent metadata files
 /metadata/sdv_update_manager_agent(/.*)? u:object_r:sdv_um_metadata_file:s0
-
-

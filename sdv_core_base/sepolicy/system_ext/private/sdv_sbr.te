@@ -19,31 +19,19 @@ core_service(sdv_sbr)
 allow sdv_sbr apex_mnt_dir:dir { read open };
 allow sdv_sbr apex_info_file:file getattr;
 
-# SDV Lifecycle service can call Service Bundles Registry.
-binder_call(sdv_lc_server, sdv_sbr)
-allow sdv_lc_server sdv_sbr_service:service_manager find;
+# Defines the service_bundles_registry binder service
+type sdv_sbr_service, protected_service, service_manager_type;
 
-# SDV SD can call Service Bundles Registry.
-binder_call(sdv_sd_server, sdv_sbr)
-allow sdv_sd_server sdv_sbr_service:service_manager find;
+# SDV Service Bundles Registry agent can register its Binder IPC services.
+add_service(sdv_sbr, sdv_sbr_service)
 
-# SDV Orchestration service can call Service Bundles Registry.
-binder_call(sdv_orch, sdv_sbr)
-allow sdv_orch sdv_sbr_service:service_manager find;
-
-binder_call(sdv_someip_broker_default, sdv_sbr)
-allow sdv_someip_broker_default sdv_sbr_service:service_manager find;
-
-binder_call(sdv_vsidl_provider_agent, sdv_sbr)
-allow sdv_vsidl_provider_agent sdv_sbr_service:service_manager find;
+binder_call(sdv_sbr_client, sdv_sbr)
+allow sdv_sbr_client sdv_sbr_service:service_manager find;
 
 # Property that indicates the current state of service bundle registry.
 system_internal_prop(sbr_state_ready_prop)
 # SBR is the only agent that can set its current state.
 set_prop(sdv_sbr, sbr_state_ready_prop)
-
-# SDV Service Bundles Registry agent can register its Binder IPC services.
-add_service(sdv_sbr, sdv_sbr_service)
 
 # SDV Service Bundles Registry Agent is crash monitored on its sdv_sbr_service binder interface
 typeattribute sdv_sbr_service sdv_crash_monitored_service;
