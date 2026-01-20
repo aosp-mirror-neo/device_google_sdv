@@ -26,6 +26,7 @@ SDV_IVI_SERVICES_SAMPLES_PACKAGES += \
     sdv_vhal_proxy_publisher \
     sdv_vhal_proxy_subscriber \
     vhal_service_acl_policy \
+    range_remaining_sample_acl_textproto \
     sunroof_server_acl_policy \
     ivi_acl_provider_vendor_acl_textproto \
     ivi_acl_provider_product_acl_textproto \
