@@ -49,7 +49,7 @@ Start the two SDV Core VMs defined in `two-core-vms-example.json` by running the
 following command from the repo root:
 
 ```shell
-cvd start --config_file=device/google/sdv/cuttlefish_multi_tenancy/two-core-vms-example.json
+cvd create --config_file=device/google/sdv/cuttlefish_multi_tenancy/two-core-vms-example.json
 ```
 
 Once the `cvd start` has returned, you can verify that the VMs have appeared on
