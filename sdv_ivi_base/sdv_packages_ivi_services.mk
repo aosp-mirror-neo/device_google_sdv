@@ -26,10 +26,12 @@ SDV_IVI_SERVICES_PACKAGES += \
     sdv_gateway \
     sdv_gatewaynetworking_service
 
+# Adding the VINTF fragment of the DT agent manually, because data tunnel is part of the gateway
+# binary.
 # TODO: b/377688035 - Remove the inclusion of the Communication Stack agents here
 # once we have them deployed from an APEX.
+SDV_IVI_SERVICES_PACKAGES += google.sdv.data_tunnel-service.xml
 SDV_IVI_SERVICES_PACKAGES += \
-    dt_agent \
     rpcagent \
     init_open_dice \
     sdv_sd_agent_no_vpm
