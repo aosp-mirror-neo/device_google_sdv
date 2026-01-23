@@ -56,15 +56,6 @@ BOARD_BOOTCONFIG += \
 BOARD_BOOTCONFIG += \
     androidboot.sdv.health_monitor.agent_startup_timeout_sec=3
 
-# Writable partition mount point for SDV OemUpdater.
-# Build with: m custom_images
-# Run with: cvd start --custom_partition_path="$OUT/oem.img;$OUT/oem.img;$OUT/oem_metadata.img"
-PRODUCT_CUSTOM_IMAGE_MAKEFILES += \
-    device/google/sdv/sdv_core_base/oem/oem.mk \
-    device/google/sdv/sdv_core_base/oem/oem_metadata.mk
-
-BOARD_ROOT_EXTRA_FOLDERS += oem oem_updates oem_metadata
-
 # Configuration required for MACsec. See device/google/cuttlefish/shared/BoardConfig.mk.
 BOARD_WLAN_DEVICE           := emulator
 BOARD_HOSTAPD_PRIVATE_LIB   := lib_driver_cmd_simulated_cf_bp

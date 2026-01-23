@@ -25,16 +25,17 @@ type sdv_oem_partition_update_client_exec, system_file_type, exec_type, file_typ
 # shell transition to the sdv_oem_partition_update_client domain when executing its binary.
 domain_auto_trans_from_shell(sdv_oem_partition_update_client)
 
-# TODO(b/388460728): Fix the labeling of the oem partition and remove this rule.
-allow sdv_oem_partition_update_client unlabeled:dir search;
+# Enable sdv_oem_partition_update_client to
+# search, and read/write on the /oem_ab and /oem_updates paths.
+allow sdv_oem_partition_update_client oem_ab_file:dir search;
+allow sdv_oem_partition_update_client oem_ab_file:dir create_dir_perms;
+allow sdv_oem_partition_update_client oem_ab_file:file create_file_perms;
+
+# Enable sdv_oem_partition_update_client to
+# search, and read/write on the /oem_metadata path.
+allow sdv_oem_partition_update_client oem_metadata_file:dir search;
+allow sdv_oem_partition_update_client oem_metadata_file:dir rw_dir_perms;
+allow sdv_oem_partition_update_client oem_metadata_file:file create_file_perms;
 
 # Enable sdv_oem_partition_update_client to set and get properties.
 set_prop(sdv_oem_partition_update_client, sdv_oem_updater_prop)
-
-# Enable read/write on the /oem_updates path.
-allow sdv_oem_partition_update_client oem_updates:dir create_dir_perms;
-allow sdv_oem_partition_update_client oem_updates:file create_file_perms;
-
-# Enable read/write on the /oem_metadata path.
-allow sdv_oem_partition_update_client oem_metadata:dir rw_dir_perms;
-allow sdv_oem_partition_update_client oem_metadata:file create_file_perms;

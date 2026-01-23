@@ -62,59 +62,40 @@ target-specific configuration.
 
 ## Custom OEM partitions
 
-To build a sample OEM partition and run SDV with it mounted on `/oem`:
+To build a sample OEM partition and run SDV with it mounted on `/oem_ab`:
 
 ```
 source build/envsetup.sh
 lunch sdv_core_cf-trunk_staging-userdebug
-m custom_images
 m
-cvd start --custom_partition_path=$OUT/oem.img
+cvd create --custom_partition_path=$OUT/oem_ab.img
 ```
 
 ### Configuration
 
 To create a custom partition image:
 
-*   Create a Makefile that defines the custom partition properties and contents.
-    For an example, see `sdv_core_cf/oem/oem.mk`.
-
-    A complete list of supported custom image properties is documented in
-    [`build/make/core/tasks/build_custom_images.mk`](https://cs.android.com/android/platform/superproject/main/+/main:build/make/core/tasks/build_custom_images.mk).
-
-*   In `BoardConfig.mk`, assign the custom partition Makefile path to
-    `PRODUCT_CUSTOM_IMAGE_MAKEFILES`.
-
-    See `sdv_core_cf/BoardConfig.mk` for an example.
-
-*   Build custom disk images with `m custom_images`. Note that this is *not*
-    included in the default `m` build.
+*   See `sdv_core_base/oem/oem_ab.mk` and `sdv_core_base/oem/Android.bp` for
+    defining a custom partition.
+*   The custom disk image is automatically built when running `m`.
 
 To mount the custom partition with Cuttlefish:
 
 *   In `BoardConfig.mk`, add the partition mount point to
     `BOARD_ROOT_EXTRA_FOLDERS` to ensure it exists in the root filesystem.
 
-    See `sdv_core_cf/BoardConfig.mk` for an example of setting up the `/oem`
+    See `sdv_core_cf/BoardConfig.mk` for an example of setting up the `/oem_ab`
     directory.
 
 *   Add an `fstab` entry for the partition. The custom partition will be visible
     to the VM as `/dev/block/by-name/custom`.
 
-    See `sdv_core_cf/fstab.sdv` for an example of mounting the partition to
-    `/oem` path on the device.
+    See `sdv_core_cf/fstab.sdv` for an example of mounting the oem_metadata
+    partition to the `/oem_metadata` path on the device.
 
-*   Set up SELinux policy rules for the new partition contents, and allow `init`
-    to mount it.
-
-    When using `/oem` as the mount point, the `file_contexts` for all its files
-    are already configured in
-    [`system/sepolicy/private/file_contexts`](https://cs.android.com/android/platform/superproject/main/+/main:system/sepolicy/private/file_contexts;l=472;drc=dda7487085ab94b5c46edae5a6633a3440eeed19),
-    and the only thing missing is allowing `init` process to mount on the `/oem`
-    path.
-
-    See `sdv_core_cf/sepolicy/system_ext/private/init.te` for an example of
-    required rules.
+*   Set up SELinux policy rules for the new partition contents, and allow init
+    to mount it. See `sdv_core_base/oem/sepolicy/oem_ab/private/oem_ab.te` and
+    `sdv_core_base/oem/sepolicy/oem_ab/private/file_contexts`.
 
 *   Build `sdv_core_cf` target with `lunch sdv_core_cf-trunk_staging-userdebug
     && m`.
@@ -122,7 +103,7 @@ To mount the custom partition with Cuttlefish:
 *   Run Cuttlefish and pass the custom partition image when starting.
 
     ```
-    cvd start --custom_partition_path=$OUT/oem.img
+    cvd create --custom_partition_path=$OUT/oem_ab.img
     ```
 
-The VM will boot and expose the OEM partition contents under `/oem` path.
+The VM will boot and expose the OEM partition contents under `/oem_ab` path.
