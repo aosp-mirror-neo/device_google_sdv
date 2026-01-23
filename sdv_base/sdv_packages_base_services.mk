@@ -46,7 +46,3 @@ SDV_BASE_SERVICES_HOST_PACKAGES += \
 PRODUCT_PACKAGES += $(SDV_BASE_SERVICES_PACKAGES)
 
 PRODUCT_HOST_PACKAGES += $(SDV_BASE_SERVICES_HOST_PACKAGES)
-
-$(call soong_config_set, sdv_config, SDV_BASE_SERVICES_PACKAGES, $(SDV_BASE_SERVICES_PACKAGES))
-$(call soong_config_set, sdv_config, SDV_BASE_SERVICES_HOST_PACKAGES, $(SDV_BASE_SERVICES_HOST_PACKAGES))
-$(call soong_config_set, sdv_config, SDV_BINARY_PDK_PACKAGES, com.sdv.google.gateway.client libsdvgatewayclient libsdvgatewayclient_jni)
