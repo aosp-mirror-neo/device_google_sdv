@@ -38,6 +38,10 @@ allow sdv_lc_default self:capability { kill };
 # processes.
 allow sdv_lc_default servicebundledomain:process signal;
 
+# Allow the sdv lifecycle agent to change scheduling parameters.
+allow sdv_lc_default self:capability sys_nice;
+allow sdv_lc_default priority_service_bundle:process setsched;
+
 # The Lifecycle agent and the service bundles spawned by it can call each other via Binder IPC.
 binder_call(servicebundledomain, sdv_lc_default)
 binder_call(sdv_lc_default, servicebundledomain)
