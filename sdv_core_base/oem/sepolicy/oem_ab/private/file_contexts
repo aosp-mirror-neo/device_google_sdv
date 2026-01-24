@@ -12,8 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# OemUpdater oem_updates partition.
-type oem_updates, file_type;
+# oem files
 
-# OemUpdater oem_metadata partition.
-type oem_metadata, file_type;
+/oem_ab(/.*)?              u:object_r:oem_ab_file:s0

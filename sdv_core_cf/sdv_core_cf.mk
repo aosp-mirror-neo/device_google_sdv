@@ -88,6 +88,11 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     vsock_local_cid
 
 include device/google/sdv/sdv_core_base/sdv_core_base.mk
+# Writable partition mount point for SDV OemUpdater.
+# Run with:
+# cvd create --custom_partition_path="$OUT/oem_ab.img;$OUT/oem_ab.img;$OUT/oem_metadata.img"
+include device/google/sdv/sdv_core_base/oem/oem_ab.mk
+include device/google/sdv/sdv_core_base/oem/oem_metadata.mk
 include device/google/sdv/sdv_cf/sdv_cf.mk
 
 include device/google/sdv/sdv_base/sdv_samples_base_services.mk

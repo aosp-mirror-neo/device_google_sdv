@@ -1,2 +1,0 @@
-skip_fsck=true
-partition_name=oem

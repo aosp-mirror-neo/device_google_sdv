@@ -12,9 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-CUSTOM_IMAGE_MOUNT_POINT := oem
-CUSTOM_IMAGE_PARTITION_SIZE := 67108864 # 64 MiB, minimum for f2fs
-CUSTOM_IMAGE_FILE_SYSTEM_TYPE := f2fs
-CUSTOM_IMAGE_DICT_FILE := device/google/sdv/sdv_core_base/oem/oem_dict.txt
+# oem_metadata files
 
-CUSTOM_IMAGE_COPY_FILES += device/google/sdv/sdv_core_base/oem/hello_oem.txt:hello_oem.txt
+/oem_metadata(/.*)?        u:object_r:oem_metadata_file:s0
