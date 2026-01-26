@@ -1,0 +1,94 @@
+# Copyright (C) 2026 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Root init.rc for sdv_core_cf.
+
+import /system/etc/init/init.sdv_core_base.rc
+import /system/etc/init/init.sdv_cf.rc
+import /system_ext/etc/init/vvmtruststore.rc
+import /product/etc/init/vvmtruststore.preprovisioned.rc
+
+# Memory profiler daemon. Does not starts automatically on boot, only when requested.
+import /system/etc/init/heapprofd.rc
+
+import /product/etc/init/oem_partition.rc
+import /vendor/etc/init/android.sdv.hardware.security.keymint-service.nonsecure.rc
+import /vendor/etc/init/android.hardware.macsec.rc
+import /vendor/etc/init/sdv_wpa_supplicant_macsec.rc
+
+import /vendor/etc/init/sdv_uds_certs_provisioner_sample.rc
+
+
+# set HM config path based on whether SOME/IP agents run on the instance or not
+on property:ro.boot.sdv.someip.enable=false \
+    && property:persist.sdv.health_monitor.config_path=""
+    setprop persist.sdv.health_monitor.config_path \
+        "/system/etc/health_monitor/hm_config_without_someip.textproto"
+
+on property:ro.boot.sdv.someip.enable=true \
+    && property:persist.sdv.health_monitor.config_path=""
+    setprop persist.sdv.health_monitor.config_path \
+        "/system/etc/health_monitor/hm_config_with_someip.textproto"
+
+
+# Declare and start the sample SDV SOME/IP stack agent.
+service sdv_someip_stack_agent /vendor/bin/sdv_someip_stack_agent
+    class core
+    disabled
+    user system
+    group system
+    setenv VSOMEIP_CONFIGURATION /vendor/etc/someip/vsomeip_config.json
+    setenv VSOMEIP_BASE_PATH /data/vendor/vsomeip/
+    oneshot
+on property:dev.bootcomplete=1 && property:ro.boot.sdv.someip.enable=true
+    start sdv_someip_stack_agent
+
+# Declare and start the SDV SOME/IP broker agent.
+service sdv_someip_broker_agent /system_ext/bin/sdv_someip_broker_agent_comms
+    class core
+    disabled
+    user system_ext_sdv_someip
+    group system
+    oneshot
+on property:ro.sdv.orchestrator.state.ready=true && property:ro.boot.sdv.someip.enable=true
+    start sdv_someip_broker_agent
+
+# Declare and start the SDV Diagnostics agent.
+service sdv_diagnostics_agent /product/bin/sdv_diagnostics_agent
+    class diagnostics
+    user product_sdv_diagnostics_agent
+    group system
+    oneshot
+
+# Before the lifecycle manager runs, create the service bundle data directory for the custom user
+# id service bundle sample and set its owner to a custom android user (AID) product_sdv_sample_user
+# created in the config.fs file. This way the lifecycle manager will assign the
+# product_sdv_sample_user AID to the service bundle process when it's executed.
+on early-boot
+    # /data/service_bundle_data/ is already created in a previous, post-fs-data trigger.
+    mkdir /data/service_bundle_data/com.sdv.google.sample.lifecycle.userid.apex 0771 system_ext_sdv_lcm system
+    mkdir /data/service_bundle_data/com.sdv.google.sample.lifecycle.userid.apex/LifecycleCustomUserIdSampleServiceBundle 0700 product_sdv_sample_user system
+
+# SDV sample adbd authenticator that enables adb usage in user builds.
+# This implementation does not provide proper key management yet, which leads to it accepting all
+# incoming adb connections. While a user cannot become root, it does not prevent user connecting
+# and executing commands.
+# TODO(b/430823209): Until this service provides an appropriate way of key verification, it must not
+# be used in production systems.
+service adbd_auth_service /system_ext/bin/adbd_auth_service
+    user system
+    group system
+
+on property:dev.bootcomplete=1
+    start adbd_auth_service

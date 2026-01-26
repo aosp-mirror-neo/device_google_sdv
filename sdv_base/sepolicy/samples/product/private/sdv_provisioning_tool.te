@@ -1,0 +1,29 @@
+# Copyright (C) 2026 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+type sdv_provisioning_tool, domain, coredomain;
+type sdv_provisioning_tool_exec, exec_type, system_file_type, file_type;
+
+# To showcase and test the policies defined in this file for using the SDV mesh provisioning, make
+# the shell transition to the sdv_provisioning_tool domain when executing its binary.
+domain_auto_trans_from_shell(sdv_provisioning_tool)
+
+# The sdv_provisioning_tool uses Binder to call the SDV mesh provisioning service
+binder_use(sdv_provisioning_tool)
+
+# Assign all the policies requires to use the SDV mesh provisioning service
+typeattribute sdv_provisioning_tool sdv_mesh_provisioning_client;
+
+# Assign all the policies requires to use the SDV mesh status service
+typeattribute sdv_provisioning_tool sdv_mesh_status_client;

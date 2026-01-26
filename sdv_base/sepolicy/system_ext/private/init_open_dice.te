@@ -1,0 +1,56 @@
+# Copyright (C) 2026 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+type init_open_dice, domain;
+typeattribute init_open_dice coredomain;
+type init_open_dice_exec, exec_type, system_file_type, file_type;
+
+init_daemon_domain(init_open_dice)
+
+# Allow init_open_dice to read and wipe the content of the /dev/open-dice0.
+allow init_open_dice open_dice_device:chr_file rw_file_perms;
+# No other domain should have access to the open-dice device, because it contains highly sensitive
+# data for the Android device. These rules forbid all permissions except a few that is granted to
+# init, vendor_init and ueventd.
+neverallow { domain -init_open_dice } open_dice_device:chr_file ~{ create getattr setattr unlink };
+neverallow { domain -init_open_dice -ueventd } open_dice_device:chr_file { create unlink };
+
+# init_open_dice runs before logd is started, so allow it to log to /dev/kmsg_debug instead (using
+# the stdio_to_kmsg init service option.) Limiting the rule to userdebug_or_eng, because
+# /dev/kmsg_debug is only enabled in userdebug and eng builds anyways and the absence of this
+# permission doesn't make init_open_dice fail with an error, just the logging won't work.
+userdebug_or_eng(`
+  allow init_open_dice kmsg_debug_device:chr_file { w_file_perms getattr ioctl };
+')
+
+# init_open_dice_device_wiped_prop is used by init_open_dice to notify init
+# that the boot sequence can continue.
+system_internal_prop(init_open_dice_device_wiped_prop)
+set_prop(init_open_dice, init_open_dice_device_wiped_prop)
+
+binder_use(init_open_dice)
+
+# init_open_dice provides the DICE chain it reads from /dev/open-dice0 in a
+# binder service.
+add_service(init_open_dice, sdv_dice_chain_provider_service)
+
+# init_open_dice issues certificates with CDI_Leaf in a binder service.
+#
+# TODO: b/392558367 - Add further enforcements to this restriction,
+# given the sensitive nature of this interface.
+add_service(init_open_dice, sdv_dice_certifier_service)
+
+# Silence the SELinux error when adb bugreport tries to dump init_open_dice's interfaces (no party
+# should call init_open_dice other than service discovery).
+dontaudit dumpstate init_open_dice:binder call;

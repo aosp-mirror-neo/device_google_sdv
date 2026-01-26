@@ -1,0 +1,37 @@
+# Copyright (C) 2026 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+#####################################
+# domain_auto_trans_from_shell(domain)
+# For testing and debugging purposes, allow executing the binary of the specified domain from
+# adb shell, and set up an automatic domain transition from the shell and su domains to the
+# domain passed as the argument.
+define(`domain_auto_trans_from_shell', `
+userdebug_or_eng(`
+  domain_auto_trans(shell, $1_exec, $1)
+  # Force the transition from the root shell as well (when adb runs as root, the shell has the su
+  # instead of the shell domain).
+  domain_auto_trans(su, $1_exec, $1)
+
+  # These rules make standard output work when running from the shell.
+  allow $1 adbd:fd use;
+  allow $1 shell:fd use;
+  allow $1 adbd:unix_stream_socket { read write };
+
+  # These rules are required for printing to the standard output when the binary is not executed
+  # through adb shell in a single line (i.e. adb shell <binary_path>), but when adb shell is opened
+  # first, and then the binary is executed from the adb shell.
+  allow $1 devpts:chr_file { read write };
+')
+')

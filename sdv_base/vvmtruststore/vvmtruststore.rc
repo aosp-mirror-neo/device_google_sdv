@@ -1,0 +1,35 @@
+# Copyright (C) 2026 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Mounting of the vvmtruststore partition on cuttlefish.
+# Note that /dev/block/by-name/vvmtruststore is only available if the
+# --default_vvmtruststore_file_name=<vvmtruststore.img> argument is passed to cvd (Cuttlefish).
+
+# mount read-only when locked and not preprovisioned
+on late-fs && property:ro.boot.sdv.boot_mode=locked
+    mount ext4 /dev/block/by-name/vvmtruststore /vvmtruststore noatime nosuid nodev noexec ro
+
+# mount writable when unlocked and not preprovisioned
+on late-fs && property:ro.boot.sdv.boot_mode=unlocked
+    mount ext4 /dev/block/by-name/vvmtruststore /vvmtruststore noatime nosuid nodev noexec rw
+    # TODO: b/389638158 - Look into removing the need for fixing the file ownership and mode here.
+    # Service discovery runs using its own user and in the system group, and, by default,
+    # /vvmtruststore is owned by root. The owner and group must be changed in unlocked mode so
+    # service discovery can write the partition when provisioning the device. The ownership change
+    # is persisted, so when the VM is rebooted in sdv.boot_mode locked the partition stays
+    # accessible for service discovery.
+    chown system system /vvmtruststore
+    # drwxrwx--x: Service discovery runs using its own user but it's in the system group so write
+    # permission must be granted for the group (i.e. for system).
+    chmod 0771 /vvmtruststore

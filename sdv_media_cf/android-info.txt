@@ -1,0 +1,2 @@
+config=sdv_media_instance1
+vhost_user_vsock=true

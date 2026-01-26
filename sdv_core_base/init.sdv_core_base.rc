@@ -1,0 +1,502 @@
+# Copyright (C) 2026 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# SDV's primary init .rc file which is loaded first by the init process. It contains rules that
+# apply to all targets.
+#
+# Targets that need additional custom rules import it from a target-specific .rc file.
+
+# TODO: b/267320398 - because the androidboot.init_rc property is set in the BoardConfig.mk, the
+# init process doesn't automatically import the init .rc files placed in the
+# /{system,system_ext,vendor,odm,product}/etc/init/ directories, only the init .rc files that are
+# imported in this script. APEXes can include init .rc files that will be installed to the
+# /system_ext or the /vendor partition (depending on the configuration of the APEX) using the
+# init_rc property. These init .rc files must be imported from this script as well. However, the
+# prebuilt init .rc files included in the APEX payload specified using the prebuilts property do not
+# have to be imported in order to take effect.
+
+import /init.environ.rc
+import /system/etc/init/apexd.rc
+import /system/etc/init/mdnsd.rc
+import /system/etc/init/servicemanager.rc
+import /system/etc/init/vold.rc
+import /system/etc/init/lpdumpd.rc
+import /system/etc/init/logd.rc
+import /system/etc/init/keystore2.rc
+import /system/etc/init/sdv.agents.rc
+import /system_ext/etc/init/init_authz_property.rc
+import /system_ext/etc/init/init_open_dice.rc
+import /system_ext/etc/init/init_open_dice_service.rc
+# TODO: b/267320398 - this file does not exist in -user builds, but init can continue despite that.
+# Remove the import once we can rely on .rc files from /system/etc/init getting loaded
+# automatically.
+import /system/etc/init/logcatd.rc
+import /system/etc/init/dumpstate.rc
+import /system/etc/init/tombstoned.rc
+import /system/etc/init/update_engine_nostats.rc
+import /system/etc/init/update_verifier.rc
+
+# TODO: b/267320398 - Not present on -user builds, same as TODO above
+# atrace.rc is required by Perfetto as well, since it sets up tracefs permissions.
+import /system/etc/init/perfetto.rc
+import /system/etc/init/atrace.rc
+import /system/etc/init/atrace_userdebug.rc
+
+# Cgroups are mounted right before early-init using list from /etc/cgroups.json
+on early-init
+    # set RLIMIT_NICE to allow priorities from 19 to -20
+    setrlimit nice 40 40
+
+    start ueventd
+
+    # create an empty ld.config.txt before running any non-static exectuables (apexd and
+    # linkerconfig) to suppress "ld.config.txt not found" warnings.
+    write /linkerconfig/ld.config.txt \#
+    chmod 644 /linkerconfig/ld.config.txt
+
+    # Run apexd-bootstrap so that APEXes that provide critical libraries
+    # become available. Note that this is executed as exec_start to ensure that
+    # the libraries are available to the processes started after this statement.
+    exec_start apexd-bootstrap
+    perform_apex_config --bootstrap
+
+    # Signal that apexd-bootstrap is ready, init_open_dice can execute.
+    setprop ro.sdv.apex.bootstrap.ready true
+
+    # Disable IPv6
+    write /proc/sys/net/ipv6/conf/all/disable_ipv6 1
+
+on init
+   mkdir /mnt/apk 0755 system system
+   mkdir /mnt/extra-apk 0755 root root
+
+   # Mount binderfs
+   mkdir /dev/binderfs
+   mount binder binder /dev/binderfs stats=global
+   chmod 0755 /dev/binderfs
+
+   symlink /dev/binderfs/binder /dev/binder
+   symlink /dev/binderfs/hwbinder /dev/hwbinder
+   symlink /dev/binderfs/vndbinder /dev/vndbinder
+
+   chmod 0666 /dev/binderfs/hwbinder
+   chmod 0666 /dev/binderfs/binder
+   chmod 0666 /dev/binderfs/vndbinder
+
+   # Mount Linux pstore to enable access to logs from last kernel panic.
+   #
+   # This only works if the host provides some storage that persists across
+   # reboots. For Cuttlefish, it's enabled by default (--use_pmem=true).
+   mount pstore pstore /sys/fs/pstore nodev noexec nosuid
+   chown system log /sys/fs/pstore
+   chmod 0550 /sys/fs/pstore
+   chown system log /sys/fs/pstore/console-ramoops
+   chmod 0440 /sys/fs/pstore/console-ramoops
+   chown system log /sys/fs/pstore/console-ramoops-0
+   chmod 0440 /sys/fs/pstore/console-ramoops-0
+   chown system log /sys/fs/pstore/pmsg-ramoops-0
+   chmod 0440 /sys/fs/pstore/pmsg-ramoops-0
+
+   # Allow system processes to read / write power state.
+   chown system system /sys/power/state
+   chmod 0660 /sys/power/state
+
+
+   # restore the SELinux security context for /mnt/extra-apk so microdroid_manager can create
+   # subdirectories
+   restorecon /mnt/extra-apk
+
+   # Increase the limit of buffered messages for UNIX sockets. The default is 10, which makes us
+   # drop logs whenever any process dares to log more than just a handful of messages in a short
+   # timespan. 600 is the value used in system/core/rootdir/init.rc.
+   #
+   # This *must* be set before starting logd - its value is copied over to UNIX socket's
+   # sk_max_ack_backlog when the socket is created, so later changes don't apply to existing
+   # sockets. See unix_create1 at http://shortn/_OyBceREJ0r
+   #
+   # Start logd before any other services run to ensure we capture all of their logs.
+   # logd uses shared libraries that are distributed as APEXes, so it must be started after
+   # TODO: b/295824651 - Start logd even earlier, before apexd-vm.
+   write /proc/sys/net/unix/max_dgram_qlen 600
+   start logd
+
+   setprop ro.debuggable ${ro.boot.microdroid.debuggable:-0}
+   start servicemanager
+
+on init && property:ro.boot.microdroid.debuggable=1
+    # Mount tracefs (with GID=AID_READTRACEFS)
+    mount tracefs tracefs /sys/kernel/tracing gid=3012
+
+on init && property:ro.boot.adb.enabled=1
+    start adbd
+
+# Mount filesystems and start core system services.
+on late-init
+    trigger early-fs
+
+    # Mount fstab in init.{$device}.rc by mount_all command. Optional parameter '--early' can be
+    # specified to skip entries with 'latemount'. /system and /vendor must be mounted by the end of
+    # the fs stage, while /data is optional.
+    trigger fs
+    trigger post-fs
+
+    # Mount fstab in init.{$device}.rc by mount_all with '--late' parameter to only mount entries
+    # with 'latemount'. This is needed if '--early' is specified in the previous mount_all command
+    # on the fs stage. With /system mounted and properties form /system + /factory available, some
+    # services can be started.
+    trigger late-fs
+
+    trigger post-fs-data
+
+    trigger early-boot
+    trigger boot
+
+on fs
+    # Mount everything that does not require fsck
+    mount_all --early
+
+on early-fs
+    # Once metadata has been mounted, we'll need vold to deal with userdata checkpointing
+    start vold
+
+on post-fs
+    exec - system system -- /system/bin/vdc checkpoint markBootAttempt
+
+    # Once everything is setup, no need to modify /.
+    # The bind+remount combination allows this to work in containers.
+    mount rootfs rootfs / remount bind ro nodev
+
+    restorecon_recursive /metadata
+    mkdir /metadata/vold
+    chmod 0700 /metadata/vold
+
+    # Create directories for snapshots
+    mkdir /metadata/ota 0750 root system
+    mkdir /metadata/ota/snapshots 0750 root
+    mkdir /data/misc/snapshotctl_log 0755 root root
+
+    # Create APEX directories
+    mkdir /metadata/apex 0700 root system
+    mkdir /metadata/apex/sessions 0700 root system
+    mkdir /metadata/apex/images 0700 root system
+    mkdir /metadata/apex/config 0700 root system
+    # On some devices core Android see a weird behaviour in which /metadata/apex doesn't
+    # have a correct label. To workaround this bug, explicitly call restorecon
+    # on /metadata/apex. For most of the boot sequences /metadata/apex will
+    # already have a correct selinux label, meaning that this call will be a
+    # no-op.
+    restorecon_recursive /metadata/apex
+
+    # Create SDV Update Manager state directory
+    mkdir /metadata/sdv_update_manager_agent 0770 root system
+
+on late-fs
+    class_start early_hal
+
+    # Mount RW partitions which need run fsck
+    mount_all --late
+
+on late-fs && property:ro.debuggable=1
+    # Ensure that tracefs has the correct permissions.
+    # This does not work correctly if it is called in post-fs.
+    chmod 0755 /sys/kernel/tracing
+    chmod 0755 /sys/kernel/debug/tracing
+
+on late-fs && property:ro.debuggable=1 && property:ro.boot.fastboot.boottrace=enabled
+    # Added after observing discarded trace according to
+    # https://source.android.com/docs/core/tests/debug/ftrace#enabling_events.
+    write /sys/kernel/tracing/buffer_size_kb 96000
+    # These two properties enable AtraceTag::App trace events to be captured
+    # before userspace tracing is set up.
+    # To determine which "apps" (which includes SDV agents and services) should be traced, ATrace
+    # checks the command name from /proc/cmdline. Tracing is only enabled if the name
+    # matches a wildcard from any of debug.atrace.app_N system properties, with N
+    # ranging from 0 up to (but excluding) debug.atrace.app_number.
+    setprop debug.atrace.app_number 1
+    setprop debug.atrace.app_0 *
+
+on post-fs-data
+    mark_post_data
+
+    exec - system system -- /system/bin/vdc checkpoint prepareCheckpoint
+
+    # We chown/chmod /data again so because mount is run as root + defaults
+    chown system system /data
+    chmod 0771 /data
+    # We restore the SELinux security context for /data in case the userdata partition has been
+    # reset.
+    restorecon /data
+
+    # Make sure we have the device encryption key.
+    installkey /data
+
+    mkdir /data/vendor 0771 root root encryption=Require
+    mkdir /data/vendor/hardware 0771 root root
+
+    # Create the parent directories of the user CE and DE storage directories, but only the ones
+    # that are required by SDV Core to work.
+    # Because SDV Core doesn't have per-user encryption implemented, there is no encryption policy
+    # automatically applied to the subdirectories. Thus, in contrast to Core Android, these parent
+    # directories must use encryption=Require.
+    mkdir /data/vendor_ce 0771 root root encryption=Require
+    mkdir /data/vendor_de 0771 root root encryption=Require
+    mkdir /data/misc_ce 0551 system misc encryption=Require
+    mkdir /data/misc_de 0551 system misc encryption=Require
+
+    # Start tombstoned early to be able to store tombstones.
+    # microdroid doesn't have anr, but tombstoned requires it
+    mkdir /data/anr 0775 system system encryption=Require
+    mkdir /data/tombstones 0771 system system encryption=Require
+    mkdir /data/vendor/tombstones 0771 root root
+    start tombstoned
+
+    # Make sure that apexd is started in the default namespace
+    enter_default_mount_ns
+
+    # set up keystore directory structure first so that we can end early boot
+    # and start apexd
+    mkdir /data/misc 01771 system misc encryption=Require
+    # See aosp/1718974
+    mkdir /data/misc/keystore 0700 keystore keystore
+    # work around b/183668221
+    restorecon /data/misc /data/misc/keystore
+
+    # Taken from system/core/rootdir/init.rc
+    # Multi-installed APEXes are selected using persist props.
+    # Load persist properties and override properties (if enabled) from /data,
+    # before starting apexd.
+    # /data/property should be created before `load_persist_props`
+    mkdir /data/property 0700 root root encryption=Require
+    load_persist_props
+
+    # Some existing vendor rc files use 'on load_persist_props_action' to know
+    # when persist props are ready. These are difficult to change due to GRF,
+    # so continue triggering this action here even though props are already loaded
+    # by the 'load_persist_props' call above.
+    trigger load_persist_props_action
+
+    # Set the global log level property to INFO. This is needed due to
+    # interactions between Rust logging crates' use of global state and Android
+    # linker namespaces.
+    #
+    # This can be overridden per specific tag by setting `log.tag.TAG` system
+    # property, or globally by setting persist.log.tag and rebooting.
+    # We conditionally set log.tag here rather than always setting
+    # persist.log.tag to avoid writing to userdata partition.
+    setprop log.tag ${persist.log.tag:-INFO}
+
+    # A directory for storage for service bundles
+    # TODO: b/367934029 - eventually, all service bundles will have their own, isolated directory
+    # within this directory, and service bundles won't be able to directly write
+    # service_bundle_data, but now, this can be used as a data directory by all service bundles
+    # temporarily
+    mkdir /data/service_bundle_data 0771 system system encryption=Require
+
+    exec - system system -- /system/bin/vdc keymaster earlyBootEnded
+
+    # set up the trace directory to allow saving coverage b/291081269
+    mkdir /data/misc/trace 0700 root root
+
+    mkdir /data/local 0751 root root encryption=Require
+    # For security reasons, /data/local/tmp should always be empty.
+    # Do not place files or directories in /data/local/tmp
+    mkdir /data/local/tmp 0771 shell shell
+
+    # Create directories to push tests to for each linker namespace.
+    # Create the subdirectories in case the first test is run as root
+    # so it doesn't end up owned by root.
+    # Set directories to be executable by any process so that debuggerd,
+    # aka crash_dump, can read any executables/shared libraries.
+    mkdir /data/local/tests 0701 shell shell
+    mkdir /data/local/tests/product 0701 shell shell
+    mkdir /data/local/tests/system 0701 shell shell
+    mkdir /data/local/tests/unrestricted 0701 shell shell
+    mkdir /data/local/tests/vendor 0701 shell shell
+
+    # Directories to persist update_engine data to track update settings over failed attempts and
+    # crashes.
+    mkdir /data/misc/update_engine 0700 root root
+    mkdir /data/misc/update_engine_log 02750 root log
+    mkdir /data/misc/vold 0700 root root
+
+    # set up directory to persist metric configs for Telemetry service
+    mkdir /data/vendor/telemetry 0770 system system
+
+    # Set up directory to persist orchestator configuration
+    mkdir /data/orchestrator 0770 system system
+    # The content of the json needs to be clear every time the VM starts.
+    # We do not persist values across reboots.
+    write /data/orchestrator/modes_backup.json "{}"
+    # Set ownership back to the orchestrator to prevent PermissionDenied
+    # errors when trying to read at boot.
+    chown system_ext_sdv_orch system_ext_sdv_orch /data/orchestrator/modes_backup.json
+    # Ensure the orch can read and write the file
+    chmod 0660 /data/orchestrator/modes_backup.json
+    # We also clear the tmp file in case it was not successful to be renamed to avoid
+    # restoring from it.
+    write /data/orchestrator/modes_backup.json.tmp "{}"
+    # Set ownership back to the orchestrator to prevent PermissionDenied
+    # errors when trying to read at boot.
+    chown system_ext_sdv_orch system_ext_sdv_orch /data/orchestrator/modes_backup.json.tmp
+    # Ensure the orch can read and write the file
+    chmod 0660 /data/orchestrator/modes_backup.json.tmp
+
+    # All permissions needed for integration test process that will use this dir to launch
+    # vsomeip instances
+    mkdir /data/vendor/vsomeip 0777 system system
+
+    # /data/apex is now available. Start apexd to scan and activate APEXes.
+    #
+    # To handle userspace reboots, make sure that apexd is started cleanly here
+    # (set apexd.status="") and that it is restarted if it's already running.
+    #
+    # /data/apex uses encryption=None because direct I/O support is needed on
+    # APEX files, but some devices don't support direct I/O on encrypted files.
+    # Also, APEXes are public information, similar to the system image.
+    # /data/apex/decompressed and /data/apex/ota_reserved override this setting;
+    # they are encrypted so that files in them can be hard-linked into
+    # /data/rollback which is encrypted.
+    mkdir /data/apex 0755 root system encryption=None
+    mkdir /data/apex/active 0755 root system
+    mkdir /data/apex/backup 0700 root system
+    mkdir /data/apex/decompressed 0755 root system encryption=Require
+    mkdir /data/apex/images 0700 root system
+    mkdir /data/app-staging 0751 system system encryption=DeleteIfNecessary
+    mkdir /data/apex/ota_reserved 0700 root system encryption=Require
+    setprop apexd.status ""
+    restart apexd
+
+    mkdir /data/misc/installd 0700 root root
+
+    # Create the OTA package directory. It will be accessed by SDV Update Manager,
+    # update_engine and update_verifier.
+    # The "cache" group is only needed for GmsCore, which is not part of SDV Core.
+    # However, it's still used here to be in line with the Core Android
+    # configuration (see system/core/rootdir/init.rc).
+    mkdir /data/ota_package 0770 system cache encryption=Require
+
+    # Wait for apexd to finish activating APEXes before starting more processes.
+    wait_for_prop apexd.status activated
+    perform_apex_config
+
+    # APEXes can be accessed now that apexd.status becomes "ready".
+    setprop apexd.status ready
+
+    # Starting Diagnostics as soon as APEXes become available.
+    class_start diagnostics
+
+    # Since apexd.status property is a system property, we expose yet another
+    # property as system_restricted_prop so that, for example, vendor can rely on
+    # the "ready" event.
+    setprop apex.all.ready true
+
+    # Update dm-verity state and set partition.*.verified properties.
+    verity_update_state
+
+    # Crucial boot-time check: Marks a successful A/B update if valid
+    # Placed here as the earliest point in init where it's feasible to run:
+    #  - HAL must be up (for IBootControl access)
+    #  - All writable partitions (data, metadata, misc) mounted and encryption
+    #    is setup (needed to read 'care_map.pb')
+    exec_start update_verifier
+
+on early-boot
+    # Network setup happens on post-fs-data. Restart adbd after that happens to
+    # avoid 3s delay due to initial mdnsd failure when we attempt to start
+    # before network is up.
+    restart adbd
+
+on boot
+    ifup lo
+    hostname localhost
+    domainname localdomain
+    ifup eth1
+
+    # On the first boot of the system, both boot slots may not be marked as
+    # successful. If this is true, the system will start in checkpointing mode.
+    # The checkpoint needs to be committed in this case to ensure user data isn't
+    # lost. This also marks the current slot as successful, which resolves this
+    # initial condition. This condition should not reappear as at least one slot
+    # will always be marked as successful when performing an update. After handling
+    # this case, the SDV Update Manager will handle the committing of checkpoints.
+    exec_start initial_boot_checkpoint
+
+service tombstone_transmit /system/bin/tombstone_transmit.microdroid -cid 2 -port 2000 -remove_tombstones_after_transmitting
+    user system
+    group system
+    shutdown critical
+
+service ueventd /system/bin/ueventd
+    class core
+    critical
+    seclabel u:r:ueventd:s0
+    shutdown critical
+    user root
+    group root
+    capabilities CHOWN DAC_OVERRIDE DAC_READ_SEARCH FOWNER FSETID MKNOD NET_ADMIN SETGID SETUID SYS_MODULE SYS_RAWIO SYS_ADMIN
+
+service console /system/bin/sh
+    class core
+    console
+    disabled
+    user shell
+    group shell log readproc
+    seclabel u:r:shell:s0
+    setenv HOSTNAME console
+
+on property:ro.debuggable=1
+    # Give writes to the same group for the trace folder on debug builds,
+    # it's further protected by selinux policy.
+    # The folder is used to store method traces.
+    chmod 0773 /data/misc/trace
+
+on nonencrypted
+    # The update engine is normally started via `class_start late_start` but since we don't have it
+    # we start it manually at the same point the class would've been started.
+    start update_engine
+
+# Borrowed from system/core/bootstat/bootstat.rc.
+# Populate the standard Android sys.boot.reason property. SDV doesn't include
+# entire bootstat because of its dependency on libstatssocket.
+#
+# Mirror bootloader boot reason to system boot reason
+# ro.boot.bootreason should be set by init already
+# before post-fs trigger
+on post-fs && property:ro.boot.bootreason=*
+    setprop sys.boot.reason ${ro.boot.bootreason}
+
+service initial_boot_checkpoint /system_ext/bin/initial_boot_checkpoint.sh
+    class core
+    oneshot
+    user system
+    group system
+    # Redirect stdio to /dev/kmsg_debug to have logs. Does not work in user builds, because
+    # /dev/kmsg_debug doesn't exist and stdio is redirected to /dev/null instead.
+    stdio_to_kmsg
+
+# Sets sys.boot_completed to 1 only after perfetto_trace_on_boot is started
+# in case of boot tracing because otherwise Perfetto would disable ftrace.
+# TODO: b/428955467 - remove the dependency on the status of `perfetto_trace_on_boot`
+# after the bug is fixed on Perfetto side
+on property:init.svc.initial_boot_checkpoint=stopped && property:persist.debug.sdv.boottrace=1 && property:init.svc.perfetto_trace_on_boot=running
+    setprop sys.boot_completed 1
+    setprop dev.bootcomplete 1
+    write /dev/kmsg "VIRTUAL_DEVICE_BOOT_COMPLETED"
+
+# In Core Android, the `sys.boot_completed` and `dev.bootcomplete` properties are
+# set in `frameworks/base/services/core/java/com/android/server/am/ActivityManagerService.java`.
+on property:init.svc.initial_boot_checkpoint=stopped && property:persist.debug.sdv.boottrace=
+    setprop sys.boot_completed 1
+    setprop dev.bootcomplete 1
+    write /dev/kmsg "VIRTUAL_DEVICE_BOOT_COMPLETED"

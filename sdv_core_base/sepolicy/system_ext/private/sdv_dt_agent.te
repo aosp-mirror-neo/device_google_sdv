@@ -1,0 +1,23 @@
+# Copyright (C) 2026 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Allow Data Tunnel Agent to subscribe to power state notifications
+typeattribute sdv_dt_agent sdv_vpm_agent_notification_client;
+
+# Information from the binder services served by the agent as well as their (custom) binder dump()
+# is allowed to be collected in bugreports.
+dump_sdv_agent(sdv_dt_agent)
+
+# DT agent is crash monitored on its sdv_dt_service binder interface
+typeattribute sdv_dt_service sdv_crash_monitored_service;

@@ -1,0 +1,26 @@
+# Copyright (C) 2026 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# SDV Gateway Service
+/vendor/bin/sdv_gateway    u:object_r:sdv_gateway_exec:s0
+
+# SDV VHAL Proxy
+/vendor/bin/hw/android.hardware.automotive.vehicle@V1-sdv-emulator-service u:object_r:hal_vehicle_default_exec:s0
+
+# Allow vendor privileged apps (priv_app domain) and vendor native test clients
+# to load libsdvgatewayclient_jni and other required .so dependencies
+/vendor/lib(64)?/libsdv.*\.so       u:object_r:same_process_hal_file:s0
+/vendor/lib(64)?/google\.sdv.*\.so  u:object_r:same_process_hal_file:s0
+/vendor/lib(64)?/libfmq\.so         u:object_r:same_process_hal_file:s0
+/vendor/lib(64)?/libcrypto\.so      u:object_r:same_process_hal_file:s0

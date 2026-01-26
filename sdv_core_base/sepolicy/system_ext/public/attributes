@@ -1,0 +1,36 @@
+# Copyright (C) 2026 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Attributes for SDV Lifecycle clients and servers
+attribute sdv_lc_client;
+attribute sdv_lc_server;
+expandattribute sdv_lc_client true;
+expandattribute sdv_lc_server false;
+
+# All domains used for Service Bundles.
+attribute servicebundledomain;
+
+attribute sdv_someip_stack_client;
+attribute sdv_someip_stack_server;
+expandattribute sdv_someip_stack_client true;
+expandattribute sdv_someip_stack_server false;
+
+# Attributes for SDV VPM notifications.
+attribute sdv_vpm_agent_notification_client;
+attribute sdv_vpm_agent_notification_server;
+expandattribute sdv_vpm_agent_notification_client true;
+expandattribute sdv_vpm_agent_notification_server false;
+
+# Attribute for services linked to death by Health Monitor Agent, for crash reporting purposes.
+attribute sdv_crash_monitored_service;

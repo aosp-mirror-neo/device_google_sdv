@@ -1,0 +1,55 @@
+# Copyright (C) 2026 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# SDV SD IPC service
+# TODO: b/325515090 - Remove the IServiceManager, IIdentityManager and
+# IAgentManager when migration to API V2 is complete.
+google.sdv.sd.IServiceManager/default u:object_r:sdv_sd_service:s0
+google.sdv.sd.IIdentityManager/default u:object_r:sdv_id_service:s0
+google.sdv.sd.IAgentManager/default u:object_r:sdv_transport_support_service:s0
+
+# SDV Identity Agent service.
+google.sdv.identity.IIdentityAgent/default u:object_r:sdv_id_service:s0
+# SDV Service Registration Agent service.
+google.sdv.service_discovery.discovery.IServiceRegistrationAgent/default u:object_r:sdv_sd_service:s0
+# SDV Service Discovery Agent service.
+google.sdv.service_discovery.discovery.IServiceDiscoveryAgent/default u:object_r:sdv_sd_service:s0
+# SDV AuthZ Agent service.
+google.sdv.authz.IAuthzService/default u:object_r:sdv_sd_service:s0
+# SDV Certificate Authority service.
+google.sdv.ca.ICertificateAuthority/default u:object_r:sdv_sd_service:s0
+# SDV Transport Support Agent service.
+# TODO(amarchini): tailor the access to the clients.
+google.sdv.service_discovery.discovery.ITransportSupportAgent/default u:object_r:sdv_transport_support_service:s0
+# Privileged Identity Agent service used by SDV Gateway.
+google.sdv.privileged.identity.IPrivilegedIdentityAgent/default u:object_r:sdv_privileged_sd_service:s0
+# Privileged Service Discovery Agent service used by SDV Gateway.
+google.sdv.privileged.service_discovery.IPrivilegedServiceDiscoveryAgent/default u:object_r:sdv_privileged_sd_service:s0
+# Privileged Service Registration Agent service used by SDV Gateway.
+google.sdv.privileged.service_discovery.IPrivilegedServiceRegistrationAgent/default u:object_r:sdv_privileged_sd_service:s0
+
+# SDV Mesh uds_pubs provisioning IPC service.
+google.sdv.mesh.provisioning.IUdsPubsProvisioner/default u:object_r:sdv_mesh_provisioning_service:s0
+
+# SDV Mesh status IPC service.
+google.sdv.mesh.IMeshStatus/default u:object_r:sdv_mesh_status_service:s0
+
+# RPCagent service
+google.sdv.rpc.IRpcAgent/default u:object_r:sdv_rpcagent_service:s0
+
+# Service interface for providing DICE chains
+google.sdv.init_open_dice.IDiceChainProvider/default u:object_r:sdv_dice_chain_provider_service:s0
+
+# Service interface for issuing certificates signed by CDI_Leaf
+google.sdv.init_open_dice.IKeyCertifier/default u:object_r:sdv_dice_certifier_service:s0

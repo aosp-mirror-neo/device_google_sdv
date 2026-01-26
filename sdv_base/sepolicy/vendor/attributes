@@ -1,0 +1,24 @@
+# Copyright (C) 2026 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Attributes for SDV Telemetry server
+attribute sdv_telemetry_server;
+expandattribute sdv_telemetry_server false;
+
+# TODO: b/343460855 Remove Configurable Publisher from base and move to ivi after RPC support is available
+# Attributes for SDV Configurable Publisher Registry
+attribute sdv_configurable_publisher_registry_client;
+attribute sdv_configurable_publisher_registry_server;
+expandattribute sdv_configurable_publisher_registry_client true;
+expandattribute sdv_configurable_publisher_registry_server false;

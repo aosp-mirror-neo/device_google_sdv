@@ -1,0 +1,24 @@
+# Copyright (C) 2026 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# SDV OemUpdater sdv_oem_partition_update_client sample
+# TODO(b/384499049): Move this file_contexts to sdv_core_base.
+/(product|system/product)/bin/sdv_oem_partition_update_client  u:object_r:sdv_oem_partition_update_client_exec:s0
+
+# SDV OemUpdater metadata recovery script
+# TODO(b/384499049): Move this file_contexts to sdv_core_base.
+/(product|system/product)/bin/recover_oem_partition.sh         u:object_r:sdv_recover_oem_partition_exec:s0
+
+# SDV OemUpdater Writable Partition
+/oem_updates(/.*)?                                             u:object_r:oem_ab_file:s0

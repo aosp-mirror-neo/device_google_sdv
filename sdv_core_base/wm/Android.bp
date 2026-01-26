@@ -1,0 +1,33 @@
+// Copyright (C) 2026 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+// No operational (NoOp) implementation of WM (Window Manager).
+// Enables the CTS SDV test plan testing on SDV Core images.
+// Mitigates the ANDROID_SYSTEM_SETTING_DISMISS_KEYGUARD_ERROR:
+//   "/system/bin/sh: wm: inaccessible or not found"
+sh_binary {
+    name: "sdv_noop_wm",
+    // Noop script with always successful (0 code) exit.
+    src: "wm.sh",
+    // The filename of the binary on the system image.
+    filename: "wm",
+    // Prevented the real `wm` to be installed when the sdv one is installed.
+    overrides: ["wm"],
+    // To avoid conflict with the real wm in system, move the noop implementation in ext.
+    system_ext_specific: true,
+}

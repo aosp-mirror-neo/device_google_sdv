@@ -1,0 +1,53 @@
+# Copyright (C) 2026 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# SDV Lifecycle manager agent
+# It has two independent binder services, and probably no process should use both. Following the
+# Principle of Least Privilege, the two interfaces are assigned with different SELinux types, and
+# the  rules for them are defined independently.
+# ILifecycleManager is an external interface to manage SDV services. It contains commands such as
+# start, stop, etc.
+google.sdv.lifecycle.ILifecycleManager/default          u:object_r:sdv_lc_manager_service:s0
+# IServiceManager is an internal interface that Lifecycle manager agent and the spawned SDV services
+# use to communicate.
+google.sdv.lifecycle.internal.IServiceManager/default u:object_r:sdv_lc_service_manager_service:s0
+
+# IServiceBundleCrashNotificationService is interface that allows to subscribe/unsubscribe to
+# service bundles crash notifications.
+google.sdv.lifecycle.internal.crash_notification.IServiceBundleCrashNotificationService/default u:object_r:sdv_lc_crash_notification_service:s0
+
+# IIdentityVerifier is an internal interface that service discovery calls to verify the stated
+# FQINs of service bundle processes.
+google.sdv.service_bundles.identity.IIdentityVerifier/default u:object_r:sdv_sb_identity_service:s0
+
+# IRegistry is an interface that services use to read SDV service metadata.
+google.sdv.service_bundles_registry.IRegistry/default u:object_r:sdv_sbr_service:s0
+
+# SDV VPM binder power callback service interface.
+google.sdv.vpm.IPowerStateClientApi/default u:object_r:sdv_vpm_agent_notification_service:s0
+
+# SDV DT IPC service
+google.sdv.data_tunnel.IAgentService/default u:object_r:sdv_dt_service:s0
+
+# ISdvAgent is an interface that agents use to provide dump.
+com.google.sdv.ISdvAgent/hm u:object_r:sdv_health_monitor_dump_service:s0
+com.google.sdv.ISdvAgent/vsidl_provider u:object_r:sdv_vsidl_provider_agent_dump_service:s0
+com.google.sdv.ISdvAgent/orch u:object_r:sdv_orch_dump_service:s0
+com.google.sdv.ISdvAgent/someip_broker u:object_r:sdv_someip_broker_agent_dump_service:s0
+
+# ISomeIpLoadIndicators is an interface that SOME/IP Broker uses to provide load information.
+google.sdv.someip_load_indicators.ISomeIpLoadIndicators/default u:object_r:sdv_someip_broker_agent_load_indicators_service:s0
+
+# IOrchestrationAgent is an interface that allows to get notifications about bundles' state.
+google.sdv.orchestration.IOrchestrationAgent/default      u:object_r:sdv_orch_sb_recovery_service:s0

@@ -1,0 +1,97 @@
+# Copyright (C) 2026 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Initialize network configuration before init so that routes are configured
+# before services are started. Network should be configured earlier than
+# starting the agents and these should be done before early HALs can come up
+# on IVI (late-fs) since early HALs can call SDV Comms via SDV Gateway.
+
+on post-fs
+    exec_start sdv-ethernet-setup
+    exec_start sdv-ethernet-namespace-setup
+    exec_start sdv-ethernet-sd-mesh-setup
+    exec_start sdv-ethernet-dt-setup
+    exec_start sdv-ethernet-rpc-setup
+
+# This would setup the main ethernet ip address and routing
+# Setup for routing for different network namespace need to be done in separated service
+service sdv-ethernet-setup /product/bin/ethernet/ethernet.sdv_ivi_cf.sh
+    class core
+    user root
+    group shell
+    # Redirect stdio to /dev/kmsg_debug to have logs. Does not work in user builds, because
+    # /dev/kmsg_debug doesn't exist and stdio is redirected to /dev/null instead.
+    stdio_to_kmsg
+    oneshot
+
+# Create the sd_mesh_ns network namespace for the sd_mesh network interface.
+service sdv-ethernet-namespace-setup /product/bin/ethernet/ethernet_namespace_setup.sh eth1
+    class core
+    user root
+    group shell
+    # Redirect stdio to /dev/kmsg_debug to have logs. Does not work in user builds, because
+    # /dev/kmsg_debug doesn't exist and stdio is redirected to /dev/null instead.
+    stdio_to_kmsg
+    oneshot
+
+# Setup routing rule for the sd_mesh_ns network namespace designated to service discovery traffic.
+service sdv-ethernet-sd-mesh-setup /product/bin/ethernet/ethernet_sd_mesh.sh
+    enter_namespace net /mnt/run/sd_mesh_ns
+    class core
+    user root
+    group shell
+    # Redirect stdio to /dev/kmsg_debug to have logs. Does not work in user builds, because
+    # /dev/kmsg_debug doesn't exist and stdio is redirected to /dev/null instead.
+    stdio_to_kmsg
+    oneshot
+
+# Setup routing rule for the sdv_dt_ns network namespace designated to data tunnel traffic.
+service sdv-ethernet-dt-setup /product/bin/ethernet/ethernet_sdv_dt.sh
+    enter_namespace net /mnt/run/sdv_dt_ns
+    class core
+    user root
+    group shell
+    # Redirect stdio to /dev/kmsg_debug to have logs. Does not work in user builds, because
+    # /dev/kmsg_debug doesn't exist and stdio is redirected to /dev/null instead.
+    stdio_to_kmsg
+    oneshot
+
+# Setup routing rule for the sdv_rpc_ns network namespace designated to SDV RPC traffic.
+service sdv-ethernet-rpc-setup /product/bin/ethernet/ethernet_sdv_rpc.sh 192.168.101.118
+    class core
+    user root
+    group shell
+    # Redirect stdio to /dev/kmsg_debug to have logs. Does not work in user builds, because
+    # /dev/kmsg_debug doesn't exist and stdio is redirected to /dev/null instead.
+    stdio_to_kmsg
+    oneshot
+
+# ro.vendor.sdv.rpc.network.ready is set to true by the sdv_gateway after the
+# sdv_gatewaynetworking_service signals RPC network available.
+# The Java sdv_gatewaynetworking_service cannot be started using init.rc
+# and must be started using System Server or a different Java mechanism.
+#
+# We don't have any custom logic here so we just set the
+# ro.sdv.ethernet.ready to true and allow the SDV services to start,
+# but custom logic could be executed here before setting the property.
+on property:ro.vendor.sdv.rpc.network.ready=true
+    setprop ro.sdv.ethernet.ready true
+
+# vendor.sdv.rpc.network.available is set to true/false to indicate the availability of
+# the RPC network. Only triggered after ro.vendor.sdv.rpc.network.ready is set to true.
+on property:vendor.sdv.rpc.network.available=false
+    write /dev/kmsg "vendor.sdv.rpc.network.available is false"
+
+on property:vendor.sdv.rpc.network.available=true
+    write /dev/kmsg "vendor.sdv.rpc.network.available is true"

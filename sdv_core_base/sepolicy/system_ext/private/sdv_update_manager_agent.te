@@ -1,0 +1,72 @@
+# Copyright (C) 2026 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Update Manager is a core SDV agent.
+core_service(sdv_update_manager_agent)
+
+# Update Manager can access platform update services
+typeattribute sdv_update_manager_agent update_provider;
+
+# Update Manager can call the DataTunnel SDV agent.
+typeattribute sdv_update_manager_agent sdv_dt_client;
+
+# Update Manager can call the ServiceDiscovery agent.
+typeattribute sdv_update_manager_agent sdv_sd_client;
+
+# Update Manager can call the RPC agent.
+typeattribute sdv_update_manager_agent sdv_rpcagent_client;
+
+# Update Manager can call UpdateEngine and UpdateEngine can issue callbacks to Update Manager.
+allow sdv_update_manager_agent update_engine_service:service_manager find;
+binder_call(sdv_update_manager_agent, update_engine)
+binder_call(update_engine, sdv_update_manager_agent)
+
+# Update Manager can call IApexService
+allow sdv_update_manager_agent apex_service:service_manager find;
+binder_call(sdv_update_manager_agent, apexd)
+
+# Read APEXes in the /data directory
+allow sdv_update_manager_agent system_data_file:file { getattr open read };
+
+# Create, delete, and write files (APEXes) in the /data/app-staging directory
+allow sdv_update_manager_agent staging_data_file:file { create getattr open setattr unlink write };
+
+# Create, delete, read, and write directories in the /data/app-staging directory
+allow sdv_update_manager_agent staging_data_file:dir { add_name create getattr open read remove_name rmdir search write };
+
+# Similar to how it's done in core Android by GMS Core, the SDV Update Manager
+# now writes care_map.pb to this location.
+allow sdv_update_manager_agent ota_package_file:file create_file_perms;
+allow sdv_update_manager_agent ota_package_file:dir rw_dir_perms;
+
+# Update Manager can call vdc
+domain_auto_trans(sdv_update_manager_agent, vdc_exec, vdc)
+
+# Allow stdin/out back to update_provider
+allow vdc sdv_update_manager_agent:fd use;
+allow vdc sdv_update_manager_agent:fifo_file write;
+
+# devpts is needed to redirect output from vdc
+allow sdv_update_manager_agent devpts:chr_file rw_file_perms;
+
+# Update Manager can call IBootControl
+hal_client_domain(sdv_update_manager_agent, hal_bootctl);
+
+# Update Manager stores its state on the /metadata partition
+type sdv_um_metadata_file, file_type;
+allow sdv_update_manager_agent sdv_um_metadata_file:dir create_dir_perms;
+allow sdv_update_manager_agent sdv_um_metadata_file:file create_file_perms;
+
+# Update Manager is a power state client
+typeattribute sdv_update_manager_agent sdv_vpm_agent_notification_client;

@@ -1,0 +1,44 @@
+# Copyright (C) 2026 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# ro.boot. properties used for SDV Authentication, set based on kernel commandline arguments.
+ro.boot.sdv.instance_name u:object_r:bootloader_prop:s0 exact string
+# The Possible values for the SDV Boot Mode are `locked` and `unlocked`.
+ro.boot.sdv.boot_mode u:object_r:bootloader_prop:s0 exact enum locked unlocked
+ro.boot.sdv.vvmfactorytrust u:object_r:bootloader_prop:s0 exact string
+ro.boot.sdv.ignore_avb_state u:object_r:bootloader_prop:s0 exact bool
+ro.boot.sdv.preprovisioned_vvmtruststore u:object_r:bootloader_prop:s0 exact enum img etc
+ro.boot.sdv.vvmconfig u:object_r:bootloader_prop:s0 exact string
+
+# Used by init_open_dice to notify init that it has finished wiping the open_dice device. init can
+# then continue the boot process.
+ro.init_open_dice.device_wiped u:object_r:init_open_dice_device_wiped_prop:s0 exact bool
+
+# Used by SDV's init script to notify that apexd-bootstrap has completed, so init_open_dice can
+# be executed.
+ro.sdv.apex.bootstrap.ready u:object_r:sdv_apex_bootstrap_ready_prop:s0 exact bool
+
+# System property for setting sdv.authz.enable property at boot time.
+ro.boot.sdv.authz.enable u:object_r:bootloader_prop:s0 exact bool
+
+# System property for disabling authz enforcement. Only used in engineering builds (userdebug/eng).
+# Production builds ignore this system property.
+sdv.authz.enable u:object_r:sdv_authz_enable_prop:s0 exact bool
+
+# sdv.mesh_missing_vms.count used to query the mesh state.
+sdv.mesh_missing_vms.count u:object_r:mesh_missing_vms_prop:s0 exact int
+
+# System property containing the name of the network interface SDV RPC should get its local IP
+# address from.
+ro.boot.sdv.rpc.interface u:object_r:bootloader_prop:s0 exact string

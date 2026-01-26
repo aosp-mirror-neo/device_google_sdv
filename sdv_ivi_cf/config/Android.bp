@@ -1,0 +1,74 @@
+// Copyright (C) 2026 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+// Preset configurations that pass all the required bootconfigs for booting a Cuttlefish VM as one
+// of the 3 instances of the SDV development mesh, a mesh that is configured with all the secret
+// and configuration values to boot in SDV boot mode locked for development, testing and debugging
+// with Cuttlefish.
+//
+// Example usage:
+// cvd create --config=sdv_ivi_instance1
+//
+// If required, bootconfig parameters from the cvd_config can be overridden by using the
+// --extra_kernel_cmdline cvd argument:
+//
+// cvd create --config=sdv_ivi_instance1 \
+//   --extra_kernel_cmdline=androidboot.sdv.vvmfactorytrust=1234
+//
+// Which overwrites the androidboot.sdv.vvmfactorytrust value set in the config, but causes this
+// benign error to be logged, which can be ignored:
+// Init cannot set 'ro.boot.sdv.vvmfactorytrust' to ...: Read-only property was already set
+
+prebuilt_etc_host {
+    name: "cvd_config_sdv_ivi_instance1.json",
+    src: ":cvd_config_sdv_ivi_instance1_gen",
+    sub_dir: "cvd_config",
+}
+
+genrule {
+    name: "cvd_config_sdv_ivi_instance1_gen",
+    defaults: ["merge_with_sdv_dev_mesh_instance1_default"],
+    srcs: ["config_sdv_ivi.json"],
+    out: ["cvd_config_sdv_ivi_instance1_gen"],
+}
+
+prebuilt_etc_host {
+    name: "cvd_config_sdv_ivi_instance2.json",
+    src: ":cvd_config_sdv_ivi_instance2_gen",
+    sub_dir: "cvd_config",
+}
+
+genrule {
+    name: "cvd_config_sdv_ivi_instance2_gen",
+    defaults: ["merge_with_sdv_dev_mesh_instance2_default"],
+    srcs: ["config_sdv_ivi.json"],
+    out: ["cvd_config_sdv_ivi_instance2_gen"],
+}
+
+prebuilt_etc_host {
+    name: "cvd_config_sdv_ivi_instance3.json",
+    src: ":cvd_config_sdv_ivi_instance3_gen",
+    sub_dir: "cvd_config",
+}
+
+genrule {
+    name: "cvd_config_sdv_ivi_instance3_gen",
+    defaults: ["merge_with_sdv_dev_mesh_instance3_default"],
+    srcs: ["config_sdv_ivi.json"],
+    out: ["cvd_config_sdv_ivi_instance3_gen"],
+}

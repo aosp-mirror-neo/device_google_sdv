@@ -1,0 +1,81 @@
+# Copyright (C) 2026 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# The property to configure the path to the SDV Orchestrator agent configuration file.
+persist.sdv.orchestrator_config_path u:object_r:orchestrator_config_path_prop:s0 exact string
+# The property to provide the initial value of `persist.sdv.orchestrator_config_path`.
+# See `sdv_core_base/sdv.agents.rc` for more details.
+ro.boot.sdv.orchestrator_config_path u:object_r:bootloader_prop:s0 exact string
+
+# Property controlling Orchestrator max parallel calls to LM binder, and LM binder thread pool
+ro.boot.sdv.max_bundles_management_threads u:object_r:max_bundles_management_threads_prop:s0 exact uint
+
+# Set to True by Service bundle registry when all the service bundles
+# metadata is loaded and IRegistry is available for clients.
+ro.sdv.sbr.state.ready u:object_r:sbr_state_ready_prop:s0 exact bool
+
+# Set to True by Lifecycle agent when it's ready for execution
+# and ILifecycleManager is available for clients.
+ro.sdv.lc.state.ready u:object_r:lc_state_ready_prop:s0 exact bool
+
+# Set to True by Orchestrator agent when it's ready to start service bundles
+ro.sdv.orchestrator.state.ready u:object_r:orchestrator_state_ready_prop:s0 exact bool
+
+# Property set when orchestrator established the subscription to power modes successfully.
+# This indicates the first time that the subscription is complete and ready to receive requests.
+# The value of the property being true does not garantee that the connection to VPM is valid
+# (as VPM could have crashed) and messages can still be lost.
+sdv.orchestrator.bootup.power_mode.ready u:object_r:orchestrator_power_boot_complete_prop:s0 exact bool
+
+# Property set when orchestrator established the subscription to vehicle modes successfully.
+# This indicates the first time that the subscription is complete and ready to receive requests.
+# The value of the property being true does not garantee that the connection to VPM is valid
+# (as VPM could have crashed) and messages can still be lost.
+sdv.orchestrator.bootup.vehicle_mode.ready u:object_r:orchestrator_vehicle_boot_complete_prop:s0 exact bool
+
+# The health_monitor_config_path_prop read by Health Monitor to configure the
+# path to the configuration file. Defaults to ro.sdv.health_monitor.config_path.
+# Can be modified at runtime
+persist.sdv.health_monitor.config_path u:object_r:health_monitor_config_path_prop:s0
+# The property to provide the default value of `sdv.health_monitor.config_path`.
+# See `sdv_core_base/sdv.agents.rc` for more details.
+ro.sdv.health_monitor.config_path u:object_r:health_monitor_config_path_prop:s0
+
+# Property controlling Health Monitor's agent monitoring: maximum allowed time for agents to setup
+# their monitored binder interface. Timeout measured from instant that HM begins monitoring.
+# Reaching the timeout leads to the SDV Instance set to Unhealthy state
+ro.boot.sdv.health_monitor.agent_startup_timeout_sec u:object_r:bootloader_prop:s0 exact uint
+
+# Property set by Orchestrator to signal the last received power state.
+# We use this to determine the end of boot and stop performance tracing.
+sdv.orchestrator.power_state u:object_r:orchestrator_power_state_prop:s0 exact string
+
+# drm.gpu.vendor_name is referred by mesa3d and therefore harry service.
+# TODO: b/349450954 - Temporarily, we assign this property to graphics_config_prop and may want to
+#                     move it to more proper context such as vendor_graphics_config_prop later.
+drm.gpu.vendor_name u:object_r:graphics_config_prop:s0
+
+# The timeout for platform execution of power management suspend to RAM/DISK and power-off defined
+# in milliseconds including retries.
+sdv.vpm.platform.timeout_ms u:object_r:vpm_platform_timeout_prop:s0 exact int
+
+# The amount of time in ms that the platform execution will wait before it retries the suspend
+# RAM/DISK operation.
+sdv.vpm.platform.retry_interval_ms u:object_r:vpm_platform_retry_interval_prop:s0 exact int
+
+# The current value of the power state of the VM.
+sdv.vpm.power.state u:object_r:vpm_power_state_prop:s0 exact string
+
+# Controls telemetry execution at start
+ro.boot.sdv.telemetry.enabled u:object_r:bootloader_prop:s0 exact bool

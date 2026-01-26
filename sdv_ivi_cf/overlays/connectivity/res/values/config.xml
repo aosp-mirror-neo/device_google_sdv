@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright (C) 2026 The Android Open Source Project
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<!--
+  This config overrides the Auto CF connectivity overlay override and is
+  identical except it doesn't specify eth1 network interface. eth<x> network
+  interfaces are configured by ethernet init scripts on sdv_ivi_cf.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Whether the internal vehicle network should remain active even when no
+         apps requested it. -->
+    <string-array translatable="false" name="config_ethernet_interfaces">
+        <!-- Not metered, trusted, not vpn, vehicle internal, not vcn managed, restricted (implicit) -->
+        <item>macsec0;11,14,15,27,28;</item>
+        <!-- eth1, Transport Ethernet (3), Not metered, restricted (implicit), trusted, not vpn, not vcn managed, not bandwitdh constrained -->
+        <!-- IP address has to be specified and should be configured to what the init scripts for the IVI VM set the IP address to -->
+        <!-- eth1 only works with Transport Ethernet (3) -->
+        <!-- Android will block any WiFi connections when Ethernet is active, marking eth1 as restricted  allows WiFi connections. -->
+        <!-- Note: Settings restricted is based on the fact that eth1 is the internal LAN for SDV. -->
+        <item>eth1;11,12,14,15,28,37;ip=192.168.98.118/24 gateway=192.168.98.1 dns=4.4.4.4,8.8.8.8;3</item>
+        <!-- VLAN for SDV-RPC, Transport Ethernet (3), Not metered, restricted, trusted, not vpn, not vcn managed, not bandwitdh constrained -->
+        <!-- IP address has to be specified and should be configured to what the init scripts for the IVI VM set the IP address to -->
+        <!-- VLAN for SDV-RPC only works with Transport Ethernet (3) -->
+        <item>sdv_rpc;11,14,15,28,37;ip=192.168.101.118/24;3</item>
+    </string-array>
+    <string translatable="false" name="config_ethernet_iface_regex">eth1|macsec|sdv_rpc</string>
+</resources>

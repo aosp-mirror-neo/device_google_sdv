@@ -1,0 +1,38 @@
+# Copyright (C) 2026 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+#####################################
+# core_service(service_domain)
+# Designated for Google-owned agents on the system_ext partition.
+# Declare service_domain as system process.
+# Declare (service_domain)_exec as an executable file.
+# Allow service_domain to start via init.
+# Allow service_domain to use Binder IPC.
+define(`core_service', `
+type $1, domain;
+typeattribute $1 coredomain;
+typeattribute $1 mlstrustedsubject;
+type $1_exec, exec_type, system_file_type, file_type;
+init_daemon_domain($1)
+binder_use($1)
+')
+
+#####################################
+# dump_sdv_agent(service_domain)
+# Ability to dump the agent debug info (for example, into a bugreport)
+define(`dump_sdv_agent', `
+binder_call(dumpstate, $1)
+allow $1 dumpstate:fd use;
+allow $1 dumpstate:fifo_file write;
+')

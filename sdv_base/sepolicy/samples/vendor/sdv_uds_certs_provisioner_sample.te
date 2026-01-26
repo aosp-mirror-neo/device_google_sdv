@@ -1,0 +1,27 @@
+# Copyright (C) 2026 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# A sample policy for a sample service that provisions uds_certs. This sample policy is created as
+# a /vendor policy to surface any potential issues, because a /vendor policy is more restrictive in
+# this case than a /product policy.
+
+type sdv_uds_certs_provisioner_sample, domain;
+type sdv_uds_certs_provisioner_sample_exec, exec_type, file_type, vendor_file_type;
+
+# The sample binary can be triggered from init.
+init_daemon_domain(sdv_uds_certs_provisioner_sample)
+
+# Through the sdv_uds_certs_provisioner attribute, sdv_uds_certs_provisioner_sample obtains all the
+# vvmtruststore related permissions required to provision the uds_certs file.
+typeattribute sdv_uds_certs_provisioner_sample sdv_uds_certs_provisioner;

@@ -1,0 +1,63 @@
+# Copyright (C) 2026 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+#############################
+# This file is used for setting the security context for files and directories owned
+# by components in the system_ext partition.
+
+#############################
+# system_ext files
+#
+
+# SDV Lifecycle manager agent
+/(system_ext|system/system_ext)/bin/sdv_lifecycle_agent u:object_r:sdv_lc_default_exec:s0
+
+# SDV Service Bundles Registry agent
+/(system_ext|system/system_ext)/bin/sdv_service_bundles_registry_agent u:object_r:sdv_sbr_exec:s0
+
+# SDV Data Tunnel Agent
+/(system_ext|system/system_ext)/bin/dt_agent        u:object_r:sdv_dt_agent_exec:s0
+
+# SDV Orchestrator agent
+/(system_ext|system/system_ext)/bin/sdv_orchestration_agent u:object_r:sdv_orch_exec:s0
+
+# SDV Update Manager agent
+/(system_ext|system/system_ext)/bin/sdv_update_manager_agent u:object_r:sdv_update_manager_agent_exec:s0
+
+# SDV VPM agent
+/(system_ext|system/system_ext)/bin/sdv_vpm_agent u:object_r:sdv_vpm_agent_exec:s0
+
+# SDV Lifecycle Service Bundle runner
+/(system_ext|system/system_ext)/bin/lifecycle_service_bundle_runner u:object_r:lifecycle_service_bundle_runner_exec:s0
+
+# SDV SOME/IP Broker
+/(system_ext|system/system_ext)/bin/sdv_someip_broker_agent_comms u:object_r:sdv_someip_broker_default_exec:s0
+
+# SDV Health Monitor
+/(system_ext|system/system_ext)/bin/sdv_health_monitor u:object_r:sdv_health_monitor_exec:s0
+
+# SDV Vsidl provider agent
+/(system_ext|system/system_ext)/bin/sdv_vsidl_provider_agent u:object_r:sdv_vsidl_provider_agent_exec:s0
+
+# Initial boot checkpoint handler
+/(system_ext|system/system_ext)/bin/initial_boot_checkpoint.sh u:object_r:initial_boot_checkpoint_exec:s0
+
+#############################
+# data files
+/data/service_bundle_data(/.*)? u:object_r:service_bundle_data:s0
+/data/orchestrator(/.*)?      u:object_r:orch_data_file:s0
+
+#############################
+# SDV Update Manager Agent metadata files
+/metadata/sdv_update_manager_agent(/.*)? u:object_r:sdv_um_metadata_file:s0

@@ -1,0 +1,35 @@
+# Copyright (C) 2026 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+type initial_boot_checkpoint, domain;
+typeattribute initial_boot_checkpoint coredomain;
+type initial_boot_checkpoint_exec, system_file_type, exec_type, file_type;
+
+init_daemon_domain(initial_boot_checkpoint)
+
+# Required for logging to `/dev/kmsg_debug` (using stdio_to_kmsg).
+allow initial_boot_checkpoint kmsg_debug_device:chr_file { w_file_perms getattr ioctl };
+
+# Allow using binder
+binder_use(initial_boot_checkpoint)
+
+# Allow calling vdc
+domain_auto_trans(initial_boot_checkpoint, vdc_exec, vdc)
+allow vdc initial_boot_checkpoint:fd use;
+# Required for logging to `/dev/kmsg_debug` (using stdio_to_kmsg).
+allow vdc kmsg_debug_device:chr_file { w_file_perms getattr ioctl };
+
+# Allow calling bootctl
+allow initial_boot_checkpoint system_file:file execute_no_trans;
+hal_client_domain(initial_boot_checkpoint, hal_bootctl);

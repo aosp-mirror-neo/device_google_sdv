@@ -1,0 +1,113 @@
+# Copyright (C) 2026 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# SD agent is a core service and system process.
+core_service(sdv_sd_default)
+typeattribute sdv_sd_default sdv_sd_server;
+
+# SD agent can use sockets for Binder RPC
+net_domain(sdv_sd_default)
+
+# SD Mesh gRPC server needs access to /proc/sys/net/core/somaxconn
+allow sdv_sd_default proc_net:file { read open getattr };
+
+# SD agent can talk to KeyMint to get the Secure World DICE chain
+# (via IRemotelyProvisionedComponent)
+hal_client_domain(sdv_sd_default, hal_keymint)
+
+# SD agent can talk to the DICE Chain Provider service
+allow sdv_sd_default sdv_dice_chain_provider_service:service_manager find;
+
+# SD agent can talk to the service that issues certificates signed by CDI_Leaf
+allow sdv_sd_default sdv_dice_certifier_service:service_manager find;
+
+# SD agent can call init_open_dice via binder, where
+# sdv_dice_chain_provider_service and sdv_dice_certifier_service are implemented.
+binder_call(sdv_sd_default, init_open_dice)
+
+# SDV SD server can write the value of the property.
+set_prop(sdv_sd_server, mesh_missing_vms_prop)
+
+typeattribute sdv_sd_default sdv_mesh_provisioning_server;
+
+# SDV Mesh Provisioning client and server can call each other using Binder IPC.
+binder_call(sdv_mesh_provisioning_client, sdv_mesh_provisioning_server)
+binder_call(sdv_mesh_provisioning_server, sdv_mesh_provisioning_client)
+
+# SDV Mesh Provisioning client can find the IPC service.
+allow sdv_mesh_provisioning_client sdv_mesh_provisioning_service:service_manager find;
+
+# SDV Mesh Provisioning server can register the IPC service.
+add_service(sdv_mesh_provisioning_server, sdv_mesh_provisioning_service)
+
+typeattribute sdv_sd_default sdv_mesh_status_server;
+
+# SDV Mesh Status client and server can call each other using Binder IPC.
+binder_call(sdv_mesh_status_client, sdv_mesh_status_server)
+binder_call(sdv_mesh_status_server, sdv_mesh_status_client)
+
+# SDV Mesh Status client can find the IPC service.
+allow sdv_mesh_status_client sdv_mesh_status_service:service_manager find;
+
+# SDV Mesh Status server can register the IPC service.
+add_service(sdv_mesh_status_server, sdv_mesh_status_service)
+
+# SD agent can read and add files in the /vvmtruststore directory.
+allow sdv_sd_default vvmtruststorefs:dir ra_dir_perms;
+# SD agent can fully modify the uds_pubs file.
+allow sdv_sd_default uds_pubs_file:file create_file_perms;
+# When the SD agent creates the uds_pubs file on the /vvmtruststore partition then this file will
+# automatically receive the uds_pubs_file type.
+type_transition sdv_sd_default vvmtruststorefs:file uds_pubs_file "uds_pubs";
+# SD agent can read the uds_certs file.
+allow sdv_sd_default uds_certs_file:file r_file_perms;
+
+# The uds_pubs_file is owned by SD, and it's sensitive for SDV mesh security, because it contains
+# the list of devices whose VMs can join the mesh. These devices must be authentic, the
+# uds_pubs_file does not grant trust/authenticity.
+neverallow {
+  domain
+  -init
+  -vendor_init
+  -sdv_sd_default
+} uds_pubs_file:file no_w_file_perms;
+
+# Privileged APIs. Only for SDV Gateway usage.
+
+# SDV privileged SD client and server can use Binder IPC.
+binder_call(sdv_privileged_sd_client, sdv_sd_default)
+binder_call(sdv_sd_default, sdv_privileged_sd_client)
+
+# SDV privileged SD client can find the IPC service.
+allow sdv_privileged_sd_client sdv_privileged_sd_service:service_manager find;
+
+# SDV SD server can register the privileged IPC service.
+add_service(sdv_sd_default, sdv_privileged_sd_service)
+
+# SDV SD client and server can use Binder IPC.
+binder_call(sdv_sd_client, sdv_sd_server)
+binder_call(sdv_sd_server, sdv_sd_client)
+
+# SDV SD client can find the IPC service.
+allow sdv_sd_client sdv_id_service:service_manager find;
+allow sdv_sd_client sdv_sd_service:service_manager find;
+
+# SDV SD server can register the IPC service.
+add_service(sdv_sd_server, sdv_id_service)
+add_service(sdv_sd_server, sdv_sd_service)
+add_service(sdv_sd_server, sdv_transport_support_service)
+
+# Information from the binder services served by the agent as well as their (custom) binder dump()
+# is allowed to be collected in bugreports.
+dump_sdv_agent(sdv_sd_default)

@@ -1,0 +1,23 @@
+# Copyright (C) 2026 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# This is an example service_bundle_contexts file that configures selected Service Bundles to have
+# custom SELinux domains instead of the default untrusted_service_bundle domain.
+# The service_bundle_contexts is not (yet) part of the standard Android SELinux configuration
+# files, so it's kept separately and not placed among other policy files.
+
+# These sample service bundles require a custom SELinux policy to be able to add a Binder service
+# used for testing.
+com.sdv.google.sample.lifecycle.apex.LifecycleRustTestServiceBundle    u:r:test_service_bundle:s0
+com.sdv.google.sample.lifecycle.apex.LifecycleCppTestServiceBundle     u:r:test_service_bundle:s0

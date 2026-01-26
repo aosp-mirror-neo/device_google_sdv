@@ -1,0 +1,26 @@
+# Copyright (C) 2026 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Define a type for your test process's domain.
+type sdv_telemetry_product_client, domain, coredomain;
+
+type sdv_telemetry_product_client_exec, exec_type, system_file_type, file_type;
+
+# the shell transition to the sdv_telemetry_product_client domain when executing its binary.
+# Note: this is only for testing and demo purposes, and a real production service would be
+# started from init and need the init_daemon_domain(sdv_telemetry_product_client) policy
+domain_auto_trans_from_shell(sdv_telemetry_product_client)
+
+# Assign the sdv_telemetry_client attribute to client on product
+typeattribute sdv_telemetry_product_client sdv_telemetry_client;

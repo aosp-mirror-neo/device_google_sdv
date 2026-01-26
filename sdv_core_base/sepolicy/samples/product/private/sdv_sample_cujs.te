@@ -1,0 +1,22 @@
+# Copyright (C) 2026 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# `sdv_sample_cuj_prop` can only be accessed on the product and system partitions.
+product_internal_prop(sdv_sample_cuj_prop)
+
+# Only service bundles executed by service_bundle_runner can read the `sdv_sample_cuj_prop`.
+get_prop(untrusted_service_bundle, sdv_sample_cuj_prop)
+
+# Allows e2e tests to set properties, only used in samples code.
+set_prop(shell, sdv_sample_cuj_prop)

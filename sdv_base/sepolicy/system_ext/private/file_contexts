@@ -1,0 +1,36 @@
+# Copyright (C) 2026 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+##########################
+# Devices
+#
+/dev/vsock        u:object_r:vsock_device:s0
+
+# The open-dice devices are exposed by the open-dice kernel driver.
+# Only /dev/open-dice0 should be actually used and present.
+/dev/open-dice.*  u:object_r:open_dice_device:s0
+
+##########################
+# system_ext files
+#
+
+# init_open_dice that consumes the Android DICE chain from the device and provides it to service
+# discovery
+/(system_ext|system/system_ext)/bin/init_open_dice   u:object_r:init_open_dice_exec:s0
+
+# SDV service discovery agent
+/(system_ext|system/system_ext)/bin/sdv_sd_agent     u:object_r:sdv_sd_default_exec:s0
+
+# SDV service rpc agent
+/(system_ext|system/system_ext)/bin/rpcagent         u:object_r:sdv_rpcagent_default_exec:s0

@@ -1,0 +1,83 @@
+# Copyright (C) 2026 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Setup the A/B slot partitioning for the /oem_ab partition.
+
+# The use of active and current slots is the same as defined in https://source.android.com/docs/core/ota/ab#slots.
+
+# Define the block device associated with the A or B slots:
+on property:ro.persistent_properties.ready=true
+  trigger sdv_mount_oem_slot
+
+# If the active slot is not selected, check if the /oem_metadata has the correct slot information.
+# The recover_partition service will set the active and current slot based on the metadata files.
+on sdv_mount_oem_slot && property:persist.sdv.active_oem_slot=""
+  exec_start recover_partition
+  trigger sdv_mount_oem_slot_recovery
+
+# If recover_partition service fails to set the active slot, mount slot A by default.
+on sdv_mount_oem_slot_recovery && property:persist.sdv.active_oem_slot=""
+  mount f2fs ${ro.boot.sdv.oem_slot_a_device} /oem_ab nodev noatime nosuid errors=panic ro
+
+on sdv_mount_oem_slot_recovery && property:persist.sdv.active_oem_slot=a
+  mount f2fs ${ro.boot.sdv.oem_slot_a_device} /oem_ab nodev noatime nosuid errors=panic ro
+
+on sdv_mount_oem_slot_recovery && property:persist.sdv.active_oem_slot=b
+  mount f2fs ${ro.boot.sdv.oem_slot_b_device} /oem_ab nodev noatime nosuid errors=panic ro
+
+on sdv_mount_oem_slot && property:persist.sdv.active_oem_slot=a
+  setprop ro.sdv.current_oem_slot a
+  mount f2fs ${ro.boot.sdv.oem_slot_a_device} /oem_ab nodev noatime nosuid errors=panic ro
+
+on sdv_mount_oem_slot && property:persist.sdv.active_oem_slot=b
+  setprop ro.sdv.current_oem_slot b
+  mount f2fs ${ro.boot.sdv.oem_slot_b_device} /oem_ab nodev noatime nosuid errors=panic ro
+
+# TODO(b/384455684): Look into mounting mechanism that does not require mounting via this script.
+# TODO(b/384493427): The group is set to `shell` so `sdv_oem_partition_update_client` can access
+# it which is run using the `shell` user. Run `sdv_oem_partition_update_client` from init
+# and execute it using a different user.
+# If in the Prepare state, mount the /oem_updates partition.
+on property:persist.sdv.oem_update_state="Prepare" && property:persist.sdv.active_oem_slot=b
+  mount f2fs ${ro.boot.sdv.oem_slot_a_device} /oem_updates wait nodev noatime nosuid errors=panic
+  chown root shell /oem_updates
+  restorecon -R /oem_updates
+  chmod 0770 /oem_updates
+
+# TODO(b/384493427): Do not use shell as the group
+on property:persist.sdv.oem_update_state="Prepare" && property:persist.sdv.active_oem_slot=a
+  mount f2fs ${ro.boot.sdv.oem_slot_b_device} /oem_updates wait nodev noatime nosuid errors=panic
+  chown root shell /oem_updates
+  restorecon -R /oem_updates
+  chmod 0770 /oem_updates
+
+# If in the Active state, unmount the /oem_updates partition.
+on property:persist.sdv.oem_update_state="ActivePreReboot"
+  umount /oem_updates
+
+# If the Rollback state is reached, unmount the /oem_updates partition.
+on property:persist.sdv.oem_update_state="Rollback"
+  umount /oem_updates
+
+# TODO(b/384493427): Do not use shell as the group
+on boot
+  chown root shell /oem_metadata
+  restorecon -R /oem_metadata
+  chmod 0770 /oem_metadata
+
+service recover_partition /product/bin/recover_oem_partition.sh
+  class core
+  oneshot
+  user root
+  group shell

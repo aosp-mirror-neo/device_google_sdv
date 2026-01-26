@@ -1,0 +1,30 @@
+# Copyright (C) 2026 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Allow SDV Media ALSA mixer to be started as an init service.
+type sdv_audio_mixer, domain;
+typeattribute sdv_audio_mixer coredomain;
+typeattribute sdv_audio_mixer mlstrustedsubject;
+
+type sdv_audio_mixer_exec, exec_type, system_file_type, file_type;
+
+init_daemon_domain(sdv_audio_mixer)
+
+# Allow listing available audio devices under /dev/snd.
+allow sdv_audio_mixer audio_device:dir search;
+# Allow accessing audio devices under /dev/snd.
+allow sdv_audio_mixer audio_device:chr_file { ioctl map open read write };
+
+# Allow init to create /dev/socket/sdv_audio_mixer for the mixer service.
+type sdv_audio_mixer_socket, file_type, coredomain_socket;

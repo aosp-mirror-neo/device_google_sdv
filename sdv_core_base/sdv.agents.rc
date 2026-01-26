@@ -1,0 +1,188 @@
+# Copyright (C) 2026 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# SDV Core's init .rc file which is used to start SDV specific services.
+
+##############################
+##  System services agents  ##
+##############################
+
+# Declare SDV Service Bundles Registry agent.
+service sdv_service_bundles_registry_agent /system_ext/bin/sdv_service_bundles_registry_agent
+    class core
+    disabled
+    user system_ext_sdv_sbr
+    group system
+    oneshot
+# Start SDV Service Bundles Registry agent only when all apexes are mounted.
+on property:apex.all.ready=true
+    start sdv_service_bundles_registry_agent
+
+# Declare and start the SDV Lifecycle manager agent.
+service sdv_lifecycle_agent /system_ext/bin/sdv_lifecycle_agent
+    class core
+    disabled
+    user system_ext_sdv_lcm
+    group system
+    capabilities SYS_NICE KILL SETUID SETGID CHOWN
+    oneshot
+on property:ro.sdv.sbr.state.ready=true
+    start sdv_lifecycle_agent
+
+# SDV Orchestrator configuration has `ro.boot` and `persist` property.
+#
+# The `persist` property is directly used by SDV Orchestrator agent
+# as a path to the orchestrator configuration file.
+# The `persist` is persisted across reboots.
+# The `persist` can be replaced in runtime for some specific scenarios, like e2e tests.
+#
+# The `ro.boot` property is a boot time property that can be set,
+# for example, using the `extra_bootconfig_args` when using Cuttlefish.
+# The `ro.boot` value is propagated to the `persist` property, but ONLY when the `persist` is empty.
+#
+# For example, in the basic scenario, - during the very 1st system boot the `persist` property
+# is empty and the `ro.boot` property value is propagated to the `persist`.
+#
+# If both `ro.boot` and `persist` properties are empty, the default value
+# `/system/etc/orch/orch_config.textproto` is used.
+on property:persist.sdv.orchestrator_config_path=""
+    setprop persist.sdv.orchestrator_config_path \
+        ${ro.boot.sdv.orchestrator_config_path:-/system/etc/orch/orch_config.textproto}
+
+# Declare and start the SDV Orchestrator agent.
+service sdv_orchestration_agent /system_ext/bin/sdv_orchestration_agent
+    class core
+    disabled
+    user system_ext_sdv_orch
+    group system
+    oneshot
+on property:ro.sdv.sbr.state.ready=true
+    start sdv_orchestration_agent
+
+# Declare and start the SDV Update Manager agent.
+service sdv_update_manager_agent /system_ext/bin/sdv_update_manager_agent
+    class core
+    disabled
+    user system
+    group system
+on property:ro.sdv.orchestrator.state.ready=true
+    start sdv_update_manager_agent
+
+ # Declare and start the SDV Diagnostics agent.
+service sdv_vsidl_provider_agent  /system_ext/bin/sdv_vsidl_provider_agent
+    class core
+    disabled
+    user system_ext_sdv_vsidl_provider
+    group system
+    oneshot
+
+on property:ro.sdv.orchestrator.state.ready=true
+    start sdv_vsidl_provider_agent
+
+# persist.* property used directly by agent. If not set (default),
+# it uses value stored in ro.* (read only) property.
+# Setup allows for persisting of runtime prop modifications across device reboots
+on property:persist.sdv.health_monitor.config_path=""
+    setprop persist.sdv.health_monitor.config_path \
+        ${ro.sdv.health_monitor.config_path}
+
+# Declare and start the SDV Health Monitoring agent.
+# The VM restart is to be controlled by the OEM, therefore, critical option is not set.
+# As OEMs control VM restart if HM crashes, OEMs would miss a VM health report and restart VM.
+service sdv_health_monitor /system_ext/bin/sdv_health_monitor
+    class core
+    disabled
+    user system_ext_sdv_hm
+    # HM reads process information.
+    group system readproc
+    # HM is not restarted once it completes, due to a failure, to allow OEMs to control VM restart.
+    oneshot
+on property:ro.sdv.orchestrator.state.ready=true
+    start sdv_health_monitor
+
+##################################
+##  Communication stack agents  ##
+##################################
+
+# Declare and start the SDV Service Discovery service.
+# The VM restart is to be controlled by the OEM, therefore, critical property is not set.
+# As OEMs control VM restart if SD crashes, OEMs would miss a VM health report and restart VM.
+service sdv_sd_agent /system_ext/bin/sdv_sd_agent
+    class core
+    disabled
+    user system_ext_sdv_sd
+    group system
+    # SD is not restarted once it completes, due to a failure, to allow OEMs to control VM restart.
+    oneshot
+    enter_namespace net /mnt/run/sd_mesh_ns
+on property:ro.sdv.orchestrator.state.ready=true
+    start sdv_sd_agent
+
+# Declare and start SDV Data Tunnel agent.
+# TODO: b/307953753 - Don't use the filesystem to generate notifications
+# We launch the agent as shell for compatibility with PDK8 where this tool
+# was started manually via adb shell; system/system is the better
+# credential here, but we need to change how we obtain file descriptors for
+# notifications before we can stop relying on shell permissions.
+# The VM restart is to be controlled by the OEM, therefore, critical property is not set.
+# As OEMs control VM restart if DT crashes, OEMs would miss a VM health report and restart VM.
+service dt_agent /system_ext/bin/dt_agent
+    class core
+    disabled
+    user system_ext_sdv_dt
+    group system
+    # DT is not restarted once it completes, due to a failure, to allow OEMs to control VM restart.
+    oneshot
+    enter_namespace net /mnt/run/sdv_dt_ns
+on property:ro.sdv.orchestrator.state.ready=true
+    start dt_agent
+
+# Declare and start the SDV RPC agent.
+service rpcagent /system_ext/bin/rpcagent
+    class core
+    disabled
+    user system_ext_sdv_rpc
+    group system
+    oneshot
+
+on property:ro.sdv.orchestrator.state.ready=true
+    start rpcagent
+
+##########################
+##  Automotive agents ##
+##########################
+
+# Declare and start the SDV VPM agent.
+service sdv_vpm_agent  /system_ext/bin/sdv_vpm_agent
+    class core
+    disabled
+    user system_ext_sdv_vpm
+    group system
+    oneshot
+
+on property:ro.sdv.orchestrator.state.ready=true
+    start sdv_vpm_agent
+
+###################################
+##  Telemetry services agent(s)  ##
+###################################
+
+# Declare and start the SDV Telemetry service agent.
+service sdv_telemetry_service_agent /vendor/bin/sdv_telemetry_service_agent
+    class core
+    disabled
+    user system_ext_sdv_telemetry
+    group system
+on property:ro.sdv.orchestrator.state.ready=true && property:ro.boot.sdv.telemetry.enabled=1
+    start sdv_telemetry_service_agent

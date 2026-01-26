@@ -1,0 +1,50 @@
+# Copyright (C) 2026 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Health Monitor is a core SDV agent.
+core_service(sdv_health_monitor)
+
+# Health Monitor can call the DataTunnel SDV agent.
+typeattribute sdv_health_monitor sdv_dt_client;
+
+# Health Monitor can call the Service Discovery agent.
+typeattribute sdv_health_monitor sdv_sd_client;
+
+# Health Monitor can call the RPC agent.
+typeattribute sdv_health_monitor sdv_rpcagent_client;
+
+# Health Monitor is a power state client
+typeattribute sdv_health_monitor sdv_vpm_agent_notification_client;
+
+# Health Monitor is a listener of SB Recovery updates:
+typeattribute sdv_health_monitor sdv_orch_sb_recovery_client;
+
+# health_monitor_config_path_prop is a system internal property.
+system_internal_prop(health_monitor_config_path_prop)
+# Health Monitor is the only one that can read the health_monitor_config_path_prop.
+get_prop(sdv_health_monitor, health_monitor_config_path_prop)
+# Init can set the health_monitor_config_path_prop property.
+set_prop(init, health_monitor_config_path_prop)
+
+# Defines SDV HM service.
+type sdv_health_monitor_dump_service, protected_service, service_manager_type;
+# SDV HM can register its Binder IPC services.
+add_service(sdv_health_monitor, sdv_health_monitor_dump_service)
+
+# Health monitor can link to death to any sdv_crash_monitored_service (binder calls disallowed):
+allow sdv_health_monitor sdv_crash_monitored_service:service_manager find;
+
+# Information from the binder services served by the agent as well as their (custom) binder dump()
+# is allowed to be collected in bugreports.
+dump_sdv_agent(sdv_health_monitor)

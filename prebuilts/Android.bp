@@ -1,0 +1,151 @@
+// Copyright (C) 2026 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// Put all prebuilts into a separate namespace to avoid naming collisions with
+// external/mesa3d while it still defines those modules.
+soong_namespace {
+}
+
+// Source: mesa3d makefiles http://shortn/_1JTixaDEnl
+license {
+    name: "libGLES_mesa_license",
+    visibility: [
+        "//device/google/sdv/prebuilts:__subpackages__",
+    ],
+    license_kinds: [
+        "SPDX-license-identifier-ISC",
+        "SPDX-license-identifier-MIT",
+    ],
+    license_text: ["LICENSE.mesa"],
+}
+
+// Source: mesa3d makefiles http://shortn/_eeerquankd
+license {
+    name: "gallium_dri_license",
+    visibility: [
+        "//device/google/sdv/prebuilts:__subpackages__",
+    ],
+    license_kinds: [
+        "SPDX-license-identifier-MIT",
+    ],
+    license_text: ["LICENSE.mesa"],
+}
+
+// Source: mesa3d makefiles http://shortn/_YWrLhMh8r8
+license {
+    name: "libglapi_license",
+    visibility: [
+        "//device/google/sdv/prebuilts:__subpackages__",
+    ],
+    license_kinds: [
+        "SPDX-license-identifier-Apache-2.0",
+        "SPDX-license-identifier-MIT",
+    ],
+    license_text: ["LICENSE.mesa"],
+}
+
+// Mesa EGL/GLES implementation with Gallium virgl backend enabled.
+// TODO: b/326956485 - remove when migration to ANGLE+gfxstream is done
+cc_prebuilt_library_shared {
+    name: "libGLES_mesa",
+    licenses: ["libGLES_mesa_license"],
+    vendor: true,
+    relative_install_path: "egl",
+    compile_multilib: "64",
+    arch: {
+        x86_64: {
+            srcs: ["x86_64/libGLES_mesa.so"],
+        },
+        arm64: {
+            srcs: ["arm64/libGLES_mesa.so"],
+        },
+    },
+    shared_libs: [
+        "libc++",
+        "libcutils",
+        "libdrm",
+        "libglapi",
+        "libhardware",
+        "liblog",
+        "libnativewindow",
+        "libsync",
+    ],
+    required: [
+        "gallium_dri",
+    ],
+}
+
+// Dependency of libGLES_mesa.
+// TODO: b/326956485 - remove when migration to ANGLE+gfxstream is done
+cc_prebuilt_library_shared {
+    name: "libglapi",
+    licenses: ["libglapi_license"],
+    vendor: true,
+    compile_multilib: "64",
+    arch: {
+        x86_64: {
+            srcs: ["x86_64/libglapi.so"],
+        },
+        arm64: {
+            srcs: ["arm64/libglapi.so"],
+        },
+    },
+    shared_libs: [
+        "libc++",
+        "libdrm",
+    ],
+}
+
+// Dependency of libGLES_mesa.
+// TODO: b/326956485 - remove when migration to ANGLE+gfxstream is done
+cc_prebuilt_library_shared {
+    name: "gallium_dri",
+    licenses: ["gallium_dri_license"],
+    vendor: true,
+    relative_install_path: "dri",
+    compile_multilib: "64",
+    arch: {
+        x86_64: {
+            srcs: ["x86_64/gallium_dri.so"],
+        },
+        arm64: {
+            srcs: ["arm64/gallium_dri.so"],
+        },
+    },
+    shared_libs: [
+        "libc++",
+        "libdrm",
+        "libglapi",
+        "liblog",
+        "libsync",
+        "libz",
+    ],
+    required: [
+        "gallium_dri_virtio_gpu_symlink",
+    ],
+}
+
+// Soong for whatever reason doesn't support "symlinks" property on
+// cc_prebuilt_library*, so we need a separate module to emulate
+// LOCAL_MODULE_SYMLINKS from Mesa makefiles (http://shortn/_tZn0zWFnXL).
+// Fortunately we only need virtio_gpu Gallium module that provides virgl
+// support, and only on 64-bit builds.
+//
+// TODO: b/326956485 - remove when migration to ANGLE+gfxstream is done
+install_symlink {
+    name: "gallium_dri_virtio_gpu_symlink",
+    symlink_target: "gallium_dri.so",
+    installed_location: "lib64/dri/virtio_gpu_dri.so",
+    vendor: true,
+}

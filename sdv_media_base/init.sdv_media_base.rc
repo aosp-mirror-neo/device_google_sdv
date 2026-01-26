@@ -1,0 +1,54 @@
+# Copyright (C) 2026 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# SDV's primary init .rc file which is loaded first by the init process.
+
+on early-init
+    # HACK: Set properties to avoid dependency on surfaceflinger and
+    # hwservicemanager.
+    #
+    # libEGL's eglInitialize calls into libSurfaceFlingerProp to get
+    # information about the available display (see http://shortn/_c36TLNIz01).
+    # libSurfaceFlingerProp usually gets those values by calling
+    # android.hardware.configstore@1.0::ISurfaceFlingerConfigs HAL.
+    #
+    # However, for each value there's an associated sysprop that, when set,
+    # takes precedence over the HAL, and prevents libSurfaceFlingerProp from
+    # making the HAL call. See http://shortn/_o4VTPenNoZ, and
+    # http://shortn/_R5E3X33A5i for the sysprop definitions.
+    setprop ro.surface_flinger.has_wide_color_display true
+    setprop ro.surface_flinger.has_HDR_display false
+
+    # Transport used for gfxstream guest-host communication,
+    # http://shortn/_b0pdJx8TQU
+    # Note: unlike other graphics-related properties, this is read as
+    # ro.boot.*, not ro.*!
+    setprop ro.boot.hardware.gltransport ${ro.boot.hardware.gltransport:-virtio-gpu-pipe}
+
+    # Graphics allocator to use for gfxstream, http://shortn/_7oLKFnaKte
+    # - minigbm - uses virtio-gpu
+    # - ranchu - uses goldfish_pipe (deprecated)
+    setprop ro.hardware.gralloc ${ro.boot.hardware.gralloc:-minigbm}
+
+    # EGL/GLES implementation:
+    # - mesa - for hardware-accelerated GLES using virgl
+    # - emulation - for hardware-accelerated GLES using gfxstream
+    # - angle - for GLES implemented on top of Vulkan API. For software
+    #           emulated GLES, use this with ro.hardware.vulkan = pastel.
+    setprop ro.hardware.egl ${ro.boot.hardware.egl:-angle}
+
+    # Vulkan implementation:
+    # - ranchu - for hardware-accelerated Vulkan using gfxstream
+    # - pastel - for software emulated Vulkan
+    setprop ro.hardware.vulkan ${ro.boot.hardware.vulkan:-ranchu}

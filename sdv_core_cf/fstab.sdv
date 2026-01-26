@@ -1,0 +1,42 @@
+# Copyright (C) 2026 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# <src>                         <mnt_point>     <type>  <mnt_flags options>                                     <fs_mgr_flags>
+
+# Non-dynamic, boot critical partitions
+/dev/block/by-name/boot         /boot           emmc    defaults                                                recoveryonly,slotselect,first_stage_mount,avb=boot
+/dev/block/by-name/init_boot    /init_boot      emmc    defaults                                                recoveryonly,slotselect,first_stage_mount,avb=init_boot
+/dev/block/by-name/vendor_boot  /vendor_boot    emmc    defaults                                                recoveryonly,slotselect
+
+system                          /system         erofs    noatime,ro                                             wait,slotselect,logical,first_stage_mount,avb=vbmeta_system
+
+# Add all non-dynamic partitions except system, after this comment
+
+# Based on Cuttlefish's f2fs fstab entry for userdata but with the flags for file-based and metadata
+# encryption.
+/dev/block/by-name/userdata     /data           f2fs    nodev,noatime,nosuid,inlinecrypt,reserve_root=32768     latemount,wait,check,quota,formattable,fscompress,checkpoint=fs,fileencryption=aes-256-xts:aes-256-hctr2:inlinecrypt_optimized,keydirectory=/metadata/vold/metadata_encryption
+/dev/block/by-name/metadata     /metadata       ext4    nodev,noatime,nosuid                                    wait,check,formattable,first_stage_mount
+/dev/block/by-name/misc         /misc           emmc    defaults                                                defaults
+
+# Add all dynamic partitions except system, after this comment
+
+system_ext                      /system_ext     erofs    noatime,ro                                             wait,slotselect,logical,first_stage_mount,avb=vbmeta_system
+product                         /product        erofs    noatime,ro                                             wait,slotselect,logical,first_stage_mount,avb=vbmeta_system
+vendor                          /vendor         erofs    noatime,ro                                             wait,slotselect,logical,first_stage_mount,avb=vbmeta
+vendor_dlkm                     /vendor_dlkm    erofs    noatime,ro                                             wait,slotselect,logical,first_stage_mount,avb=vbmeta
+
+# Oem updates metadata partition for OEM updates: marked as optional for SDV (no errors=panic flag).
+# OEMs must mark it as required for OEM updates to work reliably.
+# "nofail" is required to ensure update_engine still starts if this partition is not provided.
+/dev/block/by-name/custom_2     /oem_metadata   ext4    nodev,noatime,nosuid                                    latemount,check,quota,fscompress,nofail
