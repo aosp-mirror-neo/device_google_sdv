@@ -12,6 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# oem_metadata files
+# oem_ab_metadata files
 
-/oem_metadata(/.*)?        u:object_r:oem_metadata_file:s0
+/oem_ab_metadata(/.*)?        u:object_r:oem_ab_metadata_file:s0

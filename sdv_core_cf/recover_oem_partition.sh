@@ -16,13 +16,13 @@
 # This bash script is utilized by the OemUpdater in the
 # event that the persistent system properties have been
 # cleared (data partition wiped). Retrieve the update
-# state and active slot from /oem_metadata. This script
+# state and active slot from /oem_ab_metadata. This script
 # will set the active and current slot properties.
 
 set -e
 
-active_slot_file_path="/oem_metadata/active_slot"
-update_state_file_path="/oem_metadata/update_state"
+active_slot_file_path="/oem_ab_metadata/active_slot"
+update_state_file_path="/oem_ab_metadata/update_state"
 
 log_oem_updater_message() {
 	message="$1"

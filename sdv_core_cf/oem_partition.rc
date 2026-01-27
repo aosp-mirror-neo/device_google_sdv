@@ -20,7 +20,7 @@
 on property:ro.persistent_properties.ready=true
   trigger sdv_mount_oem_slot
 
-# If the active slot is not selected, check if the /oem_metadata has the correct slot information.
+# If the active slot is not selected, check if the /oem_ab_metadata has the correct slot information.
 # The recover_partition service will set the active and current slot based on the metadata files.
 on sdv_mount_oem_slot && property:persist.sdv.active_oem_slot=""
   exec_start recover_partition
@@ -48,33 +48,33 @@ on sdv_mount_oem_slot && property:persist.sdv.active_oem_slot=b
 # TODO(b/384493427): The group is set to `shell` so `sdv_oem_partition_update_client` can access
 # it which is run using the `shell` user. Run `sdv_oem_partition_update_client` from init
 # and execute it using a different user.
-# If in the Prepare state, mount the /oem_updates partition.
+# If in the Prepare state, mount the /oem_ab_updates partition.
 on property:persist.sdv.oem_update_state="Prepare" && property:persist.sdv.active_oem_slot=b
-  mount f2fs ${ro.boot.sdv.oem_slot_a_device} /oem_updates wait nodev noatime nosuid errors=panic
-  chown root shell /oem_updates
-  restorecon -R /oem_updates
-  chmod 0770 /oem_updates
+  mount f2fs ${ro.boot.sdv.oem_slot_a_device} /oem_ab_updates wait nodev noatime nosuid errors=panic
+  chown root shell /oem_ab_updates
+  restorecon -R /oem_ab_updates
+  chmod 0770 /oem_ab_updates
 
 # TODO(b/384493427): Do not use shell as the group
 on property:persist.sdv.oem_update_state="Prepare" && property:persist.sdv.active_oem_slot=a
-  mount f2fs ${ro.boot.sdv.oem_slot_b_device} /oem_updates wait nodev noatime nosuid errors=panic
-  chown root shell /oem_updates
-  restorecon -R /oem_updates
-  chmod 0770 /oem_updates
+  mount f2fs ${ro.boot.sdv.oem_slot_b_device} /oem_ab_updates wait nodev noatime nosuid errors=panic
+  chown root shell /oem_ab_updates
+  restorecon -R /oem_ab_updates
+  chmod 0770 /oem_ab_updates
 
-# If in the Active state, unmount the /oem_updates partition.
+# If in the Active state, unmount the /oem_ab_updates partition.
 on property:persist.sdv.oem_update_state="ActivePreReboot"
-  umount /oem_updates
+  umount /oem_ab_updates
 
-# If the Rollback state is reached, unmount the /oem_updates partition.
+# If the Rollback state is reached, unmount the /oem_ab_updates partition.
 on property:persist.sdv.oem_update_state="Rollback"
-  umount /oem_updates
+  umount /oem_ab_updates
 
 # TODO(b/384493427): Do not use shell as the group
 on boot
-  chown root shell /oem_metadata
-  restorecon -R /oem_metadata
-  chmod 0770 /oem_metadata
+  chown root shell /oem_ab_metadata
+  restorecon -R /oem_ab_metadata
+  chmod 0770 /oem_ab_metadata
 
 service recover_partition /product/bin/recover_oem_partition.sh
   class core

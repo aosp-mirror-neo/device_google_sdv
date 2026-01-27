@@ -21,4 +21,4 @@
 /(product|system/product)/bin/recover_oem_partition.sh         u:object_r:sdv_recover_oem_partition_exec:s0
 
 # SDV OemUpdater Writable Partition
-/oem_updates(/.*)?                                             u:object_r:oem_ab_file:s0
+/oem_ab_updates(/.*)?                                             u:object_r:oem_ab_file:s0

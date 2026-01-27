@@ -75,8 +75,8 @@ cvd create --custom_partition_path=$OUT/oem_ab.img
 
 To create a custom partition image:
 
-*   See `sdv_core_base/oem/oem_ab.mk` and `sdv_core_base/oem/Android.bp` for
-    defining a custom partition.
+*   See `sdv_core_base/oem_ab/oem_ab.mk` and `sdv_core_base/oem_ab/Android.bp`
+    for defining a custom partition.
 *   The custom disk image is automatically built when running `m`.
 
 To mount the custom partition with Cuttlefish:
@@ -90,12 +90,12 @@ To mount the custom partition with Cuttlefish:
 *   Add an `fstab` entry for the partition. The custom partition will be visible
     to the VM as `/dev/block/by-name/custom`.
 
-    See `sdv_core_cf/fstab.sdv` for an example of mounting the oem_metadata
-    partition to the `/oem_metadata` path on the device.
+    See `sdv_core_cf/fstab.sdv` for an example of mounting the oem_ab_metadata
+    partition to the `/oem_ab_metadata` path on the device.
 
 *   Set up SELinux policy rules for the new partition contents, and allow init
-    to mount it. See `sdv_core_base/oem/sepolicy/oem_ab/private/oem_ab.te` and
-    `sdv_core_base/oem/sepolicy/oem_ab/private/file_contexts`.
+    to mount it. See `sdv_core_base/oem_ab/sepolicy/oem_ab/private/oem_ab.te`
+    and `sdv_core_base/oem_ab/sepolicy/oem_ab/private/file_contexts`.
 
 *   Build `sdv_core_cf` target with `lunch sdv_core_cf-trunk_staging-userdebug
     && m`.
