@@ -21,6 +21,6 @@ typeattribute sdv_sd_default sdv_vpm_agent_notification_client;
 # SD agent is crash monitored on its sdv_sd_service binder interface
 typeattribute sdv_sd_service sdv_crash_monitored_service;
 
-# For veryifying the FQIN belonging to a service bundle process calling createIdentity().
-allow sdv_sd_default sdv_sb_identity_service:service_manager find;
+# Lifecycle manager (LC) implements IIdentityVerifier (sdv_identity_verifier) in SDV Core,
+# which Service Discovery (SD) needs to call.
 binder_call(sdv_sd_default, sdv_lc_default)
