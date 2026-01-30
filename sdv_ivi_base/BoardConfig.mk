@@ -21,3 +21,7 @@ ifdef SDV_RPC_INTERFACE
 BOARD_BOOTCONFIG += \
   androidboot.sdv.rpc.interface=$(SDV_RPC_INTERFACE)
 endif
+
+BOARD_SEPOLICY_DIRS += device/google/cuttlefish/shared/auto/sepolicy/vhal
+BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/vendor
+BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_ivi_base/sepolicy/vendor/google/

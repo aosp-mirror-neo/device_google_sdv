@@ -45,6 +45,15 @@ TARGET_COPY_OUT_VENDOR := vendor
 # Enable OTA from target file.
 PRODUCT_BUILD_GENERIC_OTA_PACKAGE := true
 
+# Defining the SEPolicies of the SDV packages located on the system_ext partition by amending the
+# private and public policies of the partition. See system/sepolicy/README.md for more details.
+SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/system_ext/private
+SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_core_base/sepolicy/system_ext/private
+SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/system_ext/public
+SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += device/google/sdv/sdv_core_base/sepolicy/system_ext/public
+PRODUCT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_core_base/sepolicy/product/private
+PRODUCT_PUBLIC_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/product/public
+
 # TODO: b/356431569 - This is a quick fix for the missing ro.build. properties. Find a final
 # solution for adding them back.
 PRODUCT_PACKAGES += \
