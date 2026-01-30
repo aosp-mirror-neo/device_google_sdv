@@ -12,16 +12,5 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# TODO: b/344653947 - Determine which class of apps can have access to SDV Gateway.
-
 # SdvCarMonitorTestApp is a client of the SDV Gateway and calls Binder API.
-typeattribute priv_app sdv_gateway_client;
-
-# Enable registration at Telemetry ConfigurablePublisherRegistry for privileged apps.
-allow priv_app sdv_configurable_publisher_registry_service:service_manager find;
-
-# Enable Telemetry Client privileged apps to find Telemetry Service.
-allow priv_app sdv_telemetry_service:service_manager find;
-
-# Enable the SDV Gateway Networking service to find IPrivilegedGatewayNetworking AIDL service.
-allow priv_app sdv_privileged_gatewaynetworking_service:service_manager find;
+typeattribute sdv_carmonitor_test_app sdv_gateway_client;
