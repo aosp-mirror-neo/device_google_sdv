@@ -280,9 +280,8 @@ PRODUCT_PACKAGES += bootctl
 
 # System update support
 PRODUCT_PACKAGES += \
-  update_engine_nostats \
+  update_engine_nonetd \
   update_verifier \
-  com.android.tethering \
 
 # Utilities for debugging updates
 PRODUCT_PACKAGES_DEBUG += \

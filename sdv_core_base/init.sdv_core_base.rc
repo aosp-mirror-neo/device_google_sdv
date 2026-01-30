@@ -44,7 +44,7 @@ import /system_ext/etc/init/init_open_dice_service.rc
 import /system/etc/init/logcatd.rc
 import /system/etc/init/dumpstate.rc
 import /system/etc/init/tombstoned.rc
-import /system/etc/init/update_engine_nostats.rc
+import /system/etc/init/update_engine_nonetd.rc
 import /system/etc/init/update_verifier.rc
 
 # TODO: b/267320398 - Not present on -user builds, same as TODO above
