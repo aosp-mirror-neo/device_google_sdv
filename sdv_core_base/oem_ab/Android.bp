@@ -59,11 +59,11 @@ android_filesystem {
 }
 
 android_filesystem {
-    name: "oem_metadata",
+    name: "oem_ab_metadata",
     defaults: ["oem_filesystem_defaults"],
     // The SELinux labels in the file_contexts take this directory into account, i.e. all the paths
     // there labeling files on this partition must start with this mount_point directory.
-    mount_point: "/oem_metadata",
+    mount_point: "/oem_ab_metadata",
     // 1 MiB partition_size
     partition_size: 1048576,
     type: "ext4",
@@ -73,5 +73,5 @@ android_filesystem {
     // Instead of directly referring to the file_contexts source file located in a subdirectory of
     // this directory, doing that through a Soong module, so this default can be used in Android.bp
     // files in different directories.
-    file_contexts: "sepolicy/oem_metadata/private/file_contexts",
+    file_contexts: "sepolicy/oem_ab_metadata/private/file_contexts",
 }

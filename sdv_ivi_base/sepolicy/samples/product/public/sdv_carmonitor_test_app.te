@@ -12,8 +12,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# The type for the files and folder in the /oem_metadata partition.
-type oem_metadata_file, file_type;
-
-# Let init mount a partition in the /oem_metadata directory
-allow init oem_metadata_file:dir mounton;
+type sdv_carmonitor_test_app, domain;

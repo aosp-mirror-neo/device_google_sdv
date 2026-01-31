@@ -26,16 +26,16 @@ type sdv_oem_partition_update_client_exec, system_file_type, exec_type, file_typ
 domain_auto_trans_from_shell(sdv_oem_partition_update_client)
 
 # Enable sdv_oem_partition_update_client to
-# search, and read/write on the /oem_ab and /oem_updates paths.
+# search, and read/write on the /oem_ab and /oem_ab_updates paths.
 allow sdv_oem_partition_update_client oem_ab_file:dir search;
 allow sdv_oem_partition_update_client oem_ab_file:dir create_dir_perms;
 allow sdv_oem_partition_update_client oem_ab_file:file create_file_perms;
 
 # Enable sdv_oem_partition_update_client to
-# search, and read/write on the /oem_metadata path.
-allow sdv_oem_partition_update_client oem_metadata_file:dir search;
-allow sdv_oem_partition_update_client oem_metadata_file:dir rw_dir_perms;
-allow sdv_oem_partition_update_client oem_metadata_file:file create_file_perms;
+# search, and read/write on the /oem_ab_metadata path.
+allow sdv_oem_partition_update_client oem_ab_metadata_file:dir search;
+allow sdv_oem_partition_update_client oem_ab_metadata_file:dir rw_dir_perms;
+allow sdv_oem_partition_update_client oem_ab_metadata_file:file create_file_perms;
 
 # Enable sdv_oem_partition_update_client to set and get properties.
 set_prop(sdv_oem_partition_update_client, sdv_oem_updater_prop)

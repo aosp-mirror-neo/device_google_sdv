@@ -12,6 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# oem_metadata files
-
-/oem_metadata(/.*)?        u:object_r:oem_metadata_file:s0
+# TODO: b/479814950 create custom policy for the sample instead of granting permissions for all
+#       privileged apps
+# Enable registration at Telemetry ConfigurablePublisherRegistry for privileged apps.
+allow priv_app sdv_configurable_publisher_registry_service:service_manager find;
+# Enable Telemetry Client privileged apps to find Telemetry Service.
+allow priv_app sdv_telemetry_service:service_manager find;
