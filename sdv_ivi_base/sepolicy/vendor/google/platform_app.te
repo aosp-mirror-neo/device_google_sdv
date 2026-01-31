@@ -12,6 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# DriverUI is a client of the SDV Gateway.
+typeattribute platform_app sdv_gateway_client;
+
 # TODO: b/479182143 these rules are required for the SDV Gateway Networking service app, use a
 #       custom domain instead.
 allow platform_app sdv_privileged_gatewaynetworking_service:service_manager find;
