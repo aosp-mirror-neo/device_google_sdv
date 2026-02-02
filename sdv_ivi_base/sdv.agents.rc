@@ -45,6 +45,13 @@ service rpcagent /system_ext/bin/rpcagent
     user system_ext_sdv_rpc_agent
     group system
 
+# Declare the SDV IVI Runtime
+service sdv_ivi_rt /system_ext/bin/sdv_ivi_rt_service
+    class core
+    disabled
+    user system_ext_sdv_ivi_rt
+    group system
+
 # The sdv_gateway does the following steps:
 # 1. Immediately starts the IPrivilegedGatewayNetworking AIDL service.
 # 2. Sets ro.vendor.sdv.rpc.network.ready=true once it receives
@@ -52,6 +59,7 @@ service rpcagent /system_ext/bin/rpcagent
 # 3. Waits for ro.sdv.ethernet.ready to be set and starts the Data Tunnel
 #    and Gateway AIDL services.
 on boot
+    start sdv_ivi_rt
     start sdv_gateway
 
 # The SDV Gateway process waits for ro.sdv.ethernet.ready (on A16)
