@@ -18,6 +18,9 @@ core_service(sdv_health_monitor)
 # Health Monitor can call the DataTunnel SDV agent.
 typeattribute sdv_health_monitor sdv_dt_client;
 
+# Health Monitor can call the Service Bundle Registry agent.
+typeattribute sdv_health_monitor sdv_sbr_client;
+
 # Health Monitor can call the Service Discovery agent.
 typeattribute sdv_health_monitor sdv_sd_client;
 
