@@ -54,7 +54,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     com.sdv.tm \
     com.sdv.google.sample.perf5 \
     com.sdv.google.sample.perf6 \
-    com.sdv.google.sample.stresstest \
+    com.android.sdv.sample.stresstest \
     com.sdv.google.test_messages \
     android.sdv.samples.gateway \
     liblifecycle_cpp_service_bundle_test \
