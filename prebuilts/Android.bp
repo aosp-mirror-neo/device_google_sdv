@@ -55,18 +55,6 @@ license {
     license_text: ["LICENSE.mesa"],
 }
 
-// Source: gfxstream build script http://shortn/_O0h7G0GQp8
-license {
-    name: "gfxstream_license",
-    visibility: [
-        "//device/google/sdv/prebuilts:__subpackages__",
-    ],
-    license_kinds: [
-        "SPDX-license-identifier-MIT",
-    ],
-    license_text: ["LICENSE.mesa"],
-}
-
 // Mesa EGL/GLES implementation with Gallium virgl backend enabled.
 // TODO: b/326956485 - remove when migration to ANGLE+gfxstream is done
 cc_prebuilt_library_shared {
@@ -146,23 +134,6 @@ cc_prebuilt_library_shared {
     required: [
         "gallium_dri_virtio_gpu_symlink",
     ],
-}
-
-// APEX with surfaceless build of gfxstream guest library (vulkan.ranchu.so) including HMI symbol
-// TODO (b/480851918): Remove when possible to build it from mesa sources again.
-prebuilt_apex {
-    name: "com.google.cf.vulkan.with_hal",
-    vendor: true,
-    licenses: ["gfxstream_license"],
-    arch: {
-        arm64: {
-            src: "arm64/com.google.cf.vulkan.apex",
-        },
-        x86_64: {
-            src: "x86_64/com.google.cf.vulkan.apex",
-        },
-    },
-    overrides: ["com.google.cf.vulkan"],
 }
 
 // Soong for whatever reason doesn't support "symlinks" property on
