@@ -28,7 +28,7 @@
 PRODUCT_COPY_FILES += \
     device/google/cuttlefish/shared/config/graphics/init_graphics.vendor.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init_graphics.vendor.rc \
 
-PRODUCT_PACKAGES += com.google.cf.vulkan.with_hal
+PRODUCT_PACKAGES += com.google.cf.vulkan
 PRODUCT_VENDOR_PROPERTIES += ro.vulkan.apex=com.google.cf.vulkan
 
 $(call soong_config_set,cvd,RELEASE_SM_OPEN_DECLARED_PASSTHROUGH_HAL,$(RELEASE_SM_OPEN_DECLARED_PASSTHROUGH_HAL))
