@@ -34,7 +34,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     com.sdv.google.sample.lifecycle.userid.apex \
     com.sdv.google.sample.orch.apex \
     com.sdv.google.sample.updatable_flags.apex.test \
-    com.sdv.google.sample.complex \
+    com.android.sdv.sample.complex \
     com.sdv.google.sample.bar \
     com.sdv.google.sample.baz \
     com.sdv.google.sample.foo \
