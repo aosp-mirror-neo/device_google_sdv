@@ -32,7 +32,7 @@ SDV_PERF_PACKAGES = \
     test_vm_health_subscriber \
     com.sdv.google.sample.bar \
     com.sdv.google.sample.baz \
-    com.sdv.google.sample.foo \
+    com.android.sdv.sample.foo \
     com.sdv.google.sample.qux \
     cujs_orchestration_configurations \
     hm_config_with_someip.textproto \
