@@ -29,8 +29,8 @@ endif
 SDV_AUTOMOTIVE_SERVICES_PACKAGES += \
     sdv_vpm_agent \
     com.sdv.google.diagnostics \
-    com.sdv.google.vpm \
-    com.sdv.google.vpm.client \
+    com.android.sdv.vpm \
+    com.android.sdv.vpm.client \
     com.sdv.google.concal \
     com.sdv.google.user_preferences \
     $(SDV_DIAGNOSTICS_AGENT_MODULE) \
