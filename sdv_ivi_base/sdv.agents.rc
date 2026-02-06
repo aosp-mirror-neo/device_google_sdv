@@ -69,3 +69,16 @@ on boot
 on property:ro.sdv.ethernet.ready=true
     start sdv_sd_agent
     start rpcagent
+
+# Declare and start the SDV Telemetry service agent.
+service sdv_telemetry_service_agent /vendor/bin/sdv_ivi_telemetry_service_agent
+    class core
+    disabled
+    user vendor_sdv_telemetry
+    group vendor_sdv_telemetry system
+on boot && property:ro.boot.sdv.telemetry.enabled=1
+    start sdv_telemetry_service_agent
+
+on post-fs-data
+    # set up directory to persist metric configs for Telemetry service
+    mkdir /data/vendor/telemetry 0770 vendor_sdv_telemetry vendor_sdv_telemetry

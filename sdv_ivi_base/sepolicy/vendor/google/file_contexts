@@ -15,6 +15,9 @@
 # SDV Gateway Service
 /vendor/bin/sdv_gateway    u:object_r:sdv_gateway_exec:s0
 
+# SDV Telemetry Service
+/vendor/bin/sdv_ivi_telemetry_service_agent u:object_r:sdv_telemetry_exec:s0
+
 # SDV VHAL Proxy
 /vendor/bin/hw/android.hardware.automotive.vehicle@V1-sdv-emulator-service u:object_r:hal_vehicle_default_exec:s0
 
