@@ -53,3 +53,6 @@ google.sdv.init_open_dice.IDiceChainProvider/default u:object_r:sdv_dice_chain_p
 
 # Service interface for issuing certificates signed by CDI_Leaf
 google.sdv.init_open_dice.IKeyCertifier/default u:object_r:sdv_dice_certifier_service:s0
+
+# Service interface for identity verification required by service discovery
+google.sdv.identity.internal.IIdentityVerifier/default u:object_r:sdv_identity_verifier_service:s0

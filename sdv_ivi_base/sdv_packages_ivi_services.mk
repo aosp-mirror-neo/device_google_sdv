@@ -24,7 +24,8 @@ SDV_IVI_SERVICES_PACKAGES += \
     libvhal_proxy \
     libvhal_proxy_config_loader \
     sdv_gateway \
-    sdv_gatewaynetworking_service
+    sdv_gatewaynetworking_service \
+    sdv_ivi_rt_service
 
 # Adding the VINTF fragment of the DT agent manually, because data tunnel is part of the gateway
 # binary.

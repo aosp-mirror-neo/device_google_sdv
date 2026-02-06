@@ -14,3 +14,4 @@
 
 # SDV service discovery agent on IVI, which does not have a VPM service
 /(system_ext|system/system_ext)/bin/sdv_sd_agent_no_vpm u:object_r:sdv_sd_default_exec:s0
+/(system_ext|system/system_ext)/bin/sdv_ivi_rt_service u:object_r:sdv_ivi_rt_default_exec:s0
