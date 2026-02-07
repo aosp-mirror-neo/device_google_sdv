@@ -45,15 +45,6 @@ typeattribute sdv_telemetry sdv_configurable_publisher_registry_server;
 allow sdv_telemetry telemetry_data_file:dir create_dir_perms;
 allow sdv_telemetry telemetry_data_file:file create_file_perms;
 
-# SDV Telemetry agent can find and use data tunnel service
-typeattribute sdv_telemetry sdv_dt_client;
-
-# SDV Telemetry agent calls Service Discovery.
-typeattribute sdv_telemetry sdv_sd_client;
-
-# SDV Telemetry agent calls RPC Agent.
-typeattribute sdv_telemetry sdv_rpcagent_client;
-
 # SDV Telemetry Service agent can register Configurable Publisher Registry and its Binder IPC services.
 add_service(sdv_telemetry, sdv_telemetry_service)
 # TODO: b/343460855 Remove Configurable Publisher from base and move to ivi after RPC support is available
@@ -64,3 +55,7 @@ add_service(sdv_telemetry, sdv_configurable_publisher_registry_service)
 binder_call(dumpstate, sdv_telemetry)
 allow sdv_telemetry dumpstate:fd use;
 allow sdv_telemetry dumpstate:fifo_file write;
+
+# Telemetry reads /dev/cpuctl/cpu.cfs_quota_us and /dev/cpuctl/cpu.cfs_period_us
+# to determine the available CPU quota.
+allow sdv_telemetry cgroup:file r_file_perms;

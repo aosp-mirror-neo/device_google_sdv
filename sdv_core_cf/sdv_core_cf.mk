@@ -45,8 +45,6 @@ TARGET_BOARD_INFO_FILE ?= device/google/sdv/sdv_core_cf/android-info.txt
 SDV_SOMEIP_BROKER_CONFIG := broker_config.json
 PRODUCT_SYSTEM_PROPERTIES += ro.sdv.someip.broker_config=/system/etc/someip/broker_config.json
 
-
-
 # On arm64 architectures, init_open_dice runs on early init, consumes and wipes the open-dice
 # device. However, on x86, the open-dice device is not available, so init_open_dice reads this
 # content from a static sample DICE handover file added for testing and development.
@@ -109,6 +107,14 @@ else ifeq ($(SDV_CORE_TINY_IMAGE), true)
 else
     include device/google/sdv/sdv_core_base/sdv_samples_all.mk
 endif
+
+SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/samples/system_ext/private
+SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_core_base/sepolicy/samples/system_ext/private
+SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_core_cf/sepolicy/system_ext/private
+PRODUCT_PRIVATE_SEPOLICY_DIRS += \
+    device/google/sdv/sdv_base/sepolicy/samples/product/private \
+    device/google/sdv/sdv_core_base/sepolicy/samples/product/private \
+    device/google/sdv/sdv_core_cf/sepolicy/product/private
 
 # fstab.<name> must match with the value of the androidboot.hardware property.
 PRODUCT_COPY_FILES += \

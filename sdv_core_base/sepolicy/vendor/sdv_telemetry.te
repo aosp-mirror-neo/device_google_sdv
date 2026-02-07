@@ -12,6 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# SDV Telemetry agent can find and use data tunnel service
+typeattribute sdv_telemetry sdv_dt_client;
+
+# SDV Telemetry agent calls Service Discovery.
+typeattribute sdv_telemetry sdv_sd_client;
+
+# SDV Telemetry agent calls RPC Agent.
+typeattribute sdv_telemetry sdv_rpcagent_client;
+
 # SDV Telemetry agent is a power state client
 typeattribute sdv_telemetry sdv_vpm_agent_notification_client;
 
