@@ -23,11 +23,11 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     com.sdv.google.sample.hello.apex \
     com.sdv.google.sample.test1 \
     com.sdv.google.sample.logging \
-    com.sdv.google.sample.service_bundles_registry.apex_with_one_service_bundle_cpp \
-    com.sdv.google.sample.service_bundles_registry.apex_with_one_service_bundle_rust \
-    com.sdv.google.sample.service_bundles_registry.apex_with_two_service_bundles_cpp_rust \
-    com.sdv.google.sample.service_bundles_registry.apex_configurable \
-    com.sdv.google.sample.service_bundles_registry.apex_with_invalid_sdv_metadata \
+    com.android.sdv.sample.service_bundles_registry.apex_with_one_service_bundle_cpp \
+    com.android.sdv.sample.service_bundles_registry.apex_with_one_service_bundle_rust \
+    com.android.sdv.sample.service_bundles_registry.apex_with_two_service_bundles_cpp_rust \
+    com.android.sdv.sample.service_bundles_registry.apex_configurable \
+    com.android.sdv.sample.service_bundles_registry.apex_with_invalid_sdv_metadata \
     com.sdv.google.sample.multivd.ipv4 \
     com.sdv.google.sample.multivd.vsock \
     com.sdv.google.sample.lifecycle.apex \
