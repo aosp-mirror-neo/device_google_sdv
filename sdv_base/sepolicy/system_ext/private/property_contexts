@@ -42,3 +42,6 @@ sdv.mesh_missing_vms.count u:object_r:mesh_missing_vms_prop:s0 exact int
 # System property containing the name of the network interface SDV RPC should get its local IP
 # address from.
 ro.boot.sdv.rpc.interface u:object_r:bootloader_prop:s0 exact string
+
+# Controls telemetry execution at start
+ro.boot.sdv.telemetry.enabled u:object_r:bootloader_prop:s0 exact bool
