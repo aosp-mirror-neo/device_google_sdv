@@ -12,4 +12,5 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-PRODUCT_RELEASE_CONFIG_MAPS += $(wildcard vendor/google_shared/sdv/release/release_config_map.textproto)
+PRODUCT_RELEASE_CONFIG_MAPS += $(wildcard build/release/sdv/release_config_map.textproto)
+PRODUCT_RELEASE_CONFIG_MAPS += $(wildcard vendor/google_shared/build/release/sdv/release_config_map.textproto)

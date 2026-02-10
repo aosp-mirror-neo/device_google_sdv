@@ -37,7 +37,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     com.android.sdv.sample.complex \
     com.sdv.google.sample.bar \
     com.sdv.google.sample.baz \
-    com.sdv.google.sample.foo \
+    com.android.sdv.sample.foo \
     com.sdv.google.sample.qux \
     com.sdv.google.sample.vsidl_provider.apex_with_per_bundle_config_file \
     com.sdv.google.sample.vsidl_provider.apex_with_shared_config_file \
