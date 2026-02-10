@@ -35,10 +35,10 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     com.sdv.google.sample.orch.apex \
     com.sdv.google.sample.updatable_flags.apex.test \
     com.android.sdv.sample.complex \
-    com.sdv.google.sample.bar \
-    com.sdv.google.sample.baz \
+    com.android.sdv.sample.bar \
+    com.android.sdv.sample.baz \
     com.android.sdv.sample.foo \
-    com.sdv.google.sample.qux \
+    com.android.sdv.sample.qux \
     com.sdv.google.sample.vsidl_provider.apex_with_per_bundle_config_file \
     com.sdv.google.sample.vsidl_provider.apex_with_shared_config_file \
     com.sdv.google.sample.vsidl_vhal_proxy_integration \
