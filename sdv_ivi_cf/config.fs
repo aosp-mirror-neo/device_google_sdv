@@ -16,4 +16,4 @@
 # Use the first number in the reserved range for each partition. OEM may customize if needed.
 
 [AID_VENDOR_SDV_SAMPLE]
-value: 2901
+value: 2902
