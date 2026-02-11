@@ -58,7 +58,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     com.android.sdv.sample.perf6 \
     com.android.sdv.sample.stresstest \
     com.android.sdv.test_messages \
-    android.sdv.samples.gateway \
+    com.android.sdv.samples.gateway \
     liblifecycle_cpp_service_bundle_test \
     sdv_flag_example \
     sdv_oem_partition_update_client \
