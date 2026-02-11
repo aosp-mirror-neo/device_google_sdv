@@ -93,7 +93,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     sdv_integration_test_health_monitored_service \
     sdv_vsomeip_vehicle_health_monitor_sample_target \
     telemetry_catalog_protos_with_bp_file-vsidl-config.binpb \
-    com.google.sdv.samples \
+    com.android.sdv.samples \
     com.android.sdv.samples.rpc \
     sdv_dt_mw_publisher_rs \
     sdv_dt_mw_subscriber_rs \
