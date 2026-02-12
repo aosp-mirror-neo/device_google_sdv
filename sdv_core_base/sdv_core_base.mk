@@ -193,7 +193,8 @@ PRODUCT_VENDOR_PROPERTIES += \
 
 PRODUCT_SYSTEM_PROPERTIES += \
     ro.hardware.type=automotive \
-    ro.logd.size=8M
+    ro.logd.size=8M \
+    ro.sdv.profile?=core
 
 
 

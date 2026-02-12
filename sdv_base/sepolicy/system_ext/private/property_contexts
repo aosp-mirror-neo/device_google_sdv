@@ -45,3 +45,6 @@ ro.boot.sdv.rpc.interface u:object_r:bootloader_prop:s0 exact string
 
 # Controls telemetry execution at start
 ro.boot.sdv.telemetry.enabled u:object_r:bootloader_prop:s0 exact bool
+
+# The property used by SDV-CTS tests to indicate if the system is 'core' 'media' or 'ivi'.
+ro.sdv.profile u:object_r:sdv_cts_tests_prop:s0 exact string

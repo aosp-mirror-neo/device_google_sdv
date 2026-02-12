@@ -46,6 +46,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_VENDOR_PROPERTIES += \
     ro.vendor.telemetry.metric_config_store_in_mb=10
 
+PRODUCT_SYSTEM_PROPERTIES += ro.sdv.profile=ivi
+
 # Don't use device/google/cuttlefish/shared/auto/auto_ethernet
 ENABLE_AUTO_ETHERNET := false
 
