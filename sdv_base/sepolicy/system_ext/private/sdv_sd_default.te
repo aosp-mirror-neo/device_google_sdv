@@ -111,3 +111,6 @@ add_service(sdv_sd_server, sdv_transport_support_service)
 # Information from the binder services served by the agent as well as their (custom) binder dump()
 # is allowed to be collected in bugreports.
 dump_sdv_agent(sdv_sd_default)
+
+# For veryifying the FQIN belonging to a process calling createIdentity().
+allow sdv_sd_default sdv_identity_verifier_service:service_manager find;
