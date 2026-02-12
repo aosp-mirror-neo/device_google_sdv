@@ -64,6 +64,11 @@ PRODUCT_SYSTEM_SERVER_JARS += \
     services \
     sdv_gatewaynetworking_service_loader_service
 
+# Contains all the local FQINs that SDV agents can register.
+# TODO: b/411314604 - DT agent is running within SdvGateway process for now
+PRODUCT_COPY_FILES += \
+    device/google/sdv/sdv_ivi_base/sdv_native_services_names:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/sdv_native_services_names
+
 include device/google/sdv/sdv_base/sdv_base.mk
 include device/google/sdv/sdv_ivi_base/sdv_packages_ivi_services.mk
 include device/google/sdv/sdv_ivi_base/sdv_packages_ivi_telemetry.mk
