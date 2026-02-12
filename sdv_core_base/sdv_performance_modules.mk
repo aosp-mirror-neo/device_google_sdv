@@ -17,15 +17,15 @@
 # These are not included in sdv_core_base.mk. Targets need to include them explicitly.
 
 SDV_PERF_PACKAGES = \
-    com.sdv.google.performance.unit_type_owner \
+    com.android.sdv.performance.unit_type_owner \
     performance.hm.config \
     performance_custom_mode_dispatcher \
-    com.sdv.google.performance.apex0 \
-    com.sdv.google.performance.apex1 \
-    com.sdv.google.performance.apex2 \
-    com.sdv.google.performance.apex3 \
-    com.sdv.google.performance.apex4 \
-    com.sdv.google.performance.apex5 \
+    com.android.sdv.performance.apex0 \
+    com.android.sdv.performance.apex1 \
+    com.android.sdv.performance.apex2 \
+    com.android.sdv.performance.apex3 \
+    com.android.sdv.performance.apex4 \
+    com.android.sdv.performance.apex5 \
     com.sdv.someip \
     libhealth_vsidl_with_bp_file-vsidl-config.binpb \
     sdv_vsomeip_vehicle_health_monitor_sample_target \
