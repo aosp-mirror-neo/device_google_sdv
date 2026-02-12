@@ -30,10 +30,10 @@ SDV_PERF_PACKAGES = \
     libhealth_vsidl_with_bp_file-vsidl-config.binpb \
     sdv_vsomeip_vehicle_health_monitor_sample_target \
     test_vm_health_subscriber \
-    com.sdv.google.sample.bar \
-    com.sdv.google.sample.baz \
+    com.android.sdv.sample.bar \
+    com.android.sdv.sample.baz \
     com.android.sdv.sample.foo \
-    com.sdv.google.sample.qux \
+    com.android.sdv.sample.qux \
     cujs_orchestration_configurations \
     hm_config_with_someip.textproto \
     hm_config_without_someip.textproto
