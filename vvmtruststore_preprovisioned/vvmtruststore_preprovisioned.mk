@@ -18,9 +18,9 @@ PRODUCT_PACKAGES += vvmtruststore.preprovisioned.rc
 # Makes the vvmtruststore image installed to the $OUT directory on build and included in the
 # sdv_*-img-*.zip on disting.
 BOARD_CUSTOMIMAGES_PARTITION_LIST += \
-  vvmtruststore_preprovisioned_instance1 \
-  vvmtruststore_preprovisioned_instance2 \
-  vvmtruststore_preprovisioned_instance3
+  vvmtruststore_preprovisioned_1 \
+  vvmtruststore_preprovisioned_2 \
+  vvmtruststore_preprovisioned_3
 
 # Must tell the build system where to find the build artifact of the vvmtruststore image.
 ifeq ($(CLANG_COVERAGE),true)
@@ -34,11 +34,11 @@ endif
 VVMTRUSTSTORE_PREPROVISIONED_INTERMEDIATE_DIR := \
   $(OUT_DIR)/soong/.intermediates/device/google/sdv/vvmtruststore_preprovisioned
 
-BOARD_VVMTRUSTSTORE_PREPROVISIONED_INSTANCE1_IMAGE_LIST := \
-  $(VVMTRUSTSTORE_PREPROVISIONED_INTERMEDIATE_DIR)/vvmtruststore_preprovisioned_instance1/$(VARIANT_DIR)/vvmtruststore_preprovisioned_instance1.img
+BOARD_VVMTRUSTSTORE_PREPROVISIONED_1_IMAGE_LIST := \
+  $(VVMTRUSTSTORE_PREPROVISIONED_INTERMEDIATE_DIR)/vvmtruststore_preprovisioned_1/$(VARIANT_DIR)/vvmtruststore_preprovisioned_1.img
 
-BOARD_VVMTRUSTSTORE_PREPROVISIONED_INSTANCE2_IMAGE_LIST := \
-  $(VVMTRUSTSTORE_PREPROVISIONED_INTERMEDIATE_DIR)/vvmtruststore_preprovisioned_instance2/$(VARIANT_DIR)/vvmtruststore_preprovisioned_instance2.img
+BOARD_VVMTRUSTSTORE_PREPROVISIONED_2_IMAGE_LIST := \
+  $(VVMTRUSTSTORE_PREPROVISIONED_INTERMEDIATE_DIR)/vvmtruststore_preprovisioned_2/$(VARIANT_DIR)/vvmtruststore_preprovisioned_2.img
 
-BOARD_VVMTRUSTSTORE_PREPROVISIONED_INSTANCE3_IMAGE_LIST := \
-  $(VVMTRUSTSTORE_PREPROVISIONED_INTERMEDIATE_DIR)/vvmtruststore_preprovisioned_instance3/$(VARIANT_DIR)/vvmtruststore_preprovisioned_instance3.img
+BOARD_VVMTRUSTSTORE_PREPROVISIONED_3_IMAGE_LIST := \
+  $(VVMTRUSTSTORE_PREPROVISIONED_INTERMEDIATE_DIR)/vvmtruststore_preprovisioned_3/$(VARIANT_DIR)/vvmtruststore_preprovisioned_3.img
