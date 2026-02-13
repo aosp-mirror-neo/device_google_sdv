@@ -66,10 +66,7 @@ include device/google/sdv/sdv_ivi_base/sdv_samples_ivi_services.mk
 include device/google/sdv/sdv_ivi_base/sdv_samples_ivi_telemetry.mk
 include device/google/sdv/vvmtruststore_preprovisioned/vvmtruststore_preprovisioned.mk
 
-SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/samples/system_ext/private
-PRODUCT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/samples/product/private
-PRODUCT_PRIVATE_SEPOLICY_DIRS += device/google/sdv/sdv_ivi_base/sepolicy/samples/product/private
-PRODUCT_PUBLIC_SEPOLICY_DIRS += device/google/sdv/sdv_ivi_base/sepolicy/samples/product/public
+include device/google/sdv/sdv_ivi_base/sepolicy/samples/device_sepolicy.mk
 
 # Preprovisioned vvmtruststore content for /etc.
 # Used in test environments where properly mounting a vvmtruststore partition is
