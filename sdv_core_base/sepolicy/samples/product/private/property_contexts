@@ -14,14 +14,14 @@
 
 # Set of properties for Foo, Bar and Baz SDV samples.
 # Foo service bundle properties
-persist.com.sdv.google.sample.foo.pub_interval_ms     u:object_r:sdv_sample_cuj_prop:s0 exact uint
-persist.com.sdv.google.sample.foo.pub_amount          u:object_r:sdv_sample_cuj_prop:s0 exact uint
-persist.com.sdv.google.sample.foo.load_size           u:object_r:sdv_sample_cuj_prop:s0 exact uint
-persist.com.sdv.google.sample.foo.pub_maximum_amount  u:object_r:sdv_sample_cuj_prop:s0 exact uint
+persist.com.android.sdv.sample.foo.pub_interval_ms     u:object_r:sdv_sample_cuj_prop:s0 exact uint
+persist.com.android.sdv.sample.foo.pub_amount          u:object_r:sdv_sample_cuj_prop:s0 exact uint
+persist.com.android.sdv.sample.foo.load_size           u:object_r:sdv_sample_cuj_prop:s0 exact uint
+persist.com.android.sdv.sample.foo.pub_maximum_amount  u:object_r:sdv_sample_cuj_prop:s0 exact uint
 # Bar service bundle properties
-persist.com.sdv.google.sample.bar.rpc_interval_ms     u:object_r:sdv_sample_cuj_prop:s0 exact uint
-persist.com.sdv.google.sample.bar.load_size           u:object_r:sdv_sample_cuj_prop:s0 exact uint
+persist.com.android.sdv.sample.bar.rpc_interval_ms     u:object_r:sdv_sample_cuj_prop:s0 exact uint
+persist.com.android.sdv.sample.bar.load_size           u:object_r:sdv_sample_cuj_prop:s0 exact uint
 # Baz service bundle properties
-persist.com.sdv.google.sample.baz.rpc_interval_ms     u:object_r:sdv_sample_cuj_prop:s0 exact uint
-persist.com.sdv.google.sample.baz.load_size           u:object_r:sdv_sample_cuj_prop:s0 exact uint
-persist.com.sdv.google.sample.baz.sub_interval_ms     u:object_r:sdv_sample_cuj_prop:s0 exact uint
+persist.com.android.sdv.sample.baz.rpc_interval_ms     u:object_r:sdv_sample_cuj_prop:s0 exact uint
+persist.com.android.sdv.sample.baz.load_size           u:object_r:sdv_sample_cuj_prop:s0 exact uint
+persist.com.android.sdv.sample.baz.sub_interval_ms     u:object_r:sdv_sample_cuj_prop:s0 exact uint

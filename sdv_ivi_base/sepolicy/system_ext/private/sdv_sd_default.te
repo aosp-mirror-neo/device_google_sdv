@@ -16,3 +16,6 @@
 
 # SD agent can talk to the privileged gateway networking service.
 allow sdv_sd_default sdv_privileged_gatewaynetworking_service:service_manager find;
+
+# SD agent can talk to the SDV IVI RT service.
+binder_call(sdv_sd_default, sdv_ivi_rt_default)

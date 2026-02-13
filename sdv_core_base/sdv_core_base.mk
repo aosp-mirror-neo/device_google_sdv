@@ -295,3 +295,7 @@ PRODUCT_PACKAGES += \
 # Utilities for debugging updates
 PRODUCT_PACKAGES_DEBUG += \
   update_engine_client \
+
+PRODUCT_COPY_FILES += \
+    device/google/sdv/sdv_core_base/sdv_native_services_names:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/sdv_native_services_names
+

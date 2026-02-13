@@ -52,8 +52,8 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     com.sdv.google.test.authz.foo \
     com.sdv.google.test.authz.local_vm_acl_policy_provider \
     com.sdv.tm \
-    com.sdv.google.sample.perf5 \
-    com.sdv.google.sample.perf6 \
+    com.android.sdv.sample.perf5 \
+    com.android.sdv.sample.perf6 \
     com.android.sdv.sample.stresstest \
     com.sdv.google.test_messages \
     android.sdv.samples.gateway \
@@ -93,8 +93,8 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     sdv_integration_test_health_monitored_service \
     sdv_vsomeip_vehicle_health_monitor_sample_target \
     telemetry_catalog_protos_with_bp_file-vsidl-config.binpb \
-    com.google.sdv.samples \
-    com.google.sdv.rpcsamples \
+    com.android.sdv.samples \
+    com.android.sdv.samples.rpc \
     sdv_dt_mw_publisher_rs \
     sdv_dt_mw_subscriber_rs \
     libhealth_vsidl_with_bp_file-vsidl-config.binpb \
