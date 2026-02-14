@@ -31,6 +31,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += com.google.cf.vulkan.with_hal
 PRODUCT_VENDOR_PROPERTIES += ro.vulkan.apex=com.google.cf.vulkan
 
+PRODUCT_SYSTEM_PROPERTIES += ro.sdv.profile=media
+
 $(call soong_config_set,cvd,RELEASE_SM_OPEN_DECLARED_PASSTHROUGH_HAL,$(RELEASE_SM_OPEN_DECLARED_PASSTHROUGH_HAL))
 PRODUCT_PACKAGES += com.google.cf.gralloc
 PRODUCT_PACKAGES += \
