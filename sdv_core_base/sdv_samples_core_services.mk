@@ -41,7 +41,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     com.android.sdv.sample.qux \
     com.sdv.google.sample.vsidl_provider.apex_with_per_bundle_config_file \
     com.sdv.google.sample.vsidl_provider.apex_with_shared_config_file \
-    com.sdv.google.sample.vsidl_vhal_proxy_integration \
+    com.android.sdv.sample.vsidl_vhal_proxy_integration \
     com.sdv.google.sample.someip \
     com.sdv.google.sample.testing.sdv_dump \
     someip_samples_orch_config \
