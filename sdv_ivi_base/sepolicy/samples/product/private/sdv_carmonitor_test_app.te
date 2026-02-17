@@ -15,9 +15,6 @@
 type sdv_carmonitor_test_app, domain, coredomain;
 
 app_domain(sdv_carmonitor_test_app)
-net_domain(sdv_carmonitor_test_app)
-
 allow sdv_carmonitor_test_app app_api_service:service_manager find;
 
-# SdvCarMonitorTestApp is a client of the SDV Gateway and calls Binder API.
-typeattribute sdv_carmonitor_test_app sdv_gateway_client;
+sdv_gateway_client_domain(sdv_carmonitor_test_app)
