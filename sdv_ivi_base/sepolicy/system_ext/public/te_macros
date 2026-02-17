@@ -17,5 +17,32 @@
 # Adds all the necessary permissions to the domain required to use the SDV gateway.
 define(`sdv_gateway_client_domain', `
 typeattribute $1 sdv_gateway_client;
-net_domain($1)
+
+# A subset of the netdomain permssions that are requried for the SDV Gateway. These consist of:
+#
+#    1. creating TCP connections required for SDV RPC
+#    2. android_setprocnetwork()
+
+# Bind to ports.
+allow $1 node_type:tcp_socket node_bind;
+
+allow $1 self:tcp_socket create_stream_socket_perms;
+# Required for android_setprocnetwork
+allow $1 self:udp_socket { create getopt setopt };
+
+# Connect to ports.
+allow $1 port_type:tcp_socket name_connect;
+
+# Talks to netd via dnsproxyd socket.
+unix_socket_connect($1, dnsproxyd, netd)
+
+# Talks to netd via fwmarkd socket.
+unix_socket_connect($1, fwmarkd, netd)
+
+# Allow netd to operate on sockets that are passed to it.
+allow netd $1:tcp_socket { read write getattr setattr getopt setopt };
+allow netd $1:fd use;
+
+# Required for android_setprocnetwork
+allow netd $1:udp_socket { read write getopt setopt };
 ')
