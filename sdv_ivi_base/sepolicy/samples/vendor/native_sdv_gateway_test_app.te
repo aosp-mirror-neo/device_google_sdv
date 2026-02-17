@@ -21,6 +21,5 @@ type native_sdv_gateway_test_app_exec, exec_type, file_type, vendor_file_type;
 
 # The sample binary can be triggered from init.
 init_daemon_domain(native_sdv_gateway_test_app)
-net_domain(native_sdv_gateway_test_app)
 
-typeattribute native_sdv_gateway_test_app sdv_gateway_client;
+sdv_gateway_client_domain(native_sdv_gateway_test_app)
