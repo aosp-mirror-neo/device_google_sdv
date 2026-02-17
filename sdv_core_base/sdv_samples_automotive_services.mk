@@ -18,7 +18,7 @@
 
 SDV_AUTOMOTIVE_SERVICES_SAMPLES_PACKAGES += \
     com.sdv.google.sample.diagnostics_update \
-    com.sdv.oem.sample.concal \
+    com.android.sdv.sample.oem.concal \
     com.sdv.oem.sample.diagnostics \
     libdiagnostics_update_sample_catalog_files-vsidl-config.binpb \
     libdiagnostics_update_sample_catalog_files-vsidl-config.binpb-V2 \
