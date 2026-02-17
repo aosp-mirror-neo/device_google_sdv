@@ -28,8 +28,10 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     com.android.sdv.sample.service_bundles_registry.apex_with_two_service_bundles_cpp_rust \
     com.android.sdv.sample.service_bundles_registry.apex_configurable \
     com.android.sdv.sample.service_bundles_registry.apex_with_invalid_sdv_metadata \
-    com.sdv.google.sample.multivd.ipv4 \
-    com.sdv.google.sample.multivd.vsock \
+    sdv_sample_multivd_ipv4_server \
+    sdv_sample_multivd_ipv4_client \
+    sdv_sample_multivd_vsock_server \
+    sdv_sample_multivd_vsock_client \
     com.sdv.google.sample.lifecycle.apex \
     com.sdv.google.sample.lifecycle.userid.apex \
     com.sdv.google.sample.orch.apex \
