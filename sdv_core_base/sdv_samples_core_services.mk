@@ -55,7 +55,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     com.android.sdv.sample.perf5 \
     com.android.sdv.sample.perf6 \
     com.android.sdv.sample.stresstest \
-    com.sdv.google.test_messages \
+    com.android.sdv.test_messages \
     android.sdv.samples.gateway \
     liblifecycle_cpp_service_bundle_test \
     sdv_flag_example \
@@ -86,8 +86,8 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     rochambeau_player_rs \
     rochambeau_judge_rs \
     com.sdv.google.sample.sqlite \
-    com.sdv.sample_oem.health.monitored \
-    com.sdv.sample_oem.health.monitoring \
+    com.android.sdv.sample.oem.health.monitored \
+    com.android.sdv.sample.oem.health.monitoring \
     sdv_dice_root_key_extraction_tool \
     com.sdv.someip \
     sdv_integration_test_health_monitored_service \

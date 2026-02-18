@@ -32,9 +32,8 @@ SDV_RPC_INTERFACE ?= sdv_rpc
 
 include device/google/sdv/sdv_core_base/BoardConfig.mk
 
+include device/google/sdv/sdv_core_base/sepolicy/samples/board_sepolicy.mk
 BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_core_cf/sepolicy/vendor
-BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/samples/vendor
-BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_core_base/sepolicy/samples/vendor
 
 # SDV OemUpdater block device properties.
 BOARD_BOOTCONFIG += \

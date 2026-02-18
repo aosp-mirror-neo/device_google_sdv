@@ -27,6 +27,5 @@ TARGET_BOARD_INFO_FILE := device/google/sdv/sdv_ivi_cf/android-info.txt
 TARGET_KERNEL_MODULES_PATH ?= kernel/prebuilts/$(TARGET_KERNEL_USE)/$(TARGET_KERNEL_ARCH)
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(TARGET_KERNEL_MODULES_PATH)/8021q.ko
 
-BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/samples/vendor
+include device/google/sdv/sdv_ivi_base/sepolicy/samples/board_sepolicy.mk
 BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_ivi_cf/sepolicy/vendor
-BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_ivi_base/sepolicy/samples/vendor

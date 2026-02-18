@@ -38,7 +38,7 @@ SDV_CORE_SERVICES_PACKAGES += \
     sdv_health_monitor \
     $(SDV_SOMEIP_AGENT_MODULES) \
     $(SDV_SOMEIP_BROKER_CONFIG) \
-    com.sdv.google.health \
+    com.android.sdv.health \
     com.sdv.google.orchestrator \
     com.sdv.google.update_manager \
     com.sdv.google.vsidl_provider \
