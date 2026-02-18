@@ -12,9 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+include device/google/sdv/sdv_base/sepolicy/samples/device_sepolicy.mk
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += \
-    device/google/sdv/sdv_base/sepolicy/samples/system_ext/private \
     device/google/sdv/sdv_core_base/sepolicy/samples/system_ext/private
 PRODUCT_PRIVATE_SEPOLICY_DIRS += \
-    device/google/sdv/sdv_base/sepolicy/samples/product/private \
     device/google/sdv/sdv_core_base/sepolicy/samples/product/private
