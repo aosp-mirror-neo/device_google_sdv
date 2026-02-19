@@ -18,7 +18,6 @@
 # Components in core_services/ specific to SDV_IVI target
 SDV_IVI_SERVICES_PACKAGES += \
     com.sdv.google.gateway.client \
-    init_open_dice \
     libsdvgatewayclient \
     libsdvgatewaynetworking_jni \
     libvhal_proxy \
@@ -34,7 +33,6 @@ SDV_IVI_SERVICES_PACKAGES += \
 SDV_IVI_SERVICES_PACKAGES += google.sdv.data_tunnel-service.xml
 SDV_IVI_SERVICES_PACKAGES += \
     rpcagent \
-    init_open_dice \
     sdv_sd_agent_no_vpm
 
 # Vehicle HAL is already included in PRODUCT_PACKAGES, but it must also be part of

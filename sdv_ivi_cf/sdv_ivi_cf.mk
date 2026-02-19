@@ -29,29 +29,6 @@ PRODUCT_DEVICE := sdv_ivi_cf
 
 LOCAL_VHAL_PRODUCT_PACKAGE := android.hardware.automotive.vehicle@V1-sdv-emulator-service
 
-# On arm64 architectures, init_open_dice runs on early init, consumes and wipes the open-dice
-# device. However, on x86, the open-dice device is not available, so init_open_dice reads this
-# content from a static sample DICE handover file added for testing and development.
-# TODO: b/409316775 - make the open-dice device available on x86 architectures.
-#
-# The dice_handover_instance[1,2,3] are to enable manual testing of the mesh described in
-# vvmconfig.example.
-PRODUCT_PACKAGES += \
-    sample_dice_handover_file \
-    dice_handover_instance1 \
-    dice_handover_instance2 \
-    dice_handover_instance3
-# Adding the modules to the binary PDK as well.
-SDV_IVI_SERVICES_PACKAGES += \
-    sample_dice_handover_file \
-    dice_handover_instance1 \
-    dice_handover_instance2 \
-    dice_handover_instance3
-
-# TODO: b/408956504 - merge init_open_dice_service.rc into init_open_dice.rc and remove this.
-PRODUCT_COPY_FILES += \
-    device/google/sdv/sdv_base/init_open_dice_service.rc:system_ext/etc/init/init_open_dice_service.rc
-
 # The SDV KeyMint must be added to the PDK, because the PDK is tested without the sources in
 # system/software_defined_vehicle/ (where the SDV KeyMint is located), so the SDV KeyMint won't be
 # added to the device that tests the PDK.
@@ -65,6 +42,9 @@ include device/google/sdv/sdv_base/sdv_sample_ethernet_setup.mk
 include device/google/sdv/sdv_ivi_base/sdv_samples_ivi_services.mk
 include device/google/sdv/sdv_ivi_base/sdv_samples_ivi_telemetry.mk
 include device/google/sdv/vvmtruststore_preprovisioned/vvmtruststore_preprovisioned.mk
+# WARNING: Never use init_open_dice_from_file in production environments.
+#          It is used here to be able to test with Cuttlefish on x86.
+include device/google/sdv/sdv_base/init_open_dice/init_open_dice_from_file.mk
 
 include device/google/sdv/sdv_ivi_base/sepolicy/samples/device_sepolicy.mk
 

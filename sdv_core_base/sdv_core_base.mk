@@ -180,10 +180,6 @@ PRODUCT_COPY_FILES += \
     device/google/cuttlefish/shared/config/seriallogging.rc:vendor/etc/init/seriallogging.rc \
     device/google/sdv/sdv_core_base/initial_boot_checkpoint.sh:$(TARGET_COPY_OUT_SYSTEM_EXT)/bin/initial_boot_checkpoint.sh \
 
-# TODO: b/408956504 - merge init_open_dice_service.rc into init_open_dice.rc and remove this.
-PRODUCT_COPY_FILES += \
-    device/google/sdv/sdv_base/init_open_dice_service.rc:system_ext/etc/init/init_open_dice_service.rc
-
 PRODUCT_VENDOR_PROPERTIES += \
     ro.soc.manufacturer=$(PRODUCT_MANUFACTURER) \
     ro.soc.model=$(PRODUCT_DEVICE)
@@ -299,4 +295,3 @@ PRODUCT_PACKAGES_DEBUG += \
 
 PRODUCT_COPY_FILES += \
     device/google/sdv/sdv_core_base/sdv_native_services_names:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/sdv_native_services_names
-
