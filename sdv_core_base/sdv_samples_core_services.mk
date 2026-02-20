@@ -34,7 +34,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     sdv_sample_multivd_vsock_client \
     com.sdv.google.sample.lifecycle.apex \
     com.sdv.google.sample.lifecycle.userid.apex \
-    com.sdv.google.sample.orch.apex \
+    com.android.sdv.test.orchestrator \
     com.sdv.google.sample.updatable_flags.apex.test \
     com.android.sdv.sample.complex \
     com.android.sdv.sample.bar \
@@ -78,7 +78,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     sdv_vsomeip_robustness_tester \
     orch_custom_mode_sample \
     persistent_binder_test_service \
-    com.sdv.google.sample.orchestration \
+    com.android.sdv.sample.orchestrator \
     sdv_service_bundle \
     sdv_tire_pressure \
     sdv_range_remaining_subscriber \
