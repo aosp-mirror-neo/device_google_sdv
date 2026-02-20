@@ -16,6 +16,7 @@
 
 import /system/etc/init/init.sdv_core_base.rc
 import /system/etc/init/init.sdv_cf.rc
+import /system_ext/etc/init/init_open_dice_from_file_service.rc
 import /system_ext/etc/init/vvmtruststore.rc
 import /product/etc/init/vvmtruststore.preprovisioned.rc
 

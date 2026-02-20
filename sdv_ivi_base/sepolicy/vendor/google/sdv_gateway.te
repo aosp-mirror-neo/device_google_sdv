@@ -12,11 +12,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# SDV Gateway Service is a core service.
 type sdv_gateway, domain;
 typeattribute sdv_gateway mlstrustedsubject;
 type sdv_gateway_exec, exec_type, file_type, vendor_file_type;
 init_daemon_domain(sdv_gateway)
+
+# Allow dumpstate accessing sdv_gateway, required for CTS test
+binder_call(dumpstate, sdv_gateway);
+
+# Allow the SDV Gateway domain to use Binder IPC
+binder_use(sdv_gateway);
 
 typeattribute sdv_gateway sdv_gateway_server;
 
@@ -25,42 +30,24 @@ add_service(sdv_gateway_server, sdv_gateway_service)
 # SDV Gateway can register the IPrivilegedGatewayNetworking service.
 add_service(sdv_gateway_server, sdv_privileged_gatewaynetworking_service)
 
-# Allow the SDV Gateway domain to use Binder IPC
-binder_use(sdv_gateway_server);
-
-# The SDV Gateway server is a client for SDV Comms stack agents on IVI.
+# The SDV Gateway server uses service discovery.
 typeattribute sdv_gateway sdv_sd_client;
+
+# The SDV Gateway server uses the RPC agent.
 typeattribute sdv_gateway sdv_rpcagent_client;
-typeattribute sdv_gateway sdv_dt_client;
 
 # The SDV Gateway server is a privileged client for SDV Comms stack agents on IVI.
 typeattribute sdv_gateway sdv_privileged_sd_client;
 
-# The SDV Gateway server is a client of the Package Manager proxy service.
-typeattribute sdv_gateway packagemanagerproxy_client;
-
-# The SDV DT client is also a SDV Gateway client on IVI because DT server runs
-# in the sdv_gateway process.
+# This rule is required by the DT server. On IVI, the DT server runs in the sdv_gateway process.
 # Allow SDV Gateway to use Transport Support Service
 allow sdv_gateway sdv_transport_support_service:service_manager find;
-# SDV DT client and server can use Binder IPC (using SDV Gateway).
-binder_call(sdv_dt_client, sdv_gateway_server)
-binder_call(sdv_gateway_server, sdv_dt_client)
-# SDV DT client and server can find the IPC service (using SDV Gateway).
-allow sdv_dt_client sdv_gateway_service:service_manager find;
 
-allow sdv_dt_client sdv_gateway_service:fifo_file { read write };
-allow sdv_dt_client sdv_gateway_service:fd use;
-allow sdv_dt_client sdv_gateway:fifo_file { read write };
-allow sdv_dt_client sdv_gateway:fd use;
-# TODO: b/462005657 - Clean-up SELinux rules for DT use of memfd.
-allow sdv_dt_client sdv_gateway_service:memfd_file { read write getattr map };
-allow sdv_dt_client sdv_gateway:memfd_file { read write getattr map };
-allow sdv_dt_client self:memfd_file { read write getattr map };
-allow sdv_dt_client sdv_gateway_client:memfd_file { read write getattr map };
-
-# SDV Gateway Agent can use sockets
+# This rule is required by the DT server. SDV Gateway Agent can create sockets.
 net_domain(sdv_gateway)
+
+# The SDV Gateway server is a client of the Package Manager proxy service.
+typeattribute sdv_gateway packagemanagerproxy_client;
 
 # SDV Gateway Agent can access proc_net to read the somaxconn value of the process.
 allow sdv_gateway proc_net:file { getattr open read };
@@ -72,10 +59,6 @@ get_prop(sdv_gateway, sdv_ethernet_ready_prop)
 
 # The SDV Gateway client
 
-# TODO: b/462005657 - Clean-up SELinux rules for DT use of memfd.
-allow sdv_gateway_client sdv_gateway_service:memfd_file { read write getattr map };
-allow sdv_gateway_client sdv_gateway:memfd_file { read write getattr map };
-allow sdv_gateway_client self:memfd_file { read write getattr map };
 # SDV Gateway client can access proc_net to read the somaxconn value of the process.
 allow sdv_gateway_client proc_net:file { getattr open read };
 # Allow the SDV Gateway client to use Binder IPC
@@ -83,27 +66,28 @@ binder_use(sdv_gateway_client);
 # The SDV Gateway client and agent can call each other via Binder IPC.
 binder_call(sdv_gateway_client, sdv_gateway_server)
 binder_call(sdv_gateway_server, sdv_gateway_client)
-# The SDV Gateway client must be able to directly call Service Discovery
-# via Binder IPC until after b/379062170 and b/379274496 are fixed.
-binder_call(sdv_gateway_client, sdv_sd_server)
-binder_call(sdv_sd_server, sdv_gateway_client)
-# The SDV Gateway client has direct access to Service Discovery
-# via Binder IPC service until after b/379062170 and b/379274496 are fixed.
-allow sdv_gateway_client sdv_sd_service:service_manager find;
-
 # The SDV Gateway client has access to the ISdvGateway Binder IPC service.
 allow sdv_gateway_client sdv_gateway_service:service_manager find;
 
+# The SDV Gateway clients directly call Service Discovery, except for the identity interfaces.
+binder_call(sdv_gateway_client, sdv_sd_server)
+binder_call(sdv_sd_server, sdv_gateway_client)
+allow sdv_gateway_client sdv_sd_service:service_manager find;
+
 # The SDV Gateway client can use FMQ and pipes.
-allow sdv_gateway_client sdv_gateway_service:fifo_file { read write };
-allow sdv_gateway_client sdv_gateway_service:fd use;
-allow sdv_gateway_client sdv_gateway:fifo_file { read write };
-allow sdv_gateway_client sdv_gateway:fd use;
+allow sdv_gateway_client sdv_gateway_server:fifo_file { read write };
+allow sdv_gateway_client sdv_gateway_server:fd use;
+
+# Allow DT clients to use fds created by other DT clients, needed for
+# shared mem segments for topic FMQs that are created in pub process.
+allow sdv_gateway_client sdv_gateway_client:fd use;
+
+# TODO: b/462005657 - Clean-up SELinux rules for DT use of memfd.
+allow sdv_gateway_server sdv_gateway_client:memfd_file { read write map };
+allow sdv_gateway_client sdv_gateway_server:memfd_file { read write map };
+allow sdv_gateway_client sdv_gateway_client:memfd_file { read write map };
 
 # The SDV Gateway client must NOT bypass the SDV Gateway.
 # TODO: b/391793350 - Remove the rules if they become redundant.
 neverallow sdv_gateway_client sdv_id_service:service_manager find;
 neverallow sdv_gateway_client sdv_privileged_sd_client:service_manager find;
-
-# Allow dumpstate accessing sdv_gateway, required for CTS test
-binder_call(dumpstate, sdv_gateway);

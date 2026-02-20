@@ -12,5 +12,5 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_base/sepolicy/samples/vendor
+include device/google/sdv/sdv_base/sepolicy/samples/board_sepolicy.mk
 BOARD_SEPOLICY_DIRS += device/google/sdv/sdv_core_base/sepolicy/samples/vendor

@@ -45,11 +45,10 @@ SDV_CORE_SERVICES_PACKAGES += \
     google.sdv.dt \
     sdv_vsidl_provider_agent
 
-# The Communication Stack Agents and init_open_dice
+# The Communication Stack Agents
 SDV_CORE_SERVICES_PACKAGES += \
     dt_agent \
     rpcagent \
-    init_open_dice \
     sdv_sd_agent
 
 # The testing utilities.
