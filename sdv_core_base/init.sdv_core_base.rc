@@ -411,12 +411,6 @@ on post-fs-data
     #    is setup (needed to read 'care_map.pb')
     exec_start update_verifier
 
-on early-boot
-    # Network setup happens on post-fs-data. Restart adbd after that happens to
-    # avoid 3s delay due to initial mdnsd failure when we attempt to start
-    # before network is up.
-    restart adbd
-
 on boot
     ifup lo
     hostname localhost
