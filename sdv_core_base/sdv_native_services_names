@@ -5,4 +5,4 @@
 7503,com.sdv.someip.SomeIpBroker/default
 7504,com.google.sdv.telemetry.TelemetryService/default
 7509,google.sdv.dt.IDataTunnelAgent/default
-7511,com.sdv.google.vsidl_provider.Agent/default
+7511,com.android.sdv.vsidl_provider.Agent/default
