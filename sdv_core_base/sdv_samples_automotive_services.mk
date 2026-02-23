@@ -17,9 +17,9 @@
 # These are not included in sdv_core_base.mk. Targets need to include them explicitly.
 
 SDV_AUTOMOTIVE_SERVICES_SAMPLES_PACKAGES += \
-    com.sdv.google.sample.diagnostics_update \
+    com.android.sdv.sample.diagnostics_update \
     com.android.sdv.sample.oem.concal \
-    com.sdv.oem.sample.diagnostics \
+    com.android.sdv.sample.oem.diagnostics \
     libdiagnostics_update_sample_catalog_files-vsidl-config.binpb \
     libdiagnostics_update_sample_catalog_files-vsidl-config.binpb-V2 \
     libdiagnostics_v1_sample_catalog_files-vsidl-config.binpb \
