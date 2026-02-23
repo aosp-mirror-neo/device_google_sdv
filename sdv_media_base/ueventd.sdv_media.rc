@@ -12,12 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Virtual console for logcat
-/dev/hvc2 0666 system system
-
-# open-dice device owned by init_open_dice
-/dev/open-dice0 0660 system_ext_init_open_dice system_ext_init_open_dice
-
 # virtio-gpu
 /dev/dri/card0 0660 system graphics
 /dev/dri/controlD64 0660 system graphics
