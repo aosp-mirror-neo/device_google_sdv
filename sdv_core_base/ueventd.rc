@@ -12,6 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# SDV Core derivate targets can put here additional ueventd.rc files to get them imported.
+import /vendor/etc/sdv_core_ueventd/
+
 # Virtual console for logcat
 /dev/hvc2                 0666   system     system
 
