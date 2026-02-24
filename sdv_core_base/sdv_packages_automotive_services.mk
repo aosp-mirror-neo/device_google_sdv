@@ -32,7 +32,7 @@ SDV_AUTOMOTIVE_SERVICES_PACKAGES += \
     com.android.sdv.vpm \
     com.android.sdv.vpm.client \
     com.android.sdv.concal \
-    com.sdv.google.user_preferences \
+    com.android.sdv.user_preferences \
     $(SDV_DIAGNOSTICS_AGENT_MODULE) \
     $(SDV_VEHICLE_POWER_STATE_MANAGER_MODULE)
 
