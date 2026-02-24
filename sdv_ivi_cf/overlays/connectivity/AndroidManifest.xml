@@ -16,14 +16,18 @@
 -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.android.connectivity.resources.cuttlefish.overlay">
+    package="com.android.connectivity.resources.cuttlefish.sdvivi.overlay">
 
     <application android:hasCode="false" />
 
+    <!-- Note: Some of the parent device configs may include other overlays
+         for connectivity, we are setting a higher priority to override those
+         settings to make SDV network working. Please confirm the settings are
+         compatible when making changes. -->
     <overlay
       android:targetPackage="com.android.connectivity.resources"
       android:targetName="ServiceConnectivityResourcesConfig"
       android:isStatic="true"
-      android:priority="1"
+      android:priority="10"
       />
 </manifest>
