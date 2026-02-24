@@ -40,7 +40,7 @@ SDV_CORE_SERVICES_PACKAGES += \
     $(SDV_SOMEIP_BROKER_CONFIG) \
     com.android.sdv.health \
     com.android.sdv.orchestrator \
-    com.sdv.google.update_manager \
+    com.android.sdv.update_manager \
     com.android.sdv.vsidl_provider \
     google.sdv.dt \
     sdv_vsidl_provider_agent
