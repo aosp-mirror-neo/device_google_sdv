@@ -55,5 +55,10 @@ PRODUCT_PACKAGES += \
     libtinyalsav2 \
 
 PRODUCT_COPY_FILES += \
-    device/google/sdv/sdv_media_base/init.sdv_media_base.rc:system/etc/init/init.sdv_media_base.rc \
-    device/google/sdv/sdv_media_base/ueventd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/ueventd.rc \
+    device/google/sdv/sdv_media_base/init.sdv_media_base.rc:$(TARGET_COPY_OUT_SYSTEM)/etc/init/init.sdv_media_base.rc
+
+# In Android, /vendor/etc/ueventd.rc is loaded automatically, but, by default, no other ueventd
+# entries. To enable multiple ueventd.rc files, SDV Core's ueventd.rc import all ueventd.rc files
+# from /vendor/etc/sdv_core_ueventd/
+PRODUCT_COPY_FILES += \
+    device/google/sdv/sdv_media_base/ueventd.sdv_media.rc:$(TARGET_COPY_OUT_VENDOR)/etc/sdv_core_ueventd/ueventd.sdv_media.rc

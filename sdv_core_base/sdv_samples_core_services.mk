@@ -87,7 +87,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     sdv_server_rust_tracing_sample \
     rochambeau_player_rs \
     rochambeau_judge_rs \
-    com.sdv.google.sample.sqlite \
+    com.android.sdv.sample.sqlite \
     com.android.sdv.sample.oem.health.monitored \
     com.android.sdv.sample.oem.health.monitoring \
     sdv_dice_root_key_extraction_tool \
