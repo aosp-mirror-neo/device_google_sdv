@@ -42,7 +42,7 @@ SDV_CORE_SERVICES_PACKAGES += \
     com.android.sdv.orchestrator \
     com.sdv.google.update_manager \
     com.android.sdv.vsidl_provider \
-    google.sdv.dt \
+    com.android.sdv.dt \
     sdv_vsidl_provider_agent
 
 # The Communication Stack Agents
