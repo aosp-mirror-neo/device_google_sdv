@@ -34,15 +34,15 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     sdv_sample_multivd_vsock_client \
     com.sdv.google.sample.lifecycle.apex \
     com.sdv.google.sample.lifecycle.userid.apex \
-    com.sdv.google.sample.orch.apex \
+    com.android.sdv.test.orchestrator \
     com.sdv.google.sample.updatable_flags.apex.test \
     com.android.sdv.sample.complex \
     com.android.sdv.sample.bar \
     com.android.sdv.sample.baz \
     com.android.sdv.sample.foo \
     com.android.sdv.sample.qux \
-    com.sdv.google.sample.vsidl_provider.apex_with_per_bundle_config_file \
-    com.sdv.google.sample.vsidl_provider.apex_with_shared_config_file \
+    com.android.sdv.sample.vsidl_provider.apex_with_per_bundle_config_file \
+    com.android.sdv.sample.vsidl_provider.apex_with_shared_config_file \
     com.android.sdv.sample.vsidl_vhal_proxy_integration \
     com.sdv.google.sample.someip \
     com.sdv.google.sample.testing.sdv_dump \
@@ -58,7 +58,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     com.android.sdv.sample.perf6 \
     com.android.sdv.sample.stresstest \
     com.android.sdv.test_messages \
-    android.sdv.samples.gateway \
+    com.android.sdv.samples.gateway \
     liblifecycle_cpp_service_bundle_test \
     sdv_flag_example \
     sdv_oem_partition_update_client \
@@ -78,7 +78,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     sdv_vsomeip_robustness_tester \
     orch_custom_mode_sample \
     persistent_binder_test_service \
-    com.sdv.google.sample.orchestration \
+    com.android.sdv.sample.orchestrator \
     sdv_service_bundle \
     sdv_tire_pressure \
     sdv_range_remaining_subscriber \
