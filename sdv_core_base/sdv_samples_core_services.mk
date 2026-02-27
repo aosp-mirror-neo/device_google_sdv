@@ -22,7 +22,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     sdv_apex_update_sample_catalog_files-vsidl-config.binpb \
     com.sdv.google.sample.hello.apex \
     com.sdv.google.sample.test1 \
-    com.sdv.google.sample.logging \
+    com.android.sdv.sample.logging \
     com.android.sdv.sample.service_bundles_registry.apex_with_one_service_bundle_cpp \
     com.android.sdv.sample.service_bundles_registry.apex_with_one_service_bundle_rust \
     com.android.sdv.sample.service_bundles_registry.apex_with_two_service_bundles_cpp_rust \
@@ -105,7 +105,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     update_engine_product_partition_post_install \
     update_engine_system_partition_post_install
 
-# TODO: b/361610453 - include in com.sdv.google.sample.logging
+# TODO: b/361610453 - include in com.android.sdv.sample.logging
 SDV_CORE_SERVICES_SAMPLES_PACKAGES += structured_logging_sdv_rust_sample
 
 SDV_CORE_SERVICES_HOST_SAMPLES_PACKAGES += \
