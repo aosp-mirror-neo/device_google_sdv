@@ -49,7 +49,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     someip_samples_orch_config \
     hm_suspend_to_ram_test_vm_orch_config \
     cujs_orchestration_configurations \
-    com.sdv.google.sample.update_manager.client \
+    com.android.sdv.sample.update_manager.client \
     com.android.sdv.test.authz.bar \
     com.android.sdv.test.authz.foo \
     com.android.sdv.test.authz.local_vm_acl_policy_provider \

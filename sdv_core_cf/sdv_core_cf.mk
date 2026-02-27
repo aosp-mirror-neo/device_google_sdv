@@ -86,7 +86,7 @@ ifeq ($(SDV_CORE_PERF_IMAGE), true)
     include device/google/sdv/sdv_core_base/sdv_performance_modules.mk
 else ifeq ($(SDV_CORE_TINY_IMAGE), true)
     PRODUCT_PACKAGES += sdv.brand_new_apex.config \
-                        com.sdv.google.sample.update_manager.client \
+                        com.android.sdv.sample.update_manager.client \
 
 else
     include device/google/sdv/sdv_core_base/sdv_samples_all.mk
