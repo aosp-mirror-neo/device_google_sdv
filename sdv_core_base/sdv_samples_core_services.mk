@@ -83,7 +83,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     sdv_tire_pressure \
     sdv_range_remaining_subscriber \
     someip_catalog_protos_with_bp_file-vsidl-config.binpb \
-    com.sdv.google.sample.tracing \
+    com.android.sdv.sample.tracing \
     sdv_server_rust_tracing_sample \
     rochambeau_player_rs \
     rochambeau_judge_rs \
