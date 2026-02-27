@@ -289,6 +289,11 @@ PRODUCT_PACKAGES += \
   update_engine_nonetd \
   update_verifier \
 
+# Add support for Android feature flags
+PRODUCT_PACKAGES += \
+    aflags \
+    com.android.configinfrastructure \
+
 # Utilities for debugging updates
 PRODUCT_PACKAGES_DEBUG += \
   update_engine_client \
