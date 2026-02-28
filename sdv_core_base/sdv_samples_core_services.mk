@@ -17,11 +17,9 @@
 # These are not included in sdv_core_base.mk. Targets need to include them explicitly.
 
 SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
-    com.sdv.google.sample.apex.consumer \
-    com.sdv.google.sample.apex.provider \
+    com.android.sdv.sample.apex.consumer \
+    com.android.sdv.sample.apex.provider \
     sdv_apex_update_sample_catalog_files-vsidl-config.binpb \
-    com.sdv.google.sample.hello.apex \
-    com.sdv.google.sample.test1 \
     com.android.sdv.sample.logging \
     com.android.sdv.sample.service_bundles_registry.apex_with_one_service_bundle_cpp \
     com.android.sdv.sample.service_bundles_registry.apex_with_one_service_bundle_rust \
@@ -35,12 +33,14 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     com.sdv.google.sample.lifecycle.apex \
     com.sdv.google.sample.lifecycle.userid.apex \
     com.android.sdv.test.orchestrator \
-    com.sdv.google.sample.updatable_flags.apex.test \
     com.android.sdv.sample.complex \
     com.android.sdv.sample.bar \
     com.android.sdv.sample.baz \
     com.android.sdv.sample.foo \
     com.android.sdv.sample.qux \
+    com.android.sdv.sample.hello.apex \
+    com.android.sdv.sample.test1 \
+    com.android.sdv.sample.updatable_flags \
     com.android.sdv.sample.vsidl_provider.apex_with_per_bundle_config_file \
     com.android.sdv.sample.vsidl_provider.apex_with_shared_config_file \
     com.android.sdv.sample.vsidl_vhal_proxy_integration \
@@ -53,7 +53,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     com.android.sdv.test.authz.bar \
     com.android.sdv.test.authz.foo \
     com.android.sdv.test.authz.local_vm_acl_policy_provider \
-    com.sdv.tm \
+    com.android.sdv.sample.vsidl \
     com.android.sdv.sample.perf5 \
     com.android.sdv.sample.perf6 \
     com.android.sdv.sample.stresstest \
@@ -83,7 +83,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     sdv_tire_pressure \
     sdv_range_remaining_subscriber \
     someip_catalog_protos_with_bp_file-vsidl-config.binpb \
-    com.sdv.google.sample.tracing \
+    com.android.sdv.sample.tracing \
     sdv_server_rust_tracing_sample \
     rochambeau_player_rs \
     rochambeau_judge_rs \
