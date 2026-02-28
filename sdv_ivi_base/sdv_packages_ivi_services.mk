@@ -17,7 +17,7 @@
 
 # Components in core_services/ specific to SDV_IVI target
 SDV_IVI_SERVICES_PACKAGES += \
-    com.sdv.google.gateway.client \
+    com.android.sdv.gateway.client \
     libsdvgatewayclient \
     libsdvgatewaynetworking_jni \
     libvhal_proxy \
