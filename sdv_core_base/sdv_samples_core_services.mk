@@ -44,7 +44,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     com.android.sdv.sample.vsidl_provider.apex_with_per_bundle_config_file \
     com.android.sdv.sample.vsidl_provider.apex_with_shared_config_file \
     com.android.sdv.sample.vsidl_vhal_proxy_integration \
-    com.sdv.google.sample.someip \
+    com.android.sdv.sample.someip \
     carla_someip_client_cli \
     com.sdv.google.sample.testing.sdv_dump \
     someip_samples_orch_config \
@@ -92,7 +92,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     com.android.sdv.sample.oem.health.monitored \
     com.android.sdv.sample.oem.health.monitoring \
     sdv_dice_root_key_extraction_tool \
-    com.sdv.someip \
+    com.android.sdv.someip \
     sdv_integration_test_health_monitored_service \
     sdv_vsomeip_vehicle_health_monitor_sample_target \
     telemetry_catalog_protos_with_bp_file-vsidl-config.binpb \
