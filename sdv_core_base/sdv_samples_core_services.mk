@@ -30,7 +30,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     sdv_sample_multivd_ipv4_client \
     sdv_sample_multivd_vsock_server \
     sdv_sample_multivd_vsock_client \
-    com.sdv.google.sample.lifecycle.apex \
+    com.android.sdv.sample.lifecycle \
     com.sdv.google.sample.lifecycle.userid.apex \
     com.android.sdv.test.orchestrator \
     com.android.sdv.sample.complex \

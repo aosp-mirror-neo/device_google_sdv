@@ -19,5 +19,5 @@
 
 # These sample service bundles require a custom SELinux policy to be able to add a Binder service
 # used for testing.
-com.sdv.google.sample.lifecycle.apex.LifecycleRustTestServiceBundle    u:r:test_service_bundle:s0
-com.sdv.google.sample.lifecycle.apex.LifecycleCppTestServiceBundle     u:r:test_service_bundle:s0
+com.android.sdv.sample.lifecycle.LifecycleRustTestServiceBundle    u:r:test_service_bundle:s0
+com.android.sdv.sample.lifecycle.LifecycleCppTestServiceBundle     u:r:test_service_bundle:s0
