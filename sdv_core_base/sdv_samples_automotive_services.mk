@@ -26,7 +26,7 @@ SDV_AUTOMOTIVE_SERVICES_SAMPLES_PACKAGES += \
     vpm_power_state_client \
     vpm_vehicle_state_client \
     test_vm_health_subscriber \
-    com.sdv.oem.user_preferences \
+    com.android.sdv.sample.user_preferences \
     user_preferences_samples_orch_config \
     diagnostics_provider1_sample_orch_config \
     concal_sample_orch_config \
