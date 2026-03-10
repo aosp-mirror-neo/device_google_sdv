@@ -26,7 +26,7 @@ SDV_PERF_PACKAGES = \
     com.android.sdv.performance.apex3 \
     com.android.sdv.performance.apex4 \
     com.android.sdv.performance.apex5 \
-    com.sdv.someip \
+    com.android.sdv.someip \
     libhealth_vsidl_with_bp_file-vsidl-config.binpb \
     sdv_vsomeip_vehicle_health_monitor_sample_target \
     test_vm_health_subscriber \
