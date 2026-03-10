@@ -19,3 +19,8 @@ add_service(sdv_ivi_rt_default, sdv_identity_verifier_service)
 
 # The SDV IVI RT service is a client of the Package Manager proxy service.
 typeattribute sdv_ivi_rt_default packagemanagerproxy_client;
+
+# The SDV IVI RT service can talk to IPrivilegedGatewayNetworking service
+# from the sdv_gateway_server.
+allow sdv_ivi_rt_default sdv_privileged_gatewaynetworking_service:service_manager find;
+binder_call(sdv_ivi_rt_default, sdv_gateway_server)
