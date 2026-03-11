@@ -36,6 +36,10 @@ SDV_IVI_SERVICES_PACKAGES += com.android.sdv.hardware.keymint.rust_nonsecure
 
 TARGET_FS_CONFIG_GEN += device/google/sdv/sdv_ivi_cf/config.fs
 
+# Define the Soong module with VM level permissions
+# This module has to be an APEX with id "com.oem.sdv.authz"
+SDV_VM_LEVEL_PERMISSIONS_MODULE := com.oem.sdv.authz.allow_all.ivi
+
 include device/google/sdv/sdv_ivi_base/sdv_ivi_base.mk
 include device/google/sdv/sdv_base/sdv_sample_ethernet_setup.mk
 include device/google/sdv/sdv_ivi_base/sdv_samples_ivi_services.mk

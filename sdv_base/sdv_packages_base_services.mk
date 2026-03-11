@@ -20,6 +20,11 @@
 # Discovery, Data Tunnel, etc., with the exception of agents, which are included
 # starting from sdv_core_base).
 
+ifeq ($(SDV_VM_LEVEL_PERMISSIONS_MODULE),)
+  $(error $$SDV_VM_LEVEL_PERMISSIONS_MODULE is not set, so no VM level permissions will be installed. \
+    For a properly working Authz permissions, make sure that an implementation will be installed!)
+endif
+
 # TODO: b/415334868 - Investigate/prune the list SDV_BASE_SERVICES_PACKAGES.
 # It is possible that some of these items might not be actually needed in IVI
 SDV_BASE_SERVICES_PACKAGES += \
@@ -35,6 +40,7 @@ SDV_BASE_SERVICES_PACKAGES += \
     libsdv_comms_sd_ffi \
     libsdv_dt_core \
     libsdv_status \
+    $(SDV_VM_LEVEL_PERMISSIONS_MODULE)
 
 # Command line tools to help with development and manual testing.
 SDV_BASE_SERVICES_HOST_PACKAGES += \

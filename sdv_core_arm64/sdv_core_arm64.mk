@@ -33,6 +33,10 @@ PRODUCT_DEVICE := sdv_core_arm64
 SDV_SOMEIP_BROKER_CONFIG := broker_config.json
 PRODUCT_SYSTEM_PROPERTIES += ro.sdv.someip.broker_config=/system/etc/someip/broker_config.json
 
+# Define the Soong module with VM level permissions
+# This module has to be an APEX with id "com.oem.sdv.authz"
+SDV_VM_LEVEL_PERMISSIONS_MODULE := com.oem.sdv.authz.allow_all.core
+
 ## VvmConfig
 PRODUCT_SDV_VVM_CONFIG := system/software_defined_vehicle/core_services/service_discovery/sdv_sd_agent/configs/vvm_config.textproto
 

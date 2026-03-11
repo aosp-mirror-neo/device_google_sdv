@@ -57,6 +57,10 @@ SDV_SOMEIP_AGENT_MODULES := \
     sdv_someip_stack_agent \
     vsomeip_config.json
 
+# Define the Soong module with VM level permissions
+# This module has to be an APEX with id "com.oem.sdv.authz"
+SDV_VM_LEVEL_PERMISSIONS_MODULE := com.oem.sdv.authz.allow_all.core
+
 # HM Sample configurations
 SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     hm_config_with_someip.textproto \
