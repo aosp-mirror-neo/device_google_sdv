@@ -66,6 +66,13 @@ PRODUCT_SYSTEM_SERVER_JARS += \
     services \
     sdv_gatewaynetworking_service_loader_service
 
+# Perfetto packages for tracing
+PRODUCT_PACKAGES_DEBUG += \
+    perfetto \
+    traced \
+    traced_probes \
+    traced_relay \
+
 # Contains all the local FQINs that SDV agents can register.
 # TODO: b/411314604 - DT agent is running within SdvGateway process for now
 PRODUCT_COPY_FILES += \
