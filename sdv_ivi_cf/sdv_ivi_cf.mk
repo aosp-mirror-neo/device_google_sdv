@@ -37,7 +37,6 @@ SDV_IVI_SERVICES_PACKAGES += com.android.sdv.hardware.keymint.rust_nonsecure
 TARGET_FS_CONFIG_GEN += device/google/sdv/sdv_ivi_cf/config.fs
 
 include device/google/sdv/sdv_ivi_base/sdv_ivi_base.mk
-include device/google/sdv/sdv_base/sdv_samples_base_services.mk
 include device/google/sdv/sdv_base/sdv_sample_ethernet_setup.mk
 include device/google/sdv/sdv_ivi_base/sdv_samples_ivi_services.mk
 include device/google/sdv/sdv_ivi_base/sdv_samples_ivi_telemetry.mk

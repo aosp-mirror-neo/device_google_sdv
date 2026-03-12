@@ -35,6 +35,13 @@ SDV_IVI_SERVICES_SAMPLES_PACKAGES += \
     rochambeau_player_rs \
     rochambeau_judge_rs \
 
+# Required for Presubmit tests:
+# 1. vm_ivi/sdv/sample/comm_stack_local_perf_test
+# 2. vm_ivi/sdv/sample/comm_stack_test
+SDV_IVI_SERVICES_SAMPLES_PACKAGES += \
+    sdv_comms_client_rs \
+    vvmconfig.example \
+    sdv_uds_certs_provisioner_sample \
 
 SDV_IVI_SERVICES_HOST_SAMPLES_PACKAGES +=
 
