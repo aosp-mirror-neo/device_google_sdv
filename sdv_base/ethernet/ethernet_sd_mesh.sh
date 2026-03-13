@@ -26,12 +26,6 @@ IP="192.168.99.$VMID"
 
 ifconfig sd_mesh "$IP"
 
-# This allows multicast
-ip route add 224.0.0.0/4 dev sd_mesh
-
-# This allows loopback support
-ip link set dev lo up
-
 ifconfig sd_mesh up
 
 setprop ro.sdv.oem.eth.sd_mesh.up true
