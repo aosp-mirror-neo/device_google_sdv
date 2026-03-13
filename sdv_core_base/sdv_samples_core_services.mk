@@ -54,6 +54,8 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     com.android.sdv.test.authz.bar \
     com.android.sdv.test.authz.foo \
     com.android.sdv.test.authz.local_vm_acl_policy_provider \
+    com.android.sdv.test.permissions.bar \
+    com.android.sdv.test.permissions.foo \
     com.android.sdv.sample.vsidl \
     com.android.sdv.sample.perf5 \
     com.android.sdv.sample.perf6 \
