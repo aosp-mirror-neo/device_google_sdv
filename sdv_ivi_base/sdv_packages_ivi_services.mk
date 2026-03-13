@@ -53,6 +53,3 @@ $(call soong_config_set, sdv_config, SDV_IVI_SERVICES_HOST_PACKAGES, $(SDV_IVI_S
 
 PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
     vendor/lib64/libsdvgatewayclient_jni
-
-# Include the packagemanagerproxyd service
-include packages/services/Car/cpp/packagemanagerproxy/service/products/packagemanagerproxy.mk
