@@ -26,12 +26,6 @@ IP="192.168.100.$VMID"
 
 ifconfig sdv_dt "$IP"
 
-# This allows multicast
-ip route add 224.0.0.0/4 dev sdv_dt
-
-# This allows loopback support
-ip link set dev lo up
-
 ifconfig sdv_dt up
 
 # Setting up an arbitrary port range for automatic port selection for the services that uses
