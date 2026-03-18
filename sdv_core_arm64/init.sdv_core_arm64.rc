@@ -1,0 +1,102 @@
+# Copyright (C) 2026 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# SDV's primary init .rc file which is loaded first by the init process.
+
+import /system/etc/init/init.sdv_core_base.rc
+import /system_ext/etc/init/vvmtruststore.rc
+import /product/etc/init/vvmtruststore.preprovisioned.rc
+import /product/etc/init/hw/ethernet.sdv_arm64.rc
+import /vendor/etc/init/android.sdv.hardware.security.keymint-service.nonsecure.rc
+
+on boot
+    # Start a shell on the `earlycon` serial port. Allows inspecting the system
+    # state when adb fails to start up.
+    start console
+
+# set HM config path based on whether SOME/IP agents run on the instance or not
+on property:ro.boot.sdv.someip.enable=false \
+    && property:persist.sdv.health_monitor.config_path=""
+    setprop persist.sdv.health_monitor.config_path \
+        "/system/etc/health_monitor/hm_config_without_someip.textproto"
+
+on property:ro.boot.sdv.someip.enable=true \
+    && property:persist.sdv.health_monitor.config_path=""
+    setprop persist.sdv.health_monitor.config_path \
+        "/system/etc/health_monitor/hm_config_with_someip.textproto"
+
+# Declare and start the sample SDV SOME/IP stack agent.
+service sdv_someip_stack_agent /vendor/bin/sdv_someip_stack_agent
+    class core
+    disabled
+    user system
+    group system
+    setenv VSOMEIP_CONFIGURATION /vendor/etc/someip/vsomeip_config.json
+    setenv VSOMEIP_BASE_PATH /data/vendor/vsomeip/
+    oneshot
+on property:dev.bootcomplete=1 && property:ro.boot.sdv.someip.enable=true
+    start sdv_someip_stack_agent
+
+# Declare and start the SDV SOME/IP broker agent.
+service sdv_someip_broker_agent /system_ext/bin/sdv_someip_broker_agent_comms
+    class core
+    disabled
+    user system_ext_sdv_someip
+    group system
+    oneshot
+on property:ro.sdv.orchestrator.state.ready=true && property:ro.boot.sdv.someip.enable=true
+    start sdv_someip_broker_agent
+
+# Declare and start the SDV Diagnostics agent.
+service sdv_diagnostics_agent /product/bin/sdv_diagnostics_agent
+    class diagnostics
+    user system
+    group system
+    oneshot
+
+# Inlined simpleperf.rc, because it needs some adjustments for SDV.
+
+# Not a service because services can only be stopped with SIGKILL
+# (or SIGTERM+200ms+SIGKILL with gentle_kill), and simpleperf
+# needs more than 200ms to clean up.
+
+# Start on init rather than on early-init. early-init is the stage that loads
+# libc from a bootstrap APEX. simpleperf does not link libc statically so it
+# can't run before.
+on init && property:ro.boot.simpleperf.boot_record=*
+  # Needed to see kernel mode symbols.
+  write /proc/sys/kernel/kptr_restrict 0
+  # Needed to have early writable storage for simpleperf.
+  mount tmpfs tmpfs /tmp nodev noexec nosuid mode=0700,uid=0,gid=1000
+  exec_background u:r:su:s0 root root -- /system/bin/simpleperf record -a -g --exclude-perf -o /tmp/boot_perf.data
+
+# Terminate when SDV finishes the boot.
+# Note: this is not 100% reliable - POWER_OFF_EXIT may get skipped if the
+# orchestrator starts late.
+on property:sdv.orchestrator.power_state=POWER_OFF_EXIT && property:ro.boot.simpleperf.boot_record=*
+  exec u:r:su:s0 root root -- /system/bin/killall simpleperf
+
+
+# SDV sample adbd authenticator that enables adb usage in user builds.
+# This implementation does not provide proper key management yet, which leads to it accepting all
+# incoming adb connections. While a user cannot become root, it does not prevent user connecting
+# and executing commands.
+# TODO(b/430823209): Until this service provides an appropriate way of key verification, it must not
+# be used in production systems.
+service adbd_auth_service /system_ext/bin/adbd_auth_service
+    user system
+    group system
+
+on property:dev.bootcomplete=1
+    start adbd_auth_service
