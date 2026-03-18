@@ -24,9 +24,8 @@ set -e
 VMID=$(getprop ro.boot.virt.address 3)
 IP="192.168.100.$VMID"
 
-ifconfig sdv_dt "$IP"
-
-ifconfig sdv_dt up
+ip addr add "$IP/24" dev sdv_dt
+ip link set sdv_dt up
 
 # Setting up an arbitrary port range for automatic port selection for the services that uses
 # sdv_dt, which is only the SDV data tunnel agent.
