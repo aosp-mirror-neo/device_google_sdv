@@ -14,5 +14,5 @@
 
 # The sepolicy defines additional rules for the default Vehicle HAL on Automotive devices
 
-# Allow the Vehicle HAL to call SDV Gateway's AIDL interface
-typeattribute hal_vehicle_default sdv_gateway_client;
+# Allow the Vehicle HAL to use the SDV Gateway
+sdv_gateway_client_domain(hal_vehicle_default)
