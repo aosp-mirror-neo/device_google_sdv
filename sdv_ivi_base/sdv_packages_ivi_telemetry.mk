@@ -27,5 +27,8 @@ PRODUCT_PACKAGES += $(SDV_IVI_TELEMETRY_PACKAGES)
 
 PRODUCT_HOST_PACKAGES += $(SDV_IVI_TELEMETRY_HOST_PACKAGES)
 
+PRODUCT_COPY_FILES += \
+    device/google/sdv/sdv_ivi_base/sdv.telemetry.rc:${TARGET_COPY_OUT_VENDOR}/etc/init/sdv.telemetry.rc \
+
 $(call soong_config_set, sdv_config, SDV_IVI_TELEMETRY_PACKAGES, $(SDV_IVI_TELEMETRY_PACKAGES))
 $(call soong_config_set, sdv_config, SDV_IVI_TELEMETRY_HOST_PACKAGES, $(SDV_IVI_TELEMETRY_HOST_PACKAGES))

@@ -12,9 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# SDV Gateway Service
-/vendor/bin/sdv_gateway    u:object_r:sdv_gateway_exec:s0
-
 # SDV Telemetry Service
 /vendor/bin/sdv_ivi_telemetry_service_agent u:object_r:sdv_telemetry_exec:s0
 

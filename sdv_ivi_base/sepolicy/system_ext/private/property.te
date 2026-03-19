@@ -12,9 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Property set once, when the network interface SDV RPC is ready.
-ro.vendor.sdv.rpc.network.ready u:object_r:vendor_sdv_rpc_ethernet_ready_prop:s0 exact string
-
-# Property set after network interface SDV RPC is ready to false/true
-# to indicate that the network interface is lost/available.
-vendor.sdv.rpc.network.available u:object_r:vendor_sdv_rpc_ethernet_available_prop:s0 exact string
+# Set by the SDV gateway to notify other services that the SDV network is available for use.
+system_restricted_prop(sdv_rpc_ethernet_available_prop)
+system_restricted_prop(sdv_rpc_ethernet_ready_prop)
