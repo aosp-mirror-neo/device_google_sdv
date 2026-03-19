@@ -23,9 +23,9 @@ IP="192.168.98.$VMID"
 
 echo Setting IP address for eth1: $IP > /dev/kmsg
 
-ifconfig eth1 "$IP"
+ip addr add "$IP/24" dev eth1
 ip route add 224.0.0.0/4 dev eth1
-ifconfig eth1 up
+ip link set eth1 up
 
 # On non-IVI targets, eth1 is only used by SDV RPC, Service Discovery and Data tunnel have their
 # own network interfaces.
