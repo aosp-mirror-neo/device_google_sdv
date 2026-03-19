@@ -50,6 +50,10 @@ PRODUCT_COPY_FILES += \
     device/google/sdv/sdv_ivi_arm64/ethernet/ethernet.sdv_ivi_arm64.sh:$(TARGET_COPY_OUT_PRODUCT)/bin/ethernet/ethernet.sdv_ivi_arm64.sh \
     device/google/sdv/sdv_ivi_arm64/ethernet/ethernet.sdv_ivi_arm64.rc:$(TARGET_COPY_OUT_PRODUCT)/etc/init/hw/ethernet.sdv_ivi_arm64.rc
 
+# Define the Soong module with VM level permissions
+# This module has to be an APEX with id "com.oem.sdv.authz"
+SDV_VM_LEVEL_PERMISSIONS_MODULE := com.oem.sdv.authz.allow_all.ivi
+
 include device/google/sdv/sdv_ivi_base/sdv_ivi_base.mk
 include device/google/sdv/sdv_ivi_base/sdv_samples_ivi_services.mk
 include device/google/sdv/sdv_ivi_base/sdv_samples_ivi_telemetry.mk

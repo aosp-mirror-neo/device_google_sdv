@@ -30,7 +30,7 @@ allow sdv_ethernet_setup toolbox_exec:file { execute execute_no_trans getattr ma
 # Required for logging to `/dev/kmsg` (`echo this is the log message > /dev/kmsg`)
 allow sdv_ethernet_setup kmsg_device:chr_file w_file_perms;
 
-# Required for `ifconfig eth1 $IP`
+# Required for `ip addr add "$IP/24" dev eth1`
 allow sdv_ethernet_setup self:capability net_admin;
 allow sdv_ethernet_setup self:udp_socket create;
 # Allow the application to do ioctl() syscalls on the udp_socket.

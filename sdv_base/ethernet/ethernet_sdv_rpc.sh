@@ -27,9 +27,8 @@ else
   IP="192.168.101.$VMID"
 fi
 
-ifconfig sdv_rpc "$IP"
-
-ifconfig sdv_rpc up
+ip addr add "$IP/24" dev sdv_rpc
+ip link set sdv_rpc up
 
 # Setting up an arbitrary port range for automatic port selection for the services that uses
 # sdv_rpc, which is only the SDV RPCAgent.

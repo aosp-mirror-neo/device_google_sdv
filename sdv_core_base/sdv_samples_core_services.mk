@@ -95,6 +95,7 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     com.android.sdv.sample.sqlite \
     com.android.sdv.sample.oem.health.monitored \
     com.android.sdv.sample.oem.health.monitoring \
+    com.android.sdv.sample.oem.health.qos_monitoring \
     sdv_dice_root_key_extraction_tool \
     com.android.sdv.someip \
     sdv_integration_test_health_monitored_service \

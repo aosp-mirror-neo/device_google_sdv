@@ -24,9 +24,8 @@ set -e
 VMID=$(getprop ro.boot.virt.address 3)
 IP="192.168.99.$VMID"
 
-ifconfig sd_mesh "$IP"
-
-ifconfig sd_mesh up
+ip addr add "$IP/24" dev sd_mesh
+ip link set sd_mesh up
 
 setprop ro.sdv.oem.eth.sd_mesh.up true
 
