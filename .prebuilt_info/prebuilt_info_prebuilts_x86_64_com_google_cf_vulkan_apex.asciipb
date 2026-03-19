@@ -1,6 +1,6 @@
 drops {
   android_build_drop {
-    build_id: "P115029172"
+    build_id: "P118952171"
     target: "sdv_media_cf-trunk_staging-userdebug"
     source_file: "com.google.cf.vulkan.apex"
   }
@@ -8,7 +8,7 @@ drops {
   version: ""
   version_group: ""
   git_project: "device/google/sdv"
-  git_branch: "main-swcar-dev"
+  git_branch: "main"
   transform: TRANSFORM_NONE
   transform_options {
   }
