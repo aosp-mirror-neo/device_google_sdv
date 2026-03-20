@@ -34,6 +34,11 @@ BOOT_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 PRODUCT_VENDOR_PROPERTIES += \
     ro.vendor.boot_security_patch=$(BOOT_SECURITY_PATCH)
 
+# Takes effect only when
+# (1) boot right after OTA from earlier version to the 26Q2 release
+# (2) the property `apexd.config.compressed_apex` is set to true
+PRODUCT_SYSTEM_PROPERTIES += ro.boot.apex.early_adbd=true
+
 # Android V SDK level, matches target-level 202404 in the device manifest.
 PRODUCT_SHIPPING_API_LEVEL := 35
 
