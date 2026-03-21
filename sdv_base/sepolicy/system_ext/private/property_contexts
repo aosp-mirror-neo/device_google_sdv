@@ -29,12 +29,22 @@ ro.init_open_dice.device_wiped u:object_r:init_open_dice_device_wiped_prop:s0 ex
 # be executed.
 ro.sdv.apex.bootstrap.ready u:object_r:sdv_apex_bootstrap_ready_prop:s0 exact bool
 
-# System property for setting sdv.authz.enable property at boot time.
-ro.boot.sdv.authz.enable u:object_r:bootloader_prop:s0 exact bool
+# System property for setting sdv.authz.enable property to the corresponding value at boot time.
+ro.boot.sdv.authz.enable u:object_r:bootloader_prop:s0 exact enum permissions_only acls_only lenient strict disabled true false
 
-# System property for disabling authz enforcement. Only used in engineering builds (userdebug/eng).
-# Production builds ignore this system property.
-sdv.authz.enable u:object_r:sdv_authz_enable_prop:s0 exact bool
+# System property for configuring authz enforcement.
+# Only used in engineering builds (userdebug/eng). Production builds ignore this system property.
+#
+# Allowed values:
+#  - permissions_only: only permissions are taken into account, ACLs are ignored.
+#  - acls_only: Only ACLs are taken into account, no permissions checks are performed.
+#  - lenient: Both permissions and ACLs are checked, access granted if either of the checks pass.
+#  - strict: Both permissions and ACLs are checked, access granted only if both the checks pass.
+#  - disabled: Authz is completely disabled.
+# Legacy values, to be removed after SDV 2.0 branch cut:
+#  - true == lenient
+#  - false == disabled
+sdv.authz.enable u:object_r:sdv_authz_enable_prop:s0 exact enum permissions_only acls_only lenient strict disabled true false
 
 # sdv.mesh_missing_vms.count used to query the mesh state.
 sdv.mesh_missing_vms.count u:object_r:mesh_missing_vms_prop:s0 exact int
