@@ -69,3 +69,11 @@ on boot
 on property:ro.sdv.ethernet.ready=true
     start sdv_sd_agent
     start rpcagent
+
+service sdv_vsidl_provider_agent  /system_ext/bin/sdv_empty_vsidl_provider_agent_for_ivi
+    class core
+    disabled
+    user system_ext_sdv_vsidl_provider
+    group system
+on property:ro.sdv.ethernet.ready=true
+    start sdv_vsidl_provider_agent
