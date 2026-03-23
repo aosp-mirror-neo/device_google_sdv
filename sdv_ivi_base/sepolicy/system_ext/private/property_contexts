@@ -14,3 +14,10 @@
 
 # A property stating whether the OEM ethernet configuration is ready.
 ro.sdv.ethernet.ready  u:object_r:sdv_ethernet_ready_prop:s0 exact bool
+
+# Property set once, when the network interface SDV RPC is ready.
+ro.sdv.rpc.network.ready u:object_r:sdv_rpc_ethernet_ready_prop:s0 exact string
+
+# Property set after network interface SDV RPC is ready to false/true
+# to indicate that the network interface is lost/available.
+sdv.rpc.network.available u:object_r:sdv_rpc_ethernet_available_prop:s0 exact string

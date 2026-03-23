@@ -25,7 +25,7 @@
     </hal>
     <hal format="aidl">
         <name>google.sdv.telemetry.configurable_publisher</name>
-        <version>1</version>
+        <version>2</version>
         <interface>
             <name>IConfigurablePublisherRegistry</name>
             <instance>default</instance>
