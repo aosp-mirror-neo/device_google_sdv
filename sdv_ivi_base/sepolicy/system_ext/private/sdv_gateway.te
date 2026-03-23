@@ -12,10 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-type sdv_gateway, domain;
+core_service(sdv_gateway)
 typeattribute sdv_gateway mlstrustedsubject;
-type sdv_gateway_exec, exec_type, file_type, vendor_file_type;
-init_daemon_domain(sdv_gateway)
 
 # Allow dumpstate accessing sdv_gateway, required for CTS test
 binder_call(dumpstate, sdv_gateway);
@@ -53,8 +51,8 @@ typeattribute sdv_gateway packagemanagerproxy_client;
 allow sdv_gateway proc_net:file { getattr open read };
 
 # SDV Gateway Agent can read and set specific system properties.
-set_prop(sdv_gateway, vendor_sdv_rpc_ethernet_ready_prop)
-set_prop(sdv_gateway, vendor_sdv_rpc_ethernet_available_prop)
+set_prop(sdv_gateway, sdv_rpc_ethernet_ready_prop)
+set_prop(sdv_gateway, sdv_rpc_ethernet_available_prop)
 get_prop(sdv_gateway, sdv_ethernet_ready_prop)
 
 # The SDV Gateway client
