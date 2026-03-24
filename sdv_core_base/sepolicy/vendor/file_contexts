@@ -27,9 +27,3 @@
 /dev/block/by-name/userdata u:object_r:userdata_block_device:s0
 /dev/block/by-name/metadata u:object_r:metadata_block_device:s0
 
-#############################
-# Vendor files
-#
-
-# SDV Telemetry Service
-/vendor/bin/sdv_telemetry_service_agent    u:object_r:sdv_telemetry_exec:s0

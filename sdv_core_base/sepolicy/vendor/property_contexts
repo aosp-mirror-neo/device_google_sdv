@@ -13,4 +13,3 @@
 # limitations under the License.
 
 # SDV Telemetry Resumed At Timestamp Property
-vendor.sdv.telemetry.resumed_at_timestamp u:object_r:vendor_sdv_telemetry_prop:s0 exact string

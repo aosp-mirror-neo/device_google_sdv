@@ -20,3 +20,5 @@
 
 # SDV Vsidl provider agent
 /(system_ext|system/system_ext)/bin/sdv_empty_vsidl_provider_agent_for_ivi u:object_r:sdv_vsidl_provider_agent_exec:s0
+# SDV Telemetry Service
+/(system_ext|system/system_ext)/bin/sdv_ivi_telemetry_service_agent    u:object_r:sdv_telemetry_exec:s0

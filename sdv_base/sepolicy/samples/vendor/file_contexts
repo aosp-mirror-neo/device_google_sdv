@@ -13,3 +13,4 @@
 # limitations under the License.
 
 /vendor/bin/sdv_uds_certs_provisioner_sample u:object_r:sdv_uds_certs_provisioner_sample_exec:s0
+/vendor/bin/sdv_telemetry_simulator u:object_r:sdv_telemetry_vendor_client_exec:s0

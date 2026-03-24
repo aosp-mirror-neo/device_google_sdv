@@ -59,3 +59,9 @@ google.sdv.init_open_dice.IKeyCertifier/default u:object_r:sdv_dice_certifier_se
 
 # Service interface for identity verification required by service discovery
 google.sdv.identity.internal.IIdentityVerifier/default u:object_r:sdv_identity_verifier_service:s0
+
+# SDV Telemetry service
+google.sdv.telemetry.ITelemetryService/default u:object_r:sdv_telemetry_service:s0
+
+# SDV Configurable Publisher Registry service
+google.sdv.telemetry.configurable_publisher.IConfigurablePublisherRegistry/default u:object_r:sdv_configurable_publisher_registry_service:s0

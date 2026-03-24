@@ -13,14 +13,13 @@
 # limitations under the License.
 
 # Define a type for your test process's domain.
-type sdv_telemetry_product_client, domain, coredomain;
+type sdv_telemetry_product_client, domain;
+typeattribute sdv_telemetry_product_client coredomain;
 
 type sdv_telemetry_product_client_exec, exec_type, system_file_type, file_type;
 
-# the shell transition to the sdv_telemetry_product_client domain when executing its binary.
-# Note: this is only for testing and demo purposes, and a real production service would be
-# started from init and need the init_daemon_domain(sdv_telemetry_product_client) policy
-domain_auto_trans_from_shell(sdv_telemetry_product_client)
+init_daemon_domain(sdv_telemetry_product_client)
 
-# Assign the sdv_telemetry_client attribute to client on product
+# Assign the telemetry client attributes to client on product
 typeattribute sdv_telemetry_product_client sdv_telemetry_client;
+typeattribute sdv_telemetry_product_client sdv_configurable_publisher_registry_client;
