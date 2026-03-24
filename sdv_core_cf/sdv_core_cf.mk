@@ -116,6 +116,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/google/sdv/sdv_core_base/sepolicy/samples/service_bundle_contexts:$(TARGET_COPY_OUT_PRODUCT)/etc/service_bundle_contexts
 
+# An example lifecycle config file.
+PRODUCT_PACKAGES += lifecycle_config.textproto
+
 # OemUpdater scripts used for initialization.
 PRODUCT_COPY_FILES += \
     device/google/sdv/sdv_core_cf/oem_partition.rc:$(TARGET_COPY_OUT_PRODUCT)/etc/init/oem_partition.rc \
