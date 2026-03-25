@@ -1,7 +1,7 @@
 {
   "allowed_native_packagename": {
     "1054": [
-      "com.google.sdv.vhal_proxy_emulated"
+      "com.android.sdv.sample.vhal_proxy_emulated"
     ],
     "2902": [
       "com.android.sdv.samples.gateway"

@@ -47,6 +47,8 @@ SDV_CORE_SERVICES_SAMPLES_PACKAGES += \
     com.android.sdv.sample.someip \
     carla_someip_client_cli \
     com.sdv.google.sample.testing.sdv_dump \
+    com.google.sdv.sample.qos_scheduling \
+    com_google_sdv_sample_qos_scheduling_orchestration_configurations \
     someip_samples_orch_config \
     hm_suspend_to_ram_test_vm_orch_config \
     cujs_orchestration_configurations \

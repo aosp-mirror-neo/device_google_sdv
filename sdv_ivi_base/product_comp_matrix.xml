@@ -17,7 +17,7 @@
 <compatibility-matrix version="1.0" type="framework">
     <hal format="aidl">
         <name>google.sdv.gateway</name>
-        <version>1</version>
+        <version>3</version>
         <interface>
             <name>ISdvGateway</name>
             <instance>default</instance>
@@ -25,7 +25,7 @@
     </hal>
     <hal format="aidl">
         <name>google.sdv.privileged.gatewaynetworking</name>
-        <version>1</version>
+        <version>2</version>
         <interface>
             <name>IPrivilegedGatewayNetworking</name>
             <instance>default</instance>
