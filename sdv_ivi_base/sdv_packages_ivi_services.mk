@@ -22,6 +22,7 @@ SDV_IVI_SERVICES_PACKAGES += \
     libsdvgatewaynetworking_jni \
     libvhal_proxy \
     libvhal_proxy_config_loader \
+    sdv_empty_vsidl_provider_agent_for_ivi \
     sdv_gateway \
     sdv_gatewaynetworking_service \
     sdv_ivi_rt_service
