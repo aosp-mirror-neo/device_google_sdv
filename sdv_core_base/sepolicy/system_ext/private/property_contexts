@@ -21,6 +21,10 @@ ro.boot.sdv.orchestrator_config_path u:object_r:bootloader_prop:s0 exact string
 # Property controlling Orchestrator max parallel calls to LM binder, and LM binder thread pool
 ro.boot.sdv.max_bundles_management_threads u:object_r:max_bundles_management_threads_prop:s0 exact uint
 
+# Property controlling Orchestrator default value for max_retries for recovering/restarting bundles
+# Any value added in the textproto configuration for a bundle will override this default one.
+ro.boot.sdv.orchestrator.recovery.max_retries u:object_r:orchestrator_recovery_max_retries:s0 exact uint
+
 # Set to True by Service bundle registry when all the service bundles
 # metadata is loaded and IRegistry is available for clients.
 ro.sdv.sbr.state.ready u:object_r:sbr_state_ready_prop:s0 exact bool
