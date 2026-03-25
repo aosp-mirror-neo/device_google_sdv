@@ -24,3 +24,14 @@ typeattribute sdv_sd_service sdv_crash_monitored_service;
 # Lifecycle manager (LC) implements IIdentityVerifier (sdv_identity_verifier) in SDV Core,
 # which Service Discovery (SD) needs to call.
 binder_call(sdv_sd_default, sdv_lc_default)
+
+# On SDV Core, the sdv_privileged_sd_service should not be used by any clients.
+neverallow {
+  domain
+  -sdv_sd_default
+  -shell
+  -system_app
+  -atrace
+  -dumpstate
+  -traceur_app
+} sdv_privileged_sd_service:service_manager find;
