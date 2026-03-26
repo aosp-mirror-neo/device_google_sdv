@@ -37,11 +37,13 @@ typeattribute sdv_gateway sdv_rpcagent_client;
 # The SDV Gateway uses the privileged interface of SD.
 allow sdv_gateway sdv_privileged_sd_service:service_manager find;
 
-# This rule is required by the DT server. On IVI, the DT server runs in the sdv_gateway process.
-# Allow SDV Gateway to use Transport Support Service
+# On IVI, the DT server runs in the sdv_gateway process.
+typeattribute sdv_gateway sdv_dt_server;
+
+# Required by the DT server: allow SDV Gateway to use Transport Support Service
 allow sdv_gateway sdv_transport_support_service:service_manager find;
 
-# This rule is required by the DT server. SDV Gateway Agent can create sockets.
+# Required by the DT server: SDV Gateway Agent can create sockets.
 net_domain(sdv_gateway)
 
 # The SDV Gateway server is a client of the Package Manager proxy service.
@@ -72,18 +74,10 @@ binder_call(sdv_gateway_client, sdv_sd_server)
 binder_call(sdv_sd_server, sdv_gateway_client)
 allow sdv_gateway_client sdv_sd_service:service_manager find;
 
-# The SDV Gateway client can use FMQ and pipes.
-allow sdv_gateway_client sdv_gateway_server:fifo_file { read write };
-allow sdv_gateway_client sdv_gateway_server:fd use;
-
-# Allow DT clients to use fds created by other DT clients, needed for
-# shared mem segments for topic FMQs that are created in pub process.
-allow sdv_gateway_client sdv_gateway_client:fd use;
-
 # TODO: b/462005657 - Clean-up SELinux rules for DT use of memfd.
-allow sdv_gateway_server sdv_gateway_client:memfd_file { read write map };
-allow sdv_gateway_client sdv_gateway_server:memfd_file { read write map };
-allow sdv_gateway_client sdv_gateway_client:memfd_file { read write map };
+allow sdv_dt_server sdv_dt_client:memfd_file { read write map };
+allow sdv_dt_client sdv_dt_server:memfd_file { read write map };
+allow sdv_dt_client sdv_dt_client:memfd_file { read write map };
 
 # The SDV Gateway client must NOT bypass the SDV Gateway.
 # TODO: b/391793350 - Remove the rules if they become redundant.

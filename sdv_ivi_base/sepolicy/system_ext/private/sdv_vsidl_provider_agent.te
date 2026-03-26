@@ -18,17 +18,3 @@ core_service(sdv_vsidl_provider_agent)
 typeattribute sdv_vsidl_provider_agent sdv_sd_client;
 typeattribute sdv_vsidl_provider_agent sdv_rpcagent_client;
 typeattribute sdv_vsidl_provider_agent sdv_dt_client;
-
-binder_call(sdv_vsidl_provider_agent, sdv_gateway_server)
-binder_call(sdv_gateway_server, sdv_vsidl_provider_agent)
-
-# SDV DT client and server can find the IPC service.
-allow sdv_vsidl_provider_agent sdv_gateway_service:service_manager find;
-
-# Allow DT clients to use pipes and shared mem created by DT Agent.
-allow sdv_vsidl_provider_agent sdv_gateway_server:fifo_file { read write };
-allow sdv_vsidl_provider_agent sdv_gateway_server:fd use;
-
-allow sdv_gateway_server sdv_vsidl_provider_agent:memfd_file { read write map };
-allow sdv_vsidl_provider_agent sdv_gateway_server:memfd_file { read write map };
-allow sdv_vsidl_provider_agent sdv_vsidl_provider_agent:memfd_file { read write map };
