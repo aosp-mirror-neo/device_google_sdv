@@ -48,6 +48,9 @@ google.sdv.mesh.IMeshStatus/default u:object_r:sdv_mesh_status_service:s0
 # RPCagent service
 google.sdv.rpc.IRpcAgent/default u:object_r:sdv_rpcagent_service:s0
 
+# SDV DT IPC service
+google.sdv.data_tunnel.IAgentService/default u:object_r:sdv_dt_service:s0
+
 # Service interface for providing DICE chains
 google.sdv.init_open_dice.IDiceChainProvider/default u:object_r:sdv_dice_chain_provider_service:s0
 

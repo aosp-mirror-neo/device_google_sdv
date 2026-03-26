@@ -17,6 +17,7 @@
 # Adds all the necessary permissions to the domain required to use the SDV gateway.
 define(`sdv_gateway_client_domain', `
 typeattribute $1 sdv_gateway_client;
+typeattribute $1 sdv_dt_client;
 
 # A subset of the netdomain permssions that are requried for the SDV Gateway. These consist of:
 #
