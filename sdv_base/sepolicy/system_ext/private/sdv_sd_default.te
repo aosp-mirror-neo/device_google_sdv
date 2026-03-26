@@ -73,26 +73,7 @@ type_transition sdv_sd_default vvmtruststorefs:file uds_pubs_file "uds_pubs";
 # SD agent can read the uds_certs file.
 allow sdv_sd_default uds_certs_file:file r_file_perms;
 
-# The uds_pubs_file is owned by SD, and it's sensitive for SDV mesh security, because it contains
-# the list of devices whose VMs can join the mesh. These devices must be authentic, the
-# uds_pubs_file does not grant trust/authenticity.
-neverallow {
-  domain
-  -init
-  -vendor_init
-  -sdv_sd_default
-} uds_pubs_file:file no_w_file_perms;
-
-# Privileged APIs. Only for SDV Gateway usage.
-
-# SDV privileged SD client and server can use Binder IPC.
-binder_call(sdv_privileged_sd_client, sdv_sd_default)
-binder_call(sdv_sd_default, sdv_privileged_sd_client)
-
-# SDV privileged SD client can find the IPC service.
-allow sdv_privileged_sd_client sdv_privileged_sd_service:service_manager find;
-
-# SDV SD server can register the privileged IPC service.
+# The privileged SD service. Only for the SDV Gateway on IVI.
 add_service(sdv_sd_default, sdv_privileged_sd_service)
 
 # SDV SD client and server can use Binder IPC.
@@ -114,3 +95,13 @@ dump_sdv_agent(sdv_sd_default)
 
 # For veryifying the FQIN belonging to a process calling createIdentity().
 allow sdv_sd_default sdv_identity_verifier_service:service_manager find;
+
+# The uds_pubs_file is owned by SD, and it's sensitive for SDV mesh security, because it contains
+# the list of devices whose VMs can join the mesh. These devices must be authentic, the
+# uds_pubs_file does not grant trust/authenticity.
+neverallow {
+  domain
+  -init
+  -vendor_init
+  -sdv_sd_default
+} uds_pubs_file:file no_w_file_perms;

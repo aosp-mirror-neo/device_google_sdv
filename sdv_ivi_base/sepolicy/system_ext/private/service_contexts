@@ -12,9 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# SDV DT IPC service runs inside of the SDV Gateway process on IVI.
-google.sdv.data_tunnel.IAgentService/default  u:object_r:sdv_gateway_service:s0
-
 # SDV Gateway service
 google.sdv.gateway.ISdvGateway/default        u:object_r:sdv_gateway_service:s0
 

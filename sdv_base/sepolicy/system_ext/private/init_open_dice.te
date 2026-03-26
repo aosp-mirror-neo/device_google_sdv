@@ -20,11 +20,6 @@ init_daemon_domain(init_open_dice)
 
 # Allow init_open_dice to read and wipe the content of the /dev/open-dice0.
 allow init_open_dice open_dice_device:chr_file rw_file_perms;
-# No other domain should have access to the open-dice device, because it contains highly sensitive
-# data for the Android device. These rules forbid all permissions except a few that is granted to
-# init, vendor_init and ueventd.
-neverallow { domain -init_open_dice } open_dice_device:chr_file ~{ create getattr setattr unlink };
-neverallow { domain -init_open_dice -ueventd } open_dice_device:chr_file { create unlink };
 
 # init_open_dice runs before logd is started, so allow it to log to /dev/kmsg_debug instead (using
 # the stdio_to_kmsg init service option.) Limiting the rule to userdebug_or_eng, because
@@ -54,3 +49,9 @@ add_service(init_open_dice, sdv_dice_certifier_service)
 # Silence the SELinux error when adb bugreport tries to dump init_open_dice's interfaces (no party
 # should call init_open_dice other than service discovery).
 dontaudit dumpstate init_open_dice:binder call;
+
+# No other domain should have access to the open-dice device, because it contains highly sensitive
+# data for the Android device. These rules forbid all permissions except a few that is granted to
+# init, vendor_init and ueventd.
+neverallow { domain -init_open_dice } open_dice_device:chr_file ~{ create getattr setattr unlink };
+neverallow { domain -init_open_dice -ueventd } open_dice_device:chr_file { create unlink };

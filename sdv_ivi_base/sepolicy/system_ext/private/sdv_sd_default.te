@@ -19,3 +19,15 @@ allow sdv_sd_default sdv_privileged_gatewaynetworking_service:service_manager fi
 
 # SD agent can talk to the SDV IVI RT service.
 binder_call(sdv_sd_default, sdv_ivi_rt_default)
+
+# On IVI, the sdv_privileged_sd_service should only be used by the sdv_gateway.
+neverallow {
+  domain
+  -sdv_sd_default
+  -shell
+  -system_app
+  -atrace
+  -dumpstate
+  -traceur_app
+  -sdv_gateway
+} sdv_privileged_sd_service:service_manager find;
