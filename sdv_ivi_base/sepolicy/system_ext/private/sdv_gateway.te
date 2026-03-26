@@ -34,8 +34,8 @@ typeattribute sdv_gateway sdv_sd_client;
 # The SDV Gateway server uses the RPC agent.
 typeattribute sdv_gateway sdv_rpcagent_client;
 
-# The SDV Gateway server is a privileged client for SDV Comms stack agents on IVI.
-typeattribute sdv_gateway sdv_privileged_sd_client;
+# The SDV Gateway uses the privileged interface of SD.
+allow sdv_gateway sdv_privileged_sd_service:service_manager find;
 
 # This rule is required by the DT server. On IVI, the DT server runs in the sdv_gateway process.
 # Allow SDV Gateway to use Transport Support Service
@@ -88,4 +88,3 @@ allow sdv_gateway_client sdv_gateway_client:memfd_file { read write map };
 # The SDV Gateway client must NOT bypass the SDV Gateway.
 # TODO: b/391793350 - Remove the rules if they become redundant.
 neverallow sdv_gateway_client sdv_id_service:service_manager find;
-neverallow sdv_gateway_client sdv_privileged_sd_client:service_manager find;

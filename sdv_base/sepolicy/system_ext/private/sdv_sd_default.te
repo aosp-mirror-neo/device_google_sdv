@@ -83,16 +83,7 @@ neverallow {
   -sdv_sd_default
 } uds_pubs_file:file no_w_file_perms;
 
-# Privileged APIs. Only for SDV Gateway usage.
-
-# SDV privileged SD client and server can use Binder IPC.
-binder_call(sdv_privileged_sd_client, sdv_sd_default)
-binder_call(sdv_sd_default, sdv_privileged_sd_client)
-
-# SDV privileged SD client can find the IPC service.
-allow sdv_privileged_sd_client sdv_privileged_sd_service:service_manager find;
-
-# SDV SD server can register the privileged IPC service.
+# The privileged SD service. Only for the SDV Gateway on IVI.
 add_service(sdv_sd_default, sdv_privileged_sd_service)
 
 # SDV SD client and server can use Binder IPC.
