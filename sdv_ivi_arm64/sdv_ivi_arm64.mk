@@ -18,29 +18,20 @@
 # Specify BT UART device
 PRODUCT_VENDOR_PROPERTIES += vendor.ser.bt-uart=/dev/hvc5
 
-# Disable thread network
-CF_VENDOR_NO_THREADNETWORK := true
-
 # Disable UWB
 CF_VENDOR_NO_UWB := true
 
-# TODO(b/379162284): We may want to try to build this target without GAS package and confirm
-#                    whether it influences TLS authentication.
-#$(call inherit-product, vendor/auto/embedded/products/google/products/gms.mk)
-#$(call inherit-product, vendor/auto/embedded/products/car.mk)
-$(call inherit-product, device/google/trout/aosp_trout_arm64.mk)
+# VirtWiFi interface settings
+DEVICE_VIRTWIFI_PORT ?= eth0
+PRODUCT_VENDOR_PROPERTIES += ro.vendor.disable_rename_eth0=true
+
+$(call inherit-product, device/google/cuttlefish/vsoc_arm64_only/auto/aosp_cf.mk)
 
 PRODUCT_NAME := sdv_ivi_arm64
 PRODUCT_DEVICE := sdv_ivi_arm64
 
 PRODUCT_COPY_FILES += \
   device/google/sdv/sdv_ivi_arm64/init.sdv_ivi_arm64.rc:$(TARGET_COPY_OUT_PRODUCT)/etc/init/init.sdv_ivi_arm64.rc
-
-# TODO(b/379150974): There is another VHAL implementation for SDV,
-#                    android.hardware.automotive.vehicle@default-sdv-trout-service, and we need to
-#                    confirm which implementation is more suitable for our use case if they are
-#                    significantly different.
-LOCAL_VHAL_PRODUCT_PACKAGE := android.hardware.automotive.vehicle@default-trout-service
 
 PRODUCT_PACKAGES += \
     dlkm_loader \

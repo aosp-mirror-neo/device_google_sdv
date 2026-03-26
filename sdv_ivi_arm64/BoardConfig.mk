@@ -15,8 +15,12 @@
 # TODO: b/411429498 - Revert the RPC network interface to sdv_rpc.
 SDV_RPC_INTERFACE ?= wlan0
 
+# Move to a newer kernel version once hypervisors widely support virtio-media
+# We only have 6.1 kernel for open-dice driver.
+TARGET_KERNEL_USE ?= 6.1
+
 include device/google/sdv/sdv_ivi_base/BoardConfig.mk
-include device/google/trout/trout_arm64/BoardConfig.mk
+include device/google/cuttlefish/vsoc_arm64_only/BoardConfig.mk
 
 # The open-dice driver is a thin layer that passes a memory region specified in the Device Tree
 # (DT) to the user space, used for passing the DICE Chain from the bootloader to user space.
@@ -59,6 +63,17 @@ TARGET_KERNEL_MODULES_PATH ?= kernel/prebuilts/$(TARGET_KERNEL_USE)/$(TARGET_KER
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(TARGET_KERNEL_MODULES_PATH)/8021q.ko
 
 include device/google/sdv/sdv_ivi_base/sepolicy/samples/board_sepolicy.mk
+
+BOARD_BOOTCONFIG += \
+    androidboot.fstab_suffix=cf.f2fs.hctr2 \
+    androidboot.vsock_tombstone_port=6600 \
+    androidboot.cuttlefish_config_server_port=6800 \
+    androidboot.vhal_proxy_server_port=9210 \
+    androidboot.modem_simulator_ports=9200 \
+    androidboot.vendor.apex.com.android.hardware.gatekeeper=com.android.hardware.gatekeeper.nonsecure \
+    androidboot.vendor.apex.com.android.hardware.graphics.composer=com.android.hardware.graphics.composer.ranchu.apex \
+
+BOARD_ROOT_EXTRA_FOLDERS := vvmtruststore
 
 # Inclusion of ramdisk in board image zip: <product>-img.zip:
 BOARD_IMG_USE_RAMDISK = true
