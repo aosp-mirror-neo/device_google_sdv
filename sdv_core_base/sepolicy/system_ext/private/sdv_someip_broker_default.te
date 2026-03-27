@@ -31,7 +31,6 @@ typeattribute sdv_someip_broker_default sdv_sbr_client;
 type sdv_someip_broker_agent_dump_service, protected_service, service_manager_type;
 add_service(sdv_someip_broker_default, sdv_someip_broker_agent_dump_service)
 
-type sdv_someip_broker_agent_load_indicators_service, protected_service, service_manager_type;
 add_service(sdv_someip_broker_default, sdv_someip_broker_agent_load_indicators_service)
 
 binder_call(sdv_someip_stack_server, sdv_someip_broker_default)
