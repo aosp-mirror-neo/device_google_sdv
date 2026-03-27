@@ -17,6 +17,7 @@ PRODUCT_MAKEFILES := \
      $(LOCAL_DIR)/sdv_core_cf/sdv_core_cf.mk \
      $(LOCAL_DIR)/sdv_core_perf_cf/sdv_core_perf_cf.mk \
      $(LOCAL_DIR)/sdv_core_tiny_cf/sdv_core_tiny_cf.mk \
+     $(LOCAL_DIR)/sdv_har_arm64/sdv_media_har_arm64.mk \
      $(LOCAL_DIR)/sdv_ivi_arm64/sdv_ivi_arm64.mk \
      $(LOCAL_DIR)/sdv_ivi_cf/sdv_ivi_cf.mk \
      $(LOCAL_DIR)/sdv_media_arm64/sdv_media_arm64.mk \
@@ -30,4 +31,5 @@ COMMON_LUNCH_CHOICES := \
      sdv_ivi_arm64-trunk_staging-userdebug \
      sdv_ivi_cf-trunk_staging-userdebug \
      sdv_media_arm64-trunk_staging-userdebug \
-     sdv_media_cf-trunk_staging-userdebug
+     sdv_media_cf-trunk_staging-userdebug \
+     sdv_media_har_arm64-trunk_staging-userdebug
