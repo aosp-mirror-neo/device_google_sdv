@@ -35,14 +35,7 @@ allow sdv_configurable_publisher_registry_client sdv_configurable_publisher_regi
 # File used by telemetry service for data persistance
 type telemetry_data_file, file_type, data_file_type, core_data_file_type;
 
-# SDV Telemetry Service agent is a core service.
-type sdv_telemetry, domain, coredomain;
-typeattribute sdv_telemetry mlstrustedsubject;
-type sdv_telemetry_exec, exec_type, file_type, system_file_type;
-init_daemon_domain(sdv_telemetry)
-
-# Allow the sdv_telemetry domain to use Binder IPC
-binder_use(sdv_telemetry);
+core_service(sdv_telemetry)
 
 # SDV Telemetry Service agent can register telemetry service and configurable
 # publisher registry service
@@ -61,9 +54,7 @@ add_service(sdv_telemetry, sdv_configurable_publisher_registry_service)
 
 # Information from the binder services served by the agent as well as their (custom) binder dump()
 # is allowed to be collected in bugreports.
-binder_call(dumpstate, sdv_telemetry)
-allow sdv_telemetry dumpstate:fd use;
-allow sdv_telemetry dumpstate:fifo_file write;
+dump_sdv_agent(sdv_telemetry)
 
 # Telemetry reads /dev/cpuctl/cpu.cfs_quota_us and /dev/cpuctl/cpu.cfs_period_us
 # to determine the available CPU quota.
