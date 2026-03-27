@@ -28,6 +28,11 @@ add_service(sdv_gateway_server, sdv_gateway_service)
 # SDV Gateway can register the IPrivilegedGatewayNetworking service.
 add_service(sdv_gateway_server, sdv_privileged_gatewaynetworking_service)
 
+# Used by the SDV Gateway Networking service app which is on /vendor, so it must be set here, in
+# order to keep the sdv_privileged_gatewaynetworking_service definition private.
+# TODO: b/479182143 - use a custom app domain instead.
+allow platform_app sdv_privileged_gatewaynetworking_service:service_manager find;
+
 # The SDV Gateway server uses service discovery.
 typeattribute sdv_gateway sdv_sd_client;
 
