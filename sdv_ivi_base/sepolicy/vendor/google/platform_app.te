@@ -14,6 +14,5 @@
 
 # TODO: b/479182143 these rules are required for the SDV Gateway Networking service app, use a
 #       custom domain instead.
-allow platform_app sdv_privileged_gatewaynetworking_service:service_manager find;
 binder_call(platform_app, sdv_gateway_server)
 binder_call(sdv_gateway_server, platform_app)
