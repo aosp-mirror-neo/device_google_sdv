@@ -15,6 +15,6 @@
 # Vsidl provider SDV agent.
 core_service(sdv_vsidl_provider_agent)
 
-typeattribute sdv_vsidl_provider_agent sdv_sd_client;
 typeattribute sdv_vsidl_provider_agent sdv_rpcagent_client;
+typeattribute sdv_vsidl_provider_agent sdv_sd_client;
 typeattribute sdv_vsidl_provider_agent sdv_dt_client;
