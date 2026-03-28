@@ -64,6 +64,8 @@ PRODUCT_PACKAGES += sdv_gatewaynetworking_service_loader_service
 # for a non-optimal order of jars on the system server classpath.
 PRODUCT_SYSTEM_SERVER_JARS += sdv_gatewaynetworking_service_loader_service
 
+PRODUCT_PACKAGES += device_google_sdv_ivi_sample_vendor_native_services_permissions
+
 # Perfetto packages for tracing
 PRODUCT_PACKAGES_DEBUG += \
     perfetto \

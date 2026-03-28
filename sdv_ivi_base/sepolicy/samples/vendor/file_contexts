@@ -12,4 +12,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-/vendor/bin/native_sdv_gateway_test_app      u:object_r:native_sdv_gateway_test_app_exec:s0
+/vendor/bin/native_sdv_gateway_test_app      u:object_r:native_sdv_gateway_test_service_exec:s0
