@@ -50,6 +50,9 @@
 # SDV Vsidl provider agent
 /(system_ext|system/system_ext)/bin/sdv_vsidl_provider_agent u:object_r:sdv_vsidl_provider_agent_exec:s0
 
+# SDV Telemetry Service
+/(system_ext|system/system_ext)/bin/sdv_telemetry_service_agent    u:object_r:sdv_telemetry_exec:s0
+
 # Initial boot checkpoint handler
 /(system_ext|system/system_ext)/bin/initial_boot_checkpoint.sh u:object_r:initial_boot_checkpoint_exec:s0
 

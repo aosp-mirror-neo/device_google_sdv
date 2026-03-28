@@ -12,8 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# SDV Telemetry service
-google.sdv.telemetry.ITelemetryService/default u:object_r:sdv_telemetry_service:s0
+# Define a type for your test process's domain.
+type sdv_telemetry_vendor_client, domain;
 
-# SDV Configurable Publisher Registry service
-google.sdv.telemetry.configurable_publisher.IConfigurablePublisherRegistry/default u:object_r:sdv_configurable_publisher_registry_service:s0
+type sdv_telemetry_vendor_client_exec, exec_type, vendor_file_type, file_type;
+
+init_daemon_domain(sdv_telemetry_vendor_client)
+
+# Assign the telemetry client attributes to client on vendor
+typeattribute sdv_telemetry_vendor_client sdv_telemetry_client;
+typeattribute sdv_telemetry_vendor_client sdv_configurable_publisher_registry_client;

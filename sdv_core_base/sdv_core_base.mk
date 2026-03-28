@@ -189,13 +189,12 @@ PRODUCT_VENDOR_PROPERTIES += \
     ro.soc.manufacturer=$(PRODUCT_MANUFACTURER) \
     ro.soc.model=$(PRODUCT_DEVICE)
 
-PRODUCT_VENDOR_PROPERTIES += \
-    ro.vendor.telemetry.metric_config_store_in_mb=10
-
 PRODUCT_SYSTEM_PROPERTIES += \
     ro.hardware.type=automotive \
     ro.logd.size=8M \
-    ro.sdv.profile?=core
+    ro.sdv.profile?=core \
+    ro.sdv.telemetry.metric_config_store_in_mb=10
+
 
 
 

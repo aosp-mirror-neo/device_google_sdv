@@ -109,3 +109,9 @@ PRODUCT_PACKAGES += vvmtruststore.rc
 include device/google/sdv/vvmtruststore_preprovisioned/vvmtruststore_preprovisioned.mk
 
 TARGET_FS_CONFIG_GEN += device/google/sdv/sdv_ivi_arm64/config.fs
+
+# Contains all the FQINs that sample OEM native services on the vendor partition can register.
+# Using the PRODUCT_COPY_FILES build variable instead of a Soong module to allow different (OEM)
+# targets to define different /vendor/etc/sdv_native_services_names files.
+PRODUCT_COPY_FILES += \
+    device/google/sdv/sdv_ivi_arm64/sdv_vendor_native_services_names:$(TARGET_COPY_OUT_VENDOR)/etc/sdv_native_services_names

@@ -12,9 +12,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Vsidl provider SDV agent.
-core_service(sdv_vsidl_provider_agent)
+# SDV Telemetry agent can find and use data tunnel service
+typeattribute sdv_telemetry sdv_dt_client;
 
-typeattribute sdv_vsidl_provider_agent sdv_sd_client;
-typeattribute sdv_vsidl_provider_agent sdv_rpcagent_client;
-typeattribute sdv_vsidl_provider_agent sdv_dt_client;
+# SDV Telemetry agent calls Service Discovery.
+typeattribute sdv_telemetry sdv_sd_client;
+
+# SDV Telemetry agent calls RPC Agent.
+typeattribute sdv_telemetry sdv_rpcagent_client;
+
+# SDV Telemetry agent is a power state client
+typeattribute sdv_telemetry sdv_vpm_agent_notification_client;
+
+system_restricted_prop(sdv_telemetry_prop)
+set_prop(sdv_telemetry, sdv_telemetry_prop)

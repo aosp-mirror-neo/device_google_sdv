@@ -34,3 +34,6 @@
 
 # SDV service rpc agent
 /(system_ext|system/system_ext)/bin/rpcagent         u:object_r:sdv_rpcagent_default_exec:s0
+
+# Telemetry data
+/data/telemetry(/.*)?      u:object_r:telemetry_data_file:s0

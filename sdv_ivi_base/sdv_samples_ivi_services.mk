@@ -22,6 +22,9 @@ SDV_IVI_SERVICES_SAMPLES_PACKAGES += \
     native_test_app_acl_policy \
     SdvCarMonitorTestApp_product \
     sdv_car_monitor_test_app_acl_policy_product \
+    sdv_user_preferences_client_cpp-permissions-product \
+    sdv_mw_cluster_client-permissions-product \
+    sdv_mw_cluster_server-permissions-product \
     sdv_dt_publisher_cpp_acl_textproto \
     sdv_vhal_proxy_publisher \
     sdv_vhal_proxy_subscriber \

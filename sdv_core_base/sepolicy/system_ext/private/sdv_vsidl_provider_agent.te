@@ -12,15 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Vsidl provider SDV agent.
-core_service(sdv_vsidl_provider_agent)
-
-typeattribute sdv_vsidl_provider_agent sdv_rpcagent_client;
-
-typeattribute sdv_vsidl_provider_agent sdv_sd_client;
 allow sdv_vsidl_provider_agent sdv_transport_support_service:service_manager find;
-
-typeattribute sdv_vsidl_provider_agent sdv_dt_client;
 
 typeattribute sdv_vsidl_provider_agent sdv_sbr_client;
 

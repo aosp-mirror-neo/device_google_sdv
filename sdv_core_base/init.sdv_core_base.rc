@@ -35,6 +35,7 @@ import /system/etc/init/lpdumpd.rc
 import /system/etc/init/logd.rc
 import /system/etc/init/keystore2.rc
 import /system/etc/init/sdv.agents.rc
+
 import /system_ext/etc/init/init_authz_property.rc
 import /system_ext/etc/init/init_open_dice.rc
 import /system_ext/etc/init/init_open_dice_service.rc
@@ -331,7 +332,7 @@ on post-fs-data
     mkdir /data/misc/vold 0700 root root
 
     # set up directory to persist metric configs for Telemetry service
-    mkdir /data/vendor/telemetry 0770 system system
+    mkdir /data/telemetry 0770 system_ext_sdv_telemetry system_ext_sdv_telemetry
 
     # Set up directory to persist orchestator configuration
     mkdir /data/orchestrator 0770 system system

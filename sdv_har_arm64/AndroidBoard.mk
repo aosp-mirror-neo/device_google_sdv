@@ -12,5 +12,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# SDV Telemetry Resumed At Timestamp Property
-vendor.sdv.telemetry.resumed_at_timestamp u:object_r:vendor_sdv_telemetry_prop:s0 exact string
+include device/google/sdv/sdv_base/sdv_additional_images.mk

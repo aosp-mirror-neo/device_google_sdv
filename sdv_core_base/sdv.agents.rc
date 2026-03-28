@@ -179,7 +179,7 @@ on property:ro.sdv.orchestrator.state.ready=true
 ###################################
 
 # Declare and start the SDV Telemetry service agent.
-service sdv_telemetry_service_agent /vendor/bin/sdv_telemetry_service_agent
+service sdv_telemetry_service_agent /system_ext/bin/sdv_telemetry_service_agent
     class core
     disabled
     user system_ext_sdv_telemetry

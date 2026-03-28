@@ -1,12 +1,4 @@
 {
-  "allowed_native_packagename": {
-    "1054": [
-      "com.android.sdv.sample.vhal_proxy_emulated"
-    ],
-    "2902": [
-      "com.android.sdv.samples.gateway"
-    ]
-  },
   "propagate_rpc_network_changes_to_data_tunnel": false,
   "propagate_rpc_network_changes_to_service_discovery": false
 }
