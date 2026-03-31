@@ -19,4 +19,4 @@ import /vendor/etc/sdv_core_ueventd/
 /dev/hvc2                 0666   system     system
 
 # open-dice device owned by init_open_dice
-/dev/open-dice0           0660   system_ext_init_open_dice  system_ext_init_open_dice
+/dev/open-dice0           0660   sdv_init_open_dice  sdv_init_open_dice

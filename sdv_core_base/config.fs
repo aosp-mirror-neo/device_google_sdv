@@ -43,22 +43,6 @@ value: 7505
 [AID_SYSTEM_EXT_SDV_LCM]
 value: 7506
 
-# User for RPC agent.
-[AID_SYSTEM_EXT_SDV_RPC]
-value: 7507
-
-# User for Service Discovery agent.
-[AID_SYSTEM_EXT_SDV_SD]
-value: 7508
-
-# User for Data tunnel agent.
-[AID_SYSTEM_EXT_SDV_DT]
-value: 7509
-
-# User for init_open_dice.
-[AID_SYSTEM_EXT_INIT_OPEN_DICE]
-value: 7510
-
 # User for sdv_update_manager_agent.
 [AID_SYSTEM_EXT_SDV_VSIDL_PROVIDER]
 value: 7511

@@ -29,5 +29,5 @@ on early-init
     # Sets the owner and mode for open dice, we prefer not to put it in ueventd since this target
     # is based on cuttlefish and trout, which already has their own ueventd.rc along with other
     # configuration files.
-    chown system_ext_init_open_dice system_ext_init_open_dice /dev/open-dice0
+    chown sdv_init_open_dice sdv_init_open_dice /dev/open-dice0
     chmod 0660 /dev/open-dice0

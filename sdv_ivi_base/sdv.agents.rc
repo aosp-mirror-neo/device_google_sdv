@@ -26,15 +26,16 @@ on early-init
 service sdv_sd_agent /system_ext/bin/sdv_sd_agent_no_vpm
     class core
     disabled
-    user system_ext_sdv_sd_agent
+    user sdv_sd_agent
     group system
     enter_namespace net /mnt/run/sd_mesh_ns
 
 # Declare the SDV Gateway service. Runs the SDV Data Tunnel agent as well.
+# Using sdv_dt_agent as the user, since data tunnel is running inside of sdv_gateway.
 service sdv_gateway /system_ext/bin/sdv_gateway
     class core
     disabled
-    user system_ext_sdv_gateway
+    user sdv_dt_agent
     group system
     enter_namespace net /mnt/run/sdv_dt_ns
 
@@ -42,14 +43,16 @@ service sdv_gateway /system_ext/bin/sdv_gateway
 service rpcagent /system_ext/bin/rpcagent
     class core
     disabled
-    user system_ext_sdv_rpc_agent
+    user sdv_rpc_agent
     group system
 
 # Declare the SDV IVI Runtime
+# SDV IVI RT does not own any resources.
+# Running under system user as SELinux guards its privilege.
 service sdv_ivi_rt /system_ext/bin/sdv_ivi_rt_service
     class core
     disabled
-    user system_ext_sdv_ivi_rt
+    user system
     group system
 
 # The sdv_gateway does the following steps:
