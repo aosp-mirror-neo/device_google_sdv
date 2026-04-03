@@ -121,7 +121,7 @@ on property:ro.sdv.orchestrator.state.ready=true
 service sdv_sd_agent /system_ext/bin/sdv_sd_agent
     class core
     disabled
-    user system_ext_sdv_sd
+    user sdv_sd_agent
     group system
     # SD is not restarted once it completes, due to a failure, to allow OEMs to control VM restart.
     oneshot
@@ -140,7 +140,7 @@ on property:ro.sdv.orchestrator.state.ready=true
 service dt_agent /system_ext/bin/dt_agent
     class core
     disabled
-    user system_ext_sdv_dt
+    user sdv_dt_agent
     group system
     # DT is not restarted once it completes, due to a failure, to allow OEMs to control VM restart.
     oneshot
@@ -152,7 +152,7 @@ on property:ro.sdv.orchestrator.state.ready=true
 service rpcagent /system_ext/bin/rpcagent
     class core
     disabled
-    user system_ext_sdv_rpc
+    user sdv_rpc_agent
     group system
     oneshot
 

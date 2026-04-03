@@ -4,5 +4,5 @@
 7502,com.android.sdv.health.HealthMonitorServiceBundle/instance1
 7503,com.android.sdv.someip.SomeIpBroker/default
 7504,com.google.sdv.telemetry.TelemetryService/default
-7509,com.android.sdv.dt.IDataTunnelAgent/default
+1100,com.android.sdv.dt.IDataTunnelAgent/default
 7511,com.android.sdv.vsidl_provider.Agent/default
