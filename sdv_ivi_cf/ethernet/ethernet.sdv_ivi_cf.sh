@@ -23,7 +23,7 @@ IP="192.168.98.118"
 echo Setting IP address for eth1: $IP > /dev/kmsg
 
 ip link set eth1 up
-ip addr add "$IP/24" dev eth1
+ip addr add "$IP/24" brd + dev eth1
 ip route add 224.0.0.0/4 dev eth1
 
 echo "sdv-ethernet-setup has started successfully"
